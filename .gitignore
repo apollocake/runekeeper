@@ -54,6 +54,8 @@ local.properties
 **/nbproject/private/
 build/
 nbbuild/
+.nb-gradle
+.nb-gradle-properties
 dist/
 nbdist/
 nbactions.xml
