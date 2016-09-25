@@ -96,8 +96,9 @@ public class StartScreen extends RunekeeperScreen {
         time += delta;
         if (time > 1) {
             if (Gdx.input.isKeyPressed(Input.Keys.ANY_KEY) || Gdx.input.justTouched()) {
-                //move to a different game screen
-                //game.setScreen(new GameScreen(game));
+                //Trevor add move to GameOverScreen
+               // move to a different game screen
+                game.setScreen(new GameOverScreen(game));
             }
         }
     }
