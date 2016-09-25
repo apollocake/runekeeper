@@ -3,6 +3,7 @@ package com.angrynerds.runekeeper.screens;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -28,6 +29,7 @@ public class StartScreen extends RunekeeperScreen {
     Stage stage;
     SpriteBatch batch;
     float time = 0;
+    private Music music;
 
     public StartScreen(Game game) {
         super(game);
@@ -83,6 +85,10 @@ public class StartScreen extends RunekeeperScreen {
 
         // Add an image actor. Have to set the size, else it would be the size of the drawable (which is the 1x1 texture).
         table.add(new Image(skin.newDrawable("white", Color.RED))).size(64);
+        
+        music = Gdx.audio.newMusic(Gdx.files.internal("startmenu.mp3"));
+        music.setLooping(true);
+        music.play();
 
     }
 
