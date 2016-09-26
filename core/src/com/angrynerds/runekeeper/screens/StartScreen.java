@@ -1,8 +1,10 @@
 package com.angrynerds.runekeeper.screens;
 
+import com.angrynerds.runekeeper.AttackingFunction;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -30,6 +32,7 @@ public class StartScreen extends RunekeeperScreen {
     SpriteBatch batch;
     float time = 0;
     private Music music;
+    AttackingFunction attackingFunction = new AttackingFunction();
 
     public StartScreen(Game game) {
         super(game);
@@ -101,10 +104,14 @@ public class StartScreen extends RunekeeperScreen {
 
         time += delta;
         if (time > 1) {
-            if (Gdx.input.isKeyPressed(Input.Keys.ANY_KEY) || Gdx.input.justTouched()) {
+           // if (Gdx.input.isKeyPressed(Input.Keys.ANY_KEY) || Gdx.input.justTouched()) {
                 //move to a different game screen
                 //game.setScreen(new GameScreen(game));
-            }
+           // }
+        }
+        
+        if(Gdx.input.isKeyPressed(Keys.SPACE )){
+            System.out.println("I am attacking");
         }
     }
 
