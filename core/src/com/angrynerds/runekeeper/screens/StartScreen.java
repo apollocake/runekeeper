@@ -24,7 +24,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 //code based off of the demos at the bottom of this page: https://github.com/libgdx/libgdx/wiki/Scene2d.ui
 //repo here: https://github.com/libgdx/libgdx/blob/master/tests/gdx-tests/src/com/badlogic/gdx/tests/UISimpleTest.java#L37
-
 public class StartScreen extends RunekeeperScreen {
 
     Skin skin;
@@ -88,7 +87,7 @@ public class StartScreen extends RunekeeperScreen {
 
         // Add an image actor. Have to set the size, else it would be the size of the drawable (which is the 1x1 texture).
         table.add(new Image(skin.newDrawable("white", Color.RED))).size(64);
-        
+
         music = Gdx.audio.newMusic(Gdx.files.internal("startmenu.mp3"));
         music.setLooping(true);
         music.play();
@@ -104,13 +103,13 @@ public class StartScreen extends RunekeeperScreen {
 
         time += delta;
         if (time > 1) {
-           // if (Gdx.input.isKeyPressed(Input.Keys.ANY_KEY) || Gdx.input.justTouched()) {
-                //move to a different game screen
-                //game.setScreen(new GameScreen(game));
-           // }
+            // if (Gdx.input.isKeyPressed(Input.Keys.ANY_KEY) || Gdx.input.justTouched()) {
+            //move to a different game screen
+            //game.setScreen(new GameScreen(game));
+            // }
         }
-        
-        if(Gdx.input.isKeyPressed(Keys.SPACE )){
+
+        if (Gdx.input.isKeyPressed(Keys.SPACE)) {
             System.out.println("I am attacking");
         }
     }
@@ -118,6 +117,11 @@ public class StartScreen extends RunekeeperScreen {
     @Override
     public void resize(int width, int height) {
         stage.getViewport().update(width, height, true);
+    }
+
+    @Override
+    public void hide() {
+        this.dispose();
     }
 
     @Override
