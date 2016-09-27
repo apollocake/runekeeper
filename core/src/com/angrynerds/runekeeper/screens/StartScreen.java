@@ -111,7 +111,8 @@ public class StartScreen extends RunekeeperScreen {
         }
         
         if(Gdx.input.isKeyPressed(Keys.SPACE )){
-            System.out.println("I am attacking");
+            attackingFunction.attacking();
+            //System.out.println("I am attacking");
         }
     }
 
