@@ -107,7 +107,8 @@ public class StartScreen extends RunekeeperScreen {
     @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(0.2f, 0.2f, 0.2f, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT| GL20.GL_DEPTH_BUFFER_BIT); 
+
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
 
@@ -126,7 +127,7 @@ public class StartScreen extends RunekeeperScreen {
         stateTime += Gdx.graphics.getDeltaTime();  
         currentFrame  = player.animation.getKeyFrame(stateTime, true); 
         batch.begin();
-        if(currentFrame != null) batch.draw(currentFrame, 50, 50);        
+        if(currentFrame != null) batch.draw(currentFrame, player.pos.x, player.pos.y);        
         player.update();
         batch.end();
         

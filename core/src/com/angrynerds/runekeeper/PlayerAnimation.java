@@ -12,12 +12,12 @@ class PlayerAnimation{
     
     //DEFINED FOR THE CORRESPONDING ANIMATIONS
     public final int IDLE = 0; 
-    public final int UP = -1;
-    public final int DOWN = 1;
-    public final int LEFT = -1;
-    public final int RIGHT = 1;
+    public final int UP = 2;
+    public final int DOWN = -2;
+    public final int LEFT = -2;
+    public final int RIGHT = 2;
     
-    //Based off the playerWlaking.png he assets folder
+    //Based off the playerWlaking.png in the assets folder
     private static final int WALKING_FRAME_COLS= 9;
     private static final int WALKING_UP_FRAME_ROW = 0; 
     private static final int WALKING_LEFT_FRAME_ROW = 1;        
@@ -52,50 +52,7 @@ class PlayerAnimation{
         createAnimations();
         currentAnimation = downIdling;
     }
-
-    void updateAnimation() {
-        if(direction == LEFT){
-            if(moving){
-                currentAnimation = walkingLeftAnima;
-            }
-            else{
-                currentAnimation  = leftIdling;
-            }
-        }
-                
-        if(direction == RIGHT){
-            if(moving){
-                currentAnimation = walkingRightAnima;
-            }
-            else{
-                currentAnimation  = rightIdling;
-            }
-        }
-                
-        if(direction == UP){
-            if(moving){
-                currentAnimation = walkingUpAnima;
-            }
-            else{
-                currentAnimation  = upIdling;
-            }
-        }
-        
-        if(direction == DOWN){
-            if(moving){
-                currentAnimation = walkingDownAnima;
-            }
-            else{
-                currentAnimation  = downIdling;
-            }
-        }
-        if(direction == IDLE){
-            
-        }
-        
-    }
     
-
     private void createAnimations() {
                 
         walkingSheet = new Texture(Gdx.files.internal("playerWalking.png"));
@@ -117,44 +74,33 @@ class PlayerAnimation{
         rightIdling  = new Animation(0.025f, tmp[WALKING_RIGHT_FRAME_ROW][0]);
         
         //For the walking animations
-        //j=1 so the idle isn't included
+        
+        //Up
         for (int i = 0, j = 1; j < WALKING_FRAME_COLS; j++) {
             walkingUpFrames[i++] = tmp[WALKING_UP_FRAME_ROW][j];  
         }        
-        walkingUpAnima = new Animation(0.025f, walkingUpFrames);
+        walkingUpAnima = new Animation(0.075f, walkingUpFrames);
                 
         
-        
+        //Left
         for (int i = 0, j = 1; j < WALKING_FRAME_COLS; j++) {
             walkingLeftFrames[i++] = tmp[WALKING_LEFT_FRAME_ROW][j];  
         }        
-        walkingLeftAnima = new Animation(0.025f, walkingLeftFrames);
+        walkingLeftAnima = new Animation(0.075f, walkingLeftFrames);
         
         
-        
+        //Down
         for (int i = 0, j = 1; j < WALKING_FRAME_COLS; j++) {
             walkingDownFrames[i++] = tmp[WALKING_DOWN_FRAME_ROW][j];  
         }        
-        walkingDownAnima = new Animation(0.025f, walkingDownFrames);
+        walkingDownAnima = new Animation(0.075f, walkingDownFrames);
 
         
-        
+        //Right
         for (int i = 0, j = 1; j < WALKING_FRAME_COLS; j++) {
             walkingRightFrames[i++] = tmp[WALKING_RIGHT_FRAME_ROW][j];  
         }
-        walkingRightAnima = new Animation(0.025f, walkingRightFrames);
-
-        
-    }
-
-    
-    public void setDirection(int direction){
-        this.direction = direction;
-    }
-
-    public void setMoving(boolean moving) {
-        this.moving = moving;
-            
+        walkingRightAnima = new Animation(0.075f, walkingRightFrames);
     }
 
     void setLocation(float x, float y) {
