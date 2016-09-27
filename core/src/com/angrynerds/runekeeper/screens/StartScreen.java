@@ -1,8 +1,11 @@
 package com.angrynerds.runekeeper.screens;
 
+import com.angrynerds.runekeeper.AttackingFunction;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -20,6 +23,8 @@ public class StartScreen extends RunekeeperScreen {
     Stage stage;
     SpriteBatch batch;
     float time = 0;
+    private Music music;
+    AttackingFunction attackingFunction = new AttackingFunction();
 
     public StartScreen(Game game) {
         super(game);
@@ -59,6 +64,10 @@ public class StartScreen extends RunekeeperScreen {
         // Create a button with the "default" TextButtonStyle. A 3rd parameter can be used to specify a name other than "default".
         final TextButton button = new TextButton("START", skin);
         table.add(button);
+        
+        music = Gdx.audio.newMusic(Gdx.files.internal("startmenu.mp3"));
+        music.setLooping(true);
+        music.play();
     }
 
     @Override
@@ -74,6 +83,11 @@ public class StartScreen extends RunekeeperScreen {
                 //move to a different game screen
                 game.setScreen(new MenuScreen(game));
             }
+        }
+        
+        if(Gdx.input.isKeyPressed(Keys.SPACE )){
+            System.out.println("I am attacking");
+
         }
     }
 
