@@ -127,7 +127,7 @@ public class StartScreen extends RunekeeperScreen {
         stateTime += Gdx.graphics.getDeltaTime();  
         currentFrame  = player.animation.getKeyFrame(stateTime, true); 
         batch.begin();
-        if(currentFrame != null) batch.draw(currentFrame, player.pos.x, player.pos.y);        
+        batch.draw(currentFrame, player.pos.x, player.pos.y);        
         player.update();
         batch.end();
         

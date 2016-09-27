@@ -20,7 +20,7 @@ public class Player{
     public PlayerAnimation playerAnimation;
     public Animation animation;
     
-    public int direction = DOWN;
+    public String direction = "DOWN";
     public Vector2 pos = new Vector2();
     
     public Player ( float x, float y) {
@@ -37,46 +37,75 @@ public class Player{
     }
     
     private void processKeys () {
+        
+        if (Gdx.input.isKeyPressed(Keys.A) && Gdx.input.isKeyPressed(Keys.W)){
+            direction = "LEFT";
+            pos.x -= Math.sin(Math.toRadians(45))*2;
+            pos.y += Math.cos(Math.toRadians(45))*2;
+            animation = playerAnimation.walkingLeftAnima;
+        }
+                
+        else if (Gdx.input.isKeyPressed(Keys.D) && Gdx.input.isKeyPressed(Keys.W)){
+            direction = "RIGHT";
+            pos.x += Math.sin(Math.toRadians(45))*2;
+            pos.y += Math.cos(Math.toRadians(45))*2;
+            animation = playerAnimation.walkingRightAnima;
+        }
+        
+        else if (Gdx.input.isKeyPressed(Keys.A) && Gdx.input.isKeyPressed(Keys.S)){
+            direction = "LEFT";
+            pos.x -= Math.sin(Math.toRadians(45))*2;
+            pos.y -= Math.cos(Math.toRadians(45))*2;
+            animation = playerAnimation.walkingLeftAnima;
+        }
+                
+        else if (Gdx.input.isKeyPressed(Keys.D) && Gdx.input.isKeyPressed(Keys.S)){
+            direction = "RIGHT";
+            pos.x += Math.sin(Math.toRadians(45))*2;
+            pos.y -= Math.cos(Math.toRadians(45))*2;
+            animation = playerAnimation.walkingRightAnima;
+        }
     
-        if ((Gdx.input.isKeyPressed(Keys.W))) {
-            direction  = UP;
+        else if (Gdx.input.isKeyPressed(Keys.W)) {
+            direction  = "UP";
             pos.y += UP;
             animation = playerAnimation.walkingUpAnima;
         }	
         else if (Gdx.input.isKeyPressed(Keys.A)) {
-            direction = LEFT;
+            direction = "LEFT";
             pos.x += LEFT;
             animation = playerAnimation.walkingLeftAnima;
         } 
         else if (Gdx.input.isKeyPressed(Keys.D)) {
-            direction  = RIGHT;
+            direction  = "RIGHT";
             pos.x += RIGHT;
             animation = playerAnimation.walkingRightAnima;
 
         } 
         else if(Gdx.input.isKeyPressed(Keys.S)) {
-            direction  = DOWN;
+            direction  = "DOWN";
             pos.y += DOWN;
             animation = playerAnimation.walkingDownAnima;
 
         }
         
+        
         else{
             //X AND Y SHOULD NOT CHANGE
             //This is when the chatcter is in IDLE
-            if(direction == LEFT){
+            if(direction.equals("LEFT")){
                 animation = playerAnimation.leftIdling;
             }
              
-            if(direction == RIGHT){
+            if(direction.equals("RIGHT")){
                 animation = playerAnimation.rightIdling;
             }
              
-            if(direction == UP){
+            if(direction.equals("UP")){
                 animation = playerAnimation.upIdling;
             }
              
-            if(direction == DOWN){
+            if(direction.equals("DOWN")){
                 animation = playerAnimation.downIdling;
             }
             

@@ -10,13 +10,6 @@ import com.badlogic.gdx.math.Vector2;
 
 class PlayerAnimation{
     
-    //DEFINED FOR THE CORRESPONDING ANIMATIONS
-    public final int IDLE = 0; 
-    public final int UP = 2;
-    public final int DOWN = -2;
-    public final int LEFT = -2;
-    public final int RIGHT = 2;
-    
     //Based off the playerWlaking.png in the assets folder
     private static final int WALKING_FRAME_COLS= 9;
     private static final int WALKING_UP_FRAME_ROW = 0; 
@@ -42,8 +35,6 @@ class PlayerAnimation{
     TextureRegion[] walkingRightFrames; 
     
     public Vector2 pos = new Vector2();
-    int direction = 0;
-    boolean moving = false;
     Animation currentAnimation;
     
 
@@ -61,10 +52,10 @@ class PlayerAnimation{
                 walkingSheet.getHeight()/4); //There are 4 rows.
 
         
-        walkingUpFrames = new TextureRegion[WALKING_FRAME_COLS];
-        walkingDownFrames = new TextureRegion[WALKING_FRAME_COLS];
-        walkingLeftFrames = new TextureRegion[WALKING_FRAME_COLS];
-        walkingRightFrames = new TextureRegion[WALKING_FRAME_COLS];
+        walkingUpFrames = new TextureRegion[WALKING_FRAME_COLS-1];
+        walkingDownFrames = new TextureRegion[WALKING_FRAME_COLS-1];
+        walkingLeftFrames = new TextureRegion[WALKING_FRAME_COLS-1];
+        walkingRightFrames = new TextureRegion[WALKING_FRAME_COLS-1];
         
                 
         //For when the character is in Idle                           
@@ -78,6 +69,7 @@ class PlayerAnimation{
         //Up
         for (int i = 0, j = 1; j < WALKING_FRAME_COLS; j++) {
             walkingUpFrames[i++] = tmp[WALKING_UP_FRAME_ROW][j];  
+            System.out.println("UP:  " + tmp[WALKING_UP_FRAME_ROW][j]);
         }        
         walkingUpAnima = new Animation(0.075f, walkingUpFrames);
                 
@@ -91,14 +83,16 @@ class PlayerAnimation{
         
         //Down
         for (int i = 0, j = 1; j < WALKING_FRAME_COLS; j++) {
-            walkingDownFrames[i++] = tmp[WALKING_DOWN_FRAME_ROW][j];  
+            walkingDownFrames[i++] = tmp[WALKING_DOWN_FRAME_ROW][j];
+            System.out.println("DOWN:  " + tmp[WALKING_DOWN_FRAME_ROW][j]);
         }        
         walkingDownAnima = new Animation(0.075f, walkingDownFrames);
-
         
+
         //Right
         for (int i = 0, j = 1; j < WALKING_FRAME_COLS; j++) {
-            walkingRightFrames[i++] = tmp[WALKING_RIGHT_FRAME_ROW][j];  
+            walkingRightFrames[i++] = tmp[WALKING_RIGHT_FRAME_ROW][j];
+            System.out.println("RIGHT:  " + tmp[WALKING_RIGHT_FRAME_ROW][j]);
         }
         walkingRightAnima = new Animation(0.075f, walkingRightFrames);
     }
