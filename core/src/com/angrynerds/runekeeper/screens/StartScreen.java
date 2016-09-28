@@ -1,6 +1,7 @@
 package com.angrynerds.runekeeper.screens;
 
 import com.angrynerds.runekeeper.AttackingFunction;
+import com.angrynerds.runekeeper.Player;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -13,6 +14,7 @@ import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -21,6 +23,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import static sun.audio.AudioPlayer.player;
 
 //code based off of the demos at the bottom of this page: https://github.com/libgdx/libgdx/wiki/Scene2d.ui
 //repo here: https://github.com/libgdx/libgdx/blob/master/tests/gdx-tests/src/com/badlogic/gdx/tests/UISimpleTest.java#L37
@@ -32,7 +35,13 @@ public class StartScreen extends RunekeeperScreen {
     SpriteBatch batch;
     float time = 0;
     private Music music;
-    AttackingFunction attackingFunction = new AttackingFunction();
+    //AttackingFunction attackingFunction = new AttackingFunction();
+    
+    
+        
+    public Player player = new Player(25,25);
+    TextureRegion currentFrame;  
+    float stateTime;
 
     public StartScreen(Game game) {
         super(game);
@@ -92,13 +101,14 @@ public class StartScreen extends RunekeeperScreen {
         music = Gdx.audio.newMusic(Gdx.files.internal("startmenu.mp3"));
         music.setLooping(true);
         music.play();
-
+                
     }
 
     @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(0.2f, 0.2f, 0.2f, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT| GL20.GL_DEPTH_BUFFER_BIT); 
+
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
 
@@ -107,13 +117,21 @@ public class StartScreen extends RunekeeperScreen {
            // if (Gdx.input.isKeyPressed(Input.Keys.ANY_KEY) || Gdx.input.justTouched()) {
                 //move to a different game screen
                 //game.setScreen(new GameScreen(game));
-           // }
+           // } 
         }
         
         if(Gdx.input.isKeyPressed(Keys.SPACE )){
-            attackingFunction.attacking();
-            //System.out.println("I am attacking");
+            System.out.println("I am attacking");
         }
+        
+        stateTime += Gdx.graphics.getDeltaTime();  
+        currentFrame  = player.animation.getKeyFrame(stateTime, true); 
+        batch.begin();
+        batch.draw(currentFrame, player.pos.x, player.pos.y);        
+        player.update();
+        batch.end();
+        
+                
     }
 
     @Override
