@@ -33,12 +33,7 @@ public class StartScreen extends RunekeeperScreen {
     float time = 0;
     private Music music;
     AttackingFunction attackingFunction = new AttackingFunction();
-    
-    
-        
-    public Player player = new Player(25,25);
-    TextureRegion currentFrame;  
-    float stateTime;
+
 
     public StartScreen(Game game) {
         super(game);
@@ -111,11 +106,8 @@ public class StartScreen extends RunekeeperScreen {
 
         }
         
-        stateTime += Gdx.graphics.getDeltaTime();  
-        currentFrame  = player.animation.getKeyFrame(stateTime, true); 
+
         batch.begin();
-        batch.draw(currentFrame, player.pos.x, player.pos.y);        
-        player.update();
         batch.end();
         
                 
