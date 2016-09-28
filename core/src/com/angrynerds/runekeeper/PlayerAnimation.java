@@ -48,11 +48,11 @@ class PlayerAnimation{
                 
         walkingSheet = new Texture(Gdx.files.internal("playerWalking.png"));
         
-        TextureRegion[][] tmp = TextureRegion.split(walkingSheet, walkingSheet.getWidth()/(WALKING_FRAME_COLS), 
+
+        TextureRegion[][] tmp = TextureRegion.split(walkingSheet, walkingSheet.getWidth()/WALKING_FRAME_COLS, 
                 walkingSheet.getHeight()/4); //There are 4 rows.
 
         
-        //walkingUpFrames = new TextureRegion[WALKING_FRAME_COLS-1];
         walkingUpFrames = new TextureRegion[WALKING_FRAME_COLS-1];
         walkingDownFrames = new TextureRegion[WALKING_FRAME_COLS-1];
         walkingLeftFrames = new TextureRegion[WALKING_FRAME_COLS-1];

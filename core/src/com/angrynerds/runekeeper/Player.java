@@ -23,12 +23,14 @@ public class Player{
     
     public String direction = "DOWN";
     String attack = "";
+
     public Vector2 pos = new Vector2();
     
     public Player ( float x, float y) {
         pos.x = x;
         pos.y = y;
         attackingFunction = new AttackingFunction();
+
         playerAnimation = new PlayerAnimation(pos.x, pos.y);
         animation = playerAnimation.downIdling;
     }
@@ -37,6 +39,7 @@ public class Player{
         processKeys();
         playerAnimation.setLocation(pos.x, pos.y);
         attackingFunction.setLocation(pos.x, pos.y);
+
     }
     
     private void processKeys () {
@@ -46,7 +49,7 @@ public class Player{
             pos.x -= Math.sin(Math.toRadians(45))*2;
             pos.y += Math.cos(Math.toRadians(45))*2;
             animation = playerAnimation.walkingLeftAnima;
-            
+
         }
                 
         else if (Gdx.input.isKeyPressed(Keys.D) && Gdx.input.isKeyPressed(Keys.W)){
@@ -55,6 +58,7 @@ public class Player{
             pos.y += Math.cos(Math.toRadians(45))*2;
             animation = playerAnimation.walkingRightAnima;
             animation = playerAnimation.rightIdling;
+
         }
         
         else if (Gdx.input.isKeyPressed(Keys.A) && Gdx.input.isKeyPressed(Keys.S)){
@@ -63,6 +67,7 @@ public class Player{
             pos.y -= Math.cos(Math.toRadians(45))*2;
             animation = playerAnimation.walkingLeftAnima;
             animation = playerAnimation.leftIdling;
+
         }
                 
         else if (Gdx.input.isKeyPressed(Keys.D) && Gdx.input.isKeyPressed(Keys.S)){
@@ -70,26 +75,25 @@ public class Player{
             pos.x += Math.sin(Math.toRadians(45))*2;
             pos.y -= Math.cos(Math.toRadians(45))*2;
             animation = playerAnimation.walkingRightAnima;
-            
         }
     
         else if (Gdx.input.isKeyPressed(Keys.W)) {
             direction  = "UP";
             pos.y += UP;
             animation = playerAnimation.walkingUpAnima;
-            
+
         }	
         else if (Gdx.input.isKeyPressed(Keys.A)) {
             direction = "LEFT";
             pos.x += LEFT;
             animation = playerAnimation.walkingLeftAnima;
-           
+
         } 
         else if (Gdx.input.isKeyPressed(Keys.D)) {
             direction  = "RIGHT";
             pos.x += RIGHT;
             animation = playerAnimation.walkingRightAnima;
-           
+
 
         } 
         else if(Gdx.input.isKeyPressed(Keys.S)) {
@@ -139,6 +143,7 @@ public class Player{
 //            }
 //         }
         
+
         
         else{
             //X AND Y SHOULD NOT CHANGE
@@ -186,6 +191,7 @@ public class Player{
         
         
         
+
     }
 
     
