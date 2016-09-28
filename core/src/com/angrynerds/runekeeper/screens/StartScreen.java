@@ -1,5 +1,6 @@
 package com.angrynerds.runekeeper.screens;
 
+import com.angrynerds.runekeeper.HealthBar;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -28,7 +29,7 @@ public class StartScreen extends RunekeeperScreen {
     Stage stage;
     SpriteBatch batch;
     float time = 0;
-
+      
     public StartScreen(Game game) {
         super(game);
     }
@@ -38,7 +39,7 @@ public class StartScreen extends RunekeeperScreen {
         batch = new SpriteBatch();
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
-
+HealthBar healthbar = new HealthBar();
         // A skin can be loaded via JSON or defined programmatically, either is fine. Using a skin is optional but strongly
         // recommended solely for the convenience of getting a texture, region, etc as a drawable, tinted drawable, etc.
         skin = new Skin();
@@ -65,11 +66,11 @@ public class StartScreen extends RunekeeperScreen {
         Table table = new Table();
         table.setFillParent(true);
         stage.addActor(table);
-
+         table.add(healthbar);
+        
         // Create a button with the "default" TextButtonStyle. A 3rd parameter can be used to specify a name other than "default".
         final TextButton button = new TextButton("Click me!", skin);
-        table.add(button);
-
+        //table.add(button);
         // Add a listener to the button. ChangeListener is fired when the button's checked state changes, eg when clicked,
         // Button#setChecked() is called, via a key press, etc. If the event.cancel() is called, the checked state will be reverted.
         // ClickListener could have been used, but would only fire when clicked. Also, canceling a ClickListener event won't
@@ -78,11 +79,12 @@ public class StartScreen extends RunekeeperScreen {
             public void changed(ChangeListener.ChangeEvent event, Actor actor) {
                 System.out.println("Clicked! Is checked: " + button.isChecked());
                 button.setText("Good job!");
+                game.setScreen(new GameOverScreen(game));
             }
         });
 
         // Add an image actor. Have to set the size, else it would be the size of the drawable (which is the 1x1 texture).
-        table.add(new Image(skin.newDrawable("white", Color.RED))).size(64);
+        //table.add(new Image(skin.newDrawable("white", Color.RED))).size(64);
 
     }
 
@@ -94,6 +96,7 @@ public class StartScreen extends RunekeeperScreen {
         stage.draw();
 
         time += delta;
+        /*
         if (time > 1) {
             if (Gdx.input.isKeyPressed(Input.Keys.ANY_KEY) || Gdx.input.justTouched()) {
                 //Trevor add move to GameOverScreen
@@ -101,6 +104,7 @@ public class StartScreen extends RunekeeperScreen {
                 game.setScreen(new GameOverScreen(game));
             }
         }
+*/
     }
 
     @Override
