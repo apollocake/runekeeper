@@ -133,6 +133,7 @@ public class StartScreen extends RunekeeperScreen {
 
     @Override
     public void dispose() {
+        music.dispose();
         stage.dispose();
         skin.dispose();
     }
