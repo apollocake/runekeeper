@@ -1,6 +1,7 @@
 
 package com.angrynerds.runekeeper.screens;
 
+import com.angrynerds.runekeeper.Player;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -10,6 +11,7 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
@@ -21,6 +23,10 @@ public class NewGameScreen extends RunekeeperScreen {
     Skin skin;
     float time = 0;
 
+    
+     public Player player = new Player(25,25);
+    TextureRegion currentFrame;  
+    float stateTime;
     
     public NewGameScreen(Game game) {
         super(game);
@@ -54,6 +60,7 @@ public class NewGameScreen extends RunekeeperScreen {
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
 
+
         time += delta;
         if (time > 1) {
 
@@ -63,6 +70,15 @@ public class NewGameScreen extends RunekeeperScreen {
             }
 
         }
+
+        
+        stateTime += Gdx.graphics.getDeltaTime();  
+        currentFrame  = player.animation.getKeyFrame(stateTime, true); 
+        batch.begin();
+        batch.draw(currentFrame, player.pos.x, player.pos.y);        
+        player.update();
+        batch.end();
+
     }
 
     @Override
