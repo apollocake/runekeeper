@@ -21,6 +21,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import static sun.audio.AudioPlayer.player;
 
 
 
@@ -32,7 +33,13 @@ public class StartScreen extends RunekeeperScreen {
     SpriteBatch batch;
     float time = 0;
     private Music music;
-    AttackingFunction attackingFunction = new AttackingFunction();
+    //AttackingFunction attackingFunction = new AttackingFunction();
+    
+    
+        
+    public Player player = new Player(25,25);
+    TextureRegion currentFrame;  
+    float stateTime;
 
 
     public StartScreen(Game game) {
@@ -79,7 +86,7 @@ public class StartScreen extends RunekeeperScreen {
         music = Gdx.audio.newMusic(Gdx.files.internal("startmenu.mp3"));
         music.setLooping(true);
         music.play();
-
+                
     }
 
     @Override
@@ -106,6 +113,7 @@ public class StartScreen extends RunekeeperScreen {
 
         }
         
+
 
         batch.begin();
         batch.end();
