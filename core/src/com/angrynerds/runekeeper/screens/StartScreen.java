@@ -18,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.Value;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 //code based off of the demos at the bottom of this page: https://github.com/libgdx/libgdx/wiki/Scene2d.ui
@@ -29,7 +30,7 @@ public class StartScreen extends RunekeeperScreen {
     Stage stage;
     SpriteBatch batch;
     float time = 0;
-      
+      HealthBar healthbar = new HealthBar();
     public StartScreen(Game game) {
         super(game);
     }
@@ -39,7 +40,7 @@ public class StartScreen extends RunekeeperScreen {
         batch = new SpriteBatch();
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
-HealthBar healthbar = new HealthBar();
+
         // A skin can be loaded via JSON or defined programmatically, either is fine. Using a skin is optional but strongly
         // recommended solely for the convenience of getting a texture, region, etc as a drawable, tinted drawable, etc.
         skin = new Skin();
@@ -64,22 +65,27 @@ HealthBar healthbar = new HealthBar();
 
         // Create a table that fills the screen. Everything else will go inside this table.
         Table table = new Table();
+       table.setDebug(true);
         table.setFillParent(true);
         stage.addActor(table);
-         table.add(healthbar);
         
+        stage.addActor(healthbar.health);
         // Create a button with the "default" TextButtonStyle. A 3rd parameter can be used to specify a name other than "default".
         final TextButton button = new TextButton("Click me!", skin);
-        //table.add(button);
+        table.add(button);
+        
         // Add a listener to the button. ChangeListener is fired when the button's checked state changes, eg when clicked,
         // Button#setChecked() is called, via a key press, etc. If the event.cancel() is called, the checked state will be reverted.
         // ClickListener could have been used, but would only fire when clicked. Also, canceling a ClickListener event won't
         // revert the checked state.
+        
+       
         button.addListener(new ChangeListener() {
             public void changed(ChangeListener.ChangeEvent event, Actor actor) {
                 System.out.println("Clicked! Is checked: " + button.isChecked());
                 button.setText("Good job!");
-                game.setScreen(new GameOverScreen(game));
+                 healthbar.addhealth(5);
+                //game.setScreen(new GameOverScreen(game));
             }
         });
 
