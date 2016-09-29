@@ -5,12 +5,18 @@
  */
 package com.angrynerds.runekeeper;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Vector2;
 
 public interface Entity {
 
-    public Sprite getSprite();
-
     public String getName();
+
+    public EntityAnimation getAnimation();
+
+    public Vector2 getPosition();
+
+    public void update();
     
 }
