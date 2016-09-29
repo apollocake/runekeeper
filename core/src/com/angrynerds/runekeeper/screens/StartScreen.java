@@ -1,28 +1,35 @@
 package com.angrynerds.runekeeper.screens;
 
+
 import com.angrynerds.runekeeper.HealthBar;
+
+import com.angrynerds.runekeeper.AttackingFunction;
+import com.angrynerds.runekeeper.Player;
+
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Value;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import static sun.audio.AudioPlayer.player;
 
-//code based off of the demos at the bottom of this page: https://github.com/libgdx/libgdx/wiki/Scene2d.ui
-//repo here: https://github.com/libgdx/libgdx/blob/master/tests/gdx-tests/src/com/badlogic/gdx/tests/UISimpleTest.java#L37
+
+
 
 public class StartScreen extends RunekeeperScreen {
 
@@ -30,7 +37,20 @@ public class StartScreen extends RunekeeperScreen {
     Stage stage;
     SpriteBatch batch;
     float time = 0;
+
       HealthBar healthbar = new HealthBar();
+
+    private Music music;
+    //AttackingFunction attackingFunction = new AttackingFunction();
+    
+    
+        
+    public Player player = new Player(25,25);
+    TextureRegion currentFrame;  
+    float stateTime;
+
+
+
     public StartScreen(Game game) {
         super(game);
     }
@@ -46,10 +66,7 @@ public class StartScreen extends RunekeeperScreen {
         skin = new Skin();
 
         // Generate a 1x1 white texture and store it in the skin named "white".
-        Pixmap pixmap = new Pixmap(1, 1, Format.RGBA8888);
-        pixmap.setColor(Color.WHITE);
-        pixmap.fill();
-        skin.add("white", new Texture(pixmap));
+        skin.add("white", new Texture("sword.png"));
 
         // Store the default libgdx font under the name "default".
         skin.add("default", new BitmapFont());
@@ -60,6 +77,7 @@ public class StartScreen extends RunekeeperScreen {
         textButtonStyle.down = skin.newDrawable("white", Color.DARK_GRAY);
         textButtonStyle.checked = skin.newDrawable("white", Color.BLUE);
         textButtonStyle.over = skin.newDrawable("white", Color.LIGHT_GRAY);
+       
         textButtonStyle.font = skin.getFont("default");
         skin.add("default", textButtonStyle);
 
@@ -69,10 +87,13 @@ public class StartScreen extends RunekeeperScreen {
         table.setFillParent(true);
         stage.addActor(table);
         
+
         stage.addActor(healthbar.health);
+
         // Create a button with the "default" TextButtonStyle. A 3rd parameter can be used to specify a name other than "default".
-        final TextButton button = new TextButton("Click me!", skin);
+        final TextButton button = new TextButton("START", skin);
         table.add(button);
+
         
         // Add a listener to the button. ChangeListener is fired when the button's checked state changes, eg when clicked,
         // Button#setChecked() is called, via a key press, etc. If the event.cancel() is called, the checked state will be reverted.
@@ -92,25 +113,52 @@ public class StartScreen extends RunekeeperScreen {
         // Add an image actor. Have to set the size, else it would be the size of the drawable (which is the 1x1 texture).
         //table.add(new Image(skin.newDrawable("white", Color.RED))).size(64);
 
+
+        music = Gdx.audio.newMusic(Gdx.files.internal("startmenu.mp3"));
+        music.setLooping(true);
+        music.play();
+                
     }
 
     @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(0.2f, 0.2f, 0.2f, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT| GL20.GL_DEPTH_BUFFER_BIT); 
+
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
 
         time += delta;
-        /*
+        
         if (time > 1) {
+
             if (Gdx.input.isKeyPressed(Input.Keys.ANY_KEY) || Gdx.input.justTouched()) {
+
                 //Trevor add move to GameOverScreen
                // move to a different game screen
                 game.setScreen(new GameOverScreen(game));
+
+                //move to a different game screen
+
+                //game.setScreen(new MenuScreen(game));
+
             }
+
         }
-*/
+
+
+        if (Gdx.input.isKeyPressed(Keys.SPACE)) {
+            System.out.println("I am attacking");
+
+        }
+        
+
+
+        batch.begin();
+        batch.end();
+        
+                
+
     }
 
     @Override
@@ -119,8 +167,15 @@ public class StartScreen extends RunekeeperScreen {
     }
 
     @Override
+    public void hide() {
+        this.dispose();
+    }
+
+    @Override
     public void dispose() {
+        music.dispose();
         stage.dispose();
         skin.dispose();
     }
+
 }

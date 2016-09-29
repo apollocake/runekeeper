@@ -11,7 +11,7 @@ public abstract class RunekeeperScreen implements Screen {
 	public RunekeeperScreen (Game game) {
 		this.game = game;
 	}
-
+        
 	@Override
 	public void resize (int width, int height) {
 	}
