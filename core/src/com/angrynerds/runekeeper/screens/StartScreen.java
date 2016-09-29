@@ -1,7 +1,11 @@
 package com.angrynerds.runekeeper.screens;
 
+
+import com.angrynerds.runekeeper.HealthBar;
+
 import com.angrynerds.runekeeper.AttackingFunction;
 import com.angrynerds.runekeeper.Player;
+
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -20,6 +24,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.Value;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import static sun.audio.AudioPlayer.player;
 
@@ -32,6 +37,9 @@ public class StartScreen extends RunekeeperScreen {
     Stage stage;
     SpriteBatch batch;
     float time = 0;
+
+      HealthBar healthbar = new HealthBar();
+
     private Music music;
     //AttackingFunction attackingFunction = new AttackingFunction();
     
@@ -40,6 +48,7 @@ public class StartScreen extends RunekeeperScreen {
     public Player player = new Player(25,25);
     TextureRegion currentFrame;  
     float stateTime;
+
 
 
     public StartScreen(Game game) {
@@ -74,14 +83,36 @@ public class StartScreen extends RunekeeperScreen {
 
         // Create a table that fills the screen. Everything else will go inside this table.
         Table table = new Table();
+       table.setDebug(true);
         table.setFillParent(true);
         stage.addActor(table);
         
+
+        stage.addActor(healthbar.health);
+
         // Create a button with the "default" TextButtonStyle. A 3rd parameter can be used to specify a name other than "default".
         final TextButton button = new TextButton("START", skin);
         table.add(button);
 
         
+        // Add a listener to the button. ChangeListener is fired when the button's checked state changes, eg when clicked,
+        // Button#setChecked() is called, via a key press, etc. If the event.cancel() is called, the checked state will be reverted.
+        // ClickListener could have been used, but would only fire when clicked. Also, canceling a ClickListener event won't
+        // revert the checked state.
+        
+       
+        button.addListener(new ChangeListener() {
+            public void changed(ChangeListener.ChangeEvent event, Actor actor) {
+                System.out.println("Clicked! Is checked: " + button.isChecked());
+                button.setText("Good job!");
+                 healthbar.addhealth(5);
+                //game.setScreen(new GameOverScreen(game));
+            }
+        });
+
+        // Add an image actor. Have to set the size, else it would be the size of the drawable (which is the 1x1 texture).
+        //table.add(new Image(skin.newDrawable("white", Color.RED))).size(64);
+
 
         music = Gdx.audio.newMusic(Gdx.files.internal("startmenu.mp3"));
         music.setLooping(true);
@@ -98,15 +129,23 @@ public class StartScreen extends RunekeeperScreen {
         stage.draw();
 
         time += delta;
+        
         if (time > 1) {
 
             if (Gdx.input.isKeyPressed(Input.Keys.ANY_KEY) || Gdx.input.justTouched()) {
+
+                //Trevor add move to GameOverScreen
+               // move to a different game screen
+                game.setScreen(new GameOverScreen(game));
+
                 //move to a different game screen
 
-                game.setScreen(new MenuScreen(game));
+                //game.setScreen(new MenuScreen(game));
+
             }
 
         }
+
 
         if (Gdx.input.isKeyPressed(Keys.SPACE)) {
             System.out.println("I am attacking");
@@ -119,6 +158,7 @@ public class StartScreen extends RunekeeperScreen {
         batch.end();
         
                 
+
     }
 
     @Override
