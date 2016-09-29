@@ -1,6 +1,9 @@
 
 package com.angrynerds.runekeeper.screens;
 
+import com.angrynerds.runekeeper.Enemy;
+import com.angrynerds.runekeeper.Entity;
+import com.angrynerds.runekeeper.EntityAnimation;
 import com.angrynerds.runekeeper.HealthBar;
 import com.angrynerds.runekeeper.Player;
 import com.badlogic.gdx.Game;
@@ -17,6 +20,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import java.util.ArrayList;
 
 
 public class NewGameScreen extends RunekeeperScreen {
@@ -30,11 +34,22 @@ public class NewGameScreen extends RunekeeperScreen {
 
     
      public Player player = new Player(25,25);
+
+     ArrayList<Entity> entities;
     TextureRegion currentFrame;  
     float stateTime;
     
     public NewGameScreen(Game game) {
         super(game);
+
+        entities = new ArrayList<Entity>();
+
+        entities.add(new Enemy(new EntityAnimation(4, 1, 1, 0, 1, 4, 3, "demon.png"), "Demon", 350, 300));
+        entities.add(new Enemy(new EntityAnimation(2, 1, 1, 0, 1, 2, 2, "ghost.png"), "Ghost", 250, 200));
+        entities.add(new Enemy(new EntityAnimation(11, 1, 1, 0, 1, 11, 5, "goblin.png"), "Goblin", 150, 250));
+        entities.add(new Enemy(new EntityAnimation(10, 1, 1, 0, 1, 10, 10, "orc.png"), "Orc", 150, 150));
+        entities.add(new Enemy(new EntityAnimation(3, 1, 1, 2, 1, 3, 4, "snake.png"), "Snake", 100, 300));
+        entities.add(new Enemy(new EntityAnimation(8, 1, 1, 0, 1, 8, 5, "wizard.png"), "Wizard", 275, 100));
     }
 
     @Override
@@ -92,6 +107,11 @@ public class NewGameScreen extends RunekeeperScreen {
         batch.begin();
         batch.draw(currentFrame, player.pos.x, player.pos.y);        
         player.update();
+
+        for(int i = 0; i < this.entities.size(); i++) {
+            batch.draw(this.entities.get(i).getAnimation().downIdling.getKeyFrame(stateTime, true), this.entities.get(i).getPosition().x, this.entities.get(i).getPosition().y);
+            this.entities.get(i).update();
+        }
         batch.end();
 
     }
