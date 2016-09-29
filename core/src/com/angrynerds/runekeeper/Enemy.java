@@ -5,29 +5,46 @@
  */
 package com.angrynerds.runekeeper;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Vector2;
 
 /**
  *
  * @author Noah
  */
 public class Enemy implements Entity{
-    private Sprite enemySprite;
+    private EntityAnimation animation;
     private String enemyName;
 
-    public Enemy(Sprite newSprite, String newName) {
-        this.enemySprite = newSprite;
-        this.enemyName = newName;
-    }
+    private Vector2 pos = new Vector2();
 
-    @Override
-    public Sprite getSprite() {
-        return this.enemySprite;
+    public Enemy(EntityAnimation newAnimation, String newName, float x, float y) {
+        this.pos.x = x;
+        this.pos.y = y;
+        this.animation = newAnimation;
+        this.enemyName = newName;
     }
 
     @Override
     public String getName() {
         return this.enemyName;
+    }
+
+    @Override
+    public void update() {
+        animation.setLocation(pos.x, pos.y);
+    }
+
+    @Override
+    public EntityAnimation getAnimation() {
+        return this.animation;
+    }
+
+    @Override
+    public Vector2 getPosition() {
+        return this.pos;
     }
 
 }
