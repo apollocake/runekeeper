@@ -26,7 +26,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Value;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import static sun.audio.AudioPlayer.player;
 
 
 
@@ -38,7 +37,6 @@ public class StartScreen extends RunekeeperScreen {
     SpriteBatch batch;
     float time = 0;
 
-      HealthBar healthbar = new HealthBar();
 
     private Music music;
     //AttackingFunction attackingFunction = new AttackingFunction();
@@ -88,7 +86,7 @@ public class StartScreen extends RunekeeperScreen {
         stage.addActor(table);
         
 
-        stage.addActor(healthbar.health);
+
 
         // Create a button with the "default" TextButtonStyle. A 3rd parameter can be used to specify a name other than "default".
         final TextButton button = new TextButton("START", skin);
@@ -101,14 +99,7 @@ public class StartScreen extends RunekeeperScreen {
         // revert the checked state.
         
        
-        button.addListener(new ChangeListener() {
-            public void changed(ChangeListener.ChangeEvent event, Actor actor) {
-                System.out.println("Clicked! Is checked: " + button.isChecked());
-                button.setText("Good job!");
-                 healthbar.addhealth(5);
-                //game.setScreen(new GameOverScreen(game));
-            }
-        });
+
 
         // Add an image actor. Have to set the size, else it would be the size of the drawable (which is the 1x1 texture).
         //table.add(new Image(skin.newDrawable("white", Color.RED))).size(64);
@@ -134,13 +125,9 @@ public class StartScreen extends RunekeeperScreen {
 
             if (Gdx.input.isKeyPressed(Input.Keys.ANY_KEY) || Gdx.input.justTouched()) {
 
-                //Trevor add move to GameOverScreen
                // move to a different game screen
-                game.setScreen(new GameOverScreen(game));
+                game.setScreen(new MenuScreen(game));
 
-                //move to a different game screen
-
-                //game.setScreen(new MenuScreen(game));
 
             }
 

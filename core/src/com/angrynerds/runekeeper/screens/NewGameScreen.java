@@ -1,6 +1,7 @@
 
 package com.angrynerds.runekeeper.screens;
 
+import com.angrynerds.runekeeper.HealthBar;
 import com.angrynerds.runekeeper.Player;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -12,11 +13,15 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 
 public class NewGameScreen extends RunekeeperScreen {
+
+          HealthBar healthbar = new HealthBar();
 
     Stage stage;
     SpriteBatch batch;
@@ -50,6 +55,9 @@ public class NewGameScreen extends RunekeeperScreen {
 
         // Store the default libgdx font under the name "default".
         skin.add("default", new BitmapFont());
+        
+        stage.addActor(healthbar.health);
+
 
     }
 
@@ -67,6 +75,13 @@ public class NewGameScreen extends RunekeeperScreen {
             if (Gdx.input.isKeyPressed(Input.Keys.Y)) {
                 //move to a different game screen
                 game.setScreen(new SaveScreen(game));
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.G)) {
+                //move to a different game screen
+                game.setScreen(new GameOverScreen(game));
+            }
+            if (Gdx.input.justTouched()) {
+                healthbar.addhealth(5);
             }
 
         }
