@@ -1,6 +1,9 @@
 package com.angrynerds.runekeeper.screens;
 
 
+import com.angrynerds.runekeeper.sound.BgmTrack;
+import com.angrynerds.runekeeper.sound.SoundFile;
+import com.angrynerds.runekeeper.sound.StartScreenMusic;
 import com.angrynerds.runekeeper.HealthBar;
 
 import com.angrynerds.runekeeper.AttackingFunction;
@@ -46,11 +49,15 @@ public class StartScreen extends RunekeeperScreen {
     public Player player = new Player(25,25);
     TextureRegion currentFrame;  
     float stateTime;
+    private final BgmTrack bgmMusic;
 
 
 
     public StartScreen(Game game) {
         super(game);
+        
+        SoundFile soundFile = new StartScreenMusic();
+        bgmMusic = new BgmTrack(soundFile);
     }
 
     @Override
@@ -105,10 +112,9 @@ public class StartScreen extends RunekeeperScreen {
         //table.add(new Image(skin.newDrawable("white", Color.RED))).size(64);
 
 
-        music = Gdx.audio.newMusic(Gdx.files.internal("startmenu.mp3"));
-        music.setLooping(true);
-        music.play();
                 
+        bgmMusic.play();
+        
     }
 
     @Override
@@ -160,7 +166,7 @@ public class StartScreen extends RunekeeperScreen {
 
     @Override
     public void dispose() {
-        music.dispose();
+        bgmMusic.dispose();
         stage.dispose();
         skin.dispose();
     }
