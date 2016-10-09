@@ -20,7 +20,6 @@ public class Enemy implements Entity{
     private String enemyName;
 
     private Vector2 pos = new Vector2();
-
     
     private int boxCounter = 0;
     private int boxCounter2 = 0;
@@ -30,6 +29,7 @@ public class Enemy implements Entity{
     private boolean bdown = false;
     private boolean bright = false;
     private boolean bup = false;
+
     
    // enemyPatrol = enemyPatrol(new BoxPatrol());
 
@@ -48,8 +48,10 @@ public class Enemy implements Entity{
 
     @Override
     public void update() {
+
        // enemyPatrol.patrol();
         patrol(pos);
+
         animation.setLocation(pos.x, pos.y);
     }
 
@@ -61,6 +63,52 @@ public class Enemy implements Entity{
     @Override
     public Vector2 getPosition() {
         return this.pos;
+    }
+    
+    private void patrol(){
+        if(boxCounter<100){
+           pos.x --;
+           
+           boxCounter++;
+        }
+        if(boxCounter>=100){
+            bleft = true;
+        }
+        if(bleft == true && boxCounter2<100){
+           pos.y --;
+           
+           boxCounter2++;
+        }
+        if(boxCounter2>=100){
+            bdown = true;
+        }
+        if(bdown == true && boxCounter3<100){
+           pos.x ++;
+           
+           boxCounter3++;
+        }
+        if(boxCounter3>=100){
+            bright = true;
+        }
+        if(bright == true && boxCounter4<100){
+           pos.y ++;
+           
+           boxCounter4++;
+        }
+        if(boxCounter4>=100){
+            bup = true;
+        }
+        if(bleft == true && bright == true && bup == true && bdown == true){
+            boxCounter = 0;
+            boxCounter2 = 0;
+            boxCounter3 = 0;
+            boxCounter4 = 0;
+            
+            bleft = false;
+            bright = false;
+            bup = false;
+            bdown = false;
+        }
     }
 
     

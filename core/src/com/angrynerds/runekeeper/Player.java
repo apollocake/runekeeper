@@ -57,7 +57,6 @@ public class Player{
             pos.x += Math.sin(Math.toRadians(45))*2;
             pos.y += Math.cos(Math.toRadians(45))*2;
             animation = playerAnimation.walkingRightAnima;
-            animation = playerAnimation.rightIdling;
 
         }
         
@@ -66,7 +65,6 @@ public class Player{
             pos.x -= Math.sin(Math.toRadians(45))*2;
             pos.y -= Math.cos(Math.toRadians(45))*2;
             animation = playerAnimation.walkingLeftAnima;
-            animation = playerAnimation.leftIdling;
 
         }
                 
