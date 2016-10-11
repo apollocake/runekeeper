@@ -6,6 +6,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 
 
@@ -16,9 +17,16 @@ public class Player{
     public final int DOWN = -2;
     public final int LEFT = -2;
     public final int RIGHT = 2;
-
+    
+    boolean runeFire = false;
+    boolean runeWater = false;
+    boolean runeWind = false;
+    
     public PlayerAnimation playerAnimation;
-    AttackingFunction attackingFunction; 
+    AttackingFunction attackingFunction;
+    Rune rnFire = new Rune();
+    Rune rnWater = new Rune();
+    Rune rnWind = new Rune();
     public Animation animation;
     
     public String direction = "DOWN";
@@ -29,20 +37,52 @@ public class Player{
     public Player ( float x, float y) {
         pos.x = x;
         pos.y = y;
+        rnFire.setRune(new RuneFire());
+        rnWater.setRune(new RuneWater());
+        rnWind.setRune(new RuneWind());
         attackingFunction = new AttackingFunction();
-
         playerAnimation = new PlayerAnimation(pos.x, pos.y);
         animation = playerAnimation.downIdling;
     }
     
-    public void update () {	
+    public void update (SpriteBatch batch) {	
         processKeys();
         playerAnimation.setLocation(pos.x, pos.y);
         attackingFunction.setLocation(pos.x, pos.y);
+        rnFire.update(pos.x, pos.y);
+        rnWater.update(pos.x, pos.y);
+        rnWind.update(pos.x, pos.y);
+        runePocessing(batch);
 
     }
     
     private void processKeys () {
+        if(Gdx.input.isKeyPressed(Keys.NUM_0)){
+            runeFire = false;
+            runeWater = false;
+            runeWind = false;
+        }
+        
+        if(Gdx.input.isKeyPressed(Keys.NUM_1)){
+            //rnOne.use(batch);
+            runeFire = true;
+            runeWater = false;
+            runeWind = false;
+        }
+        
+        if(Gdx.input.isKeyPressed(Keys.NUM_2)){
+            runeFire = false;
+            runeWater = true;
+            runeWind = false;
+        }
+        
+        if(Gdx.input.isKeyPressed(Keys.NUM_3)){
+            runeFire = false;
+            runeWater = false;
+            runeWind = true;
+        }
+        
+        //if()
         
         if (Gdx.input.isKeyPressed(Keys.A) && Gdx.input.isKeyPressed(Keys.W)){
             direction = "LEFT";
@@ -92,14 +132,12 @@ public class Player{
             pos.x += RIGHT;
             animation = playerAnimation.walkingRightAnima;
 
-
         } 
         else if(Gdx.input.isKeyPressed(Keys.S)) {
             direction  = "DOWN";
             pos.y += DOWN;
             animation = playerAnimation.walkingDownAnima;
            
-
         }
         
        else if(Gdx.input.isKeyPressed(Keys.SPACE) && direction.equals("DOWN")){
@@ -122,27 +160,7 @@ public class Player{
             animation = attackingFunction.attackingRightAnima;
            attack  = "RIGHT_ATTACKING";
         }
-        
-//         else{
-//             if(direction.equals("LEFT")){
-//                animation = attackingFunction.leftIdling;
-//            }
-//             
-//            if(direction.equals("RIGHT")){
-//                animation = attackingFunction.rightIdling;
-//            }
-//             
-//            if(direction.equals("UP")){
-//                animation = attackingFunction.upIdling;
-//            }
-//             
-//            if(direction.equals("DOWN")){
-//                animation = attackingFunction.downIdling;
-//            }
-//         }
-        
-
-        
+               
         else{
             //X AND Y SHOULD NOT CHANGE
             //This is when the chatcter is in IDLE
@@ -178,19 +196,23 @@ public class Player{
             else if(attack.equals("RIGHT_ATTACKING")){
                 animation = attackingFunction.rightIdling;
             }
-            
-            
-            
+               
+        } 
+        
+    }
+    
+    private void runePocessing(SpriteBatch batch){
+        if(runeFire == true){
+            rnFire.use(batch);
         }
         
+        else if(runeWater == true){
+            rnWater.use(batch);
+        }
         
-        
-        
-        
-        
-        
-
+        else if(runeWind == true){
+            rnWind.use(batch);
+        }
     }
 
-    
 }
