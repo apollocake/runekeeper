@@ -87,4 +87,11 @@ public class EntityAnimation {
         pos.x = x;
         pos.y = y;
     }
+    
+    public int getSpriteWidth(){
+        return this.walkingSheet.getWidth()/this.cols;
+    }
+     public int getSpriteHeight(){
+        return this.walkingSheet.getHeight()/this.rows;
+    }
 }

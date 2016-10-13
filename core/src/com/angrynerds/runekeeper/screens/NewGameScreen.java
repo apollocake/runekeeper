@@ -18,6 +18,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import java.util.ArrayList;
@@ -25,22 +27,27 @@ import java.util.ArrayList;
 
 public class NewGameScreen extends RunekeeperScreen {
 
-          HealthBar healthbar = new HealthBar();
-
+    HealthBar healthbar = new HealthBar();
     Stage stage;
     SpriteBatch batch;
     Skin skin;
     float time = 0;
-
     
-     public Player player = new Player(25,25);
+    Color nullColor;
 
-     ArrayList<Entity> entities;
+    Label livesLabel;
+    BitmapFont font;
+    LabelStyle textStyle;
+    public Player player = new Player(25,25);
+
+    ArrayList<Entity> entities;
     TextureRegion currentFrame;  
     float stateTime;
     
     public NewGameScreen(Game game) {
         super(game);
+        
+        player.setHealthBar(this.healthbar);
 
         entities = new ArrayList<Entity>();
 
@@ -57,6 +64,8 @@ public class NewGameScreen extends RunekeeperScreen {
         batch = new SpriteBatch();
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
+        
+        nullColor = batch.getColor();
 
         // A skin can be loaded via JSON or defined programmatically, either is fine. Using a skin is optional but strongly
         // recommended solely for the convenience of getting a texture, region, etc as a drawable, tinted drawable, etc.
@@ -71,8 +80,16 @@ public class NewGameScreen extends RunekeeperScreen {
         // Store the default libgdx font under the name "default".
         skin.add("default", new BitmapFont());
         
-        stage.addActor(healthbar.health);
-
+        stage.addActor(healthbar.healthBar);
+        
+            
+        font = new BitmapFont();
+        textStyle = new LabelStyle();
+        textStyle.font = font;
+        livesLabel = new Label("Lives: " + player.getPlayerLives(), textStyle);
+        livesLabel.setColor(Color.GREEN);
+        livesLabel.setPosition(20, 430);
+        stage.addActor(livesLabel);
 
     }
 
@@ -95,23 +112,43 @@ public class NewGameScreen extends RunekeeperScreen {
                 //move to a different game screen
                 game.setScreen(new GameOverScreen(game));
             }
-            if (Gdx.input.justTouched()) {
-                healthbar.addhealth(5);
+            if(Gdx.input.isKeyJustPressed(Input.Keys.F5)&&!player.state.equals("DEAD")){
+                player.damage(50);
             }
-
+                        
+            if(Gdx.input.isKeyJustPressed(Input.Keys.F6)&&!player.state.equals("DEAD")){
+                player.addhealth(50);
+            }
         }
 
+        
+        livesLabel.setText("Lives: " + player.getPlayerLives());
         
         stateTime += Gdx.graphics.getDeltaTime();  
         currentFrame  = player.animation.getKeyFrame(stateTime, true); 
         batch.begin();
         batch.draw(currentFrame, player.pos.x, player.pos.y);        
-        player.update();
+        player.update(delta);
 
         for(int i = 0; i < this.entities.size(); i++) {
             batch.draw(this.entities.get(i).getAnimation().downIdling.getKeyFrame(stateTime, true), this.entities.get(i).getPosition().x, this.entities.get(i).getPosition().y);
             this.entities.get(i).update();
         }
+        
+        
+      //Collission Checker when enemy is attacking 
+        for(int i = 0; i<this.entities.size(); i++){
+            if(player.bounds.overlaps(entities.get(i).getRec()) && !player.attack.isEmpty()){
+                System.out.println("You Hit The ENEMY");
+                batch.setColor(Color.RED);
+                batch.draw(this.entities.get(i).getAnimation().downIdling.getKeyFrame(stateTime, true), 
+                        this.entities.get(i).getPosition().x, this.entities.get(i).getPosition().y);
+            }
+            else{
+                batch.setColor(nullColor);
+            }
+        }
+        
         batch.end();
 
     }

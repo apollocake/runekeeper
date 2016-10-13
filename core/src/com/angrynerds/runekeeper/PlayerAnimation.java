@@ -17,6 +17,10 @@ class PlayerAnimation{
     private static final int WALKING_DOWN_FRAME_ROW = 2;        
     private static final int WALKING_RIGHT_FRAME_ROW = 3;        
 
+    Texture dyingSheet;
+    TextureRegion[] dyingFrames;
+    Animation dyingAnimation;
+    Animation dead;
 
     Animation walkingDownAnima; 
     Animation walkingUpAnima;          
@@ -35,19 +39,20 @@ class PlayerAnimation{
     TextureRegion[] walkingRightFrames; 
     
     public Vector2 pos = new Vector2();
-    Animation currentAnimation;
     
 
     
     public PlayerAnimation(float x, float y) {
         createAnimations();
-        currentAnimation = downIdling;
     }
     
     private void createAnimations() {
                 
-        walkingSheet = new Texture(Gdx.files.internal("playerWalking.png"));
+        //---------------------------------
+        //Below are the walking animations 
+        //---------------------------------
         
+        walkingSheet = new Texture(Gdx.files.internal("playerWalking.png"));
 
         TextureRegion[][] tmp = TextureRegion.split(walkingSheet, walkingSheet.getWidth()/WALKING_FRAME_COLS, 
                 walkingSheet.getHeight()/4); //There are 4 rows.
@@ -96,6 +101,27 @@ class PlayerAnimation{
             System.out.println("RIGHT:  " + tmp[WALKING_RIGHT_FRAME_ROW][j]);
         }
         walkingRightAnima = new Animation(0.075f, walkingRightFrames);
+        
+        
+        //--------------------------------------------------
+        //The creation of the dying animation is below here
+        //--------------------------------------------------
+        
+        dyingSheet = new Texture(Gdx.files.internal("playerDying.png"));
+        
+
+        TextureRegion[][] dyingTmp = TextureRegion.split(dyingSheet, dyingSheet.getWidth()/6, 
+                dyingSheet.getHeight()/1); //6 because there are 6 columns and 1 since there is 1 row;
+        
+        dyingFrames  = new TextureRegion[5];
+        
+        for (int i = 0, j = 1; j < 6; j++) {
+            dyingFrames[i++] = dyingTmp[0][j];  
+        }        
+        dyingAnimation = new Animation(0.155f, dyingFrames);
+        
+        dead  = new Animation(0.025f, dyingTmp[0][5]);
+
     }
 
     void setLocation(float x, float y) {

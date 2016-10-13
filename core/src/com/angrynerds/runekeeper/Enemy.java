@@ -8,6 +8,7 @@ package com.angrynerds.runekeeper;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 /**
@@ -17,6 +18,8 @@ import com.badlogic.gdx.math.Vector2;
 public class Enemy implements Entity{
     private EntityAnimation animation;
     private String enemyName;
+    
+    Rectangle bounds;
 
     private Vector2 pos = new Vector2();
     
@@ -34,6 +37,11 @@ public class Enemy implements Entity{
         this.pos.y = y;
         this.animation = newAnimation;
         this.enemyName = newName;
+        
+        bounds=new Rectangle(this.pos.x, this.pos.y, 
+                this.animation.getSpriteWidth(), 
+                this.animation.getSpriteHeight());
+
     }
 
     @Override
@@ -46,6 +54,8 @@ public class Enemy implements Entity{
         
         patrol();
         animation.setLocation(pos.x, pos.y);
+        bounds.x = this.pos.x;
+        bounds.y = this.pos.y;
     }
 
     @Override
@@ -56,6 +66,11 @@ public class Enemy implements Entity{
     @Override
     public Vector2 getPosition() {
         return this.pos;
+    }
+    
+    @Override
+    public Rectangle getRec(){
+        return this.bounds;
     }
     
     private void patrol(){
