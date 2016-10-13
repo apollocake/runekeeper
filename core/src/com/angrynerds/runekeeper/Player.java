@@ -6,10 +6,11 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import java.util.Observable;
 
 
 
-public class Player{
+public class Player extends Observable{
     //DEFINED FOR THE CORRESPONDING ANIMATIONS
     public final int IDLE = 0; 
     public final int UP = 2;
@@ -20,7 +21,7 @@ public class Player{
     public PlayerAnimation playerAnimation;
     AttackingFunction attackingFunction; 
     public Animation animation;
-    
+
     public String direction = "DOWN";
     String attack = "";
 
@@ -37,15 +38,13 @@ public class Player{
     
     public void update () {	
         processKeys();
-        playerAnimation.setLocation(pos.x, pos.y);
-        attackingFunction.setLocation(pos.x, pos.y);
-
     }
     
     private void processKeys () {
         
         if (Gdx.input.isKeyPressed(Keys.A) && Gdx.input.isKeyPressed(Keys.W)){
             direction = "LEFT";
+            notifyObservers();
             pos.x -= Math.sin(Math.toRadians(45))*2;
             pos.y += Math.cos(Math.toRadians(45))*2;
             animation = playerAnimation.walkingLeftAnima;
@@ -54,6 +53,7 @@ public class Player{
                 
         else if (Gdx.input.isKeyPressed(Keys.D) && Gdx.input.isKeyPressed(Keys.W)){
             direction = "RIGHT";
+            notifyObservers();
             pos.x += Math.sin(Math.toRadians(45))*2;
             pos.y += Math.cos(Math.toRadians(45))*2;
             animation = playerAnimation.walkingRightAnima;
@@ -62,6 +62,7 @@ public class Player{
         
         else if (Gdx.input.isKeyPressed(Keys.A) && Gdx.input.isKeyPressed(Keys.S)){
             direction = "LEFT";
+            notifyObservers();
             pos.x -= Math.sin(Math.toRadians(45))*2;
             pos.y -= Math.cos(Math.toRadians(45))*2;
             animation = playerAnimation.walkingLeftAnima;
@@ -70,6 +71,7 @@ public class Player{
                 
         else if (Gdx.input.isKeyPressed(Keys.D) && Gdx.input.isKeyPressed(Keys.S)){
             direction = "RIGHT";
+            notifyObservers();
             pos.x += Math.sin(Math.toRadians(45))*2;
             pos.y -= Math.cos(Math.toRadians(45))*2;
             animation = playerAnimation.walkingRightAnima;
@@ -77,18 +79,21 @@ public class Player{
     
         else if (Gdx.input.isKeyPressed(Keys.W)) {
             direction  = "UP";
+            notifyObservers();
             pos.y += UP;
             animation = playerAnimation.walkingUpAnima;
 
         }	
         else if (Gdx.input.isKeyPressed(Keys.A)) {
             direction = "LEFT";
+            notifyObservers();
             pos.x += LEFT;
             animation = playerAnimation.walkingLeftAnima;
 
         } 
         else if (Gdx.input.isKeyPressed(Keys.D)) {
             direction  = "RIGHT";
+            notifyObservers();
             pos.x += RIGHT;
             animation = playerAnimation.walkingRightAnima;
 
@@ -96,51 +101,35 @@ public class Player{
         } 
         else if(Gdx.input.isKeyPressed(Keys.S)) {
             direction  = "DOWN";
+            notifyObservers();
             pos.y += DOWN;
             animation = playerAnimation.walkingDownAnima;
-           
 
         }
         
        else if(Gdx.input.isKeyPressed(Keys.SPACE) && direction.equals("DOWN")){
             animation = attackingFunction.attackingDownAnima;
             attack  = "DOWN_ATTACKING";
-            
+            notifyObservers();
         }
         
         else if(Gdx.input.isKeyPressed(Keys.SPACE) && direction.equals("UP")){
             animation = attackingFunction.attackingUpAnima;
             attack  = "UP_ATTACKING";
+            notifyObservers();
         }
         
         else if(Gdx.input.isKeyPressed(Keys.SPACE) && direction.equals("LEFT")){
             animation = attackingFunction.attackingLeftAnima;
             attack  = "LEFT_ATTACKING";
+            notifyObservers();
         }
         
          else if(Gdx.input.isKeyPressed(Keys.SPACE) && direction.equals("RIGHT")){
             animation = attackingFunction.attackingRightAnima;
            attack  = "RIGHT_ATTACKING";
+           notifyObservers();
         }
-        
-//         else{
-//             if(direction.equals("LEFT")){
-//                animation = attackingFunction.leftIdling;
-//            }
-//             
-//            if(direction.equals("RIGHT")){
-//                animation = attackingFunction.rightIdling;
-//            }
-//             
-//            if(direction.equals("UP")){
-//                animation = attackingFunction.upIdling;
-//            }
-//             
-//            if(direction.equals("DOWN")){
-//                animation = attackingFunction.downIdling;
-//            }
-//         }
-        
 
         
         else{
@@ -178,19 +167,33 @@ public class Player{
             else if(attack.equals("RIGHT_ATTACKING")){
                 animation = attackingFunction.rightIdling;
             }
-            
-            
-            
         }
-        
-        
-        
-        
-        
-        
-        
-
     }
 
+    public void setPosition(float x, float y) {
+        setX(x);
+        setY(y);
+    }
     
+    public void setX(float x) {
+        pos.x = x;
+    }
+    
+     public void setY(float y) {
+        pos.y = y;
+    }
+    
+    public float getX(){
+       return pos.x;
+    }
+    
+    public float getY(){
+        return pos.y;
+    }
+    @Override
+    public void notifyObservers(){
+        setChanged();
+        super.notifyObservers();
+    }
+
 }
