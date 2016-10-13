@@ -112,11 +112,11 @@ int i = 0;
        
         
 
-        for(int i = 0; i < this.entities.size(); i++) {
-            batch.draw(this.entities.get(i).getAnimation().downIdling.getKeyFrame(stateTime, true), this.entities.get(i).getPosition().x, this.entities.get(i).getPosition().y);
-            this.entities.get(i).update();
+      //  for(int i = 0; i < this.entities.size(); i++) {
+        //    batch.draw(this.entities.get(i).getAnimation().downIdling.getKeyFrame(stateTime, true), this.entities.get(i).getPosition().x, this.entities.get(i).getPosition().y);
+        //    this.entities.get(i).update();
              
-        }
+     //   }
          
     //check if any collisons between player and enemies    
    for(int i = 0; i<this.entities.size(); i++)
@@ -125,15 +125,20 @@ int i = 0;
         {
               //change player animation to a hit animation
                   player.isHit();
-                 // healthbar.damage(5); //subtract health from healthbar  
+                  healthbar.damage(1); //subtract health from healthbar  
                   batch.draw(this.entities.get(i).getAnimation().enemyAttack.getKeyFrame(stateTime, true), this.entities.get(i).getPosition().x, this.entities.get(i).getPosition().y);
                  
                    // this.entities.get(i).update();
-               //   if(healthbar.isDead())  //check if healthbar is empty
-                 //     game.setScreen(new GameOverScreen(game)); //end game if player is dead
+                  if(healthbar.isDead())  //check if healthbar is empty
+                     game.setScreen(new GameOverScreen(game)); //end game if player is dead
         }
+        else{
+            batch.draw(this.entities.get(i).getAnimation().downIdling.getKeyFrame(stateTime, true), this.entities.get(i).getPosition().x, this.entities.get(i).getPosition().y);
+            this.entities.get(i).update();
+        }
+        
+        
     }
-  
        batch.end();
     }
 
