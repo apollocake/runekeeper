@@ -24,9 +24,8 @@ import java.util.ArrayList;
 
 
 public class NewGameScreen extends RunekeeperScreen {
-
           HealthBar healthbar = new HealthBar();
-
+int i = 0;
     Stage stage;
     SpriteBatch batch;
     Skin skin;
@@ -44,7 +43,7 @@ public class NewGameScreen extends RunekeeperScreen {
 
         entities = new ArrayList<Entity>();
 
-        entities.add(new Enemy(new EntityAnimation(4, 1, 1, 0, 1, 4, 3, "demon.png"), "Demon", 350, 300));
+        entities.add(new Enemy(new EntityAnimation(4, 1, 1, 0, 1, 4, 3, "demon.png"), "Demon", 200, 250));
         entities.add(new Enemy(new EntityAnimation(2, 1, 1, 0, 1, 2, 2, "ghost.png"), "Ghost", 250, 200));
         entities.add(new Enemy(new EntityAnimation(11, 1, 1, 0, 1, 11, 5, "goblin.png"), "Goblin", 150, 250));
         entities.add(new Enemy(new EntityAnimation(10, 1, 1, 0, 1, 10, 10, "orc.png"), "Orc", 150, 150));
@@ -105,15 +104,37 @@ public class NewGameScreen extends RunekeeperScreen {
         stateTime += Gdx.graphics.getDeltaTime();  
         currentFrame  = player.animation.getKeyFrame(stateTime, true); 
         batch.begin();
-        batch.draw(currentFrame, player.pos.x, player.pos.y);        
+        batch.draw(currentFrame, player.pos.x, player.pos.y);    
+        
+      
         player.update();
+        
+       
+        
 
         for(int i = 0; i < this.entities.size(); i++) {
             batch.draw(this.entities.get(i).getAnimation().downIdling.getKeyFrame(stateTime, true), this.entities.get(i).getPosition().x, this.entities.get(i).getPosition().y);
             this.entities.get(i).update();
+             
         }
-        batch.end();
-
+         
+    //check if any collisons between player and enemies    
+   for(int i = 0; i<this.entities.size(); i++)
+    {
+        if(player.bounds.overlaps(entities.get(i).getRec()))
+        {
+              //change player animation to a hit animation
+                  player.isHit();
+                 // healthbar.damage(5); //subtract health from healthbar  
+                  batch.draw(this.entities.get(i).getAnimation().enemyAttack.getKeyFrame(stateTime, true), this.entities.get(i).getPosition().x, this.entities.get(i).getPosition().y);
+                 
+                   // this.entities.get(i).update();
+               //   if(healthbar.isDead())  //check if healthbar is empty
+                 //     game.setScreen(new GameOverScreen(game)); //end game if player is dead
+        }
+    }
+  
+       batch.end();
     }
 
     @Override

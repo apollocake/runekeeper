@@ -8,6 +8,7 @@ package com.angrynerds.runekeeper;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 /**
@@ -28,12 +29,17 @@ public class Enemy implements Entity{
     private boolean bdown = false;
     private boolean bright = false;
     private boolean bup = false;
-
+public Rectangle bounds = new Rectangle();
     public Enemy(EntityAnimation newAnimation, String newName, float x, float y) {
         this.pos.x = x;
         this.pos.y = y;
         this.animation = newAnimation;
         this.enemyName = newName;
+        bounds.width = 40;
+        bounds.height = 40;
+        
+        bounds.x = pos.x;
+        bounds.y = pos.y;
     }
 
     @Override
@@ -44,7 +50,7 @@ public class Enemy implements Entity{
     @Override
     public void update() {
         
-        patrol();
+        //patrol();
         animation.setLocation(pos.x, pos.y);
     }
 
@@ -58,9 +64,14 @@ public class Enemy implements Entity{
         return this.pos;
     }
     
+    @Override
+    public Rectangle getRec() {
+        return this.bounds;
+    }
+   
     private void patrol(){
         if(boxCounter<100){
-           pos.x --;
+       bounds.x=    pos.x --;
            
            boxCounter++;
         }
@@ -68,7 +79,7 @@ public class Enemy implements Entity{
             bleft = true;
         }
         if(bleft == true && boxCounter2<100){
-           pos.y --;
+        bounds.y =   pos.y --;
            
            boxCounter2++;
         }
@@ -76,7 +87,7 @@ public class Enemy implements Entity{
             bdown = true;
         }
         if(bdown == true && boxCounter3<100){
-           pos.x ++;
+        bounds.x =   pos.x ++;
            
            boxCounter3++;
         }
@@ -84,7 +95,7 @@ public class Enemy implements Entity{
             bright = true;
         }
         if(bright == true && boxCounter4<100){
-           pos.y ++;
+         bounds.y =  pos.y ++;
            
            boxCounter4++;
         }
