@@ -42,7 +42,8 @@ public class NewGameScreen extends RunekeeperScreen {
      public Player player = new Player(25,25);
 
      ArrayList<Entity> entities;
-    TextureRegion currentFrame;  
+    TextureRegion currentFrame;
+    TextureRegion currentFrameAddRune;
     float stateTime;
     
     public NewGameScreen(Game game) {
@@ -120,8 +121,11 @@ public class NewGameScreen extends RunekeeperScreen {
         stateTime += Gdx.graphics.getDeltaTime();  
         currentFrame  = player.animation.getKeyFrame(stateTime, true); 
         batch.begin();
-        batch.draw(currentFrame, player.pos.x, player.pos.y);        
-        player.update();
+        batch.draw(currentFrame, player.pos.x, player.pos.y);
+        
+        //todo
+        //batch.draw();
+        player.update(batch);
 
         for (Entity entity : this.entities) {
             batch.draw(entity.getAnimation().downIdling.getKeyFrame(stateTime, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
