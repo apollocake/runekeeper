@@ -33,7 +33,7 @@ public class EntityAnimation {
     public Animation leftIdling;
     public Animation rightIdling;
 
-    Texture   walkingSheet;
+    public Texture   walkingSheet;
     TextureRegion[] walkingUpFrames;
     TextureRegion[] walkingDownFrames;
     TextureRegion[] walkingLeftFrames;
