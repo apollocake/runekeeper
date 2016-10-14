@@ -1,6 +1,7 @@
 
 package com.angrynerds.runekeeper.screens;
 
+import com.angrynerds.runekeeper.sound.ButtonsJobs;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -73,7 +74,10 @@ public class MenuScreen extends RunekeeperScreen {
         table.add(helpButton);
         
         stage.addActor(table);
-        
+
+                newGameButton.addListener(new ButtonsJobs());
+        resumeButton.addListener(new ButtonsJobs());
+        helpButton.addListener(new ButtonsJobs());
         // Add a listener to the button. ChangeListener is fired when the button's checked state changes, eg when clicked,
         // Button#setChecked() is called, via a key press, etc. If the event.cancel() is called, the checked state will be reverted.
         // ClickListener could have been used, but would only fire when clicked. Also, canceling a ClickListener event won't
