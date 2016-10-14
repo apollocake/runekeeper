@@ -22,8 +22,8 @@ public class Rune {
         return rune;
     }
     
-    public void use(SpriteBatch batch){
-        rune.showRune(batch);
+    public void use(SpriteBatch batch, int x, int y){
+        rune.showRune(batch, x, y);
     }
     
     public void update(float x, float y){

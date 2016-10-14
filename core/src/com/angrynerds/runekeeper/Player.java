@@ -17,16 +17,28 @@ public class Player{
     public final int DOWN = -2;
     public final int LEFT = -2;
     public final int RIGHT = 2;
+    public final int RUNE_FOR_GLOVE_X = 30;
+    public final int RUNE_FOR_GLOVE_Y = 5;
+    public final int RUNE_FOR_SWORD_X = 130;
+    public final int RUNE_FOR_SWORD_Y = 5;
     
-    boolean runeFire = false;
-    boolean runeWater = false;
-    boolean runeWind = false;
+    boolean runeFireGlove = false;
+    boolean runeWaterGlove = false;
+    boolean runeGrassGlove = false;
+    boolean runeOreGlove = false;
+    boolean runeFireSword = false;
+    boolean runeWaterSword = false;
+    boolean runeGrassSword = false;
+    boolean runeOreSword = false;
     
     public PlayerAnimation playerAnimation;
     AttackingFunction attackingFunction;
+    Glove glove = new Glove();
+    Sword sword = new Sword();
     Rune rnFire = new Rune();
     Rune rnWater = new Rune();
-    Rune rnWind = new Rune();
+    Rune rnGrass = new Rune();
+    Rune rnOre = new Rune();
     public Animation animation;
     
     public String direction = "DOWN";
@@ -39,50 +51,100 @@ public class Player{
         pos.y = y;
         rnFire.setRune(new RuneFire());
         rnWater.setRune(new RuneWater());
-        rnWind.setRune(new RuneWind());
+        rnGrass.setRune(new RuneGrass());
+        rnOre.setRune(new RuneOre());
         attackingFunction = new AttackingFunction();
         playerAnimation = new PlayerAnimation(pos.x, pos.y);
         animation = playerAnimation.downIdling;
+        //glove.draw(batch);
     }
     
     public void update (SpriteBatch batch) {	
         processKeys();
         playerAnimation.setLocation(pos.x, pos.y);
         attackingFunction.setLocation(pos.x, pos.y);
-        rnFire.update(pos.x, pos.y);
-        rnWater.update(pos.x, pos.y);
-        rnWind.update(pos.x, pos.y);
+        //rnFire.update(pos.x, pos.y);
+        //rnWater.update(pos.x, pos.y);
+        //rnGrass.update(pos.x, pos.y);
         runePocessing(batch);
+        glove.draw(batch);
+        sword.draw(batch);
 
     }
     
     private void processKeys () {
-        if(Gdx.input.isKeyPressed(Keys.NUM_0)){
-            runeFire = false;
-            runeWater = false;
-            runeWind = false;
+        if(Gdx.input.isKeyPressed(Keys.NUM_0) ){
+            runeFireGlove = false;
+            runeWaterGlove = false;
+            runeGrassGlove = false;
+            runeOreGlove = false;
+            runeFireSword = false;
+            runeWaterSword = false;
+            runeGrassSword = false;
+            runeOreSword = false;
         }
         
-        if(Gdx.input.isKeyPressed(Keys.NUM_1)){
+        //Glove
+        if(Gdx.input.isKeyPressed(Keys.NUM_1) && Gdx.input.isKeyPressed(Keys.K)){
             //rnOne.use(batch);
-            runeFire = true;
-            runeWater = false;
-            runeWind = false;
+            runeFireGlove = true;
+            runeWaterGlove = false;
+            runeGrassGlove = false;
+            runeOreGlove = false;
         }
         
-        if(Gdx.input.isKeyPressed(Keys.NUM_2)){
-            runeFire = false;
-            runeWater = true;
-            runeWind = false;
+        else if (Gdx.input.isKeyPressed(Keys.NUM_2) && Gdx.input.isKeyPressed(Keys.K)){
+            runeFireGlove = false;
+            runeWaterGlove = true;
+            runeGrassGlove = false;
+            runeOreGlove = false;
         }
         
-        if(Gdx.input.isKeyPressed(Keys.NUM_3)){
-            runeFire = false;
-            runeWater = false;
-            runeWind = true;
+        else if(Gdx.input.isKeyPressed(Keys.NUM_3) && Gdx.input.isKeyPressed(Keys.K)){
+            runeFireGlove = false;
+            runeWaterGlove = false;
+            runeGrassGlove = true;
+            runeOreGlove = false;
         }
         
-        //if()
+        else if(Gdx.input.isKeyPressed(Keys.NUM_4) && Gdx.input.isKeyPressed(Keys.K)){
+            runeFireGlove = false;
+            runeWaterGlove = false;
+            runeGrassGlove = false;
+            runeOreGlove = true;
+        }
+        
+        //Sword
+        if(Gdx.input.isKeyPressed(Keys.NUM_1) && Gdx.input.isKeyPressed(Keys.L)){
+            //rnOne.use(batch);
+            runeFireSword = true;
+            runeWaterSword = false;
+            runeGrassSword = false;
+            runeOreSword = false;
+        }
+        
+        else if (Gdx.input.isKeyPressed(Keys.NUM_2) && Gdx.input.isKeyPressed(Keys.L)){
+            runeFireSword = false;
+            runeWaterSword = true;
+            runeGrassSword = false;
+            runeOreSword = false;
+        }
+        
+        else if(Gdx.input.isKeyPressed(Keys.NUM_3) && Gdx.input.isKeyPressed(Keys.L)){
+            runeFireSword = false;
+            runeWaterSword = false;
+            runeGrassSword = true;
+            runeOreSword = false;
+        }
+        
+        else if(Gdx.input.isKeyPressed(Keys.NUM_4) && Gdx.input.isKeyPressed(Keys.L)){
+            runeFireSword = false;
+            runeWaterSword = false;
+            runeGrassSword = false;
+            runeOreSword = true;
+        }
+        
+        
         
         if (Gdx.input.isKeyPressed(Keys.A) && Gdx.input.isKeyPressed(Keys.W)){
             direction = "LEFT";
@@ -180,7 +242,6 @@ public class Player{
                 animation = playerAnimation.downIdling;
             }
             
-            //
             else if(attack.equals("DOWN_ATTACKING")){
                 animation = attackingFunction.downIdling;
             }
@@ -202,16 +263,36 @@ public class Player{
     }
     
     private void runePocessing(SpriteBatch batch){
-        if(runeFire == true){
-            rnFire.use(batch);
+        if(runeFireGlove == true){
+            rnFire.use(batch, RUNE_FOR_GLOVE_X, RUNE_FOR_GLOVE_Y);
         }
         
-        else if(runeWater == true){
-            rnWater.use(batch);
+        else if(runeWaterGlove == true){
+            rnWater.use(batch, RUNE_FOR_GLOVE_X, RUNE_FOR_GLOVE_Y);
         }
         
-        else if(runeWind == true){
-            rnWind.use(batch);
+        else if(runeGrassGlove == true){
+            rnGrass.use(batch, RUNE_FOR_GLOVE_X, RUNE_FOR_GLOVE_Y);
+        }
+        
+        else if(runeOreGlove == true){
+            rnOre.use(batch, RUNE_FOR_GLOVE_X, RUNE_FOR_GLOVE_Y);
+        }
+        
+        if(runeFireSword == true){
+            rnFire.use(batch, RUNE_FOR_SWORD_X, RUNE_FOR_SWORD_Y);
+        }
+        
+        else if(runeWaterSword == true){
+            rnWater.use(batch, RUNE_FOR_SWORD_X, RUNE_FOR_SWORD_Y);
+        }
+        
+        else if(runeGrassSword == true){
+            rnGrass.use(batch, RUNE_FOR_SWORD_X, RUNE_FOR_SWORD_Y);
+        }
+        
+        else if(runeOreSword == true){
+            rnOre.use(batch, RUNE_FOR_SWORD_X, RUNE_FOR_SWORD_Y);
         }
     }
 

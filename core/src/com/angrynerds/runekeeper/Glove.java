@@ -15,29 +15,25 @@ import com.badlogic.gdx.math.Vector2;
  *
  * @author qzhao
  */
-public class RuneWind implements iRune{
+public class Glove {
     Animation fireIdling;
     private String runeName;
     private Vector2 pos = new Vector2();
     private Texture texture;
     //private SpriteBatch batch;
-    public RuneWind() {
+    public Glove() {
         //batch = new SpriteBatch();
         
     }
 
-    @Override
-    public void showRune(SpriteBatch batch, int x, int y) {
-        texture = new Texture(Gdx.files.internal("Rune_Wind.png"));
-        batch.draw(texture, x, y,Gdx.graphics.getWidth()/20,Gdx.graphics.getHeight()/15);
-//       System.out.println("Fire Rune");
-
-    }
-
-    @Override
-    public void setLocation(float x, float y) {
-        pos.x = x;
-        pos.y = y;
-    }
     
+    public void draw(SpriteBatch batch) {
+        texture = new Texture(Gdx.files.internal("glove.png"));
+//        batch.begin();
+        //Gdx.gl.glActiveTexture(GL20.GL_TEXTURE0);
+        batch.draw(texture, 2, 2,Gdx.graphics.getWidth()/20,Gdx.graphics.getHeight()/14);
+  //      batch.end();
+       //System.out.println("Fire Rune");
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

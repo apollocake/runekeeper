@@ -70,7 +70,7 @@ class PlayerAnimation{
         //Up
         for (int i = 0, j = 1; j < WALKING_FRAME_COLS; j++) {
             walkingUpFrames[i++] = tmp[WALKING_UP_FRAME_ROW][j];  
-            System.out.println("UP:  " + tmp[WALKING_UP_FRAME_ROW][j]);
+            //System.out.println("UP:  " + tmp[WALKING_UP_FRAME_ROW][j]);
         }        
         walkingUpAnima = new Animation(0.075f, walkingUpFrames);
                 
@@ -85,7 +85,7 @@ class PlayerAnimation{
         //Down
         for (int i = 0, j = 1; j < WALKING_FRAME_COLS; j++) {
             walkingDownFrames[i++] = tmp[WALKING_DOWN_FRAME_ROW][j];
-            System.out.println("DOWN:  " + tmp[WALKING_DOWN_FRAME_ROW][j]);
+            //System.out.println("DOWN:  " + tmp[WALKING_DOWN_FRAME_ROW][j]);
         }        
         walkingDownAnima = new Animation(0.075f, walkingDownFrames);
         
@@ -93,7 +93,7 @@ class PlayerAnimation{
         //Right
         for (int i = 0, j = 1; j < WALKING_FRAME_COLS; j++) {
             walkingRightFrames[i++] = tmp[WALKING_RIGHT_FRAME_ROW][j];
-            System.out.println("RIGHT:  " + tmp[WALKING_RIGHT_FRAME_ROW][j]);
+            //System.out.println("RIGHT:  " + tmp[WALKING_RIGHT_FRAME_ROW][j]);
         }
         walkingRightAnima = new Animation(0.075f, walkingRightFrames);
     }
