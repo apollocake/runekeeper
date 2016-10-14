@@ -1,4 +1,3 @@
-
 package com.angrynerds.runekeeper.screens;
 
 import com.angrynerds.runekeeper.BossDifficultyType;
@@ -28,24 +27,22 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import java.util.ArrayList;
 
-
 public class NewGameScreen extends RunekeeperScreen {
 
-          HealthBar healthbar = new HealthBar();
-
+    HealthBar healthbar = new HealthBar();
+    int i = 0;
     Stage stage;
     SpriteBatch batch;
     Skin skin;
     float time = 0;
 
-    
-     public Player player = new Player(25,25);
+    public Player player = new Player(25, 25);
 
-     ArrayList<Entity> entities;
+    ArrayList<Entity> entities;
     TextureRegion currentFrame;
     TextureRegion currentFrameAddRune;
     float stateTime;
-    
+
     public NewGameScreen(Game game) {
         super(game);
 
@@ -66,6 +63,7 @@ public class NewGameScreen extends RunekeeperScreen {
         entities.add(new Enemy(new EntityAnimation(1, 0, 0, 0, 0, 4, 4, "snakeking.png"), "Snake King", 420, 350, bossDifficulty, new BoxPatrol()));
         entities.add(new Enemy(new EntityAnimation(1, 0, 0, 0, 0, 8, 8, "evilwizard.png"), "Evil Wizard", 220, 450, bossDifficulty, new CrazyPatrol()));
         entities.add(new Enemy(new EntityAnimation(10, 0, 0, 0, 0, 3, 4, "meteorbeast.png"), "Meteor Beast", 180, 430, bossDifficulty, new BoxPatrol()));
+
     }
 
     @Override
@@ -86,9 +84,8 @@ public class NewGameScreen extends RunekeeperScreen {
 
         // Store the default libgdx font under the name "default".
         skin.add("default", new BitmapFont());
-        
-        stage.addActor(healthbar.health);
 
+        stage.addActor(healthbar.health);
 
     }
 
@@ -98,7 +95,6 @@ public class NewGameScreen extends RunekeeperScreen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
-
 
         time += delta;
         if (time > 1) {
@@ -117,22 +113,31 @@ public class NewGameScreen extends RunekeeperScreen {
 
         }
 
-        
-        stateTime += Gdx.graphics.getDeltaTime();  
-        currentFrame  = player.animation.getKeyFrame(stateTime, true); 
+        stateTime += Gdx.graphics.getDeltaTime();
+        currentFrame = player.animation.getKeyFrame(stateTime, true);
         batch.begin();
         batch.draw(currentFrame, player.pos.x, player.pos.y);
-        
-        //todo
-        //batch.draw();
         player.update(batch);
 
+        //check if any collisons between player and enemies    
         for (Entity entity : this.entities) {
-            batch.draw(entity.getAnimation().downIdling.getKeyFrame(stateTime, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
-            entity.update();
+            if (player.bounds.overlaps(entity.getRec())) {
+                //change player animation to a hit animation
+                player.isHit();
+                healthbar.damage(1); //subtract health from healthbar  
+                batch.draw(entity.getAnimation().enemyAttack.getKeyFrame(stateTime, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
+                if (healthbar.isDead()) //check if healthbar is empty
+                {
+                    game.setScreen(new GameOverScreen(game)); //end game if player is dead
+                }
+            } else {
+                batch.draw(entity.getAnimation().downIdling.getKeyFrame(stateTime, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
+                entity.update();
+
+            }
+
         }
         batch.end();
-
     }
 
     @Override
@@ -154,5 +159,5 @@ public class NewGameScreen extends RunekeeperScreen {
     @Override
     public void dispose() {
     }
-    
+
 }
