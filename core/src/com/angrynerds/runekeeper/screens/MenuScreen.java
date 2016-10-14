@@ -1,6 +1,5 @@
 
 package com.angrynerds.runekeeper.screens;
-import com.angrynerds.runekeeper.sound.ButtonsJobs;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -16,7 +15,6 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class MenuScreen extends RunekeeperScreen {
@@ -24,15 +22,14 @@ public class MenuScreen extends RunekeeperScreen {
     Skin skin;
     Stage stage;
     SpriteBatch batch;
-    BitmapFont font;
     float time = 0;
-    
+
     public MenuScreen(Game game) {
         super(game);
     }
 
     @Override
-    public void show() {        
+    public void show() {
         batch = new SpriteBatch();
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
@@ -68,7 +65,7 @@ public class MenuScreen extends RunekeeperScreen {
         final TextButton newGameButton = new TextButton("NEW GAME", textButtonStyle);
         final TextButton resumeButton = new TextButton("RESUME GAME", textButtonStyle);
         final TextButton helpButton = new TextButton("HELP", textButtonStyle);
-        
+    
         table.add(newGameButton);
         table.row();
         table.add(resumeButton);
@@ -77,19 +74,18 @@ public class MenuScreen extends RunekeeperScreen {
         
         stage.addActor(table);
         
-        newGameButton.addListener(new ButtonsJobs());
-        resumeButton.addListener(new ButtonsJobs());
-        helpButton.addListener(new ButtonsJobs());
-        
-    /*    newGameButton.addListener(new ClickListener() {
+        // Add a listener to the button. ChangeListener is fired when the button's checked state changes, eg when clicked,
+        // Button#setChecked() is called, via a key press, etc. If the event.cancel() is called, the checked state will be reverted.
+        // ClickListener could have been used, but would only fire when clicked. Also, canceling a ClickListener event won't
+        // revert the checked state.
+    
+        newGameButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                // move on to the screen selected
-                 game.setScreen(new MessageScreen(game));
-            };
+            //    System.out.println("Clicked");
+                game.setScreen(new NewGameScreen(game));
+            }
         });
-   */     
-
     }
 
     @Override
@@ -98,7 +94,6 @@ public class MenuScreen extends RunekeeperScreen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
-        time += delta;
     }
     
     @Override
