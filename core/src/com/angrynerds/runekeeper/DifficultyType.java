@@ -7,18 +7,13 @@ package com.angrynerds.runekeeper;
 
 import com.badlogic.gdx.math.Vector2;
 
-public interface Entity {
+/**
+ *
+ * @author Noah
+ */
+public interface DifficultyType {
 
-    public String getName();
-
-    public EntityAnimation getAnimation();
-
-    public Vector2 getPosition();
-
-    public Vector2 getDimensions();
-
-    public void setDimensions(Vector2 newDimensions);
-
-    public void update();
+    public Vector2 getDifficultyDimensions();
+    public void TransformEntity(Entity entityToTransform);
     
 }
