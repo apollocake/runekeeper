@@ -38,8 +38,10 @@ public class EntityAnimation {
     public Animation enemyAttack;
     
 
+
     Texture   walkingSheet;
     Texture   walkingSheet2;
+
     TextureRegion[] walkingUpFrames;
     TextureRegion[] walkingDownFrames;
     TextureRegion[] walkingLeftFrames;

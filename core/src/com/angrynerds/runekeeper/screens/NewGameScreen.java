@@ -1,11 +1,15 @@
-
 package com.angrynerds.runekeeper.screens;
 
+import com.angrynerds.runekeeper.BossDifficultyType;
 import com.angrynerds.runekeeper.Enemy;
 import com.angrynerds.runekeeper.Entity;
 import com.angrynerds.runekeeper.EntityAnimation;
 import com.angrynerds.runekeeper.HealthBar;
 import com.angrynerds.runekeeper.Player;
+import com.angrynerds.runekeeper.BoxPatrol;
+import com.angrynerds.runekeeper.CrazyPatrol;
+import com.angrynerds.runekeeper.DifficultyType;
+import com.angrynerds.runekeeper.EasyDifficultyType;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -16,39 +20,50 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import java.util.ArrayList;
 
-
 public class NewGameScreen extends RunekeeperScreen {
-          HealthBar healthbar = new HealthBar();
-int i = 0;
+
+    HealthBar healthbar = new HealthBar();
+    int i = 0;
     Stage stage;
     SpriteBatch batch;
     Skin skin;
     float time = 0;
 
-    
-     public Player player = new Player(25,25);
+    public Player player = new Player(25, 25);
 
-     ArrayList<Entity> entities;
-    TextureRegion currentFrame;  
+    ArrayList<Entity> entities;
+    TextureRegion currentFrame;
+    TextureRegion currentFrameAddRune;
     float stateTime;
-    
+
     public NewGameScreen(Game game) {
         super(game);
 
         entities = new ArrayList<Entity>();
 
-        entities.add(new Enemy(new EntityAnimation(4, 1, 1, 0, 1, 4, 3, "demon.png"), "Demon", 200, 250));
-        entities.add(new Enemy(new EntityAnimation(2, 1, 1, 0, 1, 2, 2, "ghost.png"), "Ghost", 250, 200));
-        entities.add(new Enemy(new EntityAnimation(11, 1, 1, 0, 1, 11, 5, "goblin.png"), "Goblin", 150, 250));
-        entities.add(new Enemy(new EntityAnimation(10, 1, 1, 0, 1, 10, 10, "orc.png"), "Orc", 150, 150));
-        entities.add(new Enemy(new EntityAnimation(3, 1, 1, 2, 1, 3, 4, "snake.png"), "Snake", 100, 300));
-        entities.add(new Enemy(new EntityAnimation(8, 1, 1, 0, 1, 8, 5, "wizard.png"), "Wizard", 275, 100));
+        DifficultyType easyDifficulty = new EasyDifficultyType(new Vector2(40, 40));
+        DifficultyType bossDifficulty = new BossDifficultyType(new Vector2(100, 100));
+
+        entities.add(new Enemy(new EntityAnimation(4, 1, 1, 0, 1, 4, 3, "demon.png"), "Demon", 350, 300, easyDifficulty, new BoxPatrol()));
+        entities.add(new Enemy(new EntityAnimation(2, 1, 1, 0, 1, 2, 2, "ghost.png"), "Ghost", 250, 200, easyDifficulty, new BoxPatrol()));
+        entities.add(new Enemy(new EntityAnimation(11, 1, 1, 0, 1, 11, 5, "goblin.png"), "Goblin", 150, 250, easyDifficulty, new CrazyPatrol()));
+        entities.add(new Enemy(new EntityAnimation(10, 1, 1, 0, 1, 10, 10, "orc.png"), "Orc", 150, 150, easyDifficulty, new BoxPatrol()));
+        entities.add(new Enemy(new EntityAnimation(3, 1, 1, 2, 1, 3, 4, "snake.png"), "Snake", 100, 300, easyDifficulty, new BoxPatrol()));
+        entities.add(new Enemy(new EntityAnimation(8, 1, 1, 0, 1, 8, 5, "wizard.png"), "Wizard", 275, 100, easyDifficulty, new CrazyPatrol()));
+
+        entities.add(new Enemy(new EntityAnimation(2, 1, 1, 0, 1, 10, 4, "ghostking.png"), "Ghost King", 550, 100, bossDifficulty, new BoxPatrol()));
+        entities.add(new Enemy(new EntityAnimation(11, 1, 1, 0, 1, 10, 10, "goblinking.png"), "Goblin King", 420, 250, new BossDifficultyType(new Vector2(175, 175)), new CrazyPatrol()));
+        entities.add(new Enemy(new EntityAnimation(1, 0, 0, 0, 0, 4, 4, "snakeking.png"), "Snake King", 420, 350, bossDifficulty, new BoxPatrol()));
+        entities.add(new Enemy(new EntityAnimation(1, 0, 0, 0, 0, 8, 8, "evilwizard.png"), "Evil Wizard", 220, 450, bossDifficulty, new CrazyPatrol()));
+        entities.add(new Enemy(new EntityAnimation(10, 0, 0, 0, 0, 3, 4, "meteorbeast.png"), "Meteor Beast", 180, 430, bossDifficulty, new BoxPatrol()));
+
     }
 
     @Override
@@ -69,9 +84,8 @@ int i = 0;
 
         // Store the default libgdx font under the name "default".
         skin.add("default", new BitmapFont());
-        
-        stage.addActor(healthbar.health);
 
+        stage.addActor(healthbar.health);
 
     }
 
@@ -81,7 +95,6 @@ int i = 0;
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
-
 
         time += delta;
         if (time > 1) {
@@ -100,46 +113,31 @@ int i = 0;
 
         }
 
-        
-        stateTime += Gdx.graphics.getDeltaTime();  
-        currentFrame  = player.animation.getKeyFrame(stateTime, true); 
+        stateTime += Gdx.graphics.getDeltaTime();
+        currentFrame = player.animation.getKeyFrame(stateTime, true);
         batch.begin();
-        batch.draw(currentFrame, player.pos.x, player.pos.y);    
-        
-      
-        player.update();
-        
-       
-        
+        batch.draw(currentFrame, player.pos.x, player.pos.y);
+        player.update(batch);
 
-      //  for(int i = 0; i < this.entities.size(); i++) {
-        //    batch.draw(this.entities.get(i).getAnimation().downIdling.getKeyFrame(stateTime, true), this.entities.get(i).getPosition().x, this.entities.get(i).getPosition().y);
-        //    this.entities.get(i).update();
-             
-     //   }
-         
-    //check if any collisons between player and enemies    
-   for(int i = 0; i<this.entities.size(); i++)
-    {
-        if(player.bounds.overlaps(entities.get(i).getRec()))
-        {
-              //change player animation to a hit animation
-                  player.isHit();
-                  healthbar.damage(1); //subtract health from healthbar  
-                  batch.draw(this.entities.get(i).getAnimation().enemyAttack.getKeyFrame(stateTime, true), this.entities.get(i).getPosition().x, this.entities.get(i).getPosition().y);
-                 
-                   // this.entities.get(i).update();
-                  if(healthbar.isDead())  //check if healthbar is empty
-                     game.setScreen(new GameOverScreen(game)); //end game if player is dead
+        //check if any collisons between player and enemies    
+        for (Entity entity : this.entities) {
+            if (player.bounds.overlaps(entity.getRec())) {
+                //change player animation to a hit animation
+                player.isHit();
+                healthbar.damage(1); //subtract health from healthbar  
+                batch.draw(entity.getAnimation().enemyAttack.getKeyFrame(stateTime, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
+                if (healthbar.isDead()) //check if healthbar is empty
+                {
+                    game.setScreen(new GameOverScreen(game)); //end game if player is dead
+                }
+            } else {
+                batch.draw(entity.getAnimation().downIdling.getKeyFrame(stateTime, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
+                entity.update();
+
+            }
+
         }
-        else{
-            batch.draw(this.entities.get(i).getAnimation().downIdling.getKeyFrame(stateTime, true), this.entities.get(i).getPosition().x, this.entities.get(i).getPosition().y);
-            this.entities.get(i).update();
-        }
-        
-        
-    }
-       batch.end();
+        batch.end();
     }
 
     @Override
@@ -161,5 +159,5 @@ int i = 0;
     @Override
     public void dispose() {
     }
-    
+
 }
