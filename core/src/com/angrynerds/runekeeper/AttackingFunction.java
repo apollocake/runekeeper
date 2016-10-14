@@ -69,7 +69,7 @@ public class AttackingFunction {
         //Up
         for (int i = 0, j = 1; j < ATTACKING_FRAME_COLS; j++) {
             attackingUpFrames[i++] = tmp[ATTACKING_UP_FRAME_ROW][j];  
-            System.out.println("UP:  " + tmp[ATTACKING_UP_FRAME_ROW][j]);
+            //System.out.println("UP:  " + tmp[ATTACKING_UP_FRAME_ROW][j]);
         }        
         attackingUpAnima = new Animation(0.075f, attackingUpFrames);
                 
@@ -84,7 +84,7 @@ public class AttackingFunction {
         //Down
         for (int i = 0, j = 1; j < ATTACKING_FRAME_COLS; j++) {
             attackingDownFrames[i++] = tmp[ATTACKING_DOWN_FRAME_ROW][j];
-            System.out.println("DOWN:  " + tmp[ATTACKING_DOWN_FRAME_ROW][j]);
+            //System.out.println("DOWN:  " + tmp[ATTACKING_DOWN_FRAME_ROW][j]);
         }        
         attackingDownAnima = new Animation(0.075f, attackingDownFrames);
         
@@ -92,7 +92,7 @@ public class AttackingFunction {
         //Right
         for (int i = 0, j = 1; j < ATTACKING_FRAME_COLS; j++) {
             attackingRightFrames[i++] = tmp[ATTACKING_RIGHT_FRAME_ROW][j];
-            System.out.println("RIGHT:  " + tmp[ATTACKING_RIGHT_FRAME_ROW][j]);
+            //System.out.println("RIGHT:  " + tmp[ATTACKING_RIGHT_FRAME_ROW][j]);
         }
         attackingRightAnima = new Animation(0.075f, attackingRightFrames);
     }
