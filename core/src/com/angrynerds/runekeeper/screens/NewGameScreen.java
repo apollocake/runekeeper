@@ -24,6 +24,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -39,18 +40,24 @@ import java.util.ArrayList;
 public class NewGameScreen extends RunekeeperScreen {
 
     HealthBar healthbar = new HealthBar();
-    int i = 0;
     Stage stage;
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
     private OrthographicCamera camera;
     float time = 0;
+
+    private Vector2 enemyPos = new Vector2();
+    private Vector2 playerPos = new Vector2();
+    private float enemyDistance = 0.0f;
+    private boolean runMode = false;
+
+    public Player player = new Player(25, 25);
+
     SaveDialog saveDia;
     public static final int GAME_RUNNING = 0;
     public static final int GAME_PAUSED = 1;
     public static int gamestatus;
 
-    public Player player;
     ArrayList<Entity> entities;
     TextureRegion currentFrame;
     float stateTime;
@@ -68,8 +75,6 @@ public class NewGameScreen extends RunekeeperScreen {
         player = new Player(25, 25);
         player.addObserver(playerCollision);
 
-        
-
         gamestatus = GAME_RUNNING;
         skin = new Skin(Gdx.files.internal("uiskin.json"));
         saveDia = new SaveDialog("Save Load Menu", skin);
@@ -80,16 +85,20 @@ public class NewGameScreen extends RunekeeperScreen {
 
         entities.add(new Enemy(new EntityAnimation(4, 1, 1, 0, 1, 4, 3, "demon.png"), "Demon", 350, 300, easyDifficulty, new BoxPatrol()));
         entities.add(new Enemy(new EntityAnimation(2, 1, 1, 0, 1, 2, 2, "ghost.png"), "Ghost", 250, 200, easyDifficulty, new BoxPatrol()));
-        entities.add(new Enemy(new EntityAnimation(11, 1, 1, 0, 1, 11, 5, "goblin.png"), "Goblin", 150, 250, easyDifficulty, new CrazyPatrol()));
+        entities.add(new Enemy(new EntityAnimation(11, 1, 1, 0, 1, 11, 5, "goblin.png"), "Goblin", 150, 250, easyDifficulty, new BoxPatrol()));
         entities.add(new Enemy(new EntityAnimation(10, 1, 1, 0, 1, 10, 10, "orc.png"), "Orc", 150, 150, easyDifficulty, new BoxPatrol()));
         entities.add(new Enemy(new EntityAnimation(3, 1, 1, 2, 1, 3, 4, "snake.png"), "Snake", 100, 300, easyDifficulty, new BoxPatrol()));
-        entities.add(new Enemy(new EntityAnimation(8, 1, 1, 0, 1, 8, 5, "wizard.png"), "Wizard", 275, 100, easyDifficulty, new CrazyPatrol()));
+        entities.add(new Enemy(new EntityAnimation(8, 1, 1, 0, 1, 8, 5, "wizard.png"), "Wizard", 275, 100, easyDifficulty, new BoxPatrol()));
 
         entities.add(new Enemy(new EntityAnimation(2, 1, 1, 0, 1, 10, 4, "ghostking.png"), "Ghost King", 550, 100, bossDifficulty, new BoxPatrol()));
-        entities.add(new Enemy(new EntityAnimation(11, 1, 1, 0, 1, 10, 10, "goblinking.png"), "Goblin King", 420, 250, new BossDifficultyType(new Vector2(175, 175)), new CrazyPatrol()));
+        entities.add(new Enemy(new EntityAnimation(11, 1, 1, 0, 1, 10, 10, "goblinking.png"), "Goblin King", 420, 250, new BossDifficultyType(new Vector2(175, 175)), new BoxPatrol()));
         entities.add(new Enemy(new EntityAnimation(1, 0, 0, 0, 0, 4, 4, "snakeking.png"), "Snake King", 420, 350, bossDifficulty, new BoxPatrol()));
-        entities.add(new Enemy(new EntityAnimation(1, 0, 0, 0, 0, 8, 8, "evilwizard.png"), "Evil Wizard", 220, 450, bossDifficulty, new CrazyPatrol()));
-        entities.add(new Enemy(new EntityAnimation(10, 0, 0, 0, 0, 3, 4, "meteorbeast.png"), "Meteor Beast", 180, 430, bossDifficulty, new BoxPatrol()));
+        entities.add(new Enemy(new EntityAnimation(1, 0, 0, 0, 0, 8, 8, "evilwizard.png"), "Evil Wizard", 220, 450, bossDifficulty, new BoxPatrol()));
+        entities.add(new Enemy(new EntityAnimation(1, 0, 0, 0, 0, 3, 4, "meteorbeast.png"), "Meteor Beast", 180, 430, bossDifficulty, new BoxPatrol()));
+        /*This is a hack to prevent a bug pls fix*/
+        entities.add(new Enemy(new EntityAnimation(1, 0, 0, 0, 0, 3, 4, "meteorbeast.png"), "Bug:Not rendered", 180, 430, bossDifficulty, new BoxPatrol()));
+        /*^^^^This is a  hack to prevent a bug pls fix^^^^^*/
+
 
     }
 
@@ -119,6 +128,7 @@ public class NewGameScreen extends RunekeeperScreen {
             //System.out.println(object);
             gamestatus = GAME_RUNNING;
         }
+
     }
 
     @Override
@@ -127,7 +137,7 @@ public class NewGameScreen extends RunekeeperScreen {
         Gdx.input.setInputProcessor(stage);
 
         stage.addActor(healthbar.health);
-        camera.position.set(player.getX() + 350, player.getY() +220, 0);
+        camera.position.set(player.getX() + 350, player.getY() + 220, 0);
 
     }
 
@@ -155,6 +165,11 @@ public class NewGameScreen extends RunekeeperScreen {
                 //move to a different game screen
                 game.setScreen(new GameOverScreen(game));
             }
+            if (Gdx.input.isKeyJustPressed(Input.Keys.R)) {
+                //move to a different game screen
+                runMode = !runMode;
+                System.out.println("runMode changed to " + runMode);
+            }
             if (Gdx.input.justTouched()) {
                 healthbar.addhealth(5);
             }
@@ -173,7 +188,9 @@ public class NewGameScreen extends RunekeeperScreen {
 
         if (gamestatus != GAME_PAUSED) {
             player.update((SpriteBatch) renderer.getBatch());
+
         }
+        playerPos = player.getPosition();
 
         //check if any collisons between player and enemies    
         for (Entity entity : this.entities) {
@@ -191,10 +208,25 @@ public class NewGameScreen extends RunekeeperScreen {
                 renderer.getBatch().draw(entity.getAnimation().downIdling.getKeyFrame(stateTime, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
                 if (gamestatus != GAME_PAUSED) {
                     entity.update();
+                    enemyPos = entity.getPosition();
+                    enemyDistance = enemyPos.dst(playerPos);
+
+                    if (runMode) {
+
+                        if (enemyDistance < 75.0f && entity.getAlert() == false) {
+                            entity.setPatrol(new CrazyPatrol());
+                            entity.setAlert(true);
+                        }
+
+                        if (enemyDistance > 300.0f && entity.getAlert() == true) {
+                            entity.setPatrol(new BoxPatrol());
+                            entity.setAlert(false);
+                        }
+                    }
                 }
             }
         }
-        
+
         stage.draw();
         renderer.getBatch().end();
 

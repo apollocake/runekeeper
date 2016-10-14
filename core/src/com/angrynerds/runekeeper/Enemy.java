@@ -33,6 +33,9 @@ public class Enemy implements Entity {
     private boolean bright = false;
     private boolean bup = false;
 
+    public boolean alert = false;
+    
+
     public Rectangle bounds = new Rectangle();
 
     public Enemy(EntityAnimation newAnimation, String newName, float x, float y, DifficultyType difficulty, EnemyPatrol newEnemyPatrol) {
@@ -128,8 +131,20 @@ public class Enemy implements Entity {
         this.pos = enemyPatrol.patrol(pos);
     }
 
-    public void setPatrol(EnemyPatrol patrolType) {
+    
+    @Override
+    public void setPatrol(EnemyPatrol patrolType){
         this.enemyPatrol = patrolType;
+    }
+    
+    @Override
+    public void setAlert(boolean A){
+        this.alert = A;
+    }
+
+    @Override
+    public boolean getAlert() {
+        return this.alert;
     }
 
     @Override
@@ -140,5 +155,6 @@ public class Enemy implements Entity {
     @Override
     public void setDimensions(Vector2 newDimensions) {
         this.dimensions = newDimensions;
+
     }
 }
