@@ -23,6 +23,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import java.util.ArrayList;
@@ -35,6 +36,10 @@ public class NewGameScreen extends RunekeeperScreen {
     SpriteBatch batch;
     Skin skin;
     float time = 0;
+    SaveDialog saveDia;
+    public static final int GAME_RUNNING = 0;
+    public static final int GAME_PAUSED = 1;
+    public static int gamestatus;
 
     public Player player = new Player(25, 25);
 
@@ -46,6 +51,9 @@ public class NewGameScreen extends RunekeeperScreen {
     public NewGameScreen(Game game) {
         super(game);
 
+        gamestatus = GAME_RUNNING;
+        skin = new Skin(Gdx.files.internal("uiskin.json"));
+        saveDia = new SaveDialog("Save Load Menu", skin);
         entities = new ArrayList<Entity>();
 
         DifficultyType easyDifficulty = new EasyDifficultyType(new Vector2(40, 40));
@@ -64,6 +72,34 @@ public class NewGameScreen extends RunekeeperScreen {
         entities.add(new Enemy(new EntityAnimation(1, 0, 0, 0, 0, 8, 8, "evilwizard.png"), "Evil Wizard", 220, 450, bossDifficulty, new CrazyPatrol()));
         entities.add(new Enemy(new EntityAnimation(10, 0, 0, 0, 0, 3, 4, "meteorbeast.png"), "Meteor Beast", 180, 430, bossDifficulty, new BoxPatrol()));
 
+    }
+
+    public static class SaveDialog extends Dialog {
+
+        public SaveDialog(String title, Skin skin, String windowStyleName) {
+            super(title, skin, windowStyleName);
+        }
+
+        public SaveDialog(String title, Skin skin) {
+            super(title, skin);
+        }
+
+        public SaveDialog(String title, WindowStyle windowStyle) {
+            super(title, windowStyle);
+        }
+
+        {
+            text("Save or Load");
+            button("Save", 1);
+            button("Load", 1);
+            button("Cancel", 3);
+        }
+
+        @Override
+        protected void result(Object object) {
+            //System.out.println(object);
+            gamestatus = GAME_RUNNING;
+        }
     }
 
     @Override
@@ -101,7 +137,13 @@ public class NewGameScreen extends RunekeeperScreen {
 
             if (Gdx.input.isKeyPressed(Input.Keys.Y)) {
                 //move to a different game screen
-                game.setScreen(new SaveScreen(game));
+                if (gamestatus == GAME_PAUSED) {
+                    gamestatus = GAME_RUNNING;
+                    saveDia.hide();
+                } else {
+                    gamestatus = GAME_PAUSED;
+                    saveDia.show(stage);
+                }
             }
             if (Gdx.input.isKeyPressed(Input.Keys.G)) {
                 //move to a different game screen
@@ -117,7 +159,9 @@ public class NewGameScreen extends RunekeeperScreen {
         currentFrame = player.animation.getKeyFrame(stateTime, true);
         batch.begin();
         batch.draw(currentFrame, player.pos.x, player.pos.y);
-        player.update(batch);
+        if (gamestatus != GAME_PAUSED) {
+            player.update(batch);
+        }
 
         //check if any collisons between player and enemies    
         for (Entity entity : this.entities) {
@@ -132,7 +176,9 @@ public class NewGameScreen extends RunekeeperScreen {
                 }
             } else {
                 batch.draw(entity.getAnimation().downIdling.getKeyFrame(stateTime, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
-                entity.update();
+                if (gamestatus != GAME_PAUSED) {
+                    entity.update();
+                }
 
             }
 
