@@ -27,8 +27,15 @@ class PlayerAnimation{
     Animation downIdling;
     Animation leftIdling;
     Animation rightIdling;
+    //Animations for player damage
+    Animation dupIdling;
+    Animation ddownIdling;
+    Animation dleftIdling;
+    Animation drightIdling;
 
-    Texture   walkingSheet;             
+    Texture   walkingSheet;  
+    Texture   walkingSheet2;
+    
     TextureRegion[] walkingUpFrames;             
     TextureRegion[] walkingDownFrames;             
     TextureRegion[] walkingLeftFrames;             
@@ -47,8 +54,12 @@ class PlayerAnimation{
     private void createAnimations() {
                 
         walkingSheet = new Texture(Gdx.files.internal("playerWalking.png"));
-        
+        walkingSheet2 = new Texture(Gdx.files.internal("playerWalking3.png"));
 
+        TextureRegion[][] tmp2 = TextureRegion.split(walkingSheet2, walkingSheet2.getWidth()/WALKING_FRAME_COLS, 
+                walkingSheet2.getHeight()/4); //There are 4 rows.
+        
+        
         TextureRegion[][] tmp = TextureRegion.split(walkingSheet, walkingSheet.getWidth()/WALKING_FRAME_COLS, 
                 walkingSheet.getHeight()/4); //There are 4 rows.
 
@@ -65,12 +76,18 @@ class PlayerAnimation{
         leftIdling  = new Animation(0.025f, tmp[WALKING_LEFT_FRAME_ROW][0]);
         rightIdling  = new Animation(0.025f, tmp[WALKING_RIGHT_FRAME_ROW][0]);
         
+        
+        dupIdling  = new Animation(0.025f, tmp2[WALKING_UP_FRAME_ROW][0]);
+        ddownIdling  = new Animation(0.025f, tmp2[WALKING_DOWN_FRAME_ROW][0]);
+        dleftIdling  = new Animation(0.025f, tmp2[WALKING_LEFT_FRAME_ROW][0]);
+        drightIdling  = new Animation(0.025f, tmp2[WALKING_RIGHT_FRAME_ROW][0]);
+        
         //For the walking animations
         
         //Up
         for (int i = 0, j = 1; j < WALKING_FRAME_COLS; j++) {
             walkingUpFrames[i++] = tmp[WALKING_UP_FRAME_ROW][j];  
-            System.out.println("UP:  " + tmp[WALKING_UP_FRAME_ROW][j]);
+            //System.out.println("UP:  " + tmp[WALKING_UP_FRAME_ROW][j]);
         }        
         walkingUpAnima = new Animation(0.075f, walkingUpFrames);
                 
@@ -85,7 +102,7 @@ class PlayerAnimation{
         //Down
         for (int i = 0, j = 1; j < WALKING_FRAME_COLS; j++) {
             walkingDownFrames[i++] = tmp[WALKING_DOWN_FRAME_ROW][j];
-            System.out.println("DOWN:  " + tmp[WALKING_DOWN_FRAME_ROW][j]);
+            //System.out.println("DOWN:  " + tmp[WALKING_DOWN_FRAME_ROW][j]);
         }        
         walkingDownAnima = new Animation(0.075f, walkingDownFrames);
         
@@ -93,7 +110,7 @@ class PlayerAnimation{
         //Right
         for (int i = 0, j = 1; j < WALKING_FRAME_COLS; j++) {
             walkingRightFrames[i++] = tmp[WALKING_RIGHT_FRAME_ROW][j];
-            System.out.println("RIGHT:  " + tmp[WALKING_RIGHT_FRAME_ROW][j]);
+            //System.out.println("RIGHT:  " + tmp[WALKING_RIGHT_FRAME_ROW][j]);
         }
         walkingRightAnima = new Animation(0.075f, walkingRightFrames);
     }

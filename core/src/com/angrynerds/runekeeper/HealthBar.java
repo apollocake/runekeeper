@@ -25,6 +25,9 @@ public class HealthBar {
     float damagetaken;
     float maxhealth;
     
+    boolean isDead;
+    
+    
     final float HEALTH = 100;
     public ProgressBar health;
     Skin skin = new Skin();
@@ -39,12 +42,13 @@ public class HealthBar {
        
         this.health = new ProgressBar(0, HEALTH, .5f, false, barStyle);
         barStyle.knobBefore = barStyle.knob;
-        this.health.setValue(50);
+        this.health.setValue(HEALTH);
         this.health.setPosition(100,100);
         this.health.setVisible(true);
         this.health.validate();  
         damagetaken = 0;
         maxhealth = HEALTH;
+        isDead = false;
     }  
     
     //method to subtract health from the healthbar
@@ -53,6 +57,7 @@ public class HealthBar {
         if((i+damagetaken) >= HEALTH)
         {
            System.out.println("Your dead"); 
+           isDead = true;
            this.health.setVisible(false);
         }
         else
@@ -82,7 +87,12 @@ public class HealthBar {
                else
                   damagetaken = damagetaken - i;
           }     
-    }    
+    }  
+    
+    //function which returns true if the player is dead
+    public boolean isDead(){
+       return isDead;
+    }
 }
     
 
