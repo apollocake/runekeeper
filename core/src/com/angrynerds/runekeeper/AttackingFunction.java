@@ -5,7 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Vector2;
+
 
 public class AttackingFunction {
    // public void attacking(){
@@ -32,7 +32,6 @@ public class AttackingFunction {
         TextureRegion[] attackingLeftFrames;             
         TextureRegion[] attackingRightFrames; 
         
-        public Vector2 pos = new Vector2();
         Animation currentAnimation;
         
         
@@ -98,8 +97,4 @@ public class AttackingFunction {
         attackingRightAnima = new Animation(0.075f, attackingRightFrames);
     }
         
-    void setLocation(float x, float y) {
-        pos.x = x;
-        pos.y = y;
-    }
 }

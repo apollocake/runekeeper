@@ -1,22 +1,20 @@
-
 package com.angrynerds.runekeeper;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import java.util.Observable;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.actions.ColorAction;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+public class Player extends Observable {
 
-
-
-public class Player {
     //DEFINED FOR THE CORRESPONDING ANIMATIONS
-    public final int IDLE = 0; 
+    public final int IDLE = 0;
     public final int UP = 2;
     public final int DOWN = -2;
     public final int LEFT = -2;
@@ -25,7 +23,7 @@ public class Player {
     public final int RUNE_FOR_GLOVE_Y = 5;
     public final int RUNE_FOR_SWORD_X = 130;
     public final int RUNE_FOR_SWORD_Y = 5;
-    
+
     boolean runeFireGlove = false;
     boolean runeWaterGlove = false;
     boolean runeGrassGlove = false;
@@ -34,7 +32,7 @@ public class Player {
     boolean runeWaterSword = false;
     boolean runeGrassSword = false;
     boolean runeOreSword = false;
-    
+
     public PlayerAnimation playerAnimation;
     AttackingFunction attackingFunction;
     Glove glove = new Glove();
@@ -44,16 +42,15 @@ public class Player {
     Rune rnGrass = new Rune();
     Rune rnOre = new Rune();
     public Animation animation;
-    
+
     ColorAction coloraction = new ColorAction();
-    
-    
+
     public String direction = "DOWN";
     String attack = "";
-public Rectangle bounds = new Rectangle();
+    public Rectangle bounds = new Rectangle();
     public Vector2 pos = new Vector2();
-    
-    public Player ( float x, float y) {
+
+    public Player(float x, float y) {
         pos.x = x;
         pos.y = y;
         rnFire.setRune(new RuneFire());
@@ -61,50 +58,54 @@ public Rectangle bounds = new Rectangle();
         rnGrass.setRune(new RuneGrass());
         rnOre.setRune(new RuneOre());
         attackingFunction = new AttackingFunction();
-    
+
         bounds.width = 20;
         bounds.height = 20;
-        
-       bounds.x = pos.x;
-       bounds.y = pos.y;
+
+        bounds.x = pos.x;
+        bounds.y = pos.y;
 
         playerAnimation = new PlayerAnimation(pos.x, pos.y);
         animation = playerAnimation.downIdling;
         //glove.draw(batch);
     }
-    
-    public void update (SpriteBatch batch) {	
+
+    public void update(SpriteBatch batch) {
         processKeys();
-        playerAnimation.setLocation(pos.x, pos.y);
-        attackingFunction.setLocation(pos.x, pos.y);
-                //rnFire.update(pos.x, pos.y);
+
+        //playerAnimation.setLocation(pos.x, pos.y);
+        //attackingFunction.setLocation(pos.x, pos.y);
+        //rnFire.update(pos.x, pos.y);
         //rnWater.update(pos.x, pos.y);
         //rnGrass.update(pos.x, pos.y);
         runePocessing(batch);
         glove.draw(batch);
         sword.draw(batch);
 
-         
     }
-    
+
     //show the correct animation when player is hit
-    public void isHit(){
-        if(direction.equals("LEFT"))
-        animation = playerAnimation.dleftIdling;
-        
-        if(direction.equals("RIGHT"))
+    public void isHit() {
+        if (direction.equals("LEFT")) {
+            animation = playerAnimation.dleftIdling;
+        }
+
+        if (direction.equals("RIGHT")) {
             animation = playerAnimation.drightIdling;
-        
-        if(direction.equals("UP"))
-          animation = playerAnimation.dupIdling;  
-        
-        if(direction.equals("DOWN"))
+        }
+
+        if (direction.equals("UP")) {
+            animation = playerAnimation.dupIdling;
+        }
+
+        if (direction.equals("DOWN")) {
             animation = playerAnimation.ddownIdling;
+        }
 
     }
-    
-    private void processKeys () {
-        if(Gdx.input.isKeyPressed(Keys.NUM_0) ){
+
+    private void processKeys() {
+        if (Gdx.input.isKeyPressed(Keys.NUM_0)) {
             runeFireGlove = false;
             runeWaterGlove = false;
             runeGrassGlove = false;
@@ -114,216 +115,211 @@ public Rectangle bounds = new Rectangle();
             runeGrassSword = false;
             runeOreSword = false;
         }
-        
+
         //Glove
-        if(Gdx.input.isKeyPressed(Keys.NUM_1) && Gdx.input.isKeyPressed(Keys.K)){
+        if (Gdx.input.isKeyPressed(Keys.NUM_1) && Gdx.input.isKeyPressed(Keys.K)) {
             //rnOne.use(batch);
             runeFireGlove = true;
             runeWaterGlove = false;
             runeGrassGlove = false;
             runeOreGlove = false;
-        }
-        
-        else if (Gdx.input.isKeyPressed(Keys.NUM_2) && Gdx.input.isKeyPressed(Keys.K)){
+        } else if (Gdx.input.isKeyPressed(Keys.NUM_2) && Gdx.input.isKeyPressed(Keys.K)) {
             runeFireGlove = false;
             runeWaterGlove = true;
             runeGrassGlove = false;
             runeOreGlove = false;
-        }
-        
-        else if(Gdx.input.isKeyPressed(Keys.NUM_3) && Gdx.input.isKeyPressed(Keys.K)){
+        } else if (Gdx.input.isKeyPressed(Keys.NUM_3) && Gdx.input.isKeyPressed(Keys.K)) {
             runeFireGlove = false;
             runeWaterGlove = false;
             runeGrassGlove = true;
             runeOreGlove = false;
-        }
-        
-        else if(Gdx.input.isKeyPressed(Keys.NUM_4) && Gdx.input.isKeyPressed(Keys.K)){
+        } else if (Gdx.input.isKeyPressed(Keys.NUM_4) && Gdx.input.isKeyPressed(Keys.K)) {
             runeFireGlove = false;
             runeWaterGlove = false;
             runeGrassGlove = false;
             runeOreGlove = true;
         }
-        
+
         //Sword
-        if(Gdx.input.isKeyPressed(Keys.NUM_1) && Gdx.input.isKeyPressed(Keys.L)){
+        if (Gdx.input.isKeyPressed(Keys.NUM_1) && Gdx.input.isKeyPressed(Keys.L)) {
             //rnOne.use(batch);
             runeFireSword = true;
             runeWaterSword = false;
             runeGrassSword = false;
             runeOreSword = false;
-        }
-        
-        else if (Gdx.input.isKeyPressed(Keys.NUM_2) && Gdx.input.isKeyPressed(Keys.L)){
+        } else if (Gdx.input.isKeyPressed(Keys.NUM_2) && Gdx.input.isKeyPressed(Keys.L)) {
             runeFireSword = false;
             runeWaterSword = true;
             runeGrassSword = false;
             runeOreSword = false;
-        }
-        
-        else if(Gdx.input.isKeyPressed(Keys.NUM_3) && Gdx.input.isKeyPressed(Keys.L)){
+        } else if (Gdx.input.isKeyPressed(Keys.NUM_3) && Gdx.input.isKeyPressed(Keys.L)) {
             runeFireSword = false;
             runeWaterSword = false;
             runeGrassSword = true;
             runeOreSword = false;
-        }
-        
-        else if(Gdx.input.isKeyPressed(Keys.NUM_4) && Gdx.input.isKeyPressed(Keys.L)){
+        } else if (Gdx.input.isKeyPressed(Keys.NUM_4) && Gdx.input.isKeyPressed(Keys.L)) {
             runeFireSword = false;
             runeWaterSword = false;
             runeGrassSword = false;
             runeOreSword = true;
         }
-        
-        
-        
-        if (Gdx.input.isKeyPressed(Keys.A) && Gdx.input.isKeyPressed(Keys.W)){
-            direction = "LEFT";
-          bounds.x =  pos.x -= Math.sin(Math.toRadians(45))*2;
-          bounds.y=  pos.y += Math.cos(Math.toRadians(45))*2;
-            animation = playerAnimation.walkingLeftAnima;
-            
 
-        }
-                
-        else if (Gdx.input.isKeyPressed(Keys.D) && Gdx.input.isKeyPressed(Keys.W)){
-            direction = "RIGHT";
-          bounds.x =  pos.x += Math.sin(Math.toRadians(45))*2;
-          bounds.y=  pos.y += Math.cos(Math.toRadians(45))*2;
-            animation = playerAnimation.walkingRightAnima;
-
-        }
-        
-        else if (Gdx.input.isKeyPressed(Keys.A) && Gdx.input.isKeyPressed(Keys.S)){
+        if (Gdx.input.isKeyPressed(Keys.A) && Gdx.input.isKeyPressed(Keys.W)) {
             direction = "LEFT";
-           bounds.x= pos.x -= Math.sin(Math.toRadians(45))*2;
-          bounds.y =  pos.y -= Math.cos(Math.toRadians(45))*2;
+
+            notifyObservers();
+
+            bounds.x = pos.x -= Math.sin(Math.toRadians(45)) * 2;
+            bounds.y = pos.y += Math.cos(Math.toRadians(45)) * 2;
+
             animation = playerAnimation.walkingLeftAnima;
 
-        }
-                
-        else if (Gdx.input.isKeyPressed(Keys.D) && Gdx.input.isKeyPressed(Keys.S)){
+        } else if (Gdx.input.isKeyPressed(Keys.D) && Gdx.input.isKeyPressed(Keys.W)) {
             direction = "RIGHT";
-         bounds.x=   pos.x += Math.sin(Math.toRadians(45))*2;
-         bounds.y =   pos.y -= Math.cos(Math.toRadians(45))*2;
+
+            notifyObservers();
+
+            bounds.x = pos.x += Math.sin(Math.toRadians(45)) * 2;
+            bounds.y = pos.y += Math.cos(Math.toRadians(45)) * 2;
+
             animation = playerAnimation.walkingRightAnima;
-        }
-    
-        else if (Gdx.input.isKeyPressed(Keys.W)) {
-            direction  = "UP";
-         bounds.y =   pos.y += UP;
+
+        } else if (Gdx.input.isKeyPressed(Keys.A) && Gdx.input.isKeyPressed(Keys.S)) {
+            direction = "LEFT";
+
+            notifyObservers();
+
+            bounds.x = pos.x -= Math.sin(Math.toRadians(45)) * 2;
+            bounds.y = pos.y -= Math.cos(Math.toRadians(45)) * 2;
+
+            animation = playerAnimation.walkingLeftAnima;
+
+        } else if (Gdx.input.isKeyPressed(Keys.D) && Gdx.input.isKeyPressed(Keys.S)) {
+            direction = "RIGHT";
+
+            notifyObservers();
+            bounds.x = pos.x += Math.sin(Math.toRadians(45)) * 2;
+            bounds.y = pos.y -= Math.cos(Math.toRadians(45)) * 2;
+
+            animation = playerAnimation.walkingRightAnima;
+        } else if (Gdx.input.isKeyPressed(Keys.W)) {
+            direction = "UP";
+
+            notifyObservers();
+
+            bounds.y = pos.y += UP;
+
             animation = playerAnimation.walkingUpAnima;
 
-        }	
-        else if (Gdx.input.isKeyPressed(Keys.A)) {
+        } else if (Gdx.input.isKeyPressed(Keys.A)) {
             direction = "LEFT";
-        bounds.x =    pos.x += LEFT;
+
+            notifyObservers();
+            bounds.x = pos.x += LEFT;
+
             animation = playerAnimation.walkingLeftAnima;
 
-        } 
-        else if (Gdx.input.isKeyPressed(Keys.D)) {
-            direction  = "RIGHT";
-         bounds.x =   pos.x += RIGHT;
+        } else if (Gdx.input.isKeyPressed(Keys.D)) {
+            direction = "RIGHT";
+
+            notifyObservers();
+
+            bounds.x = pos.x += RIGHT;
+
             animation = playerAnimation.walkingRightAnima;
 
-        } 
-        else if(Gdx.input.isKeyPressed(Keys.S)) {
-            direction  = "DOWN";
-          bounds.y =  pos.y += DOWN;
+        } else if (Gdx.input.isKeyPressed(Keys.S)) {
+            direction = "DOWN";
+
+            notifyObservers();
+
+
+            bounds.y = pos.y += DOWN;
             animation = playerAnimation.walkingDownAnima;
-           
-        }
-        
-       else if(Gdx.input.isKeyPressed(Keys.SPACE) && direction.equals("DOWN")){
+
+        } else if (Gdx.input.isKeyPressed(Keys.SPACE) && direction.equals("DOWN")) {
             animation = attackingFunction.attackingDownAnima;
-            attack  = "DOWN_ATTACKING";
-            
-        }
-        
-        else if(Gdx.input.isKeyPressed(Keys.SPACE) && direction.equals("UP")){
+            attack = "DOWN_ATTACKING";
+            notifyObservers();
+        } else if (Gdx.input.isKeyPressed(Keys.SPACE) && direction.equals("UP")) {
             animation = attackingFunction.attackingUpAnima;
-            attack  = "UP_ATTACKING";
-        }
-        
-        else if(Gdx.input.isKeyPressed(Keys.SPACE) && direction.equals("LEFT")){
+            attack = "UP_ATTACKING";
+            notifyObservers();
+        } else if (Gdx.input.isKeyPressed(Keys.SPACE) && direction.equals("LEFT")) {
             animation = attackingFunction.attackingLeftAnima;
-            attack  = "LEFT_ATTACKING";
-        }
-        
-         else if(Gdx.input.isKeyPressed(Keys.SPACE) && direction.equals("RIGHT")){
+            attack = "LEFT_ATTACKING";
+            notifyObservers();
+        } else if (Gdx.input.isKeyPressed(Keys.SPACE) && direction.equals("RIGHT")) {
             animation = attackingFunction.attackingRightAnima;
-           attack  = "RIGHT_ATTACKING";
+            attack = "RIGHT_ATTACKING";
+            notifyObservers();
+        } else //X AND Y SHOULD NOT CHANGE
+        //This is when the chatcter is in IDLE
+        if (direction.equals("LEFT")) {
+            animation = playerAnimation.leftIdling;
+        } else if (direction.equals("RIGHT")) {
+            animation = playerAnimation.rightIdling;
+        } else if (direction.equals("UP")) {
+            animation = playerAnimation.upIdling;
+        } else if (direction.equals("DOWN")) {
+            animation = playerAnimation.downIdling;
+        } else if (attack.equals("DOWN_ATTACKING")) {
+            animation = attackingFunction.downIdling;
+        } else if (attack.equals("UP_ATTACKING")) {
+            animation = attackingFunction.upIdling;
+        } else if (attack.equals("LEFT_ATTACKING")) {
+            animation = attackingFunction.leftIdling;
+        } else if (attack.equals("RIGHT_ATTACKING")) {
+            animation = attackingFunction.rightIdling;
         }
-               
-        else{
-            //X AND Y SHOULD NOT CHANGE
-            //This is when the chatcter is in IDLE
-            if(direction.equals("LEFT")){
-                animation = playerAnimation.leftIdling;
-            }
-             
-            else if(direction.equals("RIGHT")){
-                animation = playerAnimation.rightIdling;
-            }
-             
-            else if(direction.equals("UP")){
-                animation = playerAnimation.upIdling;
-            }
-             
-            else if(direction.equals("DOWN")){
-                animation = playerAnimation.downIdling;
-            }
-            
-            else if(attack.equals("DOWN_ATTACKING")){
-                animation = attackingFunction.downIdling;
-            }
-            
-            else if(attack.equals("UP_ATTACKING")){
-                animation = attackingFunction.upIdling;
-            }
-            
-            else if(attack.equals("LEFT_ATTACKING")){
-                animation = attackingFunction.leftIdling;
-            }
-            
-            else if(attack.equals("RIGHT_ATTACKING")){
-                animation = attackingFunction.rightIdling;
-            }
-               
-        } 
-        
     }
-    
-    private void runePocessing(SpriteBatch batch){
-        if(runeFireGlove == true){
+
+    public void setPosition(float x, float y) {
+        setX(x);
+        setY(y);
+    }
+
+    public void setX(float x) {
+        pos.x = x;
+    }
+
+    public void setY(float y) {
+        pos.y = y;
+    }
+
+    public float getX() {
+        return pos.x;
+    }
+
+    public float getY() {
+        return pos.y;
+    }
+
+    @Override
+    public void notifyObservers() {
+        setChanged();
+        super.notifyObservers();
+
+    }
+
+    private void runePocessing(SpriteBatch batch) {
+        if (runeFireGlove == true) {
             rnFire.use(batch, RUNE_FOR_GLOVE_X, RUNE_FOR_GLOVE_Y);
-        }
-        
-        else if(runeWaterGlove == true){
+        } else if (runeWaterGlove == true) {
             rnWater.use(batch, RUNE_FOR_GLOVE_X, RUNE_FOR_GLOVE_Y);
-        }
-        
-        else if(runeGrassGlove == true){
+        } else if (runeGrassGlove == true) {
             rnGrass.use(batch, RUNE_FOR_GLOVE_X, RUNE_FOR_GLOVE_Y);
-        }
-        
-        else if(runeOreGlove == true){
+        } else if (runeOreGlove == true) {
             rnOre.use(batch, RUNE_FOR_GLOVE_X, RUNE_FOR_GLOVE_Y);
         }
-        
-        if(runeFireSword == true){
+
+        if (runeFireSword == true) {
             rnFire.use(batch, RUNE_FOR_SWORD_X, RUNE_FOR_SWORD_Y);
-        }
-        
-        else if(runeWaterSword == true){
+        } else if (runeWaterSword == true) {
             rnWater.use(batch, RUNE_FOR_SWORD_X, RUNE_FOR_SWORD_Y);
-        }
-        
-        else if(runeGrassSword == true){
+        } else if (runeGrassSword == true) {
             rnGrass.use(batch, RUNE_FOR_SWORD_X, RUNE_FOR_SWORD_Y);
-        }
-        
-        else if(runeOreSword == true){
+        } else if (runeOreSword == true) {
             rnOre.use(batch, RUNE_FOR_SWORD_X, RUNE_FOR_SWORD_Y);
         }
     }

@@ -33,7 +33,7 @@ public class Glove {
         //Gdx.gl.glActiveTexture(GL20.GL_TEXTURE0);
         batch.draw(texture, 2, 2,Gdx.graphics.getWidth()/20,Gdx.graphics.getHeight()/14);
   //      batch.end();
-       //System.out.println("Fire Rune");
+       System.out.println("Glove");
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

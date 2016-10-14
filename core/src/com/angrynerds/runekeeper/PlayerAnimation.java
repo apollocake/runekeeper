@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
 
-class PlayerAnimation{
+public class PlayerAnimation{
     
     //Based off the playerWlaking.png in the assets folder
     private static final int WALKING_FRAME_COLS= 9;
@@ -40,15 +40,17 @@ class PlayerAnimation{
     TextureRegion[] walkingDownFrames;             
     TextureRegion[] walkingLeftFrames;             
     TextureRegion[] walkingRightFrames; 
-    
-    public Vector2 pos = new Vector2();
+
+   
     Animation currentAnimation;
+
     
 
     
     public PlayerAnimation(float x, float y) {
         createAnimations();
         currentAnimation = downIdling;
+
     }
     
     private void createAnimations() {
@@ -115,9 +117,12 @@ class PlayerAnimation{
         walkingRightAnima = new Animation(0.075f, walkingRightFrames);
     }
 
-    void setLocation(float x, float y) {
-        pos.x = x;
-        pos.y = y;
+
+    public int getWidth(){
+        return walkingSheet.getWidth()/WALKING_FRAME_COLS;
+    }
+    public int getHeight(){
+        return walkingSheet.getHeight()/4;
     }
     
  

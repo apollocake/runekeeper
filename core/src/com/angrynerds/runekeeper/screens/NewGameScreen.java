@@ -6,8 +6,10 @@ import com.angrynerds.runekeeper.Entity;
 import com.angrynerds.runekeeper.EntityAnimation;
 import com.angrynerds.runekeeper.HealthBar;
 import com.angrynerds.runekeeper.Player;
+import com.angrynerds.runekeeper.PlayerAnimation;
 import com.angrynerds.runekeeper.BoxPatrol;
 import com.angrynerds.runekeeper.CrazyPatrol;
+import com.angrynerds.runekeeper.MusicCollision;
 import com.angrynerds.runekeeper.DifficultyType;
 import com.angrynerds.runekeeper.EasyDifficultyType;
 import com.badlogic.gdx.Game;
@@ -15,11 +17,17 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -33,23 +41,34 @@ public class NewGameScreen extends RunekeeperScreen {
     HealthBar healthbar = new HealthBar();
     int i = 0;
     Stage stage;
-    SpriteBatch batch;
-    Skin skin;
+    private TiledMap map;
+    private OrthogonalTiledMapRenderer renderer;
+    private OrthographicCamera camera;
     float time = 0;
     SaveDialog saveDia;
     public static final int GAME_RUNNING = 0;
     public static final int GAME_PAUSED = 1;
     public static int gamestatus;
 
-    public Player player = new Player(25, 25);
-
+    public Player player;
     ArrayList<Entity> entities;
     TextureRegion currentFrame;
-    TextureRegion currentFrameAddRune;
     float stateTime;
+    private final MusicCollision playerCollision;
+    private final Skin skin;
 
     public NewGameScreen(Game game) {
         super(game);
+        TmxMapLoader loader = new TmxMapLoader();
+        map = loader.load("worldmap.tmx");
+        TiledMapTileLayer collisionLayer = (TiledMapTileLayer) map.getLayers().get(0);
+        playerCollision = new MusicCollision(collisionLayer);
+        renderer = new OrthogonalTiledMapRenderer(map);
+        camera = new OrthographicCamera();
+        player = new Player(25, 25);
+        player.addObserver(playerCollision);
+
+        
 
         gamestatus = GAME_RUNNING;
         skin = new Skin(Gdx.files.internal("uiskin.json"));
@@ -104,24 +123,12 @@ public class NewGameScreen extends RunekeeperScreen {
 
     @Override
     public void show() {
-        batch = new SpriteBatch();
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
 
-        // A skin can be loaded via JSON or defined programmatically, either is fine. Using a skin is optional but strongly
-        // recommended solely for the convenience of getting a texture, region, etc as a drawable, tinted drawable, etc.
-        skin = new Skin();
-
-        // Generate a 1x1 white texture and store it in the skin named "white".
-        Pixmap pixmap = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
-        pixmap.setColor(Color.WHITE);
-        pixmap.fill();
-        skin.add("white", new Texture(pixmap));
-
-        // Store the default libgdx font under the name "default".
-        skin.add("default", new BitmapFont());
-
         stage.addActor(healthbar.health);
+        camera.position.set(player.getX() + 350, player.getY() +220, 0);
+
     }
 
     @Override
@@ -129,7 +136,6 @@ public class NewGameScreen extends RunekeeperScreen {
         Gdx.gl.glClearColor(0.2f, 0.2f, 0.2f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
-        stage.draw();
 
         time += delta;
         if (time > 1) {
@@ -157,10 +163,16 @@ public class NewGameScreen extends RunekeeperScreen {
 
         stateTime += Gdx.graphics.getDeltaTime();
         currentFrame = player.animation.getKeyFrame(stateTime, true);
-        batch.begin();
-        batch.draw(currentFrame, player.pos.x, player.pos.y);
+
+        camera.update();
+
+        renderer.setView(camera);
+        renderer.getBatch().begin();
+        renderer.renderTileLayer((TiledMapTileLayer) map.getLayers().get("floor"));
+        renderer.getBatch().draw(currentFrame, player.pos.x, player.pos.y);
+
         if (gamestatus != GAME_PAUSED) {
-            player.update(batch);
+            player.update((SpriteBatch) renderer.getBatch());
         }
 
         //check if any collisons between player and enemies    
@@ -169,23 +181,29 @@ public class NewGameScreen extends RunekeeperScreen {
                 //change player animation to a hit animation
                 player.isHit();
                 healthbar.damage(1); //subtract health from healthbar  
-                batch.draw(entity.getAnimation().enemyAttack.getKeyFrame(stateTime, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
+                renderer.getBatch().draw(entity.getAnimation().enemyAttack.getKeyFrame(stateTime, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
                 if (healthbar.isDead()) //check if healthbar is empty
                 {
                     game.setScreen(new GameOverScreen(game)); //end game if player is dead
                 }
             } else {
-                batch.draw(entity.getAnimation().downIdling.getKeyFrame(stateTime, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
+
+                renderer.getBatch().draw(entity.getAnimation().downIdling.getKeyFrame(stateTime, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
                 if (gamestatus != GAME_PAUSED) {
                     entity.update();
                 }
             }
         }
-        batch.end();
+        
+        stage.draw();
+        renderer.getBatch().end();
+
     }
 
     @Override
     public void resize(int width, int height) {
+        camera.viewportWidth = width / 1.6f;
+        camera.viewportHeight = height / 1.6f;
     }
 
     @Override
@@ -198,10 +216,14 @@ public class NewGameScreen extends RunekeeperScreen {
 
     @Override
     public void hide() {
+        dispose();
     }
 
     @Override
     public void dispose() {
+        map.dispose();
+        playerCollision.dispose();
+        renderer.dispose();
     }
 
 }
