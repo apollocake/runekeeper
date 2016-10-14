@@ -323,5 +323,9 @@ public class Player extends Observable {
             rnOre.use(batch, RUNE_FOR_SWORD_X, RUNE_FOR_SWORD_Y);
         }
     }
+    
+    public Vector2 getPosition() {
+        return this.pos;
+    }
 
 }
