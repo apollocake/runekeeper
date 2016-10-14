@@ -38,6 +38,7 @@ public class NewGameScreen extends RunekeeperScreen {
     private Vector2 enemyPos = new Vector2();
     private Vector2 playerPos = new Vector2();
     private float enemyDistance = 0.0f;
+    private boolean runMode = false;
 
     
      public Player player = new Player(25,25);
@@ -53,10 +54,10 @@ public class NewGameScreen extends RunekeeperScreen {
 
         entities.add(new Enemy(new EntityAnimation(4, 1, 1, 0, 1, 4, 3, "demon.png"), "Demon", 350, 300, new BoxPatrol()));
         entities.add(new Enemy(new EntityAnimation(2, 1, 1, 0, 1, 2, 2, "ghost.png"), "Ghost", 250, 200, new BoxPatrol()));
-        entities.add(new Enemy(new EntityAnimation(11, 1, 1, 0, 1, 11, 5, "goblin.png"), "Goblin", 150, 250, new CrazyPatrol()));
+        entities.add(new Enemy(new EntityAnimation(11, 1, 1, 0, 1, 11, 5, "goblin.png"), "Goblin", 150, 250, new BoxPatrol()));
         entities.add(new Enemy(new EntityAnimation(10, 1, 1, 0, 1, 10, 10, "orc.png"), "Orc", 150, 150, new BoxPatrol()));
         entities.add(new Enemy(new EntityAnimation(3, 1, 1, 2, 1, 3, 4, "snake.png"), "Snake", 100, 300, new BoxPatrol()));
-        entities.add(new Enemy(new EntityAnimation(8, 1, 1, 0, 1, 8, 5, "wizard.png"), "Wizard", 275, 100, new CrazyPatrol()));
+        entities.add(new Enemy(new EntityAnimation(8, 1, 1, 0, 1, 8, 5, "wizard.png"), "Wizard", 275, 100, new BoxPatrol()));
         
         CrazyPatrol runAway = new CrazyPatrol();
     }
@@ -104,6 +105,11 @@ public class NewGameScreen extends RunekeeperScreen {
                 //move to a different game screen
                 game.setScreen(new GameOverScreen(game));
             }
+            if (Gdx.input.isKeyJustPressed(Input.Keys.R)) {
+                //move to a different game screen
+                runMode = !runMode;
+                System.out.println("runMode changed to " + runMode);
+            }
             if (Gdx.input.justTouched()) {
                 healthbar.addhealth(5);
             }
@@ -124,6 +130,8 @@ public class NewGameScreen extends RunekeeperScreen {
             enemyPos = this.entities.get(i).getPosition();
             enemyDistance = enemyPos.dst(playerPos);
             
+            if (runMode){             
+            
             if (enemyDistance < 75.0f && this.entities.get(i).getAlert() == false){
                 this.entities.get(i).setPatrol(new CrazyPatrol());
                 this.entities.get(i).setAlert(true);
@@ -132,6 +140,7 @@ public class NewGameScreen extends RunekeeperScreen {
             if (enemyDistance > 300.0f && this.entities.get(i).getAlert() == true){
                 this.entities.get(i).setPatrol(new BoxPatrol());
                 this.entities.get(i).setAlert(false);
+            }
             }
         }
         batch.end();
