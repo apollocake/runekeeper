@@ -122,7 +122,6 @@ public class NewGameScreen extends RunekeeperScreen {
         skin.add("default", new BitmapFont());
 
         stage.addActor(healthbar.health);
-
     }
 
     @Override
@@ -135,7 +134,7 @@ public class NewGameScreen extends RunekeeperScreen {
         time += delta;
         if (time > 1) {
 
-            if (Gdx.input.isKeyPressed(Input.Keys.Y)) {
+            if (Gdx.input.isKeyJustPressed(Input.Keys.Y)) {
                 //move to a different game screen
                 if (gamestatus == GAME_PAUSED) {
                     gamestatus = GAME_RUNNING;
@@ -143,9 +142,10 @@ public class NewGameScreen extends RunekeeperScreen {
                 } else {
                     gamestatus = GAME_PAUSED;
                     saveDia.show(stage);
+                    saveDia.toFront();
                 }
             }
-            if (Gdx.input.isKeyPressed(Input.Keys.G)) {
+            if (Gdx.input.isKeyJustPressed(Input.Keys.G)) {
                 //move to a different game screen
                 game.setScreen(new GameOverScreen(game));
             }
@@ -179,9 +179,7 @@ public class NewGameScreen extends RunekeeperScreen {
                 if (gamestatus != GAME_PAUSED) {
                     entity.update();
                 }
-
             }
-
         }
         batch.end();
     }
