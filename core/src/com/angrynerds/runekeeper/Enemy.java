@@ -20,7 +20,8 @@ public class Enemy implements Entity{
     private String enemyName;
 
     private Vector2 pos = new Vector2();
-    
+    private Vector2 dimensions = new Vector2();
+
     private int boxCounter = 0;
     private int boxCounter2 = 0;
     private int boxCounter3 = 0;
@@ -33,12 +34,13 @@ public class Enemy implements Entity{
     
    // enemyPatrol = enemyPatrol(new BoxPatrol());
 
-    public Enemy(EntityAnimation newAnimation, String newName, float x, float y, EnemyPatrol newEnemyPatrol) {
+    public Enemy(EntityAnimation newAnimation, String newName, float x, float y, DifficultyType difficulty, EnemyPatrol newEnemyPatrol) {
         this.pos.x = x;
         this.pos.y = y;
         this.animation = newAnimation;
         this.enemyName = newName;
         this.enemyPatrol = newEnemyPatrol;
+        difficulty.TransformEntity(this);
     }
 
     @Override
@@ -111,11 +113,20 @@ public class Enemy implements Entity{
         }
     }
 
-    
     public void patrol(Vector2 pos){
         this.pos = enemyPatrol.patrol(pos);
     }
     public void setPatrol(EnemyPatrol patrolType){
         this.enemyPatrol = patrolType;
+    }
+
+    @Override
+    public Vector2 getDimensions() {
+        return this.dimensions;
+    }
+
+    @Override
+    public void setDimensions(Vector2 newDimensions) {
+        this.dimensions = newDimensions;
     }
 }
