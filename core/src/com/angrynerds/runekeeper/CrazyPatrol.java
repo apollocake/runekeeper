@@ -30,7 +30,7 @@ public class CrazyPatrol implements EnemyPatrol {
     @Override
     public Vector2 patrol(Vector2 pos) {
        
-        if(boxCounter<100){
+/*        if(boxCounter<100){
            pos.x --;
            //xadjustment = -1.0f;
            boxCounter++;
@@ -74,6 +74,8 @@ public class CrazyPatrol implements EnemyPatrol {
             bup = false;
             bdown = false;
         }
+*/
+        pos.y++;
         return pos;
     }
     

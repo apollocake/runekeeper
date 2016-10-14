@@ -18,6 +18,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -33,6 +34,10 @@ public class NewGameScreen extends RunekeeperScreen {
     SpriteBatch batch;
     Skin skin;
     float time = 0;
+    
+    private Vector2 enemyPos = new Vector2();
+    private Vector2 playerPos = new Vector2();
+    private float enemyDistance = 0.0f;
 
     
      public Player player = new Player(25,25);
@@ -52,6 +57,8 @@ public class NewGameScreen extends RunekeeperScreen {
         entities.add(new Enemy(new EntityAnimation(10, 1, 1, 0, 1, 10, 10, "orc.png"), "Orc", 150, 150, new BoxPatrol()));
         entities.add(new Enemy(new EntityAnimation(3, 1, 1, 2, 1, 3, 4, "snake.png"), "Snake", 100, 300, new BoxPatrol()));
         entities.add(new Enemy(new EntityAnimation(8, 1, 1, 0, 1, 8, 5, "wizard.png"), "Wizard", 275, 100, new CrazyPatrol()));
+        
+        CrazyPatrol runAway = new CrazyPatrol();
     }
 
     @Override
@@ -109,10 +116,23 @@ public class NewGameScreen extends RunekeeperScreen {
         batch.begin();
         batch.draw(currentFrame, player.pos.x, player.pos.y);        
         player.update();
+        playerPos = player.getPosition();
 
         for(int i = 0; i < this.entities.size(); i++) {
             batch.draw(this.entities.get(i).getAnimation().downIdling.getKeyFrame(stateTime, true), this.entities.get(i).getPosition().x, this.entities.get(i).getPosition().y);
             this.entities.get(i).update();
+            enemyPos = this.entities.get(i).getPosition();
+            enemyDistance = enemyPos.dst(playerPos);
+            
+            if (enemyDistance < 75.0f && this.entities.get(i).getAlert() == false){
+                this.entities.get(i).setPatrol(new CrazyPatrol());
+                this.entities.get(i).setAlert(true);
+            }
+            
+            if (enemyDistance > 300.0f && this.entities.get(i).getAlert() == true){
+                this.entities.get(i).setPatrol(new BoxPatrol());
+                this.entities.get(i).setAlert(false);
+            }
         }
         batch.end();
 

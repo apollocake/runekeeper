@@ -15,7 +15,7 @@ class PlayerAnimation{
     private static final int WALKING_UP_FRAME_ROW = 0; 
     private static final int WALKING_LEFT_FRAME_ROW = 1;        
     private static final int WALKING_DOWN_FRAME_ROW = 2;        
-    private static final int WALKING_RIGHT_FRAME_ROW = 3;        
+    private static final int WALKING_RIGHT_FRAME_ROW = 3;     
 
 
     Animation walkingDownAnima; 

@@ -193,6 +193,10 @@ public class Player{
         
 
     }
+    
+    public Vector2 getPosition() {
+        return this.pos;
+    }
 
     
 }

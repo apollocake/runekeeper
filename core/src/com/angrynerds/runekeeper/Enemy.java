@@ -30,6 +30,7 @@ public class Enemy implements Entity{
     private boolean bdown = false;
     private boolean bright = false;
     private boolean bup = false;
+    public boolean alert = false;
     
    // enemyPatrol = enemyPatrol(new BoxPatrol());
 
@@ -67,7 +68,19 @@ public class Enemy implements Entity{
     public void patrol(Vector2 pos){
         this.pos = enemyPatrol.patrol(pos);
     }
+    
+    @Override
     public void setPatrol(EnemyPatrol patrolType){
         this.enemyPatrol = patrolType;
+    }
+    
+    @Override
+    public void setAlert(boolean A){
+        this.alert = A;
+    }
+
+    @Override
+    public boolean getAlert() {
+        return this.alert;
     }
 }

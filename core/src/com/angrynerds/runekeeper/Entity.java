@@ -19,4 +19,10 @@ public interface Entity {
 
     public void update();
     
+    public void setPatrol(EnemyPatrol patrolType);
+    
+    public void setAlert(boolean A);
+    
+    public boolean getAlert();
+    
 }
