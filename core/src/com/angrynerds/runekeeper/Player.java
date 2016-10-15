@@ -94,13 +94,15 @@ public class Player extends Observable {
     }
     
     public void damage(float damage){
+        System.out.println("health is at: " + healthBar.getHealth());
+
         float health = healthBar.getHealth();
         float temp = 0;
-        if( damage >= health)
+        if(damage >= health)
         {
             if(lives > 0){
                 addPlayerLives(-1);
-                healthBar.setHealth( (healthBar.MAXHEALTH - (damage - health)));
+                healthBar.setHealth((healthBar.MAXHEALTH - (damage - health)));
             }
             else{
                 lives = 0;
@@ -111,6 +113,7 @@ public class Player extends Observable {
         else {
           temp = health - damage;
           healthBar.setHealth(temp);
+          System.out.println("health is at: " + temp);
         }
          
     }

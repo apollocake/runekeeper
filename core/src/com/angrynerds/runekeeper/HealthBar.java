@@ -26,7 +26,7 @@ public class HealthBar {
     public final float MAXHEALTH = 100;
     
 
-    boolean isDead;
+    boolean isEmpty;
 
     public ProgressBar healthBar;
 
@@ -54,7 +54,7 @@ public class HealthBar {
         this.healthBar.validate(); 
 
         damagetaken = 0;
-        isDead = false;
+        isEmpty = false;
     }  
     
         
@@ -66,7 +66,7 @@ public class HealthBar {
     }
     
     public float getHealth(){
-        return health;
+        return healthBar.getValue();
     }
   
     
@@ -75,8 +75,8 @@ public class HealthBar {
         float temp = 0;
         if((i+damagetaken) >= MAXHEALTH)
         {
-           System.out.println("Your dead"); 
-           isDead = true;
+           System.out.println("Your health is empty"); 
+           isEmpty = true;
            this.healthBar.setVisible(false);
         }
         else
@@ -90,8 +90,8 @@ public class HealthBar {
     
     
     //function which returns true if the player is dead
-    public boolean isDead(){
-       return isDead;
+    public boolean isEmpty(){
+       return isEmpty;
     }
 }
     

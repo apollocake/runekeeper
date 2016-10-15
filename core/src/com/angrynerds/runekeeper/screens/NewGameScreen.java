@@ -165,6 +165,75 @@ public class NewGameScreen extends RunekeeperScreen {
     public void render(float delta) {
         Gdx.gl.glClearColor(0.2f, 0.2f, 0.2f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+                    if (player.state.equals("DEAD")) //check if healthbar is empty
+                {
+                    game.setScreen(new GameOverScreen(game)); //end game if player is dead
+                }
+        livesLabel.setText("Lives: " + player.getPlayerLives());
+        stateTime += Gdx.graphics.getDeltaTime();
+        currentFrame = player.animation.getKeyFrame(stateTime, true);
+
+        camera.update();
+
+
+        renderer.setView(camera);
+        renderer.getBatch().begin();
+        renderer.renderTileLayer((TiledMapTileLayer) map.getLayers().get("floor"));
+        renderer.getBatch().draw(currentFrame, player.pos.x, player.pos.y);
+
+        if (gamestatus != GAME_PAUSED) {
+            player.update(delta, (SpriteBatch) renderer.getBatch());
+
+        }
+        playerPos = player.getPosition();
+
+        //check if any collisons between player and enemies    
+        for (Entity entity : this.entities) {
+            if(player.bounds.overlaps(entity.getRec()) && !player.attack.isEmpty()){
+                System.out.println("You Hit The ENEMY");
+                renderer.getBatch().setColor(Color.RED);
+            }
+            else{
+                renderer.getBatch().setColor(nullColor);
+            }
+
+            if (player.bounds.overlaps(entity.getRec())) {
+                //change player animation to a hit animation
+                player.isHit();
+                player.damage(1); //subtract health from healthbar  
+                renderer.getBatch().draw(entity.getAnimation().enemyAttack.getKeyFrame(stateTime, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x , entity.getDimensions().y);
+//                if (healthbar.isDead()) //check if healthbar is empty
+//                {
+//                    game.setScreen(new GameOverScreen(game)); //end game if player is dead
+//                }
+
+
+            } else {
+
+                renderer.getBatch().draw(entity.getAnimation().downIdling.getKeyFrame(stateTime, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
+                if (gamestatus != GAME_PAUSED) {
+                    entity.update();
+                    enemyPos = entity.getPosition();
+                    enemyDistance = enemyPos.dst(playerPos);
+
+                    if (runMode) {
+
+                        if (enemyDistance < 75.0f && entity.getAlert() == false) {
+                            entity.setPatrol(new CrazyPatrol());
+                            entity.setAlert(true);
+                        }
+
+                        if (enemyDistance > 300.0f && entity.getAlert() == true) {
+                            entity.setPatrol(new BoxPatrol());
+                            entity.setAlert(false);
+                        }
+                    }
+                }
+            }
+        }
+        renderer.getBatch().end();
+        stage.draw();
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
 
         time += delta;
@@ -199,77 +268,6 @@ public class NewGameScreen extends RunekeeperScreen {
                 System.out.println("runMode changed to " + runMode);
             }
         }
-
-        
-        livesLabel.setText("Lives: " + player.getPlayerLives());
-        stateTime += Gdx.graphics.getDeltaTime();
-        currentFrame = player.animation.getKeyFrame(stateTime, true);
-
-        camera.update();
-
-
-        renderer.setView(camera);
-        renderer.getBatch().begin();
-        renderer.renderTileLayer((TiledMapTileLayer) map.getLayers().get("floor"));
-        renderer.getBatch().draw(currentFrame, player.pos.x, player.pos.y);
-
-        if (gamestatus != GAME_PAUSED) {
-            player.update(delta, (SpriteBatch) renderer.getBatch());
-
-        }
-        playerPos = player.getPosition();
-
-        //check if any collisons between player and enemies    
-        for (Entity entity : this.entities) {
-            if(player.bounds.overlaps(entity.getRec()) && !player.attack.isEmpty()){
-                System.out.println("You Hit The ENEMY");
-                renderer.getBatch().setColor(Color.RED);
-            }
-            else{
-                renderer.getBatch().setColor(nullColor);
-            }
-            if (player.bounds.overlaps(entity.getRec())) {
-                //change player animation to a hit animation
-                player.isHit();
-                healthbar.damage(1); //subtract health from healthbar  
-                renderer.getBatch().draw(entity.getAnimation().enemyAttack.getKeyFrame(stateTime, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x , entity.getDimensions().y);
-                if (healthbar.isDead()) //check if healthbar is empty
-                {
-                    game.setScreen(new GameOverScreen(game)); //end game if player is dead
-                }
-            } else {
-
-                renderer.getBatch().draw(entity.getAnimation().downIdling.getKeyFrame(stateTime, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
-                if (gamestatus != GAME_PAUSED) {
-                    entity.update();
-                    enemyPos = entity.getPosition();
-                    enemyDistance = enemyPos.dst(playerPos);
-
-                    if (runMode) {
-
-                        if (enemyDistance < 75.0f && entity.getAlert() == false) {
-                            entity.setPatrol(new CrazyPatrol());
-                            entity.setAlert(true);
-                        }
-
-                        if (enemyDistance > 300.0f && entity.getAlert() == true) {
-                            entity.setPatrol(new BoxPatrol());
-                            entity.setAlert(false);
-                        }
-                    }
-                }
-            }
-        }
-
-        
-        
-      //Collission Checker when enemy is attacking 
-        for(int i = 0; i<this.entities.size(); i++){
-
-        }
-        renderer.getBatch().end();
-        stage.draw();
-
     }
     }
 
