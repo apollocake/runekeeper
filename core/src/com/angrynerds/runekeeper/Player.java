@@ -12,8 +12,8 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.actions.ColorAction;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-
-
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import java.util.HashSet;
 
 public class Player extends Observable {
 
@@ -46,7 +46,7 @@ public class Player extends Observable {
     Rune rnGrass = new Rune();
     Rune rnOre = new Rune();
     public Animation animation;
- public String state;
+    public String state;
     private float stateTime;
     ColorAction coloraction = new ColorAction();
 
@@ -54,12 +54,13 @@ public class Player extends Observable {
     public String attack = "";
     public Rectangle bounds = new Rectangle();
     public Vector2 pos = new Vector2();
-    
+
     private HealthBar healthBar = new HealthBar();
     private int lives;
+
     public Player(float x, float y) {
 
-                lives = 1;
+        lives = 1;
         state = "ALIVE";
         pos.x = x;
         pos.y = y;
@@ -67,7 +68,7 @@ public class Player extends Observable {
         rnWater.setRune(new RuneWater());
         rnGrass.setRune(new RuneGrass());
         rnOre.setRune(new RuneOre());
-        attackingFunction = new AttackingFunction();   
+        attackingFunction = new AttackingFunction();
 
         stateTime = 0;
 
@@ -81,72 +82,71 @@ public class Player extends Observable {
         animation = playerAnimation.downIdling;
         //glove.draw(batch);
     }
-     public void setHealthBar(HealthBar healthBar){
+
+    public void setHealthBar(HealthBar healthBar) {
         this.healthBar = healthBar;
     }
-    
-    public int getPlayerLives(){
+
+    public HealthBar getHealthBar() {
+        return this.healthBar;
+    }
+
+    public int getPlayerLives() {
         return lives;
     }
-  
-    public void addPlayerLives(int life){
+
+    public void addPlayerLives(int life) {
         this.lives += life;
     }
-    
-    public void damage(float damage){
-        System.out.println("health is at: " + healthBar.getHealth());
+
+    public void damage(float damage) {
 
         float health = healthBar.getHealth();
         float temp = 0;
-        if(damage >= health)
-        {
-            if(lives > 0){
+        if (damage >= health) {
+            if (lives > 0) {
                 addPlayerLives(-1);
                 healthBar.setHealth((healthBar.MAXHEALTH - (damage - health)));
-            }
-            else{
+            } else {
                 lives = 0;
                 healthBar.healthBar.setVisible(false);
+                healthBar.setHealth(0);
+
                 state = "DYING";
-            }  
+            }
+        } else {
+            temp = health - damage;
+            healthBar.setHealth(temp);
         }
-        else {
-          temp = health - damage;
-          healthBar.setHealth(temp);
-          System.out.println("health is at: " + temp);
-        }
-         
+
     }
-    
+
     // method to add health to the healthBar
-    public void addhealth(float addHealth){
-         float temp = 0;
-         if((addHealth + healthBar.getHealth()) >= healthBar.MAXHEALTH){
-             addPlayerLives(1);
-             healthBar.setHealth(((addHealth + healthBar.getHealth())-healthBar.MAXHEALTH));
-         }
-         else{
-             healthBar.setHealth((healthBar.getHealth() + addHealth));
-         }
-    } 
+    public void addhealth(float addHealth) {
+        float temp = 0;
+        if ((addHealth + healthBar.getHealth()) >= healthBar.MAXHEALTH) {
+            addPlayerLives(1);
+            healthBar.setHealth(((addHealth + healthBar.getHealth()) - healthBar.MAXHEALTH));
+        } else {
+            healthBar.setHealth((healthBar.getHealth() + addHealth));
+        }
+    }
 
     public void update(float deltaTime, SpriteBatch batch) {
         processKeys();
-        if(state.equals("ALIVE")){
+        if (state.equals("ALIVE")) {
             processKeys();
-        }        
-        else if (state.equals("DYING")) {
+        } else if (state.equals("DYING")) {
             animation = playerAnimation.dyingAnimation;
             stateTime += deltaTime;
-            if(stateTime > .4f){
+            if (stateTime > .37f) {
                 state = "DEAD";
                 attack = "";
             }
+        } else {//Here the player is DEAD
+            animation = playerAnimation.dead;
         }
-        else{//Here the player is DEAD
-            animation  = playerAnimation.dead;
-        }        
-        
+
         bounds.x = this.pos.x;
         bounds.y = this.pos.y;
         runePocessing(batch);
@@ -313,22 +313,19 @@ public class Player extends Observable {
             notifyObservers();
         } else //X AND Y SHOULD NOT CHANGE
         //This is when the chatcter is in IDLE
-         if (direction.equals("LEFT")) {
-                animation = playerAnimation.leftIdling;
-                attack = "";
-            } 
-            else if (direction.equals("RIGHT")) {
-                animation = playerAnimation.rightIdling;
-                attack = "";
-            } 
-            else if (direction.equals("UP")) {
-                animation = playerAnimation.upIdling;
-                attack = "";
-            } 
-            else if (direction.equals("DOWN")) {
-                animation = playerAnimation.downIdling;
-                attack = "";
-            } else if (attack.equals("DOWN_ATTACKING")) {
+        if (direction.equals("LEFT")) {
+            animation = playerAnimation.leftIdling;
+            attack = "";
+        } else if (direction.equals("RIGHT")) {
+            animation = playerAnimation.rightIdling;
+            attack = "";
+        } else if (direction.equals("UP")) {
+            animation = playerAnimation.upIdling;
+            attack = "";
+        } else if (direction.equals("DOWN")) {
+            animation = playerAnimation.downIdling;
+            attack = "";
+        } else if (attack.equals("DOWN_ATTACKING")) {
             animation = attackingFunction.downIdling;
         } else if (attack.equals("UP_ATTACKING")) {
             animation = attackingFunction.upIdling;
@@ -388,10 +385,9 @@ public class Player extends Observable {
             rnOre.use(batch, RUNE_FOR_SWORD_X, RUNE_FOR_SWORD_Y);
         }
     }
-    
+
     public Vector2 getPosition() {
         return this.pos;
     }
-
 
 }

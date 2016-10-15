@@ -75,7 +75,6 @@ public class HealthBar {
         float temp = 0;
         if((i+damagetaken) >= MAXHEALTH)
         {
-           System.out.println("Your health is empty"); 
            isEmpty = true;
            this.healthBar.setVisible(false);
         }

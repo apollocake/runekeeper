@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import sun.applet.Main;
 
 public class GameOverScreen extends RunekeeperScreen {
     
@@ -21,12 +22,12 @@ public class GameOverScreen extends RunekeeperScreen {
 	TextureRegion intro;
 	SpriteBatch batch;
 	float time = 0;
-
+        Game game;
         
         
 	public GameOverScreen (Game game) {
 		super(game);
-              
+              this.game = game;
 	}
 
 	@Override
@@ -48,16 +49,16 @@ public class GameOverScreen extends RunekeeperScreen {
 		time += delta;
                 
 		if (time > 1) {
-			if (Gdx.input.isKeyPressed(Keys.ANY_KEY) || Gdx.input.justTouched()) {
-				game.setScreen(new StartScreen(game));
-			}
+                    if (Gdx.input.isKeyPressed(Keys.ANY_KEY) || Gdx.input.justTouched()) {
+                            this.game.setScreen(new SplashScreen(this.game));
+                    }
 		}
 	}
 
 	@Override
 	public void hide () {
-		Gdx.app.debug("Runekeeper", "dispose intro");
-		batch.dispose();
-		intro.getTexture().dispose();
+		//Gdx.app.debug("Runekeeper", "dispose intro");
+		//batch.dispose();
+		//intro.getTexture().dispose();
 	}
 }
