@@ -313,26 +313,28 @@ public class Player extends Observable {
             notifyObservers();
         } else //X AND Y SHOULD NOT CHANGE
         //This is when the chatcter is in IDLE
-        if (direction.equals("LEFT")) {
-            animation = playerAnimation.leftIdling;
-            attack = "";
-        } else if (direction.equals("RIGHT")) {
-            animation = playerAnimation.rightIdling;
-            attack = "";
-        } else if (direction.equals("UP")) {
-            animation = playerAnimation.upIdling;
-            attack = "";
-        } else if (direction.equals("DOWN")) {
-            animation = playerAnimation.downIdling;
-            attack = "";
-        } else if (attack.equals("DOWN_ATTACKING")) {
-            animation = attackingFunction.downIdling;
-        } else if (attack.equals("UP_ATTACKING")) {
-            animation = attackingFunction.upIdling;
-        } else if (attack.equals("LEFT_ATTACKING")) {
-            animation = attackingFunction.leftIdling;
-        } else if (attack.equals("RIGHT_ATTACKING")) {
-            animation = attackingFunction.rightIdling;
+        {
+            if (direction.equals("LEFT")) {
+                animation = playerAnimation.leftIdling;
+                attack = "";
+            } else if (direction.equals("RIGHT")) {
+                animation = playerAnimation.rightIdling;
+                attack = "";
+            } else if (direction.equals("UP")) {
+                animation = playerAnimation.upIdling;
+                attack = "";
+            } else if (direction.equals("DOWN")) {
+                animation = playerAnimation.downIdling;
+                attack = "";
+            } else if (attack.equals("DOWN_ATTACKING")) {
+                animation = attackingFunction.downIdling;
+            } else if (attack.equals("UP_ATTACKING")) {
+                animation = attackingFunction.upIdling;
+            } else if (attack.equals("LEFT_ATTACKING")) {
+                animation = attackingFunction.leftIdling;
+            } else if (attack.equals("RIGHT_ATTACKING")) {
+                animation = attackingFunction.rightIdling;
+            }
         }
     }
 

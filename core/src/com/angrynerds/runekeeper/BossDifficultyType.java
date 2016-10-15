@@ -11,11 +11,11 @@ import com.badlogic.gdx.math.Vector2;
  *
  * @author Noah
  */
-public class BossDifficultyType implements DifficultyType{
+public class BossDifficultyType implements DifficultyType {
 
     private Vector2 dimensions;
 
-    public BossDifficultyType(Vector2 newDimensions){
+    public BossDifficultyType(Vector2 newDimensions) {
         this.dimensions = newDimensions;
     }
 
