@@ -1,7 +1,6 @@
 package com.angrynerds.runekeeper.sound;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Sound;
 
 public class GrassAreaMusic extends AbstractSoundFile {
 

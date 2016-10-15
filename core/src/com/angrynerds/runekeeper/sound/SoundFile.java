@@ -1,7 +1,5 @@
 package com.angrynerds.runekeeper.sound;
 
-import com.badlogic.gdx.Screen;
-
 public interface SoundFile {
 
     public void stop();

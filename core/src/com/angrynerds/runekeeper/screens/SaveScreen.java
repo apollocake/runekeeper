@@ -1,20 +1,16 @@
 package com.angrynerds.runekeeper.screens;
 
-import com.angrynerds.runekeeper.screens.RunekeeperScreen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 public class SaveScreen extends RunekeeperScreen {
@@ -39,7 +35,6 @@ public class SaveScreen extends RunekeeperScreen {
 
         TextButton cancelButton = new TextButton("Cancel", skin);
 
-
         titleTable.add(titleLabel);
         titleTable.left().top();
 
@@ -48,7 +43,6 @@ public class SaveScreen extends RunekeeperScreen {
 
         buttonsTable.row();
         buttonsTable.add(cancelButton);
-
 
         stage.addActor(buttonsTable);
         stage.addActor(titleTable);
@@ -67,16 +61,16 @@ public class SaveScreen extends RunekeeperScreen {
             }
         });
 
-                cancelButton.addListener(new ChangeListener() {
+        cancelButton.addListener(new ChangeListener() {
             public void changed(ChangeListener.ChangeEvent event, Actor actor) {
                 System.out.println("Cancel Pressed!");
             }
         });
         titleTable.setFillParent(true);
         buttonsTable.setFillParent(true);
-       
 
     }
+
     @Override
 
     public void resize(int width, int height) {

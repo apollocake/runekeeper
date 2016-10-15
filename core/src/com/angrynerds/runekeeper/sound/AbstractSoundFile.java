@@ -1,6 +1,5 @@
 package com.angrynerds.runekeeper.sound;
 
-import com.angrynerds.runekeeper.sound.SoundFile;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 
