@@ -107,8 +107,7 @@ public class MusicCollision implements Observer {
         }
         return false;
     }
-
-    public void dispose() {
+    public void dispose(){
         this.bgmMusic.dispose();
     }
 

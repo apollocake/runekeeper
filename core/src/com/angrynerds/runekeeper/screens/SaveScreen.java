@@ -39,6 +39,7 @@ public class SaveScreen extends RunekeeperScreen {
 
         TextButton cancelButton = new TextButton("Cancel", skin);
 
+
         titleTable.add(titleLabel);
         titleTable.left().top();
 
@@ -47,6 +48,7 @@ public class SaveScreen extends RunekeeperScreen {
 
         buttonsTable.row();
         buttonsTable.add(cancelButton);
+
 
         stage.addActor(buttonsTable);
         stage.addActor(titleTable);
@@ -65,16 +67,16 @@ public class SaveScreen extends RunekeeperScreen {
             }
         });
 
-        cancelButton.addListener(new ChangeListener() {
+                cancelButton.addListener(new ChangeListener() {
             public void changed(ChangeListener.ChangeEvent event, Actor actor) {
                 System.out.println("Cancel Pressed!");
             }
         });
         titleTable.setFillParent(true);
         buttonsTable.setFillParent(true);
+       
 
     }
-
     @Override
 
     public void resize(int width, int height) {

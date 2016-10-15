@@ -14,7 +14,6 @@ import com.badlogic.gdx.math.Vector2;
 public interface DifficultyType {
 
     public Vector2 getDifficultyDimensions();
-
     public void TransformEntity(Entity entityToTransform);
-
+    
 }

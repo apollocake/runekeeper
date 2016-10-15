@@ -12,7 +12,7 @@ import com.badlogic.gdx.math.Vector2;
  * @author Christopher Pope
  */
 public class BoxPatrol implements EnemyPatrol {
-
+    
     private int boxCounter;
     private int boxCounter2;
     private int boxCounter3;
@@ -23,51 +23,52 @@ public class BoxPatrol implements EnemyPatrol {
     private boolean bup = false;
     private float xadjustment = 0.0f;
     private float yadjustment = 0.0f;
-
+    
     private Vector2 pos = new Vector2();
+            
 
     @Override
     public Vector2 patrol(Vector2 pos) {
-
-        if (boxCounter < 100) {
-            pos.x--;
-            //xadjustment = -1.0f;
-            boxCounter++;
+       
+        if(boxCounter<100){
+           pos.x --;
+           //xadjustment = -1.0f;
+           boxCounter++;
         }
-        if (boxCounter >= 100) {
+        if(boxCounter>=100){
             bleft = true;
         }
-        if (bleft == true && boxCounter2 < 100) {
-            pos.y--;
-
-            boxCounter2++;
+        if(bleft == true && boxCounter2<100){
+           pos.y --;
+           
+           boxCounter2++;
         }
-        if (boxCounter2 >= 100) {
+        if(boxCounter2>=100){
             bdown = true;
         }
-        if (bdown == true && boxCounter3 < 100) {
-            pos.x++;
-
-            boxCounter3++;
+        if(bdown == true && boxCounter3<100){
+           pos.x ++;
+           
+           boxCounter3++;
         }
-        if (boxCounter3 >= 100) {
+        if(boxCounter3>=100){
             bright = true;
         }
-        if (bright == true && boxCounter4 < 100) {
-            pos.y++;
-            // adjustment += 1.0f;
-
-            boxCounter4++;
+        if(bright == true && boxCounter4<100){
+           pos.y ++;
+          // adjustment += 1.0f;
+           
+           boxCounter4++;
         }
-        if (boxCounter4 >= 100) {
+        if(boxCounter4>=100){
             bup = true;
         }
-        if (bleft == true && bright == true && bup == true && bdown == true) {
+        if(bleft == true && bright == true && bup == true && bdown == true){
             boxCounter = 0;
             boxCounter2 = 0;
             boxCounter3 = 0;
             boxCounter4 = 0;
-
+            
             bleft = false;
             bright = false;
             bup = false;
@@ -75,5 +76,5 @@ public class BoxPatrol implements EnemyPatrol {
         }
         return pos;
     }
-
+    
 }

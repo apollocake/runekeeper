@@ -43,7 +43,6 @@ import com.badlogic.gdx.utils.Timer.Task;
 import java.util.ArrayList;
 
 public class NewGameScreen extends RunekeeperScreen {
-
     Stage stage;
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
@@ -165,8 +164,7 @@ public class NewGameScreen extends RunekeeperScreen {
 
         if (player.state.equals("DEAD")) //check if healthbar is empty
         {
-            for (double i = -100000000; i < 1000; i += 0.5) {
-            }
+            for(double i = -100000000; i < 1000; i += 0.5){}
             game.setScreen(new GameOverScreen(game)); //end game if player is dead
         }
         livesLabel.setText("Lives: " + player.getPlayerLives());
@@ -259,11 +257,11 @@ public class NewGameScreen extends RunekeeperScreen {
             if (Gdx.input.isKeyJustPressed(Input.Keys.F6)) {
                 player.addhealth(50);
 
-            }
-            if (Gdx.input.isKeyJustPressed(Input.Keys.R)) {
-                //move to a different game screen
-                runMode = !runMode;
-                System.out.println("runMode changed to " + runMode);
+                if (Gdx.input.isKeyJustPressed(Input.Keys.R)) {
+                    //move to a different game screen
+                    runMode = !runMode;
+                    System.out.println("runMode changed to " + runMode);
+                }
             }
         }
     }

@@ -32,11 +32,15 @@ public class EntityAnimation {
     public Animation downIdling;
     public Animation leftIdling;
     public Animation rightIdling;
+    
 
+    
     public Animation enemyAttack;
+    
 
-    Texture walkingSheet;
-    Texture walkingSheet2;
+
+    Texture   walkingSheet;
+    Texture   walkingSheet2;
 
     TextureRegion[] walkingUpFrames;
     TextureRegion[] walkingDownFrames;
@@ -53,13 +57,13 @@ public class EntityAnimation {
     public EntityAnimation(int walkingFrameCol, int walkingUpFrameRow, int walkingLeftFrameRow, int walkingDownFrameRow, int walkingRightFrameRow, int cols, int rows, String newPictureName) {
         this.cols = cols;
         this.rows = rows;
-
+            
         this.walkingFrameCol = walkingFrameCol;
         this.walkingUpFrameRow = walkingUpFrameRow;
         this.walkingLeftFrameRow = walkingLeftFrameRow;
         this.walkingDownFrameRow = walkingDownFrameRow;
         this.walkingRightFrameRow = walkingRightFrameRow;
-
+        
         this.pictureName = newPictureName;
         createAnimations();
         currentAnimation = downIdling;
@@ -68,66 +72,80 @@ public class EntityAnimation {
     private void createAnimations() {
 
         walkingSheet = new Texture(Gdx.files.internal(this.pictureName));
-
-        TextureRegion[][] tmp = TextureRegion.split(walkingSheet, walkingSheet.getWidth() / this.cols,
-                walkingSheet.getHeight() / this.rows); //There are 4 rows.
-
-        if (this.pictureName.equals("demon.png")) {
-            pictureName2 = "demon2.png";
+       
+        TextureRegion[][] tmp = TextureRegion.split(walkingSheet, walkingSheet.getWidth()/this.cols,
+                walkingSheet.getHeight()/this.rows); //There are 4 rows.
+        
+        
+       if(this.pictureName.equals("demon.png") ){
+           pictureName2 = "demon2.png";
             walkingSheet2 = new Texture(Gdx.files.internal(this.pictureName2));
-            tmp2 = TextureRegion.split(walkingSheet2, walkingSheet2.getWidth() / this.cols,
-                    walkingSheet2.getHeight() / this.rows);
-            enemyAttack = new Animation(0.025f, tmp2[this.walkingDownFrameRow][0]);
-        } else if (this.pictureName.equals("orc.png")) {
-            enemyAttack = new Animation(0.025f, tmp[3][6]);
-        } else if (this.pictureName.equals("ghost.png")) {
-            pictureName2 = "ghost.png";
+              tmp2 = TextureRegion.split(walkingSheet2, walkingSheet2.getWidth()/this.cols,
+                walkingSheet2.getHeight()/this.rows);
+             enemyAttack  = new Animation(0.025f, tmp2[this.walkingDownFrameRow][0]);
+       }
+        else if(this.pictureName.equals("orc.png"))
+                  enemyAttack = new Animation(0.025f,tmp[3][6]);
+        
+       else if(this.pictureName.equals("ghost.png") ){
+           pictureName2 = "ghost.png";
             walkingSheet2 = new Texture(Gdx.files.internal(this.pictureName2));
-            tmp2 = TextureRegion.split(walkingSheet2, walkingSheet2.getWidth() / this.cols,
-                    walkingSheet2.getHeight() / this.rows);
-            enemyAttack = new Animation(0.025f, tmp2[this.walkingUpFrameRow][0]);
-        } else if (this.pictureName.equals("snake.png")) {
-            pictureName2 = "snake2.png";
+              tmp2 = TextureRegion.split(walkingSheet2, walkingSheet2.getWidth()/this.cols,
+                walkingSheet2.getHeight()/this.rows);
+             enemyAttack  = new Animation(0.025f, tmp2[this.walkingUpFrameRow][0]);
+       }
+       
+       else if(this.pictureName.equals("snake.png") ){
+           pictureName2 = "snake2.png";
             walkingSheet2 = new Texture(Gdx.files.internal(this.pictureName2));
-            tmp2 = TextureRegion.split(walkingSheet2, walkingSheet2.getWidth() / this.cols,
-                    walkingSheet2.getHeight() / this.rows);
-            enemyAttack = new Animation(0.025f, tmp2[this.walkingDownFrameRow][0]);
-        } else if (this.pictureName.equals("wizard.png")) {
-            pictureName2 = "wizard2.png";
+              tmp2 = TextureRegion.split(walkingSheet2, walkingSheet2.getWidth()/this.cols,
+                walkingSheet2.getHeight()/this.rows);
+             enemyAttack  = new Animation(0.025f, tmp2[this.walkingDownFrameRow][0]);
+       }
+       
+       else if(this.pictureName.equals("wizard.png") ){
+           pictureName2 = "wizard2.png";
             walkingSheet2 = new Texture(Gdx.files.internal(this.pictureName2));
-            tmp2 = TextureRegion.split(walkingSheet2, walkingSheet2.getWidth() / this.cols,
-                    walkingSheet2.getHeight() / this.rows);
-            enemyAttack = new Animation(0.025f, tmp2[this.walkingDownFrameRow][0]);
-        } else {
-            enemyAttack = new Animation(0.025f, tmp[this.walkingUpFrameRow][0]);
-        }
+              tmp2 = TextureRegion.split(walkingSheet2, walkingSheet2.getWidth()/this.cols,
+                walkingSheet2.getHeight()/this.rows);
+             enemyAttack  = new Animation(0.025f, tmp2[this.walkingDownFrameRow][0]);
+       }
+       
+        
+        else enemyAttack = new Animation(0.025f, tmp[this.walkingUpFrameRow][0]);
+       
+      
+       
+       System.out.println("jesfahjksdhakjdnh;kdjhfsdkhjgshdkjanhgskjdnhgkjadsflnglksjd");
+       System.out.println(pictureName2);
 
-        System.out.println("jesfahjksdhakjdnh;kdjhfsdkhjgshdkjanhgskjdnhgkjadsflnglksjd");
-        System.out.println(pictureName2);
+        
+        
 
-        walkingUpFrames = new TextureRegion[this.walkingFrameCol - 1];
-        walkingDownFrames = new TextureRegion[this.walkingFrameCol - 1];
-        walkingLeftFrames = new TextureRegion[this.walkingFrameCol - 1];
-        walkingRightFrames = new TextureRegion[this.walkingFrameCol - 1];
+
+        walkingUpFrames = new TextureRegion[this.walkingFrameCol-1];
+        walkingDownFrames = new TextureRegion[this.walkingFrameCol-1];
+        walkingLeftFrames = new TextureRegion[this.walkingFrameCol-1];
+        walkingRightFrames = new TextureRegion[this.walkingFrameCol-1];
+
 
         //For when the character is in Idle
-        upIdling = new Animation(0.025f, tmp[this.walkingUpFrameRow][0]);
-        downIdling = new Animation(0.025f, tmp[this.walkingDownFrameRow][0]);
-        leftIdling = new Animation(0.025f, tmp[this.walkingLeftFrameRow][0]);
-        rightIdling = new Animation(0.025f, tmp[this.walkingRightFrameRow][0]);
-
+        upIdling  = new Animation(0.025f, tmp[this.walkingUpFrameRow][0]);
+        downIdling  = new Animation(0.025f, tmp[this.walkingDownFrameRow][0]);
+        leftIdling  = new Animation(0.025f, tmp[this.walkingLeftFrameRow][0]);
+        rightIdling  = new Animation(0.025f, tmp[this.walkingRightFrameRow][0]);
+        
     }
 
     void setLocation(float x, float y) {
         pos.x = x;
         pos.y = y;
     }
-
-    public int getSpriteWidth() {
-        return this.walkingSheet.getWidth() / this.cols;
+    
+    public int getSpriteWidth(){
+        return this.walkingSheet.getWidth()/this.cols;
     }
-
-    public int getSpriteHeight() {
-        return this.walkingSheet.getHeight() / this.rows;
+     public int getSpriteHeight(){
+        return this.walkingSheet.getHeight()/this.rows;
     }
 }

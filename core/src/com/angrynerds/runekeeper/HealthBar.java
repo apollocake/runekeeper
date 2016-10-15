@@ -21,9 +21,10 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
  * @author Trevor
  */
 public class HealthBar {
-
+    
     private float health;
     public final float MAXHEALTH = 100;
+    
 
     boolean isEmpty;
 
@@ -32,10 +33,10 @@ public class HealthBar {
     Skin skin = new Skin();
     Pixmap pixmap = new Pixmap(10, 10, Format.RGBA8888);
     private float damagetaken;
-
-    public HealthBar() {
+  
+     public HealthBar()  {         
         health = 100;
-
+         
         pixmap.setColor(Color.WHITE);
         pixmap.fill();
         skin.add("white", new Texture(pixmap));
@@ -45,42 +46,52 @@ public class HealthBar {
 
         this.healthBar = new ProgressBar(0, health, .5f, false, barStyle);
         this.healthBar.setValue(MAXHEALTH);
-        this.healthBar.setPosition(100, 100);
+        this.healthBar.setPosition(100,100);
 
         this.healthBar.setVisible(true);
+   
 
-        this.healthBar.validate();
+        this.healthBar.validate(); 
 
         damagetaken = 0;
         isEmpty = false;
-    }
-
-    public void setHealth(float health) {
+    }  
+    
+        
+    
+    public void setHealth(float health){
         this.health = health;
         this.healthBar.setValue(this.health);
-
+        
     }
-
-    public float getHealth() {
+    
+    public float getHealth(){
         return healthBar.getValue();
     }
-
+  
+    
     //method to subtract health from the healthbar
-    public void damage(float i) {
+    public void damage(float i){
         float temp = 0;
-        if ((i + damagetaken) >= MAXHEALTH) {
-            isEmpty = true;
-            this.healthBar.setVisible(false);
-        } else {
-            damagetaken += i;
-            temp = MAXHEALTH - damagetaken;
-            this.healthBar.setValue(temp);
+        if((i+damagetaken) >= MAXHEALTH)
+        {
+           isEmpty = true;
+           this.healthBar.setVisible(false);
         }
-
+        else
+        {
+          damagetaken += i;
+          temp = MAXHEALTH - damagetaken;
+          this.healthBar.setValue(temp);
+        }
+         
     }
-
+    
+    
     //function which returns true if the player is dead
-    public boolean isEmpty() {
-        return isEmpty;
+    public boolean isEmpty(){
+       return isEmpty;
     }
 }
+    
+

@@ -1,3 +1,4 @@
+
 package com.angrynerds.runekeeper.screens;
 
 import com.badlogic.gdx.Game;
@@ -8,12 +9,12 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
-public class SplashScreen extends RunekeeperScreen {
+public class SplashScreen extends RunekeeperScreen{
 
     Texture texture;
     Image splashImage;
     Stage stage;
-
+    
     public SplashScreen(Game game) {
         super(game);
     }
@@ -23,14 +24,14 @@ public class SplashScreen extends RunekeeperScreen {
         texture = new Texture("intro_swords1.png");
         splashImage = new Image(texture);
         stage = new Stage();
-
+        
         stage.addActor(splashImage);
-        splashImage.addAction(Actions.sequence(Actions.alpha(0),
-                Actions.fadeIn(0.75f), Actions.delay(1.75f), Actions.run(new Runnable() {
-            @Override
-            public void run() {
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new StartScreen(game));
-            }
+            splashImage.addAction(Actions.sequence(Actions.alpha(0),
+                    Actions.fadeIn(0.75f), Actions.delay(1.75f), Actions.run(new Runnable() {
+                @Override
+                public void run(){
+                    ((Game)Gdx.app.getApplicationListener()).setScreen(new StartScreen(game));
+                }
         })));
     }
 
@@ -41,5 +42,5 @@ public class SplashScreen extends RunekeeperScreen {
         stage.act();
         stage.draw();
     }
-
+ 
 }

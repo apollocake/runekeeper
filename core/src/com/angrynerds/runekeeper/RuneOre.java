@@ -15,25 +15,23 @@ import com.badlogic.gdx.math.Vector2;
  *
  * @author qzhao
  */
-public class RuneOre implements iRune {
-
+public class RuneOre implements iRune{
     Animation fireIdling;
     private String runeName;
     private Vector2 pos = new Vector2();
     private Texture texture;
-
     //private SpriteBatch batch;
     public RuneOre() {
         //batch = new SpriteBatch();
-
+        
     }
 
     @Override
     public void showRune(SpriteBatch batch, int x, int y) {
         texture = new Texture(Gdx.files.internal("Rune_Ore1.png"));
-        batch.draw(texture, x, y, Gdx.graphics.getWidth() / 20, Gdx.graphics.getHeight() / 15);
+        batch.draw(texture, x, y,Gdx.graphics.getWidth()/20,Gdx.graphics.getHeight()/15);
         //System.out.println("Fire Rune");
-
+        
     }
 
     @Override
@@ -41,5 +39,5 @@ public class RuneOre implements iRune {
         pos.x = x;
         pos.y = y;
     }
-
+    
 }
