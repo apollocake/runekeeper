@@ -4,9 +4,7 @@ import com.angrynerds.runekeeper.BossDifficultyType;
 import com.angrynerds.runekeeper.Enemy;
 import com.angrynerds.runekeeper.Entity;
 import com.angrynerds.runekeeper.EntityAnimation;
-import com.angrynerds.runekeeper.HealthBar;
 import com.angrynerds.runekeeper.Player;
-import com.angrynerds.runekeeper.PlayerAnimation;
 import com.angrynerds.runekeeper.BoxPatrol;
 import com.angrynerds.runekeeper.CrazyPatrol;
 import com.angrynerds.runekeeper.MusicCollision;
@@ -18,10 +16,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
@@ -30,19 +25,15 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.utils.Timer;
-import com.badlogic.gdx.utils.Timer.Task;
 import java.util.ArrayList;
 
 public class NewGameScreen extends RunekeeperScreen {
+
     Stage stage;
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
@@ -164,7 +155,8 @@ public class NewGameScreen extends RunekeeperScreen {
 
         if (player.state.equals("DEAD")) //check if healthbar is empty
         {
-            for(double i = -100000000; i < 1000; i += 0.5){}
+            for (double i = -100000000; i < 1000; i += 0.5) {
+            }
             game.setScreen(new GameOverScreen(game)); //end game if player is dead
         }
         livesLabel.setText("Lives: " + player.getPlayerLives());

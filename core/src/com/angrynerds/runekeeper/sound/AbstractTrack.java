@@ -1,7 +1,5 @@
 package com.angrynerds.runekeeper.sound;
 
-import com.angrynerds.runekeeper.sound.SoundFile;
-
 public abstract class AbstractTrack {
 
     protected SoundFile soundFile;

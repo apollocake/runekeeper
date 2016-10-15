@@ -1,6 +1,4 @@
-
 package com.angrynerds.runekeeper.screens;
-import com.angrynerds.runekeeper.sound.ButtonsJobs;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -16,7 +14,6 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class MessageScreen extends RunekeeperScreen {
@@ -31,7 +28,7 @@ public class MessageScreen extends RunekeeperScreen {
     }
 
     @Override
-    public void show() {        
+    public void show() {
         batch = new SpriteBatch();
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
@@ -62,35 +59,38 @@ public class MessageScreen extends RunekeeperScreen {
         Table table = new Table();
         table.setFillParent(true);
         table.top();
-    
+
         // Create a button with the "default" TextButtonStyle. A 3rd parameter can be used to specify a name other than "default".
         final TextButton yesButton = new TextButton("YES", textButtonStyle);
         final TextButton cancelButton = new TextButton("CANCEL", textButtonStyle);
-        
-       // final TextField message = new TextField("Are you sure you want to go to ", skin);
-    
-     //   table.add(message);
+
+        // final TextField message = new TextField("Are you sure you want to go to ", skin);
+        //   table.add(message);
         table.row();
         table.add(yesButton);
         table.row();
         table.add(cancelButton);
-        
+
         stage.addActor(table);
-        
+
         yesButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 // move on to the screen selected
                 // game.setScreen(new NewGameScreen(game));
-            };
+            }
+        ;
         });
         
         cancelButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 game.setScreen(new MenuScreen(game));
-            };
-        });
+            }
+        ;
+    }
+
+    );
         
     }
 
@@ -102,7 +102,7 @@ public class MessageScreen extends RunekeeperScreen {
         stage.draw();
         time += delta;
     }
-    
+
     @Override
     public void resize(int width, int height) {
         stage.getViewport().update(width, height, true);

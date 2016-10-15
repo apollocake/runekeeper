@@ -1,4 +1,3 @@
-
 package com.angrynerds.runekeeper.screens;
 
 import com.angrynerds.runekeeper.sound.ButtonsJobs;
@@ -61,32 +60,32 @@ public class MenuScreen extends RunekeeperScreen {
         Table table = new Table();
         table.setFillParent(true);
         table.top();
-    
+
         // Create a button with the "default" TextButtonStyle. A 3rd parameter can be used to specify a name other than "default".
         final TextButton newGameButton = new TextButton("NEW GAME", textButtonStyle);
         final TextButton resumeButton = new TextButton("RESUME GAME", textButtonStyle);
         final TextButton helpButton = new TextButton("HELP", textButtonStyle);
-    
+
         table.add(newGameButton);
         table.row();
         table.add(resumeButton);
         table.row();
         table.add(helpButton);
-        
+
         stage.addActor(table);
 
-                newGameButton.addListener(new ButtonsJobs());
+        newGameButton.addListener(new ButtonsJobs());
         resumeButton.addListener(new ButtonsJobs());
         helpButton.addListener(new ButtonsJobs());
         // Add a listener to the button. ChangeListener is fired when the button's checked state changes, eg when clicked,
         // Button#setChecked() is called, via a key press, etc. If the event.cancel() is called, the checked state will be reverted.
         // ClickListener could have been used, but would only fire when clicked. Also, canceling a ClickListener event won't
         // revert the checked state.
-    
-        newGameButton.addListener(new ClickListener(){
+
+        newGameButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-            //    System.out.println("Clicked");
+                //    System.out.println("Clicked");
                 game.setScreen(new NewGameScreen(game));
             }
         });
@@ -99,7 +98,7 @@ public class MenuScreen extends RunekeeperScreen {
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
     }
-    
+
     @Override
     public void resize(int width, int height) {
         stage.getViewport().update(width, height, true);

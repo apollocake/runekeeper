@@ -1,19 +1,15 @@
 package com.angrynerds.runekeeper;
 
-import com.angrynerds.runekeeper.screens.NewGameScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.math.Rectangle;
 import java.util.Observable;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.actions.ColorAction;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import java.util.HashSet;
 
 public class Player extends Observable {
 
@@ -313,26 +309,28 @@ public class Player extends Observable {
             notifyObservers();
         } else //X AND Y SHOULD NOT CHANGE
         //This is when the chatcter is in IDLE
-        if (direction.equals("LEFT")) {
-            animation = playerAnimation.leftIdling;
-            attack = "";
-        } else if (direction.equals("RIGHT")) {
-            animation = playerAnimation.rightIdling;
-            attack = "";
-        } else if (direction.equals("UP")) {
-            animation = playerAnimation.upIdling;
-            attack = "";
-        } else if (direction.equals("DOWN")) {
-            animation = playerAnimation.downIdling;
-            attack = "";
-        } else if (attack.equals("DOWN_ATTACKING")) {
-            animation = attackingFunction.downIdling;
-        } else if (attack.equals("UP_ATTACKING")) {
-            animation = attackingFunction.upIdling;
-        } else if (attack.equals("LEFT_ATTACKING")) {
-            animation = attackingFunction.leftIdling;
-        } else if (attack.equals("RIGHT_ATTACKING")) {
-            animation = attackingFunction.rightIdling;
+        {
+            if (direction.equals("LEFT")) {
+                animation = playerAnimation.leftIdling;
+                attack = "";
+            } else if (direction.equals("RIGHT")) {
+                animation = playerAnimation.rightIdling;
+                attack = "";
+            } else if (direction.equals("UP")) {
+                animation = playerAnimation.upIdling;
+                attack = "";
+            } else if (direction.equals("DOWN")) {
+                animation = playerAnimation.downIdling;
+                attack = "";
+            } else if (attack.equals("DOWN_ATTACKING")) {
+                animation = attackingFunction.downIdling;
+            } else if (attack.equals("UP_ATTACKING")) {
+                animation = attackingFunction.upIdling;
+            } else if (attack.equals("LEFT_ATTACKING")) {
+                animation = attackingFunction.leftIdling;
+            } else if (attack.equals("RIGHT_ATTACKING")) {
+                animation = attackingFunction.rightIdling;
+            }
         }
     }
 
