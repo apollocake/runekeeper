@@ -12,6 +12,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  * @author qzhao
  */
 public interface iRune {
-    void showRune(SpriteBatch batch,int x, int y);
+
+    void showRune(SpriteBatch batch, int x, int y);
+
     void setLocation(float x, float y);
 }

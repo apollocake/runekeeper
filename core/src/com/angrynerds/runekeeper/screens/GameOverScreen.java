@@ -16,49 +16,48 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import sun.applet.Main;
 
 public class GameOverScreen extends RunekeeperScreen {
-    
+
     HealthBar healthbar;
-    
-	TextureRegion intro;
-	SpriteBatch batch;
-	float time = 0;
-        Game game;
-        
-        
-	public GameOverScreen (Game game) {
-		super(game);
-              this.game = game;
-	}
 
-	@Override
-	public void show () {
-		intro = new TextureRegion(new Texture("gameover.png"), 0, 0, 480, 320);
-		batch = new SpriteBatch();
-		batch.getProjectionMatrix().setToOrtho2D(0, 0, 480, 320);
-                
-	}
+    TextureRegion intro;
+    SpriteBatch batch;
+    float time = 0;
+    Game game;
 
-	@Override
-	public void render (float delta) {
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-                
-		batch.begin();
-		batch.draw(intro, 0, 0);
-		batch.end();
+    public GameOverScreen(Game game) {
+        super(game);
+        this.game = game;
+    }
 
-		time += delta;
-                
-		if (time > 1) {
-                    if (Gdx.input.isKeyPressed(Keys.ANY_KEY) || Gdx.input.justTouched()) {
-                            this.game.setScreen(new SplashScreen(this.game));
-                    }
-		}
-	}
+    @Override
+    public void show() {
+        intro = new TextureRegion(new Texture("gameover.png"), 0, 0, 480, 320);
+        batch = new SpriteBatch();
+        batch.getProjectionMatrix().setToOrtho2D(0, 0, 480, 320);
 
-	@Override
-	public void hide () {
-		//Gdx.app.debug("Runekeeper", "dispose intro");
-		//batch.dispose();
-		//intro.getTexture().dispose();
-	}
+    }
+
+    @Override
+    public void render(float delta) {
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        batch.begin();
+        batch.draw(intro, 0, 0);
+        batch.end();
+
+        time += delta;
+
+        if (time > 1) {
+            if (Gdx.input.isKeyPressed(Keys.ANY_KEY) || Gdx.input.justTouched()) {
+                this.game.setScreen(new SplashScreen(this.game));
+            }
+        }
+    }
+
+    @Override
+    public void hide() {
+        //Gdx.app.debug("Runekeeper", "dispose intro");
+        //batch.dispose();
+        //intro.getTexture().dispose();
+    }
 }

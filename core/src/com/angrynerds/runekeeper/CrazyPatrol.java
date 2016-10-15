@@ -12,7 +12,7 @@ import com.badlogic.gdx.math.Vector2;
  * @author Christopher Pope
  */
 public class CrazyPatrol implements EnemyPatrol {
-    
+
     private int boxCounter;
     private int boxCounter2;
     private int boxCounter3;
@@ -23,14 +23,13 @@ public class CrazyPatrol implements EnemyPatrol {
     private boolean bup = false;
     private float xadjustment = 0.0f;
     private float yadjustment = 0.0f;
-    
+
     private Vector2 pos = new Vector2();
-            
 
     @Override
     public Vector2 patrol(Vector2 pos) {
-       
-/*        if(boxCounter<100){
+
+        /*        if(boxCounter<100){
            pos.x --;
            //xadjustment = -1.0f;
            boxCounter++;
@@ -74,9 +73,9 @@ public class CrazyPatrol implements EnemyPatrol {
             bup = false;
             bdown = false;
         }
-*/
+         */
         pos.y++;
         return pos;
     }
-    
+
 }

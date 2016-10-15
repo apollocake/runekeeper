@@ -12,9 +12,6 @@ import com.badlogic.gdx.math.Rectangle;
 
 import com.badlogic.gdx.math.Vector2;
 
-
-
-
 public interface Entity {
 
     public String getName();
@@ -22,7 +19,7 @@ public interface Entity {
     public EntityAnimation getAnimation();
 
     public Vector2 getPosition();
-    
+
     public Rectangle getRec();
 
     public Vector2 getDimensions();
@@ -30,11 +27,11 @@ public interface Entity {
     public void setDimensions(Vector2 newDimensions);
 
     public void update();
-    
+
     public void setPatrol(EnemyPatrol patrolType);
-    
+
     public void setAlert(boolean A);
-    
+
     public boolean getAlert();
-    
+
 }
