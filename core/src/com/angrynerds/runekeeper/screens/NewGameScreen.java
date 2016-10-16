@@ -203,9 +203,9 @@ public class NewGameScreen extends RunekeeperScreen {
                             }
                         }
                     }
-                } else {
-                    renderer.getBatch().draw(entity.getAnimation().downIdling.getKeyFrame(stateTime, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
                 }
+            } else {
+                renderer.getBatch().draw(entity.getAnimation().downIdling.getKeyFrame(stateTime, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
             }
         }
         renderer.getBatch().end();
