@@ -160,20 +160,18 @@ public class NewGameScreen extends RunekeeperScreen {
         currentFrame = player.animation.getKeyFrame(stateTime, true);
 
         camera.update();
-
         renderer.setView(camera);
         renderer.getBatch().begin();
         renderer.renderTileLayer((TiledMapTileLayer) map.getLayers().get("floor"));
         renderer.getBatch().draw(currentFrame, player.pos.x, player.pos.y);
 
         playerPos = player.getPosition();
-
         player.update(delta, (SpriteBatch) renderer.getBatch());
 
         //check if any collisons between player and enemies    
-        if (player.state.equals("ALIVE")) {
-            for (Entity entity : this.entities) {
-                if (gamestatus != GAME_PAUSED) {
+        for (Entity entity : this.entities) {
+            if (gamestatus != GAME_PAUSED) {
+                if (player.state.equals("ALIVE")) {
                     if (player.bounds.overlaps(entity.getRec())) {
                         if (!player.attack.isEmpty()) {
                             System.out.println("You Hit The ENEMY");
