@@ -151,7 +151,7 @@ public class Player extends Observable {
         runePocessing(batch);
         glove.draw(batch);
         sword.draw(batch);
-
+        }
     }
 
     //show the correct animation when player is hit

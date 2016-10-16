@@ -235,12 +235,12 @@ public class NewGameScreen extends RunekeeperScreen {
 
             if (Gdx.input.isKeyJustPressed(Input.Keys.F6)) {
                 player.addhealth(50);
+            }
 
-                if (Gdx.input.isKeyJustPressed(Input.Keys.R)) {
-                    //move to a different game screen
-                    runMode = !runMode;
-                    System.out.println("runMode changed to " + runMode);
-                }
+            if (Gdx.input.isKeyJustPressed(Input.Keys.R)) {
+                //move to a different game screen
+                runMode = !runMode;
+                System.out.println("runMode changed to " + runMode);
             }
         }
     }
