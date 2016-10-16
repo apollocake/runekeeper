@@ -127,7 +127,6 @@ public class Player extends Observable {
     }
 
     public void update(float deltaTime, SpriteBatch batch) {
-        processKeys();
         healthBar.setHealth(currentHealth);
         if (state.equals("ALIVE")) {
             processKeys();

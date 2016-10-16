@@ -156,18 +156,20 @@ public class NewGameScreen extends RunekeeperScreen {
             game.setScreen(new GameOverScreen(game)); //end game if player is dead
         }
         livesLabel.setText("Lives: " + player.getPlayerLives());
-        stateTime += Gdx.graphics.getDeltaTime();
-        currentFrame = player.animation.getKeyFrame(stateTime, true);
 
         camera.update();
         renderer.setView(camera);
         renderer.getBatch().begin();
         renderer.renderTileLayer((TiledMapTileLayer) map.getLayers().get("floor"));
-        renderer.getBatch().draw(currentFrame, player.pos.x, player.pos.y);
 
         playerPos = player.getPosition();
-        player.update(delta, (SpriteBatch) renderer.getBatch());
+        stateTime += Gdx.graphics.getDeltaTime();
+        currentFrame = player.animation.getKeyFrame(stateTime, true);
+        renderer.getBatch().draw(currentFrame, player.pos.x, player.pos.y);
 
+        if (gamestatus != GAME_PAUSED) {
+            player.update(delta, (SpriteBatch) renderer.getBatch());
+        }
         //check if any collisons between player and enemies    
         for (Entity entity : this.entities) {
             if (gamestatus != GAME_PAUSED) {
