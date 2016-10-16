@@ -104,17 +104,14 @@ public class Player extends Observable {
             if (lives > 0) {
                 addPlayerLives(-1);
                 currentHealth = (MAX_HEALTH - (damage - currentHealth));
-                healthBar.setHealth(currentHealth);
             } else {
                 lives = 0;
                 healthBar.healthBar.setVisible(false);
-                healthBar.setHealth(0);
+                currentHealth = 0;
                 state = "DYING";
             }
         } else {
             currentHealth -= damage;
-            healthBar.setHealth(currentHealth);
-            System.out.println(currentHealth);
         }
 
     }
@@ -124,14 +121,14 @@ public class Player extends Observable {
         if ((addHealth + currentHealth) >= MAX_HEALTH) {
             addPlayerLives(1);
             currentHealth = ((addHealth + currentHealth) - MAX_HEALTH);
-            healthBar.setHealth(currentHealth);
         } else {
-            healthBar.setHealth((currentHealth + addHealth));
+            currentHealth += addHealth;
         }
     }
 
     public void update(float deltaTime, SpriteBatch batch) {
         processKeys();
+        healthBar.setHealth(currentHealth);
         if (state.equals("ALIVE")) {
             processKeys();
         } else if (state.equals("DYING")) {
