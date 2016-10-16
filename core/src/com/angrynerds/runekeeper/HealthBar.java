@@ -22,8 +22,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
  */
 public class HealthBar {
 
-    private float health;
-    public final float MAXHEALTH = 100;
+
+    //public final float MAXHEALTH = 100;
 
     boolean isEmpty;
 
@@ -31,10 +31,9 @@ public class HealthBar {
 
     Skin skin = new Skin();
     Pixmap pixmap = new Pixmap(10, 10, Format.RGBA8888);
-    private float damagetaken;
 
-    public HealthBar() {
-        health = 100;
+    public HealthBar(float health) {
+
 
         pixmap.setColor(Color.WHITE);
         pixmap.fill();
@@ -44,20 +43,16 @@ public class HealthBar {
         barStyle.knobBefore = barStyle.knob;
 
         this.healthBar = new ProgressBar(0, health, .5f, false, barStyle);
-        this.healthBar.setValue(MAXHEALTH);
+        this.healthBar.setValue(health);
         this.healthBar.setPosition(100, 100);
-
         this.healthBar.setVisible(true);
-
         this.healthBar.validate();
 
-        damagetaken = 0;
         isEmpty = false;
     }
 
     public void setHealth(float health) {
-        this.health = health;
-        this.healthBar.setValue(this.health);
+        this.healthBar.setValue(health);
 
     }
 
@@ -66,21 +61,7 @@ public class HealthBar {
     }
 
     //method to subtract health from the healthbar
-    public void damage(float i) {
-        float temp = 0;
-        if ((i + damagetaken) >= MAXHEALTH) {
-            isEmpty = true;
+    public void removeBar(float i) {
             this.healthBar.setVisible(false);
-        } else {
-            damagetaken += i;
-            temp = MAXHEALTH - damagetaken;
-            this.healthBar.setValue(temp);
-        }
-
-    }
-
-    //function which returns true if the player is dead
-    public boolean isEmpty() {
-        return isEmpty;
     }
 }

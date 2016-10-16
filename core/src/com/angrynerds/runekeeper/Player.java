@@ -51,8 +51,12 @@ public class Player extends Observable {
     public Rectangle bounds = new Rectangle();
     public Vector2 pos = new Vector2();
 
-    private HealthBar healthBar = new HealthBar();
     private int lives;
+    private final float MAX_HEALTH = 100;
+    private float currentHealth = MAX_HEALTH;
+
+    private HealthBar healthBar = new HealthBar(MAX_HEALTH);
+
 
     public Player(float x, float y) {
 
@@ -96,35 +100,33 @@ public class Player extends Observable {
     }
 
     public void damage(float damage) {
-
-        float health = healthBar.getHealth();
-        float temp = 0;
-        if (damage >= health) {
+        if (damage >= currentHealth) {
             if (lives > 0) {
                 addPlayerLives(-1);
-                healthBar.setHealth((healthBar.MAXHEALTH - (damage - health)));
+                currentHealth = (MAX_HEALTH - (damage - currentHealth));
+                healthBar.setHealth(currentHealth);
             } else {
                 lives = 0;
                 healthBar.healthBar.setVisible(false);
                 healthBar.setHealth(0);
-
                 state = "DYING";
             }
         } else {
-            temp = health - damage;
-            healthBar.setHealth(temp);
+            currentHealth -= damage;
+            healthBar.setHealth(currentHealth);
+            System.out.println(currentHealth);
         }
 
     }
 
     // method to add health to the healthBar
     public void addhealth(float addHealth) {
-        float temp = 0;
-        if ((addHealth + healthBar.getHealth()) >= healthBar.MAXHEALTH) {
+        if ((addHealth + currentHealth) >= MAX_HEALTH) {
             addPlayerLives(1);
-            healthBar.setHealth(((addHealth + healthBar.getHealth()) - healthBar.MAXHEALTH));
+            currentHealth = ((addHealth + currentHealth) - MAX_HEALTH);
+            healthBar.setHealth(currentHealth);
         } else {
-            healthBar.setHealth((healthBar.getHealth() + addHealth));
+            healthBar.setHealth((currentHealth + addHealth));
         }
     }
 
