@@ -135,12 +135,17 @@ public class Player extends Observable {
         } else if (state.equals("DYING")) {
             animation = playerAnimation.dyingAnimation;
             stateTime += deltaTime;
-            if (stateTime > .37f) {
-                state = "DEAD";
+            if (stateTime > .35f) {
+                animation = playerAnimation.dead;
                 attack = "";
             }
+            if (stateTime > 1f) {
+                state = "DEAD";
+            }
+
+                
         } else {//Here the player is DEAD
-            animation = playerAnimation.dead;
+
         }
 
         bounds.x = this.pos.x;

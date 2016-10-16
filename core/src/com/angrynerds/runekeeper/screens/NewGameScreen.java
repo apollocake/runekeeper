@@ -45,7 +45,7 @@ public class NewGameScreen extends RunekeeperScreen {
     Label livesLabel;
     BitmapFont font;
     LabelStyle textStyle;
-    public Player player = new Player(25, 25);
+    public Player player;
 
     ArrayList<Entity> entities;
     TextureRegion currentFrame;
@@ -147,16 +147,12 @@ public class NewGameScreen extends RunekeeperScreen {
 
     @Override
     public void render(float delta) {
-        if (player.getHealthBar().getHealth() <= 0) {
-            this.entities = new ArrayList<Entity>();
-        }
         Gdx.gl.glClearColor(0.2f, 0.2f, 0.2f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         if (player.state.equals("DEAD")) //check if healthbar is empty
         {
-            for (double i = -100000000; i < 1000; i += 0.5) {
-            }
+            this.entities = new ArrayList<Entity>();
             game.setScreen(new GameOverScreen(game)); //end game if player is dead
         }
         livesLabel.setText("Lives: " + player.getPlayerLives());
@@ -170,52 +166,45 @@ public class NewGameScreen extends RunekeeperScreen {
         renderer.renderTileLayer((TiledMapTileLayer) map.getLayers().get("floor"));
         renderer.getBatch().draw(currentFrame, player.pos.x, player.pos.y);
 
-        if (gamestatus != GAME_PAUSED) {
-            player.update(delta, (SpriteBatch) renderer.getBatch());
-        }
         playerPos = player.getPosition();
 
+        player.update(delta, (SpriteBatch) renderer.getBatch());
+
         //check if any collisons between player and enemies    
-        for (Entity entity : this.entities) {
-            if (player.bounds.overlaps(entity.getRec()) && !player.attack.isEmpty()) {
-                System.out.println("You Hit The ENEMY");
-                renderer.getBatch().setColor(Color.RED);
-            } else {
-                renderer.getBatch().setColor(nullColor);
-            }
-
-            if (player.bounds.overlaps(entity.getRec()) && !player.state.equals("Dying")) {
-                //change player animation to a hit animation
-                player.isHit();
-                player.damage(1); //subtract health from healthbar
-                renderer.getBatch().draw(entity.getAnimation().enemyAttack.getKeyFrame(stateTime, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
-//                if (healthbar.isDead()) //check if healthbar is empty
-//                {
-//                    game.setScreen(new GameOverScreen(game)); //end game if player is dead
-//                }
-
-            } else {
-
-                if (!player.state.equals("Dying")) {
-                    renderer.getBatch().draw(entity.getAnimation().downIdling.getKeyFrame(stateTime, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
-                }
-                if (gamestatus != GAME_PAUSED && !player.state.equals("Dying")) {
-                    entity.update();
-                    enemyPos = entity.getPosition();
-                    enemyDistance = enemyPos.dst(playerPos);
-
-                    if (runMode) {
-
-                        if (enemyDistance < 75.0f && entity.getAlert() == false) {
-                            entity.setPatrol(new CrazyPatrol());
-                            entity.setAlert(true);
+        if (player.state.equals("ALIVE")) {
+            for (Entity entity : this.entities) {
+                if (gamestatus != GAME_PAUSED) {
+                    if (player.bounds.overlaps(entity.getRec())) {
+                        if (!player.attack.isEmpty()) {
+                            System.out.println("You Hit The ENEMY");
+                            renderer.getBatch().setColor(Color.RED);
+                        } else {
+                            renderer.getBatch().setColor(nullColor);
                         }
+                        player.isHit();
+                        player.damage(1); //subtract health from healthbar
+                        renderer.getBatch().draw(entity.getAnimation().enemyAttack.getKeyFrame(stateTime, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
+                    } else {
+                        renderer.getBatch().draw(entity.getAnimation().downIdling.getKeyFrame(stateTime, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
+                        entity.update();
+                        enemyPos = entity.getPosition();
+                        enemyDistance = enemyPos.dst(playerPos);
 
-                        if (enemyDistance > 300.0f && entity.getAlert() == true) {
-                            entity.setPatrol(new BoxPatrol());
-                            entity.setAlert(false);
+                        if (runMode) {
+
+                            if (enemyDistance < 75.0f && entity.getAlert() == false) {
+                                entity.setPatrol(new CrazyPatrol());
+                                entity.setAlert(true);
+                            }
+
+                            if (enemyDistance > 300.0f && entity.getAlert() == true) {
+                                entity.setPatrol(new BoxPatrol());
+                                entity.setAlert(false);
+                            }
                         }
                     }
+                } else {
+                    renderer.getBatch().draw(entity.getAnimation().downIdling.getKeyFrame(stateTime, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
                 }
             }
         }
