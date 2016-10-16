@@ -132,20 +132,19 @@ public class Player extends Observable {
         if (state.equals("ALIVE")) {
             processKeys();
         } else if (state.equals("DYING")) {
-            animation = playerAnimation.dyingAnimation;
-            stateTime += deltaTime;
-            if (stateTime > .35f) {
+            if(stateTime < 1.3f){
+                animation = playerAnimation.dyingAnimation;
+                stateTime += deltaTime;
+            }
+            if (stateTime > 1.3f) {
                 animation = playerAnimation.dead;
                 attack = "";
+                stateTime += deltaTime;
             }
-            if (stateTime > 1f) {
+            if (stateTime > 3f) {
                 state = "DEAD";
             }
 
-                
-        } else {//Here the player is DEAD
-
-        }
 
         bounds.x = this.pos.x;
         bounds.y = this.pos.y;

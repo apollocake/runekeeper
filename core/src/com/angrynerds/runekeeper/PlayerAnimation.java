@@ -120,14 +120,14 @@ public class PlayerAnimation {
         TextureRegion[][] dyingTmp = TextureRegion.split(dyingSheet, dyingSheet.getWidth() / 6,
                 dyingSheet.getHeight() / 1); //6 because there are 6 columns and 1 since there is 1 row;
 
-        dyingFrames = new TextureRegion[5];
+        dyingFrames = new TextureRegion[6];
 
-        for (int i = 0, j = 1; j < 6; j++) {
+        for (int i = 0, j = 0; j < 6; j++) {
             dyingFrames[i++] = dyingTmp[0][j];
         }
-        dyingAnimation = new Animation(0.155f, dyingFrames);
+        dyingAnimation = new Animation(0.655f, dyingFrames);
 
-        dead = new Animation(0.025f, dyingTmp[0][5]);
+        dead = new Animation(0.15f, dyingTmp[0][5]);
 
     }
 
