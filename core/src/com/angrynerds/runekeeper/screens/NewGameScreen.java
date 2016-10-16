@@ -172,8 +172,8 @@ public class NewGameScreen extends RunekeeperScreen {
         }
         //check if any collisons between player and enemies    
         for (Entity entity : this.entities) {
-            if (gamestatus != GAME_PAUSED) {
-                if (player.state.equals("ALIVE")) {
+            if (player.state.equals("ALIVE")) {
+                if (gamestatus != GAME_PAUSED) {
                     if (player.bounds.overlaps(entity.getRec())) {
                         if (!player.attack.isEmpty()) {
                             System.out.println("You Hit The ENEMY");
@@ -203,9 +203,9 @@ public class NewGameScreen extends RunekeeperScreen {
                             }
                         }
                     }
+                } else {
+                    renderer.getBatch().draw(entity.getAnimation().downIdling.getKeyFrame(stateTime, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
                 }
-            } else {
-                renderer.getBatch().draw(entity.getAnimation().downIdling.getKeyFrame(stateTime, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
             }
         }
         renderer.getBatch().end();
