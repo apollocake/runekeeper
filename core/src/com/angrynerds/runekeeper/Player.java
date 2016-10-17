@@ -43,7 +43,7 @@ public class Player extends Observable {
     Rune rnOre = new Rune();
     public Animation animation;
     public String state;
-    private float stateTime;
+    public float stateTime;
     ColorAction coloraction = new ColorAction();
 
     public String direction = "DOWN";
@@ -56,7 +56,8 @@ public class Player extends Observable {
     private float currentHealth = MAX_HEALTH;
 
     private HealthBar healthBar = new HealthBar(MAX_HEALTH);
-
+    private boolean startDying = true;
+    private boolean startDying2 = true;
 
     public Player(float x, float y) {
 
@@ -131,25 +132,25 @@ public class Player extends Observable {
         if (state.equals("ALIVE")) {
             processKeys();
         } else if (state.equals("DYING")) {
-            if(stateTime < 1.3f){
+            stateTime += deltaTime;
+            if (startDying) {
+                startDying = false;
                 animation = playerAnimation.dyingAnimation;
-                stateTime += deltaTime;
-            }
-            if (stateTime > 1.3f) {
+                stateTime = 0;
+            } else if (animation.isAnimationFinished(stateTime) && startDying2) {
                 animation = playerAnimation.dead;
                 attack = "";
-                stateTime += deltaTime;
-            }
-            if (stateTime > 3f) {
+                startDying2 = false;
+                stateTime = 0;
+            } else if (animation.isAnimationFinished(stateTime)) {
                 state = "DEAD";
             }
 
-
-        bounds.x = this.pos.x;
-        bounds.y = this.pos.y;
-        runePocessing(batch);
-        glove.draw(batch);
-        sword.draw(batch);
+            bounds.x = this.pos.x;
+            bounds.y = this.pos.y;
+            runePocessing(batch);
+            glove.draw(batch);
+            sword.draw(batch);
         }
     }
 

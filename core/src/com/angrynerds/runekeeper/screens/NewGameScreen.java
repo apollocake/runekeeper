@@ -60,9 +60,9 @@ public class NewGameScreen extends RunekeeperScreen {
     public static final int GAME_PAUSED = 1;
     public static int gamestatus;
 
-    float stateTime;
     private final MusicCollision playerCollision;
     private final Skin skin;
+    private boolean startedDying;
 
     public NewGameScreen(Game game) {
         super(game);
@@ -163,8 +163,7 @@ public class NewGameScreen extends RunekeeperScreen {
         renderer.renderTileLayer((TiledMapTileLayer) map.getLayers().get("floor"));
 
         playerPos = player.getPosition();
-        stateTime += Gdx.graphics.getDeltaTime();
-        currentFrame = player.animation.getKeyFrame(stateTime, true);
+        currentFrame = player.animation.getKeyFrame(player.stateTime, true);
         renderer.getBatch().draw(currentFrame, player.pos.x, player.pos.y);
 
         if (gamestatus != GAME_PAUSED) {
@@ -183,9 +182,9 @@ public class NewGameScreen extends RunekeeperScreen {
                         }
                         player.isHit();
                         player.damage(1); //subtract health from healthbar
-                        renderer.getBatch().draw(entity.getAnimation().enemyAttack.getKeyFrame(stateTime, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
+                        renderer.getBatch().draw(entity.getAnimation().enemyAttack.getKeyFrame(delta, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
                     } else {
-                        renderer.getBatch().draw(entity.getAnimation().downIdling.getKeyFrame(stateTime, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
+                        renderer.getBatch().draw(entity.getAnimation().downIdling.getKeyFrame(delta, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
                         entity.update();
                         enemyPos = entity.getPosition();
                         enemyDistance = enemyPos.dst(playerPos);
@@ -204,7 +203,7 @@ public class NewGameScreen extends RunekeeperScreen {
                         }
                     }
                 } else {
-                    renderer.getBatch().draw(entity.getAnimation().downIdling.getKeyFrame(stateTime, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
+                    renderer.getBatch().draw(entity.getAnimation().downIdling.getKeyFrame(delta, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
                 }
             }
         }
