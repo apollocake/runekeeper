@@ -129,10 +129,10 @@ public class Player extends Observable {
 
     public void update(float deltaTime, SpriteBatch batch) {
         healthBar.setHealth(currentHealth);
+        stateTime += deltaTime;
         if (state.equals("ALIVE")) {
             processKeys();
         } else if (state.equals("DYING")) {
-            stateTime += deltaTime;
             if (startDying) {
                 startDying = false;
                 animation = playerAnimation.dyingAnimation;
