@@ -183,7 +183,9 @@ public class NewGameScreen extends RunekeeperScreen {
                         player.isHit();
                         player.damage(1); //subtract health from healthbar
                         renderer.getBatch().draw(entity.getAnimation().enemyAttack.getKeyFrame(delta, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
+                        renderer.getBatch().setColor(nullColor);
                     } else {
+                        renderer.getBatch().setColor(nullColor);
                         renderer.getBatch().draw(entity.getAnimation().downIdling.getKeyFrame(delta, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
                         entity.update();
                         enemyPos = entity.getPosition();
