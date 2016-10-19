@@ -157,13 +157,14 @@ public class NewGameScreen extends RunekeeperScreen {
         }
         livesLabel.setText("Lives: " + player.getPlayerLives());
 
-        camera.update();
         renderer.setView(camera);
         renderer.getBatch().begin();
         renderer.renderTileLayer((TiledMapTileLayer) map.getLayers().get("floor"));
 
         playerPos = player.getPosition();
         currentFrame = player.animation.getKeyFrame(player.stateTime, true);
+        camera.position.set(player.getX() + player.playerAnimation.getWidth() / 2, player.getY() + player.playerAnimation.getHeight() / 2, 0);
+        camera.update();
         renderer.getBatch().draw(currentFrame, player.pos.x, player.pos.y);
 
         if (gamestatus != GAME_PAUSED) {
