@@ -145,13 +145,12 @@ public class Player extends Observable {
             } else if (animation.isAnimationFinished(stateTime)) {
                 state = "DEAD";
             }
-
+        }
             bounds.x = this.pos.x;
             bounds.y = this.pos.y;
             runePocessing(batch);
             glove.draw(batch);
             sword.draw(batch);
-        }
     }
 
     //show the correct animation when player is hit
