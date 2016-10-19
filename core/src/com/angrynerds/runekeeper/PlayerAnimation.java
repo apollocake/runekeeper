@@ -125,10 +125,10 @@ public class PlayerAnimation {
         for (int i = 0, j = 0; j < 6; j++) {
             dyingFrames[i++] = dyingTmp[0][j];
         }
-        dyingAnimation = new Animation(0.655f, dyingFrames);
-
-        dead = new Animation(0.15f, dyingTmp[0][5]);
-
+        dyingAnimation = new Animation(0.255f, dyingFrames);
+        dyingAnimation.setPlayMode(Animation.PlayMode.NORMAL);
+        dead = new Animation(0.2f, dyingTmp[0][5]);
+        dead.setPlayMode(Animation.PlayMode.NORMAL);
     }
 
     public int getWidth() {
