@@ -80,12 +80,28 @@ public class EntityAnimation {
             enemyAttack = new Animation(0.025f, tmp2[this.walkingDownFrameRow][0]);
         } else if (this.pictureName.equals("orc.png")) {
             enemyAttack = new Animation(0.025f, tmp[3][6]);
+        } else if (this.pictureName.equals("evilwizard.png")) {
+                     enemyAttack = new Animation(0.025f, tmp[6][4]);
+        } else if (this.pictureName.equals("ghostking.png")) {
+                     enemyAttack = new Animation(0.025f, tmp[2][9]);
+        } else if (this.pictureName.equals("goblinking.png")) {
+                     enemyAttack = new Animation(0.025f, tmp[8][7]);
+        } else if (this.pictureName.equals("snakeking.png")) {
+                  enemyAttack = new Animation(0.025f, tmp[0][3]);
         } else if (this.pictureName.equals("ghost.png")) {
             pictureName2 = "ghost.png";
             walkingSheet2 = new Texture(Gdx.files.internal(this.pictureName2));
             tmp2 = TextureRegion.split(walkingSheet2, walkingSheet2.getWidth() / this.cols,
                     walkingSheet2.getHeight() / this.rows);
             enemyAttack = new Animation(0.025f, tmp2[this.walkingUpFrameRow][0]);
+            
+        } else if (this.pictureName.equals("meteorbeast.png")) {
+            pictureName2 = "meteorbeast2.png";
+            walkingSheet2 = new Texture(Gdx.files.internal(this.pictureName2));
+            tmp2 = TextureRegion.split(walkingSheet2, walkingSheet2.getWidth() / this.cols,
+                    walkingSheet2.getHeight() / this.rows);
+            enemyAttack = new Animation(0.025f, tmp2[this.walkingDownFrameRow][0]);
+            
         } else if (this.pictureName.equals("snake.png")) {
             pictureName2 = "snake2.png";
             walkingSheet2 = new Texture(Gdx.files.internal(this.pictureName2));
@@ -102,8 +118,7 @@ public class EntityAnimation {
             enemyAttack = new Animation(0.025f, tmp[this.walkingUpFrameRow][0]);
         }
 
-        System.out.println("jesfahjksdhakjdnh;kdjhfsdkhjgshdkjanhgskjdnhgkjadsflnglksjd");
-        System.out.println(pictureName2);
+      
 
         walkingUpFrames = new TextureRegion[this.walkingFrameCol - 1];
         walkingDownFrames = new TextureRegion[this.walkingFrameCol - 1];
