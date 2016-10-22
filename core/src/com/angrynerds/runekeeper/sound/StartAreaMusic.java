@@ -12,6 +12,10 @@ public class StartAreaMusic extends AbstractSoundFile {
     public void start() {
         music.play();
     }
+    @Override
+    public void pause() {
+        music.pause();
+    }
 
     @Override
     public void stop() {
