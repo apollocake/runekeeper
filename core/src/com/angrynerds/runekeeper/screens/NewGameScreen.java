@@ -69,7 +69,7 @@ public class NewGameScreen extends RunekeeperScreen {
         TmxMapLoader loader = new TmxMapLoader();
         map = loader.load("worldmap.tmx");
         TiledMapTileLayer collisionLayer = (TiledMapTileLayer) map.getLayers().get(0);
-        playerCollision = new MusicCollision(collisionLayer);
+        playerCollision = new MusicCollision(collisionLayer); //should rename to musicLevelCollision
         renderer = new OrthogonalTiledMapRenderer(map);
         camera = new OrthographicCamera();
         player = new Player(25, 25);
