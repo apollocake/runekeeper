@@ -9,10 +9,10 @@ public class MusicManager {
     public MusicManager(MusicCollision musicCollision) {
         this.musicCollision = musicCollision;
     }
-    void pause(){
+    public void pause(){
         musicCollision.pause();
     }
-    void play(){
-        musicCollision.pause();
+    public void play(){
+        musicCollision.play();
     }
 }
