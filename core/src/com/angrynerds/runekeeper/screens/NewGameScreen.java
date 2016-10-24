@@ -116,6 +116,7 @@ public class NewGameScreen extends RunekeeperScreen {
             button("Save", 1);
             button("Load", 1);
             button("Cancel", 3);
+            key(Input.Keys.ESCAPE, false);
         }
 
         @Override
