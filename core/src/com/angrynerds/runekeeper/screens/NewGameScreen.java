@@ -10,6 +10,7 @@ import com.angrynerds.runekeeper.CrazyPatrol;
 import com.angrynerds.runekeeper.MusicCollision;
 import com.angrynerds.runekeeper.DifficultyType;
 import com.angrynerds.runekeeper.EasyDifficultyType;
+import com.angrynerds.runekeeper.sound.MusicManager;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -61,6 +62,7 @@ public class NewGameScreen extends RunekeeperScreen {
     public static int gamestatus;
 
     private final MusicCollision playerCollision;
+    private final MusicManager musicManager;
     private final Skin skin;
     private boolean startedDying;
 
@@ -69,7 +71,10 @@ public class NewGameScreen extends RunekeeperScreen {
         TmxMapLoader loader = new TmxMapLoader();
         map = loader.load("worldmap.tmx");
         TiledMapTileLayer collisionLayer = (TiledMapTileLayer) map.getLayers().get(0);
+
         playerCollision = new MusicCollision(collisionLayer); //should rename to musicLevelCollision
+        musicManager = new MusicManager(playerCollision);
+
         renderer = new OrthogonalTiledMapRenderer(map);
         camera = new OrthographicCamera();
         player = new Player(25, 25);
