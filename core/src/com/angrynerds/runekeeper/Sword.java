@@ -28,11 +28,11 @@ public class Sword {
 
     }
 
-    public void draw(SpriteBatch batch) {
+    public void draw(SpriteBatch batch, int x,int y) {
         texture = new Texture(Gdx.files.internal("ATSword2.png"));
 //        batch.begin();
         //Gdx.gl.glActiveTexture(GL20.GL_TEXTURE0);
-        batch.draw(texture, 90, 2, Gdx.graphics.getWidth() / 20, Gdx.graphics.getHeight() / 14);
+        batch.draw(texture, x, y, Gdx.graphics.getWidth() / 28, Gdx.graphics.getHeight() / 20);
         //      batch.end();
         //System.out.println("Fire Rune");
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
