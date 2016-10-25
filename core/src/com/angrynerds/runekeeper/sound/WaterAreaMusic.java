@@ -12,6 +12,10 @@ public class WaterAreaMusic extends AbstractSoundFile {
     public void start() {
         music.play();
     }
+    @Override
+    public void pause() {
+        music.pause();
+    }
 
     @Override
     public void stop() {
