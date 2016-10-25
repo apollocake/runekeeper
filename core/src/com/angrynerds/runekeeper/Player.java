@@ -61,7 +61,7 @@ public class Player extends Observable {
 
     public Player(float x, float y) {
 
-        lives = 1;
+        lives = 100;
         state = "ALIVE";
         pos.x = x;
         pos.y = y;
@@ -105,6 +105,7 @@ public class Player extends Observable {
             if (lives > 0) {
                 addPlayerLives(-1);
                 currentHealth = (MAX_HEALTH - (damage - currentHealth));
+                 animation = playerAnimation.lostLife;
             } else {
                 lives = 0;
                 healthBar.healthBar.setVisible(false);
