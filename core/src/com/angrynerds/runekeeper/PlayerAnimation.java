@@ -19,6 +19,9 @@ public class PlayerAnimation {
     TextureRegion[] dyingFrames;
     Animation dyingAnimation;
     Animation dead;
+    
+    Texture dyingSheet2;
+    Animation loseLife;
 
     Animation walkingDownAnima;
     Animation walkingUpAnima;
@@ -73,6 +76,8 @@ public class PlayerAnimation {
         walkingLeftFrames = new TextureRegion[WALKING_FRAME_COLS - 1];
         walkingRightFrames = new TextureRegion[WALKING_FRAME_COLS - 1];
 
+        
+        
         //For when the character is in Idle                           
         upIdling = new Animation(0.025f, tmp[WALKING_UP_FRAME_ROW][0]);
         downIdling = new Animation(0.025f, tmp[WALKING_DOWN_FRAME_ROW][0]);
@@ -116,9 +121,15 @@ public class PlayerAnimation {
         //The creation of the dying animation is below here
         //--------------------------------------------------
         dyingSheet = new Texture(Gdx.files.internal("playerDying.png"));
+        dyingSheet2 = new Texture(Gdx.files.internal("playerDying2.png"));
 
         TextureRegion[][] dyingTmp = TextureRegion.split(dyingSheet, dyingSheet.getWidth() / 6,
                 dyingSheet.getHeight() / 1); //6 because there are 6 columns and 1 since there is 1 row;
+        
+        TextureRegion[][] dyingTmp2 = TextureRegion.split(dyingSheet2, dyingSheet2.getWidth() / 6,
+                dyingSheet2.getHeight() / 1);
+        
+         loseLife = new Animation(2000000f, dyingTmp2[0][3]);
 
         dyingFrames = new TextureRegion[6];
 
