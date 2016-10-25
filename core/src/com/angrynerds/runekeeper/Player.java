@@ -403,55 +403,55 @@ public class Player extends Observable {
             }
         }
         
-        if(Gdx.input.isKeyPressed(Keys.SPACE) && Gdx.input.isKeyPressed(Keys.K) && runeFireGlove == true && attackWeapon.equals("GLOVE") && attack.equals("RIGHT_ATTACKING") ){
+        if(Gdx.input.isKeyPressed(Keys.SPACE)  && runeFireGlove == true && attackWeapon.equals("GLOVE") && attack.equals("RIGHT_ATTACKING") ){
             fireGloveRightAnima.showFireAnimation(batch, (int)pos.x + 40, (int)pos.y - 30);
         }
-        else if(Gdx.input.isKeyPressed(Keys.SPACE) && Gdx.input.isKeyPressed(Keys.K) && runeFireGlove == true && attackWeapon.equals("GLOVE") && attack.equals("LEFT_ATTACKING") ){
+        else if(Gdx.input.isKeyPressed(Keys.SPACE) && runeFireGlove == true && attackWeapon.equals("GLOVE") && attack.equals("LEFT_ATTACKING") ){
             fireGloveLeftAnima.showFireAnimation(batch, (int)pos.x - 105, (int)pos.y - 30);
         }
-        else if(Gdx.input.isKeyPressed(Keys.SPACE) && Gdx.input.isKeyPressed(Keys.K) && runeFireGlove == true && attackWeapon.equals("GLOVE") && attack.equals("UP_ATTACKING") ){
+        else if(Gdx.input.isKeyPressed(Keys.SPACE)  && runeFireGlove == true && attackWeapon.equals("GLOVE") && attack.equals("UP_ATTACKING") ){
             fireGloveUpAnima.showFireAnimation(batch, (int)pos.x - 33, (int)pos.y + 10 );
         }
-        else if(Gdx.input.isKeyPressed(Keys.SPACE) && Gdx.input.isKeyPressed(Keys.K) && runeFireGlove == true && attackWeapon.equals("GLOVE") && attack.equals("DOWN_ATTACKING") ){
+        else if(Gdx.input.isKeyPressed(Keys.SPACE)   && runeFireGlove == true && attackWeapon.equals("GLOVE") && attack.equals("DOWN_ATTACKING") ){
             fireGloveDownAnima.showFireAnimation(batch, (int)pos.x - 32, (int)pos.y - 100 );
         }
         // water
-        if(Gdx.input.isKeyPressed(Keys.SPACE) && Gdx.input.isKeyPressed(Keys.K) && runeWaterGlove == true && attackWeapon.equals("GLOVE") && attack.equals("RIGHT_ATTACKING") ){
+        if(Gdx.input.isKeyPressed(Keys.SPACE)   && runeWaterGlove == true && attackWeapon.equals("GLOVE") && attack.equals("RIGHT_ATTACKING") ){
             waterGloveAnima.showFireAnimation(batch, (int)pos.x + 35, (int)pos.y - 30);
         }
-        else if(Gdx.input.isKeyPressed(Keys.SPACE) && Gdx.input.isKeyPressed(Keys.K) && runeWaterGlove == true && attackWeapon.equals("GLOVE") && attack.equals("LEFT_ATTACKING") ){
+        else if(Gdx.input.isKeyPressed(Keys.SPACE)   && runeWaterGlove == true && attackWeapon.equals("GLOVE") && attack.equals("LEFT_ATTACKING") ){
             waterGloveAnima.showFireAnimation(batch, (int)pos.x - 100, (int)pos.y - 30);
         }
-        else if(Gdx.input.isKeyPressed(Keys.SPACE) && Gdx.input.isKeyPressed(Keys.K) && runeWaterGlove == true && attackWeapon.equals("GLOVE") && attack.equals("UP_ATTACKING") ){
+        else if(Gdx.input.isKeyPressed(Keys.SPACE)   && runeWaterGlove == true && attackWeapon.equals("GLOVE") && attack.equals("UP_ATTACKING") ){
             waterGloveAnima.showFireAnimation(batch, (int)pos.x - 30, (int)pos.y + 35 );
         }
-        else if(Gdx.input.isKeyPressed(Keys.SPACE) && Gdx.input.isKeyPressed(Keys.K) && runeWaterGlove == true && attackWeapon.equals("GLOVE") && attack.equals("DOWN_ATTACKING") ){
+        else if(Gdx.input.isKeyPressed(Keys.SPACE)   && runeWaterGlove == true && attackWeapon.equals("GLOVE") && attack.equals("DOWN_ATTACKING") ){
             waterGloveAnima.showFireAnimation(batch, (int)pos.x - 30, (int)pos.y - 70 );
         }
         //Grass
-        if(Gdx.input.isKeyPressed(Keys.SPACE) && Gdx.input.isKeyPressed(Keys.K) && runeGrassGlove == true && attackWeapon.equals("GLOVE") && attack.equals("RIGHT_ATTACKING") ){
+        if(Gdx.input.isKeyPressed(Keys.SPACE)   && runeGrassGlove == true && attackWeapon.equals("GLOVE") && attack.equals("RIGHT_ATTACKING") ){
             grassGloveAnima.showFireAnimation(batch, (int)pos.x + 10, (int)pos.y - 30);
         }
-        else if(Gdx.input.isKeyPressed(Keys.SPACE) && Gdx.input.isKeyPressed(Keys.K) && runeGrassGlove == true && attackWeapon.equals("GLOVE") && attack.equals("LEFT_ATTACKING") ){
+        else if(Gdx.input.isKeyPressed(Keys.SPACE)   && runeGrassGlove == true && attackWeapon.equals("GLOVE") && attack.equals("LEFT_ATTACKING") ){
             grassGloveAnima.showFireAnimation(batch, (int)pos.x - 50, (int)pos.y - 30);
         }
-        else if(Gdx.input.isKeyPressed(Keys.SPACE) && Gdx.input.isKeyPressed(Keys.K) && runeGrassGlove == true && attackWeapon.equals("GLOVE") && attack.equals("UP_ATTACKING") ){
+        else if(Gdx.input.isKeyPressed(Keys.SPACE)   && runeGrassGlove == true && attackWeapon.equals("GLOVE") && attack.equals("UP_ATTACKING") ){
             grassGloveAnima.showFireAnimation(batch, (int)pos.x - 30, (int)pos.y + 5 );
         }
-        else if(Gdx.input.isKeyPressed(Keys.SPACE) && Gdx.input.isKeyPressed(Keys.K) && runeGrassGlove == true && attackWeapon.equals("GLOVE") && attack.equals("DOWN_ATTACKING") ){
+        else if(Gdx.input.isKeyPressed(Keys.SPACE)   && runeGrassGlove == true && attackWeapon.equals("GLOVE") && attack.equals("DOWN_ATTACKING") ){
             grassGloveAnima.showFireAnimation(batch, (int)pos.x - 30, (int)pos.y - 70 );
         }
         
-         if(Gdx.input.isKeyPressed(Keys.SPACE) && Gdx.input.isKeyPressed(Keys.K) && runeOreGlove == true && attackWeapon.equals("GLOVE") && attack.equals("RIGHT_ATTACKING") ){
+         if(Gdx.input.isKeyPressed(Keys.SPACE)   && runeOreGlove == true && attackWeapon.equals("GLOVE") && attack.equals("RIGHT_ATTACKING") ){
             oreGloveAnima.showFireAnimation(batch, (int)pos.x + 30, (int)pos.y );
         }
-        else if(Gdx.input.isKeyPressed(Keys.SPACE) && Gdx.input.isKeyPressed(Keys.K) && runeOreGlove == true && attackWeapon.equals("GLOVE") && attack.equals("LEFT_ATTACKING") ){
+        else if(Gdx.input.isKeyPressed(Keys.SPACE)   && runeOreGlove == true && attackWeapon.equals("GLOVE") && attack.equals("LEFT_ATTACKING") ){
             oreGloveAnima.showFireAnimation(batch, (int)pos.x - 90, (int)pos.y );
         }
-        else if(Gdx.input.isKeyPressed(Keys.SPACE) && Gdx.input.isKeyPressed(Keys.K) && runeOreGlove == true && attackWeapon.equals("GLOVE") && attack.equals("UP_ATTACKING") ){
+        else if(Gdx.input.isKeyPressed(Keys.SPACE)   && runeOreGlove == true && attackWeapon.equals("GLOVE") && attack.equals("UP_ATTACKING") ){
             oreGloveAnima.showFireAnimation(batch, (int)pos.x - 40, (int)pos.y + 70 );
         }
-        else if(Gdx.input.isKeyPressed(Keys.SPACE) && Gdx.input.isKeyPressed(Keys.K) && runeOreGlove == true && attackWeapon.equals("GLOVE") && attack.equals("DOWN_ATTACKING") ){
+        else if(Gdx.input.isKeyPressed(Keys.SPACE)   && runeOreGlove == true && attackWeapon.equals("GLOVE") && attack.equals("DOWN_ATTACKING") ){
             oreGloveAnima.showFireAnimation(batch, (int)pos.x - 40, (int)pos.y - 60 );
         }
         
