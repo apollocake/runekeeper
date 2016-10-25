@@ -174,6 +174,8 @@ public class NewGameScreen extends RunekeeperScreen {
         if (gamestatus != GAME_PAUSED) {
             player.update(delta, (SpriteBatch) renderer.getBatch());
         }
+        
+       
         //check if any collisons between player and enemies    
         for (Entity entity : this.entities) {
             if (player.state.equals("ALIVE")) {
@@ -185,13 +187,17 @@ public class NewGameScreen extends RunekeeperScreen {
                         } else {
                             renderer.getBatch().setColor(nullColor);
                         }
+                       
                         player.isHit();
                         player.damage(1); //subtract health from healthbar
+                        
                         renderer.getBatch().draw(entity.getAnimation().enemyAttack.getKeyFrame(delta, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
-                        renderer.getBatch().setColor(nullColor);
+                        renderer.getBatch().setColor(Color.BLACK);
+                         
                     } else {
                         renderer.getBatch().setColor(nullColor);
                         renderer.getBatch().draw(entity.getAnimation().downIdling.getKeyFrame(delta, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
+                        
                         entity.update();
                         enemyPos = entity.getPosition();
                         enemyDistance = enemyPos.dst(playerPos);
@@ -214,6 +220,7 @@ public class NewGameScreen extends RunekeeperScreen {
                 }
             }
         }
+        
         renderer.getBatch().end();
         stage.draw();
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));

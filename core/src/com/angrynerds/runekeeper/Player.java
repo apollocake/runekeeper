@@ -105,6 +105,7 @@ public class Player extends Observable {
             if (lives > 0) {
                 addPlayerLives(-1);
                 currentHealth = (MAX_HEALTH - (damage - currentHealth));
+                animation = playerAnimation.loseLife;
             } else {
                 lives = 0;
                 healthBar.healthBar.setVisible(false);
@@ -132,7 +133,12 @@ public class Player extends Observable {
         stateTime += deltaTime;
         if (state.equals("ALIVE")) {
             processKeys();
-        } else if (state.equals("DYING")) {
+         } else if (state.equals("loseLife")){
+        
+    }
+        
+        
+        else if (state.equals("DYING")) {
             if (startDying) {
                 startDying = false;
                 animation = playerAnimation.dyingAnimation;
