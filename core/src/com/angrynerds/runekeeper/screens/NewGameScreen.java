@@ -184,8 +184,9 @@ public class NewGameScreen extends RunekeeperScreen {
                             renderer.getBatch().setColor(Color.RED);
                         } else {
                             renderer.getBatch().setColor(nullColor);
+                             player.isHit();
                         }
-                        player.isHit();
+                       
                         player.damage(1); //subtract health from healthbar
                         renderer.getBatch().draw(entity.getAnimation().enemyAttack.getKeyFrame(delta, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
                         renderer.getBatch().setColor(nullColor);

@@ -35,9 +35,13 @@ public class PlayerAnimation {
     Animation dleftIdling;
     Animation drightIdling;
 
+    Animation lostLife;
+    
     Texture walkingSheet;
     Texture walkingSheet2;
+    Texture loseLife;
 
+    
     TextureRegion[] walkingUpFrames;
     TextureRegion[] walkingDownFrames;
     TextureRegion[] walkingLeftFrames;
@@ -61,13 +65,19 @@ public class PlayerAnimation {
         //---------------------------------
         walkingSheet = new Texture(Gdx.files.internal("playerWalking.png"));
         walkingSheet2 = new Texture(Gdx.files.internal("playerWalking3.png"));
-
+        loseLife = new Texture(Gdx.files.internal("evilwizard.png"));
+        
         TextureRegion[][] tmp2 = TextureRegion.split(walkingSheet2, walkingSheet2.getWidth() / WALKING_FRAME_COLS,
                 walkingSheet2.getHeight() / 4); //There are 4 rows.
+        
+         TextureRegion[][] tmp3 = TextureRegion.split(loseLife, loseLife.getWidth() / 8,
+                loseLife.getHeight() / 8); //There are 4 rows.
 
         TextureRegion[][] tmp = TextureRegion.split(walkingSheet, walkingSheet.getWidth() / WALKING_FRAME_COLS,
                 walkingSheet.getHeight() / 4); //There are 4 rows.
 
+        lostLife = new Animation(0.999f,tmp3[6][4]);
+        
         walkingUpFrames = new TextureRegion[WALKING_FRAME_COLS - 1];
         walkingDownFrames = new TextureRegion[WALKING_FRAME_COLS - 1];
         walkingLeftFrames = new TextureRegion[WALKING_FRAME_COLS - 1];
