@@ -50,6 +50,7 @@ public class NewGameScreen extends RunekeeperScreen {
 
     ArrayList<Entity> entities;
     TextureRegion currentFrame;
+    TextureRegion currentFrameForMagic;
 
     private Vector2 enemyPos = new Vector2();
     private Vector2 playerPos = new Vector2();
@@ -167,9 +168,12 @@ public class NewGameScreen extends RunekeeperScreen {
 
         playerPos = player.getPosition();
         currentFrame = player.animation.getKeyFrame(player.stateTime, true);
+        //
+       // currentFrameForMagic = player.gloveRuneAnimation.getKeyFrame(player.stateTime, false);
         camera.position.set(player.getX() + player.playerAnimation.getWidth() / 2, player.getY() + player.playerAnimation.getHeight() / 2, 0);
         camera.update();
         renderer.getBatch().draw(currentFrame, player.pos.x, player.pos.y);
+        //renderer.getBatch().draw(currentFrameForMagic, player.pos.x + 10, player.pos.y);
 
         if (gamestatus != GAME_PAUSED) {
             player.update(delta, (SpriteBatch) renderer.getBatch());
