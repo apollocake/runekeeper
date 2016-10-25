@@ -18,7 +18,10 @@ import java.util.Observer;
 
 public class EnemyPainSfx {
 
+    private final float DELTA_MAX = 0.3f; //for preventing triggering sound faster than it can play
     private EnemyName currentEnemyType;
+    private EnemyName lastEnemyType;
+    private float deltaSum = 0;
 
     public enum EnemyName {
         ORC, GOBLIN, TROLL, GHOST, WIZARD, SNAKE, DEMON, GOBLIN_KING, EVIL_WIZARD, GHOST_KING, SNAKE_KING, METEOR_BEAST
@@ -27,9 +30,11 @@ public class EnemyPainSfx {
     private SfxTrack sfx;
 
     public EnemyPainSfx() {
+        sfx = new SfxTrack(new DemonPainSfx()); //only exists to reduce adding if statement for null checking
     }
 
-    public void play(String enemyName) {
+    public void play(String enemyName, float delta) {
+        lastEnemyType = currentEnemyType;
         if (enemyName.equals("Demon")) {
             currentEnemyType = EnemyName.DEMON;
         } else if (enemyName.equals("Ghost")) {
@@ -53,57 +58,67 @@ public class EnemyPainSfx {
         } else if (enemyName.equals("Meteor Beast")) {
             currentEnemyType = EnemyName.METEOR_BEAST;
         }
-
-        switch (currentEnemyType) {
-            case DEMON:
-                sfx.dispose();
-                sfx = new SfxTrack(new DemonPainSfx());
-                break;
-            case GHOST:
-                sfx.dispose();
-                sfx = new SfxTrack(new GhostPainSfx());
-                break;
-            case GOBLIN:
-                sfx.dispose();
-                sfx = new SfxTrack(new GoblinPainSfx());
-                break;
-            case ORC:
-                sfx.dispose();
-                sfx = new SfxTrack(new OrcPainSfx());
-                break;
-            case SNAKE:
-                sfx.dispose();
-                sfx = new SfxTrack(new SnakePainSfx());
-                break;
-            case WIZARD:
-                sfx.dispose();
-                sfx = new SfxTrack(new WizardPainSfx());
-                break;
-            case GHOST_KING:
-                sfx.dispose();
-                sfx = new SfxTrack(new GhostKingPainSfx());
-                break;
-            case GOBLIN_KING:
-                sfx.dispose();
-                sfx = new SfxTrack(new GoblinKingPainSfx());
-                break;
-            case SNAKE_KING:
-                sfx.dispose();
-                sfx = new SfxTrack(new SnakeKingPainSfx());
-                break;
-            case EVIL_WIZARD:
-                sfx.dispose();
-                sfx = new SfxTrack(new EvilWizardPainSfx());
-                break;
-            case METEOR_BEAST:
-                sfx.dispose();
-                sfx = new SfxTrack(new MeteorBeastPainSfx());
-                break;
-            default:
-                System.out.println("you should never get here! No sfx played");
-                break;
+        //trigger new enemy sound no matter what if changing enemies
+        if(lastEnemyType != currentEnemyType){
+            deltaSum = DELTA_MAX; //ensures if statement is triggered next
         }
-        sfx.play();
+        
+        //prevent sound from playing too quickly
+        if (deltaSum > DELTA_MAX) {
+            deltaSum = 0;
+            switch (currentEnemyType) {
+                case DEMON:
+                    sfx.dispose();
+                    sfx = new SfxTrack(new DemonPainSfx());
+                    break;
+                case GHOST:
+                    sfx.dispose();
+                    sfx = new SfxTrack(new GhostPainSfx());
+                    break;
+                case GOBLIN:
+                    sfx.dispose();
+                    sfx = new SfxTrack(new GoblinPainSfx());
+                    break;
+                case ORC:
+                    sfx.dispose();
+                    sfx = new SfxTrack(new OrcPainSfx());
+                    break;
+                case SNAKE:
+                    sfx.dispose();
+                    sfx = new SfxTrack(new SnakePainSfx());
+                    break;
+                case WIZARD:
+                    sfx.dispose();
+                    sfx = new SfxTrack(new WizardPainSfx());
+                    break;
+                case GHOST_KING:
+                    sfx.dispose();
+                    sfx = new SfxTrack(new GhostKingPainSfx());
+                    break;
+                case GOBLIN_KING:
+                    sfx.dispose();
+                    sfx = new SfxTrack(new GoblinKingPainSfx());
+                    break;
+                case SNAKE_KING:
+                    sfx.dispose();
+                    sfx = new SfxTrack(new SnakeKingPainSfx());
+                    break;
+                case EVIL_WIZARD:
+                    sfx.dispose();
+                    sfx = new SfxTrack(new EvilWizardPainSfx());
+                    break;
+                case METEOR_BEAST:
+                    sfx.dispose();
+                    sfx = new SfxTrack(new MeteorBeastPainSfx());
+                    break;
+                default:
+                    System.out.println("you should never get here! No sfx played");
+                    break;
+            }
+            sfx.play();
+        } else {
+            deltaSum += delta;
+        }
     }
 
     public void dispose() {

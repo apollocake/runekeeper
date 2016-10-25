@@ -185,8 +185,8 @@ public class NewGameScreen extends RunekeeperScreen {
                     if (player.bounds.overlaps(entity.getRec())) {
                         if (!player.attack.isEmpty()) {
                             System.out.println("You Hit The ENEMY");
+                            enemyPainSfx.play(entity.getName(), delta);
                             renderer.getBatch().setColor(Color.RED);
-                            //enemyPainSfx.play(entity.getName());
                         } else {
                             renderer.getBatch().setColor(nullColor);
                         }
