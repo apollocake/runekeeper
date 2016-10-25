@@ -13,7 +13,7 @@ import com.badlogic.gdx.Gdx;
  */
 public class GoblinPainSfx extends AbstractSoundFile{
     public GoblinPainSfx(){
-                super(Gdx.audio.newSound(Gdx.files.internal("goblinpain.mp3")));
+                super(Gdx.audio.newSound(Gdx.files.internal("goblinkingpain.mp3")));
 }
     @Override
     public void stop() {
