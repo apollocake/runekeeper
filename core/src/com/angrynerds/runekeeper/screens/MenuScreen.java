@@ -77,16 +77,11 @@ public class MenuScreen extends RunekeeperScreen {
         newGameButton.addListener(new ButtonsJobs());
         resumeButton.addListener(new ButtonsJobs());
         helpButton.addListener(new ButtonsJobs());
-        // Add a listener to the button. ChangeListener is fired when the button's checked state changes, eg when clicked,
-        // Button#setChecked() is called, via a key press, etc. If the event.cancel() is called, the checked state will be reverted.
-        // ClickListener could have been used, but would only fire when clicked. Also, canceling a ClickListener event won't
-        // revert the checked state.
 
         newGameButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                //    System.out.println("Clicked");
-                game.setScreen(new NewGameScreen(game));
+                game.setScreen(new MessageScreen(game));
             }
         });
     }
