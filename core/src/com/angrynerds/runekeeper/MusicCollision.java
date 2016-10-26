@@ -73,9 +73,11 @@ public class MusicCollision implements Observer {
                     bgmMusic = new BgmTrack(new StartAreaMusic());
                     currentMusicType = Music.START;
                     break;
+                
                 default:
                     break;
             }
+            
             bgmMusic.play();
         }
 
