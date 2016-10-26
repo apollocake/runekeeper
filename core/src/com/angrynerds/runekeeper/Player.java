@@ -61,7 +61,7 @@ public class Player extends Observable {
 
     public Player(float x, float y) {
 
-        lives = 100;
+        lives = 1;
         state = "ALIVE";
         pos.x = x;
         pos.y = y;
