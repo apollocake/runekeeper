@@ -69,7 +69,7 @@ public class NewGameScreen extends RunekeeperScreen {
 
     private final MusicCollision playerCollision;
     private final EnemyPainSfx enemyPainSfx;
-    private final MusicManager musicManager;
+    public static MusicManager musicManager;
     private final Skin skin;
     private boolean startedDying;
 
@@ -137,6 +137,7 @@ public class NewGameScreen extends RunekeeperScreen {
         protected void result(Object object) {
             //System.out.println(object);
             gamestatus = GAME_RUNNING;
+            musicManager.play();
         }
 
     }
@@ -242,6 +243,7 @@ public class NewGameScreen extends RunekeeperScreen {
                     gamestatus = GAME_RUNNING;
                     saveDia.hide();
                 } else {
+                    musicManager.pause();
                     gamestatus = GAME_PAUSED;
                     saveDia.show(stage);
                     saveDia.toFront();
