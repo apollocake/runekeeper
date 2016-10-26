@@ -12,6 +12,7 @@ import com.angrynerds.runekeeper.DifficultyType;
 import com.angrynerds.runekeeper.EasyDifficultyType;
 import com.angrynerds.runekeeper.sound.EnemyPainSfx;
 import com.angrynerds.runekeeper.sound.MusicManager;
+import com.angrynerds.runekeeper.HealTotem;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -33,6 +34,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import java.util.ArrayList;
+
+
 
 public class NewGameScreen extends RunekeeperScreen {
 
@@ -57,6 +60,7 @@ public class NewGameScreen extends RunekeeperScreen {
     private Vector2 playerPos = new Vector2();
     private float enemyDistance = 0.0f;
     private boolean runMode = false;
+    public HealTotem healTotem;
 
     SaveDialog saveDia;
     public static final int GAME_RUNNING = 0;
@@ -102,7 +106,9 @@ public class NewGameScreen extends RunekeeperScreen {
         entities.add(new Enemy(new EntityAnimation(1, 0, 0, 0, 0, 4, 4, "snakeking.png"), "Snake King", 420, 350, bossDifficulty, new BoxPatrol()));
         entities.add(new Enemy(new EntityAnimation(1, 0, 0, 0, 0, 8, 8, "evilwizard.png"), "Evil Wizard", 220, 450, bossDifficulty, new BoxPatrol()));
         entities.add(new Enemy(new EntityAnimation(1, 0, 0, 0, 0, 3, 4, "meteorbeast.png"), "Meteor Beast", 180, 430, bossDifficulty, new BoxPatrol()));
-
+        
+        healTotem = new HealTotem("totem01", collisionLayer);
+        player.addObserver(healTotem);
     }
 
     public static class SaveDialog extends Dialog {
