@@ -10,6 +10,7 @@ import com.angrynerds.runekeeper.CrazyPatrol;
 import com.angrynerds.runekeeper.MusicCollision;
 import com.angrynerds.runekeeper.DifficultyType;
 import com.angrynerds.runekeeper.EasyDifficultyType;
+import com.angrynerds.runekeeper.sound.EnemyPainSfx;
 import com.angrynerds.runekeeper.sound.MusicManager;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -63,6 +64,7 @@ public class NewGameScreen extends RunekeeperScreen {
     public static int gamestatus;
 
     private final MusicCollision playerCollision;
+    private final EnemyPainSfx enemyPainSfx;
     private final MusicManager musicManager;
     private final Skin skin;
     private boolean startedDying;
@@ -72,8 +74,10 @@ public class NewGameScreen extends RunekeeperScreen {
         TmxMapLoader loader = new TmxMapLoader();
         map = loader.load("worldmap.tmx");
         TiledMapTileLayer collisionLayer = (TiledMapTileLayer) map.getLayers().get(0);
-        playerCollision = new MusicCollision(collisionLayer);
+
+        playerCollision = new MusicCollision(collisionLayer); //should rename to musicLevelCollision
         musicManager = new MusicManager(playerCollision);
+        enemyPainSfx = new EnemyPainSfx();
         renderer = new OrthogonalTiledMapRenderer(map);
         camera = new OrthographicCamera();
         player = new Player(25, 25);
@@ -185,6 +189,7 @@ public class NewGameScreen extends RunekeeperScreen {
                     if (player.bounds.overlaps(entity.getRec())) {
                         if (!player.attack.isEmpty()) {
                             System.out.println("You Hit The ENEMY");
+                            enemyPainSfx.play(entity.getName(), delta);
                             renderer.getBatch().setColor(Color.RED);
                         } else {
                             renderer.getBatch().setColor(nullColor);
