@@ -49,10 +49,8 @@ public class ButtonsJobs extends InputListener {
             Sound clickedSound = Gdx.audio.newSound(Gdx.files.internal("clicking.mp3"));
             clickedSound.play(1F);
             messageSignal = true;  
-            
-            // set MessageScreen to display confirmation message of transitioning to a new screen 
         }
-        
         return true;   
     }
+
 }

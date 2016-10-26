@@ -81,14 +81,12 @@ public class MenuScreen extends RunekeeperScreen {
         resumeButton.addListener(new ButtonsJobs());
         helpButton.addListener(new ButtonsJobs());
         
-    /*    newGameButton.addListener(new ClickListener() {
+        newGameButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                // move on to the screen selected
                  game.setScreen(new MessageScreen(game));
             };
         });
-   */     
 
     }
 
