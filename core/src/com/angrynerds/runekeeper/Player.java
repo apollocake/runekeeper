@@ -66,7 +66,7 @@ public class Player extends Observable {
 
     public String direction = "DOWN";
     public String attack = "";
-    public String attackWeapon = "";
+    public String attackWeapon = "SWORD";
     public Rectangle bounds = new Rectangle();
     public Vector2 pos = new Vector2();
 
