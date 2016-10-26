@@ -11,6 +11,9 @@ public abstract class AbstractTrack {
     public void play() {
         soundFile.start();
     }
+    public void pause() {
+        soundFile.pause();
+    }
 
     public void dispose() {
         soundFile.dispose();

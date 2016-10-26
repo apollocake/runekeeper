@@ -10,6 +10,8 @@ import com.angrynerds.runekeeper.CrazyPatrol;
 import com.angrynerds.runekeeper.MusicCollision;
 import com.angrynerds.runekeeper.DifficultyType;
 import com.angrynerds.runekeeper.EasyDifficultyType;
+import com.angrynerds.runekeeper.sound.EnemyPainSfx;
+import com.angrynerds.runekeeper.sound.MusicManager;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -49,6 +51,7 @@ public class NewGameScreen extends RunekeeperScreen {
 
     ArrayList<Entity> entities;
     TextureRegion currentFrame;
+    TextureRegion currentFrameForMagic;
 
     private Vector2 enemyPos = new Vector2();
     private Vector2 playerPos = new Vector2();
@@ -61,6 +64,8 @@ public class NewGameScreen extends RunekeeperScreen {
     public static int gamestatus;
 
     private final MusicCollision playerCollision;
+    private final EnemyPainSfx enemyPainSfx;
+    private final MusicManager musicManager;
     private final Skin skin;
     private boolean startedDying;
 
@@ -69,7 +74,10 @@ public class NewGameScreen extends RunekeeperScreen {
         TmxMapLoader loader = new TmxMapLoader();
         map = loader.load("worldmap.tmx");
         TiledMapTileLayer collisionLayer = (TiledMapTileLayer) map.getLayers().get(0);
-        playerCollision = new MusicCollision(collisionLayer);
+
+        playerCollision = new MusicCollision(collisionLayer); //should rename to musicLevelCollision
+        musicManager = new MusicManager(playerCollision);
+        enemyPainSfx = new EnemyPainSfx();
         renderer = new OrthogonalTiledMapRenderer(map);
         camera = new OrthographicCamera();
         player = new Player(25, 25);
@@ -116,6 +124,7 @@ public class NewGameScreen extends RunekeeperScreen {
             button("Save", 1);
             button("Load", 1);
             button("Cancel", 3);
+            key(Input.Keys.ESCAPE, false);
         }
 
         @Override
@@ -163,9 +172,12 @@ public class NewGameScreen extends RunekeeperScreen {
 
         playerPos = player.getPosition();
         currentFrame = player.animation.getKeyFrame(player.stateTime, true);
+        //
+       // currentFrameForMagic = player.gloveRuneAnimation.getKeyFrame(player.stateTime, false);
         camera.position.set(player.getX() + player.playerAnimation.getWidth() / 2, player.getY() + player.playerAnimation.getHeight() / 2, 0);
         camera.update();
         renderer.getBatch().draw(currentFrame, player.pos.x, player.pos.y);
+        //renderer.getBatch().draw(currentFrameForMagic, player.pos.x + 10, player.pos.y);
 
         if (gamestatus != GAME_PAUSED) {
             player.update(delta, (SpriteBatch) renderer.getBatch());
@@ -177,6 +189,7 @@ public class NewGameScreen extends RunekeeperScreen {
                     if (player.bounds.overlaps(entity.getRec())) {
                         if (!player.attack.isEmpty()) {
                             System.out.println("You Hit The ENEMY");
+                            enemyPainSfx.play(entity.getName(), delta);
                             renderer.getBatch().setColor(Color.RED);
                         } else {
                             renderer.getBatch().setColor(nullColor);

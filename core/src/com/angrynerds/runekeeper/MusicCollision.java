@@ -35,6 +35,13 @@ public class MusicCollision implements Observer {
         bgmMusic.play();
         currentMusicType = Music.START;
     }
+    
+    public void pause(){
+        bgmMusic.pause();
+    }
+    public void play(){
+        bgmMusic.play();
+    }
 
     @Override
     public void update(Observable obs, Object arg) {

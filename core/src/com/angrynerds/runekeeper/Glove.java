@@ -28,11 +28,11 @@ public class Glove {
 
     }
 
-    public void draw(SpriteBatch batch) {
+    public void draw(SpriteBatch batch, int x, int y) {
         texture = new Texture(Gdx.files.internal("glove.png"));
 //        batch.begin();
         //Gdx.gl.glActiveTexture(GL20.GL_TEXTURE0);
-        batch.draw(texture, 2, 2, Gdx.graphics.getWidth() / 20, Gdx.graphics.getHeight() / 14);
+        batch.draw(texture, x, y, Gdx.graphics.getWidth() / 28, Gdx.graphics.getHeight() / 20);
         //      batch.end();
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
