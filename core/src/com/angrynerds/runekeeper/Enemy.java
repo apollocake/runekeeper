@@ -15,6 +15,7 @@ import com.badlogic.gdx.math.Vector2;
 public class Enemy implements Entity {
 
     private EnemyPatrol enemyPatrol;
+    private EnemyType enemyType;
     private EntityAnimation animation;
     private String enemyName;
     private Vector2 pos = new Vector2();
@@ -32,13 +33,13 @@ public class Enemy implements Entity {
     public boolean alert = false;
     private Rectangle bounds;
 
-    public Enemy(EntityAnimation newAnimation, String newName, float x, float y, DifficultyType difficulty, EnemyPatrol newEnemyPatrol) {
+    public Enemy(EntityAnimation newAnimation, String newName, float x, float y, DifficultyType difficulty, EnemyPatrol newEnemyPatrol, EnemyType enemyType) {
 
         this.pos.x = x;
         this.pos.y = y;
         this.animation = newAnimation;
         this.enemyName = newName;
-
+        this.enemyType = enemyType;
         bounds = new Rectangle(this.pos.x, this.pos.y, getDimensions().x, getDimensions().y);
 
         this.enemyPatrol = newEnemyPatrol;
@@ -145,5 +146,12 @@ public class Enemy implements Entity {
     public void setDimensions(Vector2 newDimensions) {
         this.dimensions = newDimensions;
 
+    }
+
+    /**
+     * @return the enemyType
+     */
+    public EnemyType getEnemyType() {
+        return enemyType;
     }
 }
