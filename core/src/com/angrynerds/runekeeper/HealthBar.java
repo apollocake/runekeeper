@@ -32,6 +32,10 @@ public class HealthBar {
     Skin skin = new Skin();
     Pixmap pixmap = new Pixmap(10, 10, Format.RGBA8888);
 
+    public HealthBar(float health) {
+        this(health, 0, 0);
+    }
+
     public HealthBar(float health, float posX, float posY) {
 
 

@@ -76,7 +76,7 @@ public class Player extends Observable {
     private final float MAX_HEALTH = 100;
     private float currentHealth = MAX_HEALTH;
 
-    private HealthBar healthBar = new HealthBar(MAX_HEALTH, 0, 0);
+    private HealthBar healthBar = new HealthBar(MAX_HEALTH);
     private boolean startDying = true;
     private boolean startDying2 = true;
 
