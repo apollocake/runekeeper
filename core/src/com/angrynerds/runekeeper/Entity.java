@@ -31,4 +31,8 @@ public interface Entity {
 
     public boolean getAlert();
 
+    public HealthBar getHealthBar();
+
+    public void damage(int damage);
+
 }
