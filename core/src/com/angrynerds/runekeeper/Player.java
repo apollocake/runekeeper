@@ -137,7 +137,7 @@ public class Player extends Observable {
         if (damage >= currentHealth) {
             if (lives > 0) {
                 addPlayerLives(-1);
-                currentHealth = MAX_HEALTH - (damage - getCurrentHealth());
+                currentHealth = MAX_HEALTH - (damage - currentHealth);
                 animation = playerAnimation.lostLife;
             } else {
                 lives = 0;
