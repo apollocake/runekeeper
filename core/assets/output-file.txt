@@ -1,0 +1,6441 @@
+[
+{
+	class: java.lang.Float
+	value: 99
+}
+{
+	class: java.lang.Float
+	value: 25
+}
+{
+	class: com.badlogic.gdx.graphics.g2d.Animation
+	keyFrames: [
+		{
+			texture: {
+				glTarget: 3553
+				glHandle: 21
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+						file: {
+							path: playerWalking.png
+						}
+						type: Internal
+					}
+					width: 576
+					height: 256
+					format: RGBA8888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			v: 0.75
+			u2: 0.11111111
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+		}
+	]
+	frameDuration: 0.025
+	animationDuration: 0.025
+	lastFrameNumber: 0
+	lastStateTime: 0
+	playMode: NORMAL
+}
+{
+	class: com.badlogic.gdx.math.Vector2
+	x: 99
+	y: 430
+}
+{
+	class: java.lang.Float
+	value: 405
+}
+[
+	{
+		class: com.angrynerds.runekeeper.Enemy
+		enemyPatrol: {
+			class: com.angrynerds.runekeeper.BoxPatrol
+			boxCounter: 81
+		}
+		enemyType: {
+			class: com.angrynerds.runekeeper.FireEnemyType
+		}
+		animation: {
+			walkingDownAnima: null
+			walkingUpAnima: null
+			walkingLeftAnima: null
+			walkingRightAnima: null
+			upIdling: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 40
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: demon.png
+									}
+									type: Internal
+								}
+								width: 720
+								height: 540
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						v: 0.3333333
+						u2: 0.25
+						v2: 0.6666666
+						regionWidth: 180
+						regionHeight: 180
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			downIdling: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 40
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: demon.png
+									}
+									type: Internal
+								}
+								width: 720
+								height: 540
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u2: 0.25
+						v2: 0.3333333
+						regionWidth: 180
+						regionHeight: 180
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			leftIdling: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 40
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: demon.png
+									}
+									type: Internal
+								}
+								width: 720
+								height: 540
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						v: 0.3333333
+						u2: 0.25
+						v2: 0.6666666
+						regionWidth: 180
+						regionHeight: 180
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			rightIdling: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 40
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: demon.png
+									}
+									type: Internal
+								}
+								width: 720
+								height: 540
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						v: 0.3333333
+						u2: 0.25
+						v2: 0.6666666
+						regionWidth: 180
+						regionHeight: 180
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			enemyAttack: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 41
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: demon2.png
+									}
+									type: Internal
+								}
+								width: 720
+								height: 540
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u2: 0.25
+						v2: 0.3333333
+						regionWidth: 180
+						regionHeight: 180
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			walkingSheet: {
+				glTarget: 3553
+				glHandle: 40
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+						file: {
+							path: demon.png
+						}
+						type: Internal
+					}
+					width: 720
+					height: 540
+					format: RGBA8888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			walkingSheet2: {
+				glTarget: 3553
+				glHandle: 41
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+						file: {
+							path: demon2.png
+						}
+						type: Internal
+					}
+					width: 720
+					height: 540
+					format: RGBA8888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			walkingUpFrames: [
+				null
+				null
+				null
+			]
+			walkingDownFrames: [
+				null
+				null
+				null
+			]
+			walkingLeftFrames: [
+				null
+				null
+				null
+			]
+			walkingRightFrames: [
+				null
+				null
+				null
+			]
+			tmp2: [
+				[
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 41
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: demon2.png
+									}
+									type: Internal
+								}
+								width: 720
+								height: 540
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u2: 0.25
+						v2: 0.3333333
+						regionWidth: 180
+						regionHeight: 180
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 41
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: demon2.png
+									}
+									type: Internal
+								}
+								width: 720
+								height: 540
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.25
+						u2: 0.5
+						v2: 0.3333333
+						regionWidth: 180
+						regionHeight: 180
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 41
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: demon2.png
+									}
+									type: Internal
+								}
+								width: 720
+								height: 540
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.5
+						u2: 0.75
+						v2: 0.3333333
+						regionWidth: 180
+						regionHeight: 180
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 41
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: demon2.png
+									}
+									type: Internal
+								}
+								width: 720
+								height: 540
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.75
+						u2: 1
+						v2: 0.3333333
+						regionWidth: 180
+						regionHeight: 180
+					}
+				]
+				[
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 41
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: demon2.png
+									}
+									type: Internal
+								}
+								width: 720
+								height: 540
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						v: 0.3333333
+						u2: 0.25
+						v2: 0.6666666
+						regionWidth: 180
+						regionHeight: 180
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 41
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: demon2.png
+									}
+									type: Internal
+								}
+								width: 720
+								height: 540
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.25
+						v: 0.3333333
+						u2: 0.5
+						v2: 0.6666666
+						regionWidth: 180
+						regionHeight: 180
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 41
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: demon2.png
+									}
+									type: Internal
+								}
+								width: 720
+								height: 540
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.5
+						v: 0.3333333
+						u2: 0.75
+						v2: 0.6666666
+						regionWidth: 180
+						regionHeight: 180
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 41
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: demon2.png
+									}
+									type: Internal
+								}
+								width: 720
+								height: 540
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.75
+						v: 0.3333333
+						u2: 1
+						v2: 0.6666666
+						regionWidth: 180
+						regionHeight: 180
+					}
+				]
+				[
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 41
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: demon2.png
+									}
+									type: Internal
+								}
+								width: 720
+								height: 540
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						v: 0.6666666
+						u2: 0.25
+						v2: 1
+						regionWidth: 180
+						regionHeight: 180
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 41
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: demon2.png
+									}
+									type: Internal
+								}
+								width: 720
+								height: 540
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.25
+						v: 0.6666666
+						u2: 0.5
+						v2: 1
+						regionWidth: 180
+						regionHeight: 180
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 41
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: demon2.png
+									}
+									type: Internal
+								}
+								width: 720
+								height: 540
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.5
+						v: 0.6666666
+						u2: 0.75
+						v2: 1
+						regionWidth: 180
+						regionHeight: 180
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 41
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: demon2.png
+									}
+									type: Internal
+								}
+								width: 720
+								height: 540
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.75
+						v: 0.6666666
+						u2: 1
+						v2: 1
+						regionWidth: 180
+						regionHeight: 180
+					}
+				]
+			]
+			pos: {
+				x: 269
+				y: 300
+			}
+			currentAnimation: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 40
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: demon.png
+									}
+									type: Internal
+								}
+								width: 720
+								height: 540
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u2: 0.25
+						v2: 0.3333333
+						regionWidth: 180
+						regionHeight: 180
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			pictureName: demon.png
+			pictureName2: demon2.png
+			cols: 4
+			rows: 3
+		}
+		enemyName: Demon
+		pos: {
+			x: 269
+			y: 300
+		}
+		dimensions: {
+			x: 40
+			y: 40
+		}
+		boxCounter: 0
+		boxCounter2: 0
+		boxCounter3: 0
+		boxCounter4: 0
+		bleft: false
+		bdown: false
+		bright: false
+		bup: false
+		alert: false
+		bounds: {
+			x: 269
+			y: 300
+		}
+	}
+	{
+		class: com.angrynerds.runekeeper.Enemy
+		enemyPatrol: {
+			class: com.angrynerds.runekeeper.BoxPatrol
+			boxCounter: 81
+		}
+		enemyType: {
+			class: com.angrynerds.runekeeper.OreEnemyType
+		}
+		animation: {
+			walkingDownAnima: null
+			walkingUpAnima: null
+			walkingLeftAnima: null
+			walkingRightAnima: null
+			upIdling: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 42
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: ghost.png
+									}
+									type: Internal
+								}
+								width: 112
+								height: 142
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						v: 0.5
+						u2: 0.5
+						v2: 1
+						regionWidth: 56
+						regionHeight: 71
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			downIdling: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 42
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: ghost.png
+									}
+									type: Internal
+								}
+								width: 112
+								height: 142
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u2: 0.5
+						v2: 0.5
+						regionWidth: 56
+						regionHeight: 71
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			leftIdling: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 42
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: ghost.png
+									}
+									type: Internal
+								}
+								width: 112
+								height: 142
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						v: 0.5
+						u2: 0.5
+						v2: 1
+						regionWidth: 56
+						regionHeight: 71
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			rightIdling: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 42
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: ghost.png
+									}
+									type: Internal
+								}
+								width: 112
+								height: 142
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						v: 0.5
+						u2: 0.5
+						v2: 1
+						regionWidth: 56
+						regionHeight: 71
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			enemyAttack: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 43
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: ghost.png
+									}
+									type: Internal
+								}
+								width: 112
+								height: 142
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						v: 0.5
+						u2: 0.5
+						v2: 1
+						regionWidth: 56
+						regionHeight: 71
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			walkingSheet: {
+				glTarget: 3553
+				glHandle: 42
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+						file: {
+							path: ghost.png
+						}
+						type: Internal
+					}
+					width: 112
+					height: 142
+					format: RGBA8888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			walkingSheet2: {
+				glTarget: 3553
+				glHandle: 43
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+						file: {
+							path: ghost.png
+						}
+						type: Internal
+					}
+					width: 112
+					height: 142
+					format: RGBA8888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			walkingUpFrames: [
+				null
+			]
+			walkingDownFrames: [
+				null
+			]
+			walkingLeftFrames: [
+				null
+			]
+			walkingRightFrames: [
+				null
+			]
+			tmp2: [
+				[
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 43
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: ghost.png
+									}
+									type: Internal
+								}
+								width: 112
+								height: 142
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u2: 0.5
+						v2: 0.5
+						regionWidth: 56
+						regionHeight: 71
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 43
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: ghost.png
+									}
+									type: Internal
+								}
+								width: 112
+								height: 142
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.5
+						u2: 1
+						v2: 0.5
+						regionWidth: 56
+						regionHeight: 71
+					}
+				]
+				[
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 43
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: ghost.png
+									}
+									type: Internal
+								}
+								width: 112
+								height: 142
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						v: 0.5
+						u2: 0.5
+						v2: 1
+						regionWidth: 56
+						regionHeight: 71
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 43
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: ghost.png
+									}
+									type: Internal
+								}
+								width: 112
+								height: 142
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.5
+						v: 0.5
+						u2: 1
+						v2: 1
+						regionWidth: 56
+						regionHeight: 71
+					}
+				]
+			]
+			pos: {
+				x: 169
+				y: 200
+			}
+			currentAnimation: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 42
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: ghost.png
+									}
+									type: Internal
+								}
+								width: 112
+								height: 142
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u2: 0.5
+						v2: 0.5
+						regionWidth: 56
+						regionHeight: 71
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			pictureName: ghost.png
+			pictureName2: ghost.png
+			cols: 2
+			rows: 2
+		}
+		enemyName: Ghost
+		pos: {
+			x: 169
+			y: 200
+		}
+		dimensions: {
+			x: 40
+			y: 40
+		}
+		boxCounter: 0
+		boxCounter2: 0
+		boxCounter3: 0
+		boxCounter4: 0
+		bleft: false
+		bdown: false
+		bright: false
+		bup: false
+		alert: false
+		bounds: {
+			x: 169
+			y: 200
+		}
+	}
+	{
+		class: com.angrynerds.runekeeper.Enemy
+		enemyPatrol: {
+			class: com.angrynerds.runekeeper.BoxPatrol
+			boxCounter: 81
+		}
+		enemyType: {
+			class: com.angrynerds.runekeeper.GrassEnemyType
+		}
+		animation: {
+			walkingDownAnima: null
+			walkingUpAnima: null
+			walkingLeftAnima: null
+			walkingRightAnima: null
+			upIdling: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 44
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: goblin.png
+									}
+									type: Internal
+								}
+								width: 704
+								height: 320
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						v: 0.2
+						u2: 0.09090909
+						v2: 0.4
+						regionWidth: 64
+						regionHeight: 64
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			downIdling: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 44
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: goblin.png
+									}
+									type: Internal
+								}
+								width: 704
+								height: 320
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u2: 0.09090909
+						v2: 0.2
+						regionWidth: 64
+						regionHeight: 64
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			leftIdling: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 44
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: goblin.png
+									}
+									type: Internal
+								}
+								width: 704
+								height: 320
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						v: 0.2
+						u2: 0.09090909
+						v2: 0.4
+						regionWidth: 64
+						regionHeight: 64
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			rightIdling: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 44
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: goblin.png
+									}
+									type: Internal
+								}
+								width: 704
+								height: 320
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						v: 0.2
+						u2: 0.09090909
+						v2: 0.4
+						regionWidth: 64
+						regionHeight: 64
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			enemyAttack: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 44
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: goblin.png
+									}
+									type: Internal
+								}
+								width: 704
+								height: 320
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						v: 0.2
+						u2: 0.09090909
+						v2: 0.4
+						regionWidth: 64
+						regionHeight: 64
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			walkingSheet: {
+				glTarget: 3553
+				glHandle: 44
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+						file: {
+							path: goblin.png
+						}
+						type: Internal
+					}
+					width: 704
+					height: 320
+					format: RGBA8888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			walkingSheet2: null
+			walkingUpFrames: [
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+			]
+			walkingDownFrames: [
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+			]
+			walkingLeftFrames: [
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+			]
+			walkingRightFrames: [
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+			]
+			tmp2: null
+			pos: {
+				x: 69
+				y: 250
+			}
+			currentAnimation: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 44
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: goblin.png
+									}
+									type: Internal
+								}
+								width: 704
+								height: 320
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u2: 0.09090909
+						v2: 0.2
+						regionWidth: 64
+						regionHeight: 64
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			pictureName: goblin.png
+			pictureName2: null
+			cols: 11
+			rows: 5
+		}
+		enemyName: Goblin
+		pos: {
+			x: 69
+			y: 250
+		}
+		dimensions: {
+			x: 40
+			y: 40
+		}
+		boxCounter: 0
+		boxCounter2: 0
+		boxCounter3: 0
+		boxCounter4: 0
+		bleft: false
+		bdown: false
+		bright: false
+		bup: false
+		alert: false
+		bounds: {
+			x: 69
+			y: 250
+		}
+	}
+	{
+		class: com.angrynerds.runekeeper.Enemy
+		enemyPatrol: {
+			class: com.angrynerds.runekeeper.BoxPatrol
+			boxCounter: 81
+		}
+		enemyType: {
+			class: com.angrynerds.runekeeper.GrassEnemyType
+		}
+		animation: {
+			walkingDownAnima: null
+			walkingUpAnima: null
+			walkingLeftAnima: null
+			walkingRightAnima: null
+			upIdling: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 45
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: orc.png
+									}
+									type: Internal
+								}
+								width: 320
+								height: 320
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						v: 0.1
+						u2: 0.1
+						v2: 0.2
+						regionWidth: 32
+						regionHeight: 32
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			downIdling: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 45
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: orc.png
+									}
+									type: Internal
+								}
+								width: 320
+								height: 320
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u2: 0.1
+						v2: 0.1
+						regionWidth: 32
+						regionHeight: 32
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			leftIdling: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 45
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: orc.png
+									}
+									type: Internal
+								}
+								width: 320
+								height: 320
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						v: 0.1
+						u2: 0.1
+						v2: 0.2
+						regionWidth: 32
+						regionHeight: 32
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			rightIdling: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 45
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: orc.png
+									}
+									type: Internal
+								}
+								width: 320
+								height: 320
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						v: 0.1
+						u2: 0.1
+						v2: 0.2
+						regionWidth: 32
+						regionHeight: 32
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			enemyAttack: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 45
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: orc.png
+									}
+									type: Internal
+								}
+								width: 320
+								height: 320
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.6
+						v: 0.3
+						u2: 0.7
+						v2: 0.4
+						regionWidth: 32
+						regionHeight: 32
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			walkingSheet: {
+				glTarget: 3553
+				glHandle: 45
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+						file: {
+							path: orc.png
+						}
+						type: Internal
+					}
+					width: 320
+					height: 320
+					format: RGBA8888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			walkingSheet2: null
+			walkingUpFrames: [
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+			]
+			walkingDownFrames: [
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+			]
+			walkingLeftFrames: [
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+			]
+			walkingRightFrames: [
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+			]
+			tmp2: null
+			pos: {
+				x: 69
+				y: 150
+			}
+			currentAnimation: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 45
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: orc.png
+									}
+									type: Internal
+								}
+								width: 320
+								height: 320
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u2: 0.1
+						v2: 0.1
+						regionWidth: 32
+						regionHeight: 32
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			pictureName: orc.png
+			pictureName2: null
+			cols: 10
+			rows: 10
+		}
+		enemyName: Orc
+		pos: {
+			x: 69
+			y: 150
+		}
+		dimensions: {
+			x: 40
+			y: 40
+		}
+		boxCounter: 0
+		boxCounter2: 0
+		boxCounter3: 0
+		boxCounter4: 0
+		bleft: false
+		bdown: false
+		bright: false
+		bup: false
+		alert: false
+		bounds: {
+			x: 69
+			y: 150
+		}
+	}
+	{
+		class: com.angrynerds.runekeeper.Enemy
+		enemyPatrol: {
+			class: com.angrynerds.runekeeper.BoxPatrol
+			boxCounter: 81
+		}
+		enemyType: {
+			class: com.angrynerds.runekeeper.GrassEnemyType
+		}
+		animation: {
+			walkingDownAnima: null
+			walkingUpAnima: null
+			walkingLeftAnima: null
+			walkingRightAnima: null
+			upIdling: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 46
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: snake.png
+									}
+									type: Internal
+								}
+								width: 288
+								height: 384
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						v: 0.25
+						u2: 0.33333334
+						v2: 0.5
+						regionWidth: 96
+						regionHeight: 96
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			downIdling: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 46
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: snake.png
+									}
+									type: Internal
+								}
+								width: 288
+								height: 384
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						v: 0.5
+						u2: 0.33333334
+						v2: 0.75
+						regionWidth: 96
+						regionHeight: 96
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			leftIdling: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 46
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: snake.png
+									}
+									type: Internal
+								}
+								width: 288
+								height: 384
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						v: 0.25
+						u2: 0.33333334
+						v2: 0.5
+						regionWidth: 96
+						regionHeight: 96
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			rightIdling: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 46
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: snake.png
+									}
+									type: Internal
+								}
+								width: 288
+								height: 384
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						v: 0.25
+						u2: 0.33333334
+						v2: 0.5
+						regionWidth: 96
+						regionHeight: 96
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			enemyAttack: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 47
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: snake2.png
+									}
+									type: Internal
+								}
+								width: 288
+								height: 384
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						v: 0.5
+						u2: 0.33333334
+						v2: 0.75
+						regionWidth: 96
+						regionHeight: 96
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			walkingSheet: {
+				glTarget: 3553
+				glHandle: 46
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+						file: {
+							path: snake.png
+						}
+						type: Internal
+					}
+					width: 288
+					height: 384
+					format: RGBA8888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			walkingSheet2: {
+				glTarget: 3553
+				glHandle: 47
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+						file: {
+							path: snake2.png
+						}
+						type: Internal
+					}
+					width: 288
+					height: 384
+					format: RGBA8888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			walkingUpFrames: [
+				null
+				null
+			]
+			walkingDownFrames: [
+				null
+				null
+			]
+			walkingLeftFrames: [
+				null
+				null
+			]
+			walkingRightFrames: [
+				null
+				null
+			]
+			tmp2: [
+				[
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 47
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: snake2.png
+									}
+									type: Internal
+								}
+								width: 288
+								height: 384
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u2: 0.33333334
+						v2: 0.25
+						regionWidth: 96
+						regionHeight: 96
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 47
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: snake2.png
+									}
+									type: Internal
+								}
+								width: 288
+								height: 384
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.33333334
+						u2: 0.6666667
+						v2: 0.25
+						regionWidth: 96
+						regionHeight: 96
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 47
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: snake2.png
+									}
+									type: Internal
+								}
+								width: 288
+								height: 384
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.6666667
+						u2: 1
+						v2: 0.25
+						regionWidth: 96
+						regionHeight: 96
+					}
+				]
+				[
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 47
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: snake2.png
+									}
+									type: Internal
+								}
+								width: 288
+								height: 384
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						v: 0.25
+						u2: 0.33333334
+						v2: 0.5
+						regionWidth: 96
+						regionHeight: 96
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 47
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: snake2.png
+									}
+									type: Internal
+								}
+								width: 288
+								height: 384
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.33333334
+						v: 0.25
+						u2: 0.6666667
+						v2: 0.5
+						regionWidth: 96
+						regionHeight: 96
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 47
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: snake2.png
+									}
+									type: Internal
+								}
+								width: 288
+								height: 384
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.6666667
+						v: 0.25
+						u2: 1
+						v2: 0.5
+						regionWidth: 96
+						regionHeight: 96
+					}
+				]
+				[
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 47
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: snake2.png
+									}
+									type: Internal
+								}
+								width: 288
+								height: 384
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						v: 0.5
+						u2: 0.33333334
+						v2: 0.75
+						regionWidth: 96
+						regionHeight: 96
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 47
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: snake2.png
+									}
+									type: Internal
+								}
+								width: 288
+								height: 384
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.33333334
+						v: 0.5
+						u2: 0.6666667
+						v2: 0.75
+						regionWidth: 96
+						regionHeight: 96
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 47
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: snake2.png
+									}
+									type: Internal
+								}
+								width: 288
+								height: 384
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.6666667
+						v: 0.5
+						u2: 1
+						v2: 0.75
+						regionWidth: 96
+						regionHeight: 96
+					}
+				]
+				[
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 47
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: snake2.png
+									}
+									type: Internal
+								}
+								width: 288
+								height: 384
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						v: 0.75
+						u2: 0.33333334
+						v2: 1
+						regionWidth: 96
+						regionHeight: 96
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 47
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: snake2.png
+									}
+									type: Internal
+								}
+								width: 288
+								height: 384
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.33333334
+						v: 0.75
+						u2: 0.6666667
+						v2: 1
+						regionWidth: 96
+						regionHeight: 96
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 47
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: snake2.png
+									}
+									type: Internal
+								}
+								width: 288
+								height: 384
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.6666667
+						v: 0.75
+						u2: 1
+						v2: 1
+						regionWidth: 96
+						regionHeight: 96
+					}
+				]
+			]
+			pos: {
+				x: 19
+				y: 300
+			}
+			currentAnimation: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 46
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: snake.png
+									}
+									type: Internal
+								}
+								width: 288
+								height: 384
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						v: 0.5
+						u2: 0.33333334
+						v2: 0.75
+						regionWidth: 96
+						regionHeight: 96
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			pictureName: snake.png
+			pictureName2: snake2.png
+			cols: 3
+			rows: 4
+		}
+		enemyName: Snake
+		pos: {
+			x: 19
+			y: 300
+		}
+		dimensions: {
+			x: 40
+			y: 40
+		}
+		boxCounter: 0
+		boxCounter2: 0
+		boxCounter3: 0
+		boxCounter4: 0
+		bleft: false
+		bdown: false
+		bright: false
+		bup: false
+		alert: false
+		bounds: {
+			x: 19
+			y: 300
+		}
+	}
+	{
+		class: com.angrynerds.runekeeper.Enemy
+		enemyPatrol: {
+			class: com.angrynerds.runekeeper.BoxPatrol
+			boxCounter: 81
+		}
+		enemyType: {
+			class: com.angrynerds.runekeeper.WaterEnemyType
+		}
+		animation: {
+			walkingDownAnima: null
+			walkingUpAnima: null
+			walkingLeftAnima: null
+			walkingRightAnima: null
+			upIdling: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 48
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						v: 0.2
+						u2: 0.125
+						v2: 0.4
+						regionWidth: 60
+						regionHeight: 90
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			downIdling: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 48
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u2: 0.125
+						v2: 0.2
+						regionWidth: 60
+						regionHeight: 90
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			leftIdling: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 48
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						v: 0.2
+						u2: 0.125
+						v2: 0.4
+						regionWidth: 60
+						regionHeight: 90
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			rightIdling: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 48
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						v: 0.2
+						u2: 0.125
+						v2: 0.4
+						regionWidth: 60
+						regionHeight: 90
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			enemyAttack: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 49
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard2.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u2: 0.125
+						v2: 0.2
+						regionWidth: 60
+						regionHeight: 90
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			walkingSheet: {
+				glTarget: 3553
+				glHandle: 48
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+						file: {
+							path: wizard.png
+						}
+						type: Internal
+					}
+					width: 480
+					height: 450
+					format: RGBA8888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			walkingSheet2: {
+				glTarget: 3553
+				glHandle: 49
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+						file: {
+							path: wizard2.png
+						}
+						type: Internal
+					}
+					width: 480
+					height: 450
+					format: RGBA8888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			walkingUpFrames: [
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+			]
+			walkingDownFrames: [
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+			]
+			walkingLeftFrames: [
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+			]
+			walkingRightFrames: [
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+			]
+			tmp2: [
+				[
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 49
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard2.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u2: 0.125
+						v2: 0.2
+						regionWidth: 60
+						regionHeight: 90
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 49
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard2.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.125
+						u2: 0.25
+						v2: 0.2
+						regionWidth: 60
+						regionHeight: 90
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 49
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard2.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.25
+						u2: 0.37500003
+						v2: 0.2
+						regionWidth: 60
+						regionHeight: 90
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 49
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard2.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.37500003
+						u2: 0.5
+						v2: 0.2
+						regionWidth: 60
+						regionHeight: 90
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 49
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard2.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.5
+						u2: 0.62500006
+						v2: 0.2
+						regionWidth: 60
+						regionHeight: 90
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 49
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard2.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.62500006
+						u2: 0.75000006
+						v2: 0.2
+						regionWidth: 60
+						regionHeight: 90
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 49
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard2.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.75000006
+						u2: 0.87500006
+						v2: 0.2
+						regionWidth: 60
+						regionHeight: 90
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 49
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard2.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.87500006
+						u2: 1
+						v2: 0.2
+						regionWidth: 60
+						regionHeight: 90
+					}
+				]
+				[
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 49
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard2.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						v: 0.2
+						u2: 0.125
+						v2: 0.4
+						regionWidth: 60
+						regionHeight: 90
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 49
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard2.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.125
+						v: 0.2
+						u2: 0.25
+						v2: 0.4
+						regionWidth: 60
+						regionHeight: 90
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 49
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard2.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.25
+						v: 0.2
+						u2: 0.37500003
+						v2: 0.4
+						regionWidth: 60
+						regionHeight: 90
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 49
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard2.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.37500003
+						v: 0.2
+						u2: 0.5
+						v2: 0.4
+						regionWidth: 60
+						regionHeight: 90
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 49
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard2.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.5
+						v: 0.2
+						u2: 0.62500006
+						v2: 0.4
+						regionWidth: 60
+						regionHeight: 90
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 49
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard2.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.62500006
+						v: 0.2
+						u2: 0.75000006
+						v2: 0.4
+						regionWidth: 60
+						regionHeight: 90
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 49
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard2.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.75000006
+						v: 0.2
+						u2: 0.87500006
+						v2: 0.4
+						regionWidth: 60
+						regionHeight: 90
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 49
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard2.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.87500006
+						v: 0.2
+						u2: 1
+						v2: 0.4
+						regionWidth: 60
+						regionHeight: 90
+					}
+				]
+				[
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 49
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard2.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						v: 0.4
+						u2: 0.125
+						v2: 0.6
+						regionWidth: 60
+						regionHeight: 90
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 49
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard2.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.125
+						v: 0.4
+						u2: 0.25
+						v2: 0.6
+						regionWidth: 60
+						regionHeight: 90
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 49
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard2.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.25
+						v: 0.4
+						u2: 0.37500003
+						v2: 0.6
+						regionWidth: 60
+						regionHeight: 90
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 49
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard2.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.37500003
+						v: 0.4
+						u2: 0.5
+						v2: 0.6
+						regionWidth: 60
+						regionHeight: 90
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 49
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard2.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.5
+						v: 0.4
+						u2: 0.62500006
+						v2: 0.6
+						regionWidth: 60
+						regionHeight: 90
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 49
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard2.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.62500006
+						v: 0.4
+						u2: 0.75000006
+						v2: 0.6
+						regionWidth: 60
+						regionHeight: 90
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 49
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard2.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.75000006
+						v: 0.4
+						u2: 0.87500006
+						v2: 0.6
+						regionWidth: 60
+						regionHeight: 90
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 49
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard2.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.87500006
+						v: 0.4
+						u2: 1
+						v2: 0.6
+						regionWidth: 60
+						regionHeight: 90
+					}
+				]
+				[
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 49
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard2.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						v: 0.6
+						u2: 0.125
+						v2: 0.8
+						regionWidth: 60
+						regionHeight: 90
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 49
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard2.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.125
+						v: 0.6
+						u2: 0.25
+						v2: 0.8
+						regionWidth: 60
+						regionHeight: 90
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 49
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard2.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.25
+						v: 0.6
+						u2: 0.37500003
+						v2: 0.8
+						regionWidth: 60
+						regionHeight: 90
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 49
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard2.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.37500003
+						v: 0.6
+						u2: 0.5
+						v2: 0.8
+						regionWidth: 60
+						regionHeight: 90
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 49
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard2.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.5
+						v: 0.6
+						u2: 0.62500006
+						v2: 0.8
+						regionWidth: 60
+						regionHeight: 90
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 49
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard2.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.62500006
+						v: 0.6
+						u2: 0.75000006
+						v2: 0.8
+						regionWidth: 60
+						regionHeight: 90
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 49
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard2.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.75000006
+						v: 0.6
+						u2: 0.87500006
+						v2: 0.8
+						regionWidth: 60
+						regionHeight: 90
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 49
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard2.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.87500006
+						v: 0.6
+						u2: 1
+						v2: 0.8
+						regionWidth: 60
+						regionHeight: 90
+					}
+				]
+				[
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 49
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard2.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						v: 0.8
+						u2: 0.125
+						v2: 1
+						regionWidth: 60
+						regionHeight: 90
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 49
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard2.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.125
+						v: 0.8
+						u2: 0.25
+						v2: 1
+						regionWidth: 60
+						regionHeight: 90
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 49
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard2.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.25
+						v: 0.8
+						u2: 0.37500003
+						v2: 1
+						regionWidth: 60
+						regionHeight: 90
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 49
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard2.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.37500003
+						v: 0.8
+						u2: 0.5
+						v2: 1
+						regionWidth: 60
+						regionHeight: 90
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 49
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard2.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.5
+						v: 0.8
+						u2: 0.62500006
+						v2: 1
+						regionWidth: 60
+						regionHeight: 90
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 49
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard2.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.62500006
+						v: 0.8
+						u2: 0.75000006
+						v2: 1
+						regionWidth: 60
+						regionHeight: 90
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 49
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard2.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.75000006
+						v: 0.8
+						u2: 0.87500006
+						v2: 1
+						regionWidth: 60
+						regionHeight: 90
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 49
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard2.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.87500006
+						v: 0.8
+						u2: 1
+						v2: 1
+						regionWidth: 60
+						regionHeight: 90
+					}
+				]
+			]
+			pos: {
+				x: 194
+				y: 100
+			}
+			currentAnimation: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 48
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: wizard.png
+									}
+									type: Internal
+								}
+								width: 480
+								height: 450
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u2: 0.125
+						v2: 0.2
+						regionWidth: 60
+						regionHeight: 90
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			pictureName: wizard.png
+			pictureName2: wizard2.png
+			cols: 8
+			rows: 5
+		}
+		enemyName: Wizard
+		pos: {
+			x: 194
+			y: 100
+		}
+		dimensions: {
+			x: 40
+			y: 40
+		}
+		boxCounter: 0
+		boxCounter2: 0
+		boxCounter3: 0
+		boxCounter4: 0
+		bleft: false
+		bdown: false
+		bright: false
+		bup: false
+		alert: false
+		bounds: {
+			x: 194
+			y: 100
+		}
+	}
+	{
+		class: com.angrynerds.runekeeper.Enemy
+		enemyPatrol: {
+			class: com.angrynerds.runekeeper.BoxPatrol
+			boxCounter: 81
+		}
+		enemyType: {
+			class: com.angrynerds.runekeeper.OreEnemyType
+		}
+		animation: {
+			walkingDownAnima: null
+			walkingUpAnima: null
+			walkingLeftAnima: null
+			walkingRightAnima: null
+			upIdling: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 50
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: ghostking.png
+									}
+									type: Internal
+								}
+								width: 466
+								height: 192
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						v: 0.25
+						u2: 0.098712444
+						v2: 0.5
+						regionWidth: 46
+						regionHeight: 48
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			downIdling: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 50
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: ghostking.png
+									}
+									type: Internal
+								}
+								width: 466
+								height: 192
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u2: 0.098712444
+						v2: 0.25
+						regionWidth: 46
+						regionHeight: 48
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			leftIdling: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 50
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: ghostking.png
+									}
+									type: Internal
+								}
+								width: 466
+								height: 192
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						v: 0.25
+						u2: 0.098712444
+						v2: 0.5
+						regionWidth: 46
+						regionHeight: 48
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			rightIdling: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 50
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: ghostking.png
+									}
+									type: Internal
+								}
+								width: 466
+								height: 192
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						v: 0.25
+						u2: 0.098712444
+						v2: 0.5
+						regionWidth: 46
+						regionHeight: 48
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			enemyAttack: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 50
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: ghostking.png
+									}
+									type: Internal
+								}
+								width: 466
+								height: 192
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.888412
+						v: 0.5
+						u2: 0.98712444
+						v2: 0.75
+						regionWidth: 46
+						regionHeight: 48
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			walkingSheet: {
+				glTarget: 3553
+				glHandle: 50
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+						file: {
+							path: ghostking.png
+						}
+						type: Internal
+					}
+					width: 466
+					height: 192
+					format: RGBA8888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			walkingSheet2: null
+			walkingUpFrames: [
+				null
+			]
+			walkingDownFrames: [
+				null
+			]
+			walkingLeftFrames: [
+				null
+			]
+			walkingRightFrames: [
+				null
+			]
+			tmp2: null
+			pos: {
+				x: 469
+				y: 100
+			}
+			currentAnimation: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 50
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: ghostking.png
+									}
+									type: Internal
+								}
+								width: 466
+								height: 192
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u2: 0.098712444
+						v2: 0.25
+						regionWidth: 46
+						regionHeight: 48
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			pictureName: ghostking.png
+			pictureName2: null
+			cols: 10
+			rows: 4
+		}
+		enemyName: Ghost King
+		pos: {
+			x: 469
+			y: 100
+		}
+		dimensions: {
+			x: 100
+			y: 100
+		}
+		boxCounter: 0
+		boxCounter2: 0
+		boxCounter3: 0
+		boxCounter4: 0
+		bleft: false
+		bdown: false
+		bright: false
+		bup: false
+		alert: false
+		bounds: {
+			x: 469
+			y: 100
+		}
+	}
+	{
+		class: com.angrynerds.runekeeper.Enemy
+		enemyPatrol: {
+			class: com.angrynerds.runekeeper.BoxPatrol
+			boxCounter: 81
+		}
+		enemyType: {
+			class: com.angrynerds.runekeeper.GrassEnemyType
+		}
+		animation: {
+			walkingDownAnima: null
+			walkingUpAnima: null
+			walkingLeftAnima: null
+			walkingRightAnima: null
+			upIdling: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 51
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: goblinking.png
+									}
+									type: Internal
+								}
+								width: 320
+								height: 320
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						v: 0.1
+						u2: 0.1
+						v2: 0.2
+						regionWidth: 32
+						regionHeight: 32
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			downIdling: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 51
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: goblinking.png
+									}
+									type: Internal
+								}
+								width: 320
+								height: 320
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u2: 0.1
+						v2: 0.1
+						regionWidth: 32
+						regionHeight: 32
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			leftIdling: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 51
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: goblinking.png
+									}
+									type: Internal
+								}
+								width: 320
+								height: 320
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						v: 0.1
+						u2: 0.1
+						v2: 0.2
+						regionWidth: 32
+						regionHeight: 32
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			rightIdling: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 51
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: goblinking.png
+									}
+									type: Internal
+								}
+								width: 320
+								height: 320
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						v: 0.1
+						u2: 0.1
+						v2: 0.2
+						regionWidth: 32
+						regionHeight: 32
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			enemyAttack: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 51
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: goblinking.png
+									}
+									type: Internal
+								}
+								width: 320
+								height: 320
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.7
+						v: 0.8
+						u2: 0.8
+						v2: 0.90000004
+						regionWidth: 32
+						regionHeight: 32
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			walkingSheet: {
+				glTarget: 3553
+				glHandle: 51
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+						file: {
+							path: goblinking.png
+						}
+						type: Internal
+					}
+					width: 320
+					height: 320
+					format: RGBA8888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			walkingSheet2: null
+			walkingUpFrames: [
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+			]
+			walkingDownFrames: [
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+			]
+			walkingLeftFrames: [
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+			]
+			walkingRightFrames: [
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+				null
+			]
+			tmp2: null
+			pos: {
+				x: 339
+				y: 250
+			}
+			currentAnimation: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 51
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: goblinking.png
+									}
+									type: Internal
+								}
+								width: 320
+								height: 320
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u2: 0.1
+						v2: 0.1
+						regionWidth: 32
+						regionHeight: 32
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			pictureName: goblinking.png
+			pictureName2: null
+			cols: 10
+			rows: 10
+		}
+		enemyName: Goblin King
+		pos: {
+			x: 339
+			y: 250
+		}
+		dimensions: {
+			x: 175
+			y: 175
+		}
+		boxCounter: 0
+		boxCounter2: 0
+		boxCounter3: 0
+		boxCounter4: 0
+		bleft: false
+		bdown: false
+		bright: false
+		bup: false
+		alert: false
+		bounds: {
+			x: 339
+			y: 250
+		}
+	}
+	{
+		class: com.angrynerds.runekeeper.Enemy
+		enemyPatrol: {
+			class: com.angrynerds.runekeeper.BoxPatrol
+			boxCounter: 81
+		}
+		enemyType: {
+			class: com.angrynerds.runekeeper.GrassEnemyType
+		}
+		animation: {
+			walkingDownAnima: null
+			walkingUpAnima: null
+			walkingLeftAnima: null
+			walkingRightAnima: null
+			upIdling: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 52
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: snakeking.png
+									}
+									type: Internal
+								}
+								width: 256
+								height: 256
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u2: 0.25
+						v2: 0.25
+						regionWidth: 64
+						regionHeight: 64
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			downIdling: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 52
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: snakeking.png
+									}
+									type: Internal
+								}
+								width: 256
+								height: 256
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u2: 0.25
+						v2: 0.25
+						regionWidth: 64
+						regionHeight: 64
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			leftIdling: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 52
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: snakeking.png
+									}
+									type: Internal
+								}
+								width: 256
+								height: 256
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u2: 0.25
+						v2: 0.25
+						regionWidth: 64
+						regionHeight: 64
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			rightIdling: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 52
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: snakeking.png
+									}
+									type: Internal
+								}
+								width: 256
+								height: 256
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u2: 0.25
+						v2: 0.25
+						regionWidth: 64
+						regionHeight: 64
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			enemyAttack: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 52
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: snakeking.png
+									}
+									type: Internal
+								}
+								width: 256
+								height: 256
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.75
+						u2: 1
+						v2: 0.25
+						regionWidth: 64
+						regionHeight: 64
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			walkingSheet: {
+				glTarget: 3553
+				glHandle: 52
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+						file: {
+							path: snakeking.png
+						}
+						type: Internal
+					}
+					width: 256
+					height: 256
+					format: RGBA8888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			walkingSheet2: null
+			walkingUpFrames: []
+			walkingDownFrames: []
+			walkingLeftFrames: []
+			walkingRightFrames: []
+			tmp2: null
+			pos: {
+				x: 339
+				y: 350
+			}
+			currentAnimation: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 52
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: snakeking.png
+									}
+									type: Internal
+								}
+								width: 256
+								height: 256
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u2: 0.25
+						v2: 0.25
+						regionWidth: 64
+						regionHeight: 64
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			pictureName: snakeking.png
+			pictureName2: null
+			cols: 4
+			rows: 4
+		}
+		enemyName: Snake King
+		pos: {
+			x: 339
+			y: 350
+		}
+		dimensions: {
+			x: 100
+			y: 100
+		}
+		boxCounter: 0
+		boxCounter2: 0
+		boxCounter3: 0
+		boxCounter4: 0
+		bleft: false
+		bdown: false
+		bright: false
+		bup: false
+		alert: false
+		bounds: {
+			x: 339
+			y: 350
+		}
+	}
+	{
+		class: com.angrynerds.runekeeper.Enemy
+		enemyPatrol: {
+			class: com.angrynerds.runekeeper.BoxPatrol
+			boxCounter: 81
+		}
+		enemyType: {
+			class: com.angrynerds.runekeeper.WaterEnemyType
+		}
+		animation: {
+			walkingDownAnima: null
+			walkingUpAnima: null
+			walkingLeftAnima: null
+			walkingRightAnima: null
+			upIdling: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 53
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: evilwizard.png
+									}
+									type: Internal
+								}
+								width: 512
+								height: 512
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u2: 0.125
+						v2: 0.125
+						regionWidth: 64
+						regionHeight: 64
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			downIdling: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 53
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: evilwizard.png
+									}
+									type: Internal
+								}
+								width: 512
+								height: 512
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u2: 0.125
+						v2: 0.125
+						regionWidth: 64
+						regionHeight: 64
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			leftIdling: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 53
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: evilwizard.png
+									}
+									type: Internal
+								}
+								width: 512
+								height: 512
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u2: 0.125
+						v2: 0.125
+						regionWidth: 64
+						regionHeight: 64
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			rightIdling: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 53
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: evilwizard.png
+									}
+									type: Internal
+								}
+								width: 512
+								height: 512
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u2: 0.125
+						v2: 0.125
+						regionWidth: 64
+						regionHeight: 64
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			enemyAttack: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 53
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: evilwizard.png
+									}
+									type: Internal
+								}
+								width: 512
+								height: 512
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.5
+						v: 0.75
+						u2: 0.625
+						v2: 0.875
+						regionWidth: 64
+						regionHeight: 64
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			walkingSheet: {
+				glTarget: 3553
+				glHandle: 53
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+						file: {
+							path: evilwizard.png
+						}
+						type: Internal
+					}
+					width: 512
+					height: 512
+					format: RGBA8888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			walkingSheet2: null
+			walkingUpFrames: []
+			walkingDownFrames: []
+			walkingLeftFrames: []
+			walkingRightFrames: []
+			tmp2: null
+			pos: {
+				x: 139
+				y: 450
+			}
+			currentAnimation: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 53
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: evilwizard.png
+									}
+									type: Internal
+								}
+								width: 512
+								height: 512
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u2: 0.125
+						v2: 0.125
+						regionWidth: 64
+						regionHeight: 64
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			pictureName: evilwizard.png
+			pictureName2: null
+			cols: 8
+			rows: 8
+		}
+		enemyName: Evil Wizard
+		pos: {
+			x: 139
+			y: 450
+		}
+		dimensions: {
+			x: 100
+			y: 100
+		}
+		boxCounter: 0
+		boxCounter2: 0
+		boxCounter3: 0
+		boxCounter4: 0
+		bleft: false
+		bdown: false
+		bright: false
+		bup: false
+		alert: false
+		bounds: {
+			x: 139
+			y: 450
+		}
+	}
+	{
+		class: com.angrynerds.runekeeper.Enemy
+		enemyPatrol: {
+			class: com.angrynerds.runekeeper.BoxPatrol
+			boxCounter: 81
+		}
+		enemyType: {
+			class: com.angrynerds.runekeeper.FireEnemyType
+		}
+		animation: {
+			walkingDownAnima: null
+			walkingUpAnima: null
+			walkingLeftAnima: null
+			walkingRightAnima: null
+			upIdling: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 54
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: meteorbeast.png
+									}
+									type: Internal
+								}
+								width: 288
+								height: 192
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u2: 0.33333334
+						v2: 0.25
+						regionWidth: 96
+						regionHeight: 48
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			downIdling: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 54
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: meteorbeast.png
+									}
+									type: Internal
+								}
+								width: 288
+								height: 192
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u2: 0.33333334
+						v2: 0.25
+						regionWidth: 96
+						regionHeight: 48
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			leftIdling: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 54
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: meteorbeast.png
+									}
+									type: Internal
+								}
+								width: 288
+								height: 192
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u2: 0.33333334
+						v2: 0.25
+						regionWidth: 96
+						regionHeight: 48
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			rightIdling: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 54
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: meteorbeast.png
+									}
+									type: Internal
+								}
+								width: 288
+								height: 192
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u2: 0.33333334
+						v2: 0.25
+						regionWidth: 96
+						regionHeight: 48
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			enemyAttack: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 55
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: meteorbeast2.png
+									}
+									type: Internal
+								}
+								width: 288
+								height: 192
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u2: 0.33333334
+						v2: 0.25
+						regionWidth: 96
+						regionHeight: 48
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			walkingSheet: {
+				glTarget: 3553
+				glHandle: 54
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+						file: {
+							path: meteorbeast.png
+						}
+						type: Internal
+					}
+					width: 288
+					height: 192
+					format: RGBA8888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			walkingSheet2: {
+				glTarget: 3553
+				glHandle: 55
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+						file: {
+							path: meteorbeast2.png
+						}
+						type: Internal
+					}
+					width: 288
+					height: 192
+					format: RGBA8888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			walkingUpFrames: []
+			walkingDownFrames: []
+			walkingLeftFrames: []
+			walkingRightFrames: []
+			tmp2: [
+				[
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 55
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: meteorbeast2.png
+									}
+									type: Internal
+								}
+								width: 288
+								height: 192
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u2: 0.33333334
+						v2: 0.25
+						regionWidth: 96
+						regionHeight: 48
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 55
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: meteorbeast2.png
+									}
+									type: Internal
+								}
+								width: 288
+								height: 192
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.33333334
+						u2: 0.6666667
+						v2: 0.25
+						regionWidth: 96
+						regionHeight: 48
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 55
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: meteorbeast2.png
+									}
+									type: Internal
+								}
+								width: 288
+								height: 192
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.6666667
+						u2: 1
+						v2: 0.25
+						regionWidth: 96
+						regionHeight: 48
+					}
+				]
+				[
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 55
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: meteorbeast2.png
+									}
+									type: Internal
+								}
+								width: 288
+								height: 192
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						v: 0.25
+						u2: 0.33333334
+						v2: 0.5
+						regionWidth: 96
+						regionHeight: 48
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 55
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: meteorbeast2.png
+									}
+									type: Internal
+								}
+								width: 288
+								height: 192
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.33333334
+						v: 0.25
+						u2: 0.6666667
+						v2: 0.5
+						regionWidth: 96
+						regionHeight: 48
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 55
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: meteorbeast2.png
+									}
+									type: Internal
+								}
+								width: 288
+								height: 192
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.6666667
+						v: 0.25
+						u2: 1
+						v2: 0.5
+						regionWidth: 96
+						regionHeight: 48
+					}
+				]
+				[
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 55
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: meteorbeast2.png
+									}
+									type: Internal
+								}
+								width: 288
+								height: 192
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						v: 0.5
+						u2: 0.33333334
+						v2: 0.75
+						regionWidth: 96
+						regionHeight: 48
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 55
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: meteorbeast2.png
+									}
+									type: Internal
+								}
+								width: 288
+								height: 192
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.33333334
+						v: 0.5
+						u2: 0.6666667
+						v2: 0.75
+						regionWidth: 96
+						regionHeight: 48
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 55
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: meteorbeast2.png
+									}
+									type: Internal
+								}
+								width: 288
+								height: 192
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.6666667
+						v: 0.5
+						u2: 1
+						v2: 0.75
+						regionWidth: 96
+						regionHeight: 48
+					}
+				]
+				[
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 55
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: meteorbeast2.png
+									}
+									type: Internal
+								}
+								width: 288
+								height: 192
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						v: 0.75
+						u2: 0.33333334
+						v2: 1
+						regionWidth: 96
+						regionHeight: 48
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 55
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: meteorbeast2.png
+									}
+									type: Internal
+								}
+								width: 288
+								height: 192
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.33333334
+						v: 0.75
+						u2: 0.6666667
+						v2: 1
+						regionWidth: 96
+						regionHeight: 48
+					}
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 55
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: meteorbeast2.png
+									}
+									type: Internal
+								}
+								width: 288
+								height: 192
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u: 0.6666667
+						v: 0.75
+						u2: 1
+						v2: 1
+						regionWidth: 96
+						regionHeight: 48
+					}
+				]
+			]
+			pos: {
+				x: 99
+				y: 430
+			}
+			currentAnimation: {
+				keyFrames: [
+					{
+						texture: {
+							glTarget: 3553
+							glHandle: 54
+							minFilter: Nearest
+							magFilter: Nearest
+							uWrap: ClampToEdge
+							vWrap: ClampToEdge
+							data: {
+								class: com.badlogic.gdx.graphics.glutils.FileTextureData
+								file: {
+									class: com.badlogic.gdx.backends.lwjgl.LwjglFileHandle
+									file: {
+										path: meteorbeast.png
+									}
+									type: Internal
+								}
+								width: 288
+								height: 192
+								format: RGBA8888
+								pixmap: null
+								useMipMaps: false
+								isPrepared: false
+							}
+						}
+						u2: 0.33333334
+						v2: 0.25
+						regionWidth: 96
+						regionHeight: 48
+					}
+				]
+				frameDuration: 0.025
+				animationDuration: 0.025
+				lastFrameNumber: 0
+				lastStateTime: 0
+				playMode: NORMAL
+			}
+			pictureName: meteorbeast.png
+			pictureName2: meteorbeast2.png
+			cols: 3
+			rows: 4
+		}
+		enemyName: Meteor Beast
+		pos: {
+			x: 99
+			y: 430
+		}
+		dimensions: {
+			x: 100
+			y: 100
+		}
+		boxCounter: 0
+		boxCounter2: 0
+		boxCounter3: 0
+		boxCounter4: 0
+		bleft: false
+		bdown: false
+		bright: false
+		bup: false
+		alert: false
+		bounds: {
+			x: 99
+			y: 430
+		}
+	}
+]
+{
+	class: java.lang.Integer
+	value: 0
+}
+{
+	class: java.lang.Integer
+	value: 1
+}
+{
+	class: java.lang.Float
+	value: 100
+}
+{
+	class: java.lang.Boolean
+	value: false
+}
+{
+	class: java.lang.Boolean
+	value: false
+}
+{
+	class: java.lang.Boolean
+	value: false
+}
+{
+	class: java.lang.Boolean
+	value: false
+}
+{
+	class: java.lang.Boolean
+	value: false
+}
+{
+	class: java.lang.Boolean
+	value: false
+}
+{
+	class: java.lang.Boolean
+	value: false
+}
+{
+	class: java.lang.Boolean
+	value: false
+}
+null
+{
+	class: java.lang.Integer
+	value: 0
+}
+]
