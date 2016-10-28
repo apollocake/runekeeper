@@ -11,6 +11,7 @@ import com.angrynerds.runekeeper.MusicCollision;
 import com.angrynerds.runekeeper.DifficultyType;
 import com.angrynerds.runekeeper.EasyDifficultyType;
 import com.angrynerds.runekeeper.FireEnemyType;
+import com.angrynerds.runekeeper.GameStates;
 import com.angrynerds.runekeeper.GrassEnemyType;
 import com.angrynerds.runekeeper.sound.EnemyPainSfx;
 import com.angrynerds.runekeeper.sound.MusicManager;
@@ -38,8 +39,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import java.util.ArrayList;
-
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class NewGameScreen extends RunekeeperScreen {
 
@@ -96,6 +97,8 @@ public class NewGameScreen extends RunekeeperScreen {
         saveDia = new SaveDialog("Save Load Menu", skin);
         entities = new ArrayList<Entity>();
 
+        GameStates.gsEnemyAnimation = entities;
+
         DifficultyType easyDifficulty = new EasyDifficultyType(new Vector2(40, 40));
         DifficultyType bossDifficulty = new BossDifficultyType(new Vector2(100, 100));
 
@@ -117,29 +120,51 @@ public class NewGameScreen extends RunekeeperScreen {
 
     public static class SaveDialog extends Dialog {
 
+        private Player player;
+
         public SaveDialog(String title, Skin skin, String windowStyleName) {
             super(title, skin, windowStyleName);
+            initPlayer();
         }
 
         public SaveDialog(String title, Skin skin) {
             super(title, skin);
+            initPlayer();
         }
 
         public SaveDialog(String title, WindowStyle windowStyle) {
             super(title, windowStyle);
+            initPlayer();
+        }
+
+        private void initPlayer() {
+            this.player = new Player(0,0);
+        }
+
+        private void setPlayer(Player newPlayer) {
+            this.player = newPlayer;
         }
 
         {
             text("Save or Load");
-            button("Save", 1);
-            button("Load", 1);
-            button("Cancel", 3);
+            button("Save", "save");
+            button("Load", "load");
+            button("Cancel", "cancel");
             key(Input.Keys.ESCAPE, false);
         }
 
         @Override
         protected void result(Object object) {
-            //System.out.println(object);
+
+            if(object == "save") {
+                GameStates.gsExport(this.player);
+            } else if(object == "load") {
+                try {
+                    GameStates.gsImport();
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(NewGameScreen.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
             gamestatus = GAME_RUNNING;
             musicManager.play();
         }
@@ -214,8 +239,10 @@ public class NewGameScreen extends RunekeeperScreen {
                         renderer.getBatch().draw(entity.getAnimation().downIdling.getKeyFrame(delta, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
                         entity.update();
                         enemyPos = entity.getPosition();
+                        GameStates.gsEnemyPos = enemyPos;
                         enemyDistance = enemyPos.dst(playerPos);
 
+                        GameStates.gsEnemyDist = enemyDistance;
                         if (runMode) {
 
                             if (enemyDistance < 75.0f && entity.getAlert() == false) {
@@ -248,6 +275,7 @@ public class NewGameScreen extends RunekeeperScreen {
                     gamestatus = GAME_RUNNING;
                     saveDia.hide();
                 } else {
+                    saveDia.setPlayer(this.player);
                     musicManager.pause();
                     gamestatus = GAME_PAUSED;
                     saveDia.show(stage);

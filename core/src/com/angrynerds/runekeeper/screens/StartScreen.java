@@ -33,7 +33,6 @@ public class StartScreen extends RunekeeperScreen {
     private Music music;
     //AttackingFunction attackingFunction = new AttackingFunction();
 
-    public Player player = new Player(25, 25);
     TextureRegion currentFrame;
     float stateTime;
     private final BgmTrack bgmMusic;
@@ -109,11 +108,6 @@ public class StartScreen extends RunekeeperScreen {
                 game.setScreen(new MenuScreen(game));
 
             }
-
-        }
-
-        if (Gdx.input.isKeyPressed(Keys.SPACE)) {
-            System.out.println("I am attacking");
 
         }
 
