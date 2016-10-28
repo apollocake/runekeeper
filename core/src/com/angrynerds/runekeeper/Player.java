@@ -134,35 +134,35 @@ public class Player extends Observable {
     }
 
     public void damage(float damage) {
-        if (damage >= currentHealth) {
+        if (damage >= getCurrentHealth()) {
             if (lives > 0) {
                 addPlayerLives(-1);
-                currentHealth = (MAX_HEALTH - (damage - currentHealth));
+                setCurrentHealth(MAX_HEALTH - (damage - getCurrentHealth()));
                 animation = playerAnimation.lostLife;
             } else {
                 lives = 0;
                 healthBar.healthBar.setVisible(false);
-                currentHealth = 0;
+                setCurrentHealth(0);
                 state = "DYING";
             }
         } else {
-            currentHealth -= damage;
+            setCurrentHealth(getCurrentHealth() - damage);
         }
 
     }
 
     // method to add health to the healthBar
     public void addhealth(float addHealth) {
-        if ((addHealth + currentHealth) >= MAX_HEALTH) {
+        if ((addHealth + getCurrentHealth()) >= MAX_HEALTH) {
             addPlayerLives(1);
-            currentHealth = ((addHealth + currentHealth) - MAX_HEALTH);
+            setCurrentHealth((addHealth + getCurrentHealth()) - MAX_HEALTH);
         } else {
-            currentHealth += addHealth;
+            setCurrentHealth(getCurrentHealth() + addHealth);
         }
     }
 
     public void update(float deltaTime, SpriteBatch batch) {
-        healthBar.setHealth(currentHealth);
+        healthBar.setHealth(getCurrentHealth());
         stateTime += deltaTime;
         if (state.equals("ALIVE")) {
             processKeys(batch);
@@ -548,6 +548,20 @@ public class Player extends Observable {
      */
     public void setCurrentBuff(Buff currentBuff) {
         this.currentBuff = currentBuff;
+    }
+
+    /**
+     * @return the currentHealth
+     */
+    public float getCurrentHealth() {
+        return currentHealth;
+    }
+
+    /**
+     * @param currentHealth the currentHealth to set
+     */
+    public void setCurrentHealth(float currentHealth) {
+        this.currentHealth = currentHealth;
     }
 
 }
