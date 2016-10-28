@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.utils.Align;
 
 public class SplashScreen extends RunekeeperScreen {
 
@@ -23,15 +24,16 @@ public class SplashScreen extends RunekeeperScreen {
         texture = new Texture("intro_swords1.png");
         splashImage = new Image(texture);
         stage = new Stage();
+        splashImage.setPosition(this.stage.getWidth() / 2, this.stage.getHeight() / 2, Align.center);
 
         stage.addActor(splashImage);
         splashImage.addAction(Actions.sequence(Actions.alpha(0),
                 Actions.fadeIn(0.75f), Actions.delay(1.75f), Actions.run(new Runnable() {
-            @Override
-            public void run() {
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new StartScreen(game));
-            }
-        })));
+                    @Override
+                    public void run() {
+                        ((Game) Gdx.app.getApplicationListener()).setScreen(new StartScreen(game));
+                    }
+                })));
     }
 
     @Override

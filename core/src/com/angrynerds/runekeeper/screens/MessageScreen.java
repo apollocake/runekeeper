@@ -69,8 +69,8 @@ public class MessageScreen extends RunekeeperScreen {
         yesButton.setSize(100,50);
         cancelButton.setSize(100,50);
         message.setPosition(450,100);
-        yesButton.setPosition(550,300);
-        cancelButton.setPosition(550,375);
+        yesButton.setPosition(550,375);
+        cancelButton.setPosition(550,300);
         stage.addActor(message);
         stage.addActor(yesButton);
         stage.addActor(cancelButton);

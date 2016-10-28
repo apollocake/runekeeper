@@ -21,6 +21,20 @@ public class MusicCollision implements Observer {
     private Music triggeredMusicType;
     private Music currentMusicType;
 
+    /**
+     * @return the currentMusicType
+     */
+    public Music getCurrentMusicType() {
+        return currentMusicType;
+    }
+
+    /**
+     * @param currentMusicType the currentMusicType to set
+     */
+    public void setCurrentMusicType(Music currentMusicType) {
+        this.currentMusicType = currentMusicType;
+    }
+
     public enum Music {
         START, GRASS, WATER, FIRE, ORE
     }
@@ -46,32 +60,32 @@ public class MusicCollision implements Observer {
     @Override
     public void update(Observable obs, Object arg) {
         player = (Player) obs;
-        if (collidesBottomMusic() && currentMusicType != triggeredMusicType) { // going left
+        if (collidesBottomMusic() && getCurrentMusicType() != triggeredMusicType) { // going left
             switch (triggeredMusicType) {
                 case GRASS:
                     bgmMusic.dispose();
                     bgmMusic = new BgmTrack(new GrassAreaMusic());
-                    currentMusicType = Music.GRASS;
+                    setCurrentMusicType(Music.GRASS);
                     break;
                 case WATER:
                     bgmMusic.dispose();
                     bgmMusic = new BgmTrack(new WaterAreaMusic());
-                    currentMusicType = Music.WATER;
+                    setCurrentMusicType(Music.WATER);
                     break;
                 case FIRE:
                     bgmMusic.dispose();
                     bgmMusic = new BgmTrack(new FireAreaMusic());
-                    currentMusicType = Music.FIRE;
+                    setCurrentMusicType(Music.FIRE);
                     break;
                 case ORE:
                     bgmMusic.dispose();
                     bgmMusic = new BgmTrack(new OreAreaMusic());
-                    currentMusicType = Music.ORE;
+                    setCurrentMusicType(Music.ORE);
                     break;
                 case START:
                     bgmMusic.dispose();
                     bgmMusic = new BgmTrack(new StartAreaMusic());
-                    currentMusicType = Music.START;
+                    setCurrentMusicType(Music.START);
                     break;
                 
                 default:
