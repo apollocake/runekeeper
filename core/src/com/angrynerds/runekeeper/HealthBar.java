@@ -32,7 +32,7 @@ public class HealthBar {
     Skin skin = new Skin();
     Pixmap pixmap = new Pixmap(10, 10, Format.RGBA8888);
 
-    public HealthBar(float health) {
+    public HealthBar(float health, float posX, float posY) {
 
 
         pixmap.setColor(Color.WHITE);
@@ -44,7 +44,7 @@ public class HealthBar {
 
         this.healthBar = new ProgressBar(0, health, .5f, false, barStyle);
         this.healthBar.setValue(health);
-        this.healthBar.setPosition(100, 100);
+        this.healthBar.setPosition(posX, posY);
         this.healthBar.setVisible(true);
         this.healthBar.validate();
 
@@ -58,6 +58,10 @@ public class HealthBar {
 
     public float getHealth() {
         return healthBar.getValue();
+    }
+
+    public void translatePos(float x, float y) {
+        this.healthBar.setPosition(x, y);
     }
 
     //method to subtract health from the healthbar

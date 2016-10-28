@@ -67,6 +67,8 @@ public class Player extends Observable {
     public String direction = "DOWN";
     public String attack = "";
     public String attackWeapon = "SWORD";
+    private int attackPower;
+    private Buff currentBuff;
     public Rectangle bounds = new Rectangle();
     public Vector2 pos = new Vector2();
 
@@ -74,16 +76,19 @@ public class Player extends Observable {
     private final float MAX_HEALTH = 100;
     private float currentHealth = MAX_HEALTH;
 
-    private HealthBar healthBar = new HealthBar(MAX_HEALTH);
+    private HealthBar healthBar;
     private boolean startDying = true;
     private boolean startDying2 = true;
 
     public Player(float x, float y) {
 
+        this.currentBuff = new DefaultBuff();
+        this.attackPower = 1;
         lives = 1;
         state = "ALIVE";
         pos.x = x;
         pos.y = y;
+        healthBar = new HealthBar(MAX_HEALTH, x, y);
         rnFire.setRune(new RuneFire());
         rnWater.setRune(new RuneWater());
         rnGrass.setRune(new RuneGrass());
@@ -133,7 +138,7 @@ public class Player extends Observable {
             if (lives > 0) {
                 addPlayerLives(-1);
                 currentHealth = (MAX_HEALTH - (damage - currentHealth));
-                 animation = playerAnimation.lostLife;
+                animation = playerAnimation.lostLife;
             } else {
                 lives = 0;
                 healthBar.healthBar.setVisible(false);
@@ -177,6 +182,7 @@ public class Player extends Observable {
         }
             bounds.x = this.pos.x;
             bounds.y = this.pos.y;
+            this.healthBar.translatePos(this.pos.x, this.pos.y);
             runePocessing(batch);
             glove.draw(batch, (int)pos.x - Gdx.graphics.getWidth() / 4 - 40, (int)pos.y - Gdx.graphics.getHeight() / 4 - 10);
             sword.draw(batch,(int)pos.x - Gdx.graphics.getWidth() / 6 - 40 , (int)pos.y - Gdx.graphics.getHeight() / 4 - 10);
@@ -514,6 +520,34 @@ public class Player extends Observable {
 
     public Vector2 getPosition() {
         return this.pos;
+    }
+
+    /**
+     * @return the attackPower
+     */
+    public int getAttackPower() {
+        return attackPower;
+    }
+
+    /**
+     * @param attackPower the attackPower to set
+     */
+    public void setAttackPower(int attackPower) {
+        this.attackPower = attackPower;
+    }
+
+    /**
+     * @return the currentBuff
+     */
+    public Buff getCurrentBuff() {
+        return currentBuff;
+    }
+
+    /**
+     * @param currentBuff the currentBuff to set
+     */
+    public void setCurrentBuff(Buff currentBuff) {
+        this.currentBuff = currentBuff;
     }
 
 }

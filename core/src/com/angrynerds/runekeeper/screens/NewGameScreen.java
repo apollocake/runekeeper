@@ -161,6 +161,9 @@ public class NewGameScreen extends RunekeeperScreen {
         livesLabel.setPosition(20, 430);
         stage.addActor(livesLabel);
         stage.addActor(player.getHealthBar().healthBar);
+        for (Entity entity : this.entities) {
+            stage.addActor(entity.getHealthBar().healthBar);
+        }
         camera.position.set(player.getX() + 350, player.getY() + 220, 0);
 
     }
@@ -207,8 +210,12 @@ public class NewGameScreen extends RunekeeperScreen {
                         }
                         player.isHit();
                         player.damage(1); //subtract health from healthbar
+
                         renderer.getBatch().draw(entity.getAnimation().enemyAttack.getKeyFrame(delta, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
                         renderer.getBatch().setColor(nullColor);
+
+                        entity.damage(player.getCurrentBuff().buffEntity(((Enemy)entity).getEnemyType(), this.player.getAttackPower()));
+                        entity.update();
                     } else {
                         renderer.getBatch().setColor(nullColor);
                         renderer.getBatch().draw(entity.getAnimation().downIdling.getKeyFrame(delta, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
