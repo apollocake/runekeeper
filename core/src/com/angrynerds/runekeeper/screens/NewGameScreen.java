@@ -251,6 +251,7 @@ public class NewGameScreen extends RunekeeperScreen {
             if (Gdx.input.isKeyJustPressed(Input.Keys.Y)) {
                 //move to a different game screen
                 if (gamestatus == GAME_PAUSED) {
+                    musicManager.play();
                     gamestatus = GAME_RUNNING;
                     saveDia.hide();
                 } else {
