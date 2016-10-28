@@ -76,7 +76,7 @@ public class Player extends Observable {
     private final float MAX_HEALTH = 100;
     private float currentHealth = MAX_HEALTH;
 
-    private HealthBar healthBar;
+    private HealthBar healthBar = new HealthBar(MAX_HEALTH, 0, 0);
     private boolean startDying = true;
     private boolean startDying2 = true;
 
@@ -134,35 +134,35 @@ public class Player extends Observable {
     }
 
     public void damage(float damage) {
-        if (damage >= getCurrentHealth()) {
+        if (damage >= currentHealth) {
             if (lives > 0) {
                 addPlayerLives(-1);
-                setCurrentHealth(MAX_HEALTH - (damage - getCurrentHealth()));
+                currentHealth = MAX_HEALTH - (damage - getCurrentHealth());
                 animation = playerAnimation.lostLife;
             } else {
                 lives = 0;
                 healthBar.healthBar.setVisible(false);
-                setCurrentHealth(0);
+                currentHealth = 0;
                 state = "DYING";
             }
         } else {
-            setCurrentHealth(getCurrentHealth() - damage);
+            currentHealth -= damage;
         }
 
     }
 
     // method to add health to the healthBar
     public void addhealth(float addHealth) {
-        if ((addHealth + getCurrentHealth()) >= MAX_HEALTH) {
+        if ((addHealth + currentHealth) >= MAX_HEALTH) {
             addPlayerLives(1);
-            setCurrentHealth((addHealth + getCurrentHealth()) - MAX_HEALTH);
+            currentHealth = ((addHealth + currentHealth) - MAX_HEALTH);
         } else {
-            setCurrentHealth(getCurrentHealth() + addHealth);
+            currentHealth += addHealth;
         }
     }
 
     public void update(float deltaTime, SpriteBatch batch) {
-        healthBar.setHealth(getCurrentHealth());
+        healthBar.setHealth(currentHealth);
         stateTime += deltaTime;
         if (state.equals("ALIVE")) {
             processKeys(batch);
