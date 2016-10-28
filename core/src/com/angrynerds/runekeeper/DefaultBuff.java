@@ -16,4 +16,14 @@ public class DefaultBuff implements Buff {
         return 0;
     }
 
+    @Override
+    public String getName() {
+        return "None";
+    }
+
+    @Override
+    public int getValue() {
+        return 0;
+    }
+
 }

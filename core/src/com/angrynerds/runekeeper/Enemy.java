@@ -83,7 +83,7 @@ public class Enemy implements Entity {
         bounds.x = pos.x;
         bounds.y = pos.y;
         animation.setLocation(pos.x, pos.y);
-        this.healthBar.translatePos(pos.x, pos.y);
+        this.healthBar.healthBar.setPosition(this.pos.x, this.pos.y);
     }
 
     @Override

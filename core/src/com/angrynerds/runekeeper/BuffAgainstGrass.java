@@ -9,11 +9,21 @@ package com.angrynerds.runekeeper;
  *
  * @author Noah
  */
-public class BuffAgainstGrass implements Buff{
+public class BuffAgainstGrass implements Buff {
 
     @Override
     public int buffEntity(EnemyType enemyType, int currentAttackPower) {
-        return (enemyType.getClass() == (new GrassEnemyType()).getClass()) ? currentAttackPower + 5 : 0;
+        return (enemyType.getClass() == (new GrassEnemyType()).getClass()) ? currentAttackPower + 2 : currentAttackPower;
+    }
+
+    @Override
+    public String getName() {
+        return "Grass";
+    }
+
+    @Override
+    public int getValue() {
+        return 2;
     }
 
 }

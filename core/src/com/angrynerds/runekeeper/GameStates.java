@@ -109,7 +109,6 @@ public class GameStates {
         try {
             System.setOut(new PrintStream(new File("output-file.txt")));
             //out = new ObjectOutputStream(new FileOutputStream("rkGamestate.json"));
-            System.out.println(json.prettyPrint(gsObject));
         //out.writeObject(gsObject);
             //out.close();
             System.console();

@@ -6,6 +6,10 @@ import com.angrynerds.runekeeper.Entity;
 import com.angrynerds.runekeeper.EntityAnimation;
 import com.angrynerds.runekeeper.Player;
 import com.angrynerds.runekeeper.BoxPatrol;
+import com.angrynerds.runekeeper.BuffAgainstFire;
+import com.angrynerds.runekeeper.BuffAgainstGrass;
+import com.angrynerds.runekeeper.BuffAgainstOre;
+import com.angrynerds.runekeeper.BuffAgainstWater;
 import com.angrynerds.runekeeper.CrazyPatrol;
 import com.angrynerds.runekeeper.MusicCollision;
 import com.angrynerds.runekeeper.DifficultyType;
@@ -24,6 +28,10 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Pixmap.Format;
+import com.badlogic.gdx.graphics.Texture;
+import static com.badlogic.gdx.graphics.TextureData.TextureDataType.Pixmap;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -52,7 +60,7 @@ public class NewGameScreen extends RunekeeperScreen {
 
     Color nullColor;
 
-    Label livesLabel;
+    Label livesLabel, attackLabel, attackBuffLabel, buffLabel;
     BitmapFont font;
     LabelStyle textStyle;
     public Player player;
@@ -77,6 +85,7 @@ public class NewGameScreen extends RunekeeperScreen {
     public static MusicManager musicManager;
     private final Skin skin;
     private boolean startedDying;
+    private int buffPower;
 
     public NewGameScreen(Game game) {
         super(game);
@@ -84,6 +93,7 @@ public class NewGameScreen extends RunekeeperScreen {
         map = loader.load("worldmap.tmx");
         TiledMapTileLayer collisionLayer = (TiledMapTileLayer) map.getLayers().get(0);
 
+        buffPower = 0;
         playerCollision = new MusicCollision(collisionLayer); //should rename to musicLevelCollision
         musicManager = new MusicManager(playerCollision);
         enemyPainSfx = new EnemyPainSfx();
@@ -113,7 +123,7 @@ public class NewGameScreen extends RunekeeperScreen {
         entities.add(new Enemy(new EntityAnimation(1, 0, 0, 0, 0, 4, 4, "snakeking.png"), "Snake King", 420, 350, bossDifficulty, new BoxPatrol(), new GrassEnemyType()));
         entities.add(new Enemy(new EntityAnimation(1, 0, 0, 0, 0, 8, 8, "evilwizard.png"), "Evil Wizard", 220, 450, bossDifficulty, new BoxPatrol(), new WaterEnemyType()));
         entities.add(new Enemy(new EntityAnimation(1, 0, 0, 0, 0, 3, 4, "meteorbeast.png"), "Meteor Beast", 180, 430, bossDifficulty, new BoxPatrol(), new FireEnemyType()));
-        
+
         healTotem = new HealTotem("totem01", collisionLayer);
         player.addObserver(healTotem);
     }
@@ -138,7 +148,7 @@ public class NewGameScreen extends RunekeeperScreen {
         }
 
         private void initPlayer() {
-            this.player = new Player(0,0);
+            this.player = new Player(0, 0);
         }
 
         private void setPlayer(Player newPlayer) {
@@ -156,9 +166,9 @@ public class NewGameScreen extends RunekeeperScreen {
         @Override
         protected void result(Object object) {
 
-            if(object == "save") {
+            if (object == "save") {
                 GameStates.gsExport(this.player);
-            } else if(object == "load") {
+            } else if (object == "load") {
                 try {
                     GameStates.gsImport();
                 } catch (ClassNotFoundException ex) {
@@ -184,11 +194,24 @@ public class NewGameScreen extends RunekeeperScreen {
         livesLabel = new Label("Lives: " + player.getPlayerLives(), textStyle);
         livesLabel.setColor(Color.GREEN);
         livesLabel.setPosition(20, 430);
+
+        attackLabel = new Label("Attack Power: " + player.getAttackPower(), textStyle);
+        attackLabel.setColor(Color.GREEN);
+        attackLabel.setPosition(20, 410);
+
+        attackBuffLabel = new Label("Attack Power with Buff: " + player.getAttackPower(), textStyle);
+        attackBuffLabel.setColor(Color.GREEN);
+        attackBuffLabel.setPosition(20, 390);
+
+        buffLabel = new Label("Current Buff: " + player.getCurrentBuff().getName(), textStyle);
+        buffLabel.setColor(Color.GREEN);
+        buffLabel.setPosition(20, 370);
+
         stage.addActor(livesLabel);
+        stage.addActor(attackLabel);
+        stage.addActor(attackBuffLabel);
+        stage.addActor(buffLabel);
         stage.addActor(player.getHealthBar().healthBar);
-        for (Entity entity : this.entities) {
-            stage.addActor(entity.getHealthBar().healthBar);
-        }
         camera.position.set(player.getX() + 350, player.getY() + 220, 0);
 
     }
@@ -204,6 +227,9 @@ public class NewGameScreen extends RunekeeperScreen {
             game.setScreen(new GameOverScreen(game)); //end game if player is dead
         }
         livesLabel.setText("Lives: " + player.getPlayerLives());
+        attackLabel.setText("Attack Power: " + player.getAttackPower());
+        attackBuffLabel.setText("Attack Power with Buff: " + buffPower);
+        buffLabel.setText("Current Buff: " + player.getCurrentBuff().getName());
 
         renderer.setView(camera);
         renderer.getBatch().begin();
@@ -212,7 +238,7 @@ public class NewGameScreen extends RunekeeperScreen {
         playerPos = player.getPosition();
         currentFrame = player.animation.getKeyFrame(player.stateTime, true);
         //
-       // currentFrameForMagic = player.gloveRuneAnimation.getKeyFrame(player.stateTime, false);
+        // currentFrameForMagic = player.gloveRuneAnimation.getKeyFrame(player.stateTime, false);
         camera.position.set(player.getX() + player.playerAnimation.getWidth() / 2, player.getY() + player.playerAnimation.getHeight() / 2, 0);
         camera.update();
         renderer.getBatch().draw(currentFrame, player.pos.x, player.pos.y);
@@ -221,7 +247,7 @@ public class NewGameScreen extends RunekeeperScreen {
         if (gamestatus != GAME_PAUSED) {
             player.update(delta, (SpriteBatch) renderer.getBatch());
         }
-        //check if any collisons between player and enemies    
+        //check if any collisons between player and enemies
         for (Entity entity : this.entities) {
             if (player.state.equals("ALIVE")) {
                 if (gamestatus != GAME_PAUSED) {
@@ -239,7 +265,8 @@ public class NewGameScreen extends RunekeeperScreen {
                         renderer.getBatch().draw(entity.getAnimation().enemyAttack.getKeyFrame(delta, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
                         renderer.getBatch().setColor(nullColor);
 
-                        entity.damage(player.getCurrentBuff().buffEntity(((Enemy)entity).getEnemyType(), this.player.getAttackPower()));
+                        buffPower = player.getCurrentBuff().buffEntity(((Enemy) entity).getEnemyType(), this.player.getAttackPower());
+                        entity.damage(buffPower);
                         entity.update();
                     } else {
                         renderer.getBatch().setColor(nullColor);
@@ -300,6 +327,26 @@ public class NewGameScreen extends RunekeeperScreen {
 
             if (Gdx.input.isKeyJustPressed(Input.Keys.F6)) {
                 player.addhealth(50);
+            }
+
+            if (Gdx.input.isKeyJustPressed(Input.Keys.U)) {
+                player.setCurrentBuff(new BuffAgainstFire());
+            }
+
+            if (Gdx.input.isKeyJustPressed(Input.Keys.I)) {
+                player.setCurrentBuff(new BuffAgainstGrass());
+            }
+
+            if (Gdx.input.isKeyJustPressed(Input.Keys.O)) {
+                player.setCurrentBuff(new BuffAgainstOre());
+            }
+
+            if (Gdx.input.isKeyJustPressed(Input.Keys.P)) {
+                player.setCurrentBuff(new BuffAgainstWater());
+            }
+
+            if (Gdx.input.isKeyJustPressed(Input.Keys.P)) {
+                player.setCurrentBuff(new BuffAgainstWater());
             }
 
             if (Gdx.input.isKeyJustPressed(Input.Keys.R)) {

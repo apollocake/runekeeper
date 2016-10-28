@@ -13,4 +13,8 @@ public interface Buff {
 
     public int buffEntity(EnemyType enemyType, int currentAttackPower);
 
+    public String getName();
+
+    public int getValue();
+
 }

@@ -13,7 +13,17 @@ public class BuffAgainstOre implements Buff {
 
     @Override
     public int buffEntity(EnemyType enemyType, int currentAttackPower) {
-        return (enemyType.getClass() == (new OreEnemyType()).getClass()) ? currentAttackPower + 5 : 0;
+        return (enemyType.getClass() == (new OreEnemyType()).getClass()) ? currentAttackPower + 3 : currentAttackPower;
+    }
+
+    @Override
+    public String getName() {
+        return "Ore";
+    }
+
+    @Override
+    public int getValue() {
+        return 3;
     }
 
 }
