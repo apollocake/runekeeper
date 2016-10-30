@@ -330,23 +330,19 @@ public class NewGameScreen extends RunekeeperScreen {
             }
 
             if (Gdx.input.isKeyJustPressed(Input.Keys.U)) {
-                player.setCurrentBuff(new BuffAgainstFire());
-            }
-
-            if (Gdx.input.isKeyJustPressed(Input.Keys.I)) {
                 player.setCurrentBuff(new BuffAgainstGrass());
             }
 
+            if (Gdx.input.isKeyJustPressed(Input.Keys.I)) {
+                player.setCurrentBuff(new BuffAgainstWater());
+            }
+
             if (Gdx.input.isKeyJustPressed(Input.Keys.O)) {
+                player.setCurrentBuff(new BuffAgainstFire());
+            }
+
+            if (Gdx.input.isKeyJustPressed(Input.Keys.P)) {
                 player.setCurrentBuff(new BuffAgainstOre());
-            }
-
-            if (Gdx.input.isKeyJustPressed(Input.Keys.P)) {
-                player.setCurrentBuff(new BuffAgainstWater());
-            }
-
-            if (Gdx.input.isKeyJustPressed(Input.Keys.P)) {
-                player.setCurrentBuff(new BuffAgainstWater());
             }
 
             if (Gdx.input.isKeyJustPressed(Input.Keys.R)) {

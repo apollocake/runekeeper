@@ -103,11 +103,11 @@ public class GameStates {
         json.setOutputType(JsonWriter.OutputType.minimal);
         //String gsFile = json.toJson(gsFile);
 
-        //System.out.println(json.prettyPrint(gsObject));
         //FileHandle file = Gdx.files.local("rkGamestate.json");
         ObjectOutputStream out;
         try {
             System.setOut(new PrintStream(new File("output-file.txt")));
+            System.out.println(json.prettyPrint(gsObject));
             //out = new ObjectOutputStream(new FileOutputStream("rkGamestate.json"));
         //out.writeObject(gsObject);
             //out.close();
