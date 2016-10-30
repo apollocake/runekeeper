@@ -18,7 +18,7 @@ public class Enemy implements Entity {
     private EnemyType enemyType;
     private EntityAnimation animation;
     private String enemyName;
-    private Vector2 pos = new Vector2();
+    private Vector2 pos;
     private Vector2 dimensions = new Vector2();
 
     private int boxCounter = 0;
@@ -30,13 +30,21 @@ public class Enemy implements Entity {
     private boolean bright = false;
     private boolean bup = false;
 
+    private final float MAX_HEALTH = 100;
+    private float currentHealth;
+
+    private HealthBar healthBar;
     public boolean alert = false;
+    private int lives;
+    public String state;
     private Rectangle bounds;
 
     public Enemy(EntityAnimation newAnimation, String newName, float x, float y, DifficultyType difficulty, EnemyPatrol newEnemyPatrol, EnemyType enemyType) {
 
-        this.pos.x = x;
-        this.pos.y = y;
+        pos = new Vector2(x, y);
+        lives = 0;
+        currentHealth = MAX_HEALTH;
+        healthBar = new HealthBar(MAX_HEALTH, x, y);
         this.animation = newAnimation;
         this.enemyName = newName;
         this.enemyType = enemyType;
@@ -47,6 +55,22 @@ public class Enemy implements Entity {
 
     }
 
+    public void damage(int damage) {
+        if (damage >= getCurrentHealth()) {
+            if (getLives() > 0) {
+                lives--;
+                setCurrentHealth(MAX_HEALTH - (damage - getCurrentHealth()));
+            } else {
+                setLives(0);
+                getHealthBar().healthBar.setVisible(false);
+                setCurrentHealth(0);
+                state = "DYING";
+            }
+        } else {
+            setCurrentHealth(getCurrentHealth() - damage);
+        }
+    }
+
     @Override
     public String getName() {
         return this.enemyName;
@@ -54,10 +78,12 @@ public class Enemy implements Entity {
 
     @Override
     public void update() {
+        healthBar.setHealth(currentHealth);
         patrol(pos);
         bounds.x = pos.x;
         bounds.y = pos.y;
         animation.setLocation(pos.x, pos.y);
+        this.healthBar.healthBar.setPosition(this.pos.x, this.pos.y);
     }
 
     @Override
@@ -153,5 +179,47 @@ public class Enemy implements Entity {
      */
     public EnemyType getEnemyType() {
         return enemyType;
+    }
+
+    /**
+     * @return the currentHealth
+     */
+    public float getCurrentHealth() {
+        return currentHealth;
+    }
+
+    /**
+     * @param currentHealth the currentHealth to set
+     */
+    public void setCurrentHealth(float currentHealth) {
+        this.currentHealth = currentHealth;
+    }
+
+    /**
+     * @return the lives
+     */
+    public int getLives() {
+        return lives;
+    }
+
+    /**
+     * @param lives the lives to set
+     */
+    public void setLives(int lives) {
+        this.lives = lives;
+    }
+
+    /**
+     * @return the healthBar
+     */
+    public HealthBar getHealthBar() {
+        return healthBar;
+    }
+
+    /**
+     * @param healthBar the healthBar to set
+     */
+    public void setHealthBar(HealthBar healthBar) {
+        this.healthBar = healthBar;
     }
 }

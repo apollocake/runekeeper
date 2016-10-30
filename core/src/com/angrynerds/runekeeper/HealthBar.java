@@ -22,9 +22,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
  */
 public class HealthBar {
 
-
     //public final float MAXHEALTH = 100;
-
     boolean isEmpty;
 
     public ProgressBar healthBar;
@@ -33,7 +31,10 @@ public class HealthBar {
     Pixmap pixmap = new Pixmap(10, 10, Format.RGBA8888);
 
     public HealthBar(float health) {
+        this(health, 0, 0);
+    }
 
+    public HealthBar(float health, float posX, float posY) {
 
         pixmap.setColor(Color.WHITE);
         pixmap.fill();
@@ -44,7 +45,7 @@ public class HealthBar {
 
         this.healthBar = new ProgressBar(0, health, .5f, false, barStyle);
         this.healthBar.setValue(health);
-        this.healthBar.setPosition(100, 100);
+        this.healthBar.setPosition(posX, posY);
         this.healthBar.setVisible(true);
         this.healthBar.validate();
 
@@ -60,8 +61,12 @@ public class HealthBar {
         return healthBar.getValue();
     }
 
+    public void translatePos(float x, float y) {
+        this.healthBar.setPosition(x, y);
+    }
+
     //method to subtract health from the healthbar
     public void removeBar(float i) {
-            this.healthBar.setVisible(false);
+        this.healthBar.setVisible(false);
     }
 }
