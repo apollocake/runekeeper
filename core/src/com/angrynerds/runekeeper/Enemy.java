@@ -48,7 +48,7 @@ public class Enemy implements Entity {
         this.animation = newAnimation;
         this.enemyName = newName;
         this.enemyType = enemyType;
-        bounds = new Rectangle(this.pos.x, this.pos.y, getDimensions().x, getDimensions().y);
+        bounds = new Rectangle(this.pos.x, this.pos.y, this.getAnimation().getSpriteWidth(), this.getAnimation().getSpriteHeight());
 
         this.enemyPatrol = newEnemyPatrol;
         difficulty.TransformEntity(this);

@@ -20,6 +20,7 @@ import com.angrynerds.runekeeper.GrassEnemyType;
 import com.angrynerds.runekeeper.sound.EnemyPainSfx;
 import com.angrynerds.runekeeper.sound.MusicManager;
 import com.angrynerds.runekeeper.HealTotem;
+import com.angrynerds.runekeeper.HitBoxRenderer;
 import com.angrynerds.runekeeper.OreEnemyType;
 import com.angrynerds.runekeeper.WaterEnemyType;
 import com.badlogic.gdx.Game;
@@ -86,6 +87,7 @@ public class NewGameScreen extends RunekeeperScreen {
     private final Skin skin;
     private boolean startedDying;
     private int buffPower;
+    private final HitBoxRenderer hitboxRenderer;
 
     public NewGameScreen(Game game) {
         super(game);
@@ -98,6 +100,7 @@ public class NewGameScreen extends RunekeeperScreen {
         musicManager = new MusicManager(playerCollision);
         enemyPainSfx = new EnemyPainSfx();
         renderer = new OrthogonalTiledMapRenderer(map);
+        hitboxRenderer = new HitBoxRenderer();
         camera = new OrthographicCamera();
         player = new Player(25, 25);
         player.addObserver(playerCollision);
@@ -294,6 +297,10 @@ public class NewGameScreen extends RunekeeperScreen {
                     renderer.getBatch().draw(entity.getAnimation().downIdling.getKeyFrame(delta, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
                 }
             }
+                    renderer.getBatch().end();
+                    hitboxRenderer.setProjectionMatrix(camera.combined);
+                    hitboxRenderer.drawBox(entity.getRec());
+                    renderer.getBatch().begin();
         }
         renderer.getBatch().end();
         stage.draw();
