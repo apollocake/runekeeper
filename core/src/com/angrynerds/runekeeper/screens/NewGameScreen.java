@@ -303,6 +303,8 @@ public class NewGameScreen extends RunekeeperScreen {
                     renderer.getBatch().begin();
         }
         renderer.getBatch().end();
+        hitboxRenderer.setProjectionMatrix(camera.combined);
+        hitboxRenderer.drawBox(player.bounds);
         stage.draw();
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
 
