@@ -256,6 +256,17 @@ public class NewGameScreen extends RunekeeperScreen {
                             System.out.println("You Hit The ENEMY");
                             enemyPainSfx.play(entity.getName(), delta);
                             renderer.getBatch().setColor(Color.RED);
+                             entity.damage(25); //damage the enemy. called 4 times every time spacebar is hit, cannot fogure out why.
+                             
+                             if(!entity.isAlive())  //check if enemy is still alive
+                            {
+                             renderer.getBatch().setColor(nullColor);      //change to nullColor or else entire screen turns red when enemy is killed
+                             renderer.getBatch().draw(entity.getAnimation().dyingAnimation.getKeyFrame(delta, true), entity.getPosition().x -50, entity.getPosition().y -50, entity.getDimensions().x + 150, entity.getDimensions().y + 150);
+                             this.entities.remove(entity);  //enemy has been killed remove it from the screen
+                               break;
+                            }
+                            
+                            
                         } else {
                             renderer.getBatch().setColor(nullColor);
                         }
@@ -264,6 +275,8 @@ public class NewGameScreen extends RunekeeperScreen {
 
                         renderer.getBatch().draw(entity.getAnimation().enemyAttack.getKeyFrame(delta, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
                         renderer.getBatch().setColor(nullColor);
+                        
+                        
 
                         buffPower = player.getCurrentBuff().buffEntity(((Enemy) entity).getEnemyType(), this.player.getAttackPower());
                         entity.damage(buffPower);
