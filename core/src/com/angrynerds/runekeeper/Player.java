@@ -1,10 +1,19 @@
 package com.angrynerds.runekeeper;
 
+import com.angrynerds.runekeeper.Rune.FireGloveUpAnima;
+import com.angrynerds.runekeeper.Rune.FireGloveLeftAnima;
+import com.angrynerds.runekeeper.Rune.FireGloveRightAnima;
+import com.angrynerds.runekeeper.Rune.FireGloveDownAnima;
+import com.angrynerds.runekeeper.Rune.FireSwordAnima;
+import com.angrynerds.runekeeper.Rune.GrassSwordLeftAnima;
+import com.angrynerds.runekeeper.Rune.GrassSwordRightAnima;
+import com.angrynerds.runekeeper.Rune.OreSwordAnima;
 import com.angrynerds.runekeeper.Rune.RuneWater;
 import com.angrynerds.runekeeper.Rune.RuneGrass;
 import com.angrynerds.runekeeper.Rune.RuneOre;
 import com.angrynerds.runekeeper.Rune.RuneFire;
 import com.angrynerds.runekeeper.Rune.Rune;
+import com.angrynerds.runekeeper.Rune.WaterSwordAnima;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.math.Vector2;
@@ -19,6 +28,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class Player extends Observable {
 
     //DEFINED FOR THE CORRESPONDING ANIMATIONS
+    int iPos = 0;
     public final int IDLE = 0;
     public final int UP = 2;
     public final int DOWN = -2;
@@ -49,7 +59,20 @@ public class Player extends Observable {
     WaterGloveAnima waterGloveAnima;
     GrassGloveAnima grassGloveAnima;
     OreGloveAnima oreGloveAnima;
-
+    
+    FireSwordAnima fireSwordAnima;
+    WaterSwordAnima waterSwordAnima;
+    GrassSwordLeftAnima grassSwordLeftAnima;
+    GrassSwordRightAnima grassSwordRightAnima;
+    OreSwordAnima oreSwordAnima;
+    
+    int waterSwordAnimaPosRightX = 0;
+    int waterSwordAnimaPosLeftX = 0;
+    int waterSwordAnimaPosUpY = 0;
+    int waterSwordAnimaPosDownY = 0;
+    int oreSwordAnimaHight = 18;
+    int oreSwordAnimaW = 16;
+    
     Glove glove = new Glove();
     Sword sword = new Sword();
     Rune rnFire = new Rune();
@@ -102,6 +125,12 @@ public class Player extends Observable {
         waterGloveAnima = new WaterGloveAnima();
         grassGloveAnima = new GrassGloveAnima();
         oreGloveAnima = new OreGloveAnima();
+        
+        fireSwordAnima = new FireSwordAnima();
+        waterSwordAnima = new WaterSwordAnima();
+        grassSwordLeftAnima = new GrassSwordLeftAnima();
+        grassSwordRightAnima = new GrassSwordRightAnima();
+        oreSwordAnima = new OreSwordAnima();
 
         stateTime = 0;
 
@@ -113,7 +142,7 @@ public class Player extends Observable {
 
         playerAnimation = new PlayerAnimation(pos.x, pos.y);
         animation = playerAnimation.downIdling;
-        gloveRuneAnimation = fireGloveRightAnima.rightIdling;
+        //gloveRuneAnimation = fireGloveRightAnima.rightIdling;
         //glove.draw(batch);
     }
 
@@ -442,6 +471,135 @@ public class Player extends Observable {
         } else if (Gdx.input.isKeyPressed(Keys.SPACE) && runeOreGlove == true && attackWeapon.equals("GLOVE") && attack.equals("DOWN_ATTACKING")) {
             oreGloveAnima.showFireAnimation(batch, (int) pos.x - 40, (int) pos.y - 60);
         }
+        
+        if (Gdx.input.isKeyPressed(Keys.SPACE) && runeFireSword == true && attackWeapon.equals("SWORD") && attack.equals("RIGHT_ATTACKING")) {
+            fireSwordAnima.showFireAnimation(batch, (int) pos.x - 170 , (int) pos.y - 100);
+        } else if (Gdx.input.isKeyPressed(Keys.SPACE) && runeFireSword == true && attackWeapon.equals("SWORD") && attack.equals("LEFT_ATTACKING")) {
+            fireSwordAnima.showFireAnimation(batch, (int) pos.x - 170 , (int) pos.y - 100);
+        } else if (Gdx.input.isKeyPressed(Keys.SPACE) && runeFireSword == true && attackWeapon.equals("SWORD") && attack.equals("UP_ATTACKING")) {
+            fireSwordAnima.showFireAnimation(batch, (int) pos.x - 170 , (int) pos.y - 100);
+        } else if (Gdx.input.isKeyPressed(Keys.SPACE) && runeFireSword == true && attackWeapon.equals("SWORD") && attack.equals("DOWN_ATTACKING")) {
+            fireSwordAnima.showFireAnimation(batch, (int) pos.x - 170 , (int) pos.y - 100);
+        }
+
+        
+        if (Gdx.input.isKeyPressed(Keys.SPACE) && runeWaterSword == true && attackWeapon.equals("SWORD") && attack.equals("RIGHT_ATTACKING")) {
+            if(waterSwordAnima.getisAnimaFinished() == false ){
+            waterSwordAnima.showFireAnimation(batch, (int) pos.x + 40 + waterSwordAnimaPosRightX++, (int) pos.y);
+            }
+            //System.out.println("i " + iPos);
+            if(waterSwordAnima.getisAnimaFinished() == true){
+                waterSwordAnimaPosRightX = 0;
+            }
+        }
+        else if (Gdx.input.isKeyPressed(Keys.SPACE) && runeWaterSword == true && attackWeapon.equals("SWORD") && attack.equals("LEFT_ATTACKING")) {
+            if(waterSwordAnima.getisAnimaFinished() == false){
+            waterSwordAnima.showFireAnimation(batch, (int) pos.x - 80 - waterSwordAnimaPosLeftX++ , (int) pos.y);
+            }
+            if(waterSwordAnima.getisAnimaFinished() == true){
+                waterSwordAnimaPosLeftX = 0;
+            }
+            
+        } 
+        else if (Gdx.input.isKeyPressed(Keys.SPACE) && runeWaterSword == true && attackWeapon.equals("SWORD") && attack.equals("UP_ATTACKING")) {
+            if(waterSwordAnima.getisAnimaFinished() == false){
+            waterSwordAnima.showFireAnimation(batch, (int) pos.x - 20 , (int) pos.y + 50 + waterSwordAnimaPosUpY++ );
+            }
+            if(waterSwordAnima.getisAnimaFinished() == true){
+                waterSwordAnimaPosUpY = 0;
+            }
+        } else if (Gdx.input.isKeyPressed(Keys.SPACE) && runeWaterSword == true && attackWeapon.equals("SWORD") && attack.equals("DOWN_ATTACKING")) {
+            if(waterSwordAnima.getisAnimaFinished() == false){
+            waterSwordAnima.showFireAnimation(batch, (int) pos.x - 20, (int) pos.y - 60 - waterSwordAnimaPosDownY++);
+            }
+            if(waterSwordAnima.getisAnimaFinished() == true){
+                waterSwordAnimaPosDownY = 0;
+            }
+        }
+        
+       
+        if (Gdx.input.isKeyPressed(Keys.SPACE) && runeGrassSword == true && attackWeapon.equals("SWORD") && attack.equals("RIGHT_ATTACKING")) {
+            grassSwordRightAnima.showFireAnimation(batch, (int) pos.x + 45, (int) pos.y - 15);
+        } else if (Gdx.input.isKeyPressed(Keys.SPACE) && runeGrassSword == true && attackWeapon.equals("SWORD") && attack.equals("LEFT_ATTACKING")) {
+            grassSwordLeftAnima.showFireAnimation(batch, (int) pos.x - 65, (int) pos.y - 30);
+        } else if (Gdx.input.isKeyPressed(Keys.SPACE) && runeGrassSword == true && attackWeapon.equals("SWORD") && attack.equals("UP_ATTACKING")) {
+            grassSwordLeftAnima.showFireAnimation(batch, (int) pos.x - 30, (int) pos.y + 5);
+        } else if (Gdx.input.isKeyPressed(Keys.SPACE) && runeGrassSword == true && attackWeapon.equals("SWORD") && attack.equals("DOWN_ATTACKING")) {
+            grassSwordLeftAnima.showFireAnimation(batch, (int) pos.x - 30, (int) pos.y - 70);
+        }
+        
+        if (Gdx.input.isKeyPressed(Keys.SPACE) && runeOreSword == true && attackWeapon.equals("SWORD") && attack.equals("RIGHT_ATTACKING")) {
+            if(oreSwordAnima.getisAnimaFinished() == false ){
+                oreSwordAnima.showFireAnimation(batch, (int) pos.x + 55, (int) pos.y - 40, Gdx.graphics.getWidth() / oreSwordAnimaW--, Gdx.graphics.getHeight() / oreSwordAnimaHight--);
+               
+            //waterSwordAnima.showFireAnimation(batch, (int) pos.x + 40 + waterSwordAnimaPosRightX++, (int) pos.y);
+            }
+            if(oreSwordAnimaW == 6){
+                    oreSwordAnimaW = 7;
+                }
+                 if(oreSwordAnimaHight == 4){
+                    oreSwordAnimaHight = 5;
+                }
+            //System.out.println("i " + iPos);
+            if(oreSwordAnima.getisAnimaFinished() == true){
+                oreSwordAnimaW = 16;
+                oreSwordAnimaHight = 18;
+            }            
+        }    
+        else if (Gdx.input.isKeyPressed(Keys.SPACE) && runeOreSword == true && attackWeapon.equals("SWORD") && attack.equals("LEFT_ATTACKING")) {if(oreSwordAnima.getisAnimaFinished() == false ){
+                oreSwordAnima.showFireAnimation(batch, (int) pos.x - 135, (int) pos.y - 40, Gdx.graphics.getWidth() / oreSwordAnimaW--, Gdx.graphics.getHeight() / oreSwordAnimaHight--);
+               
+            //waterSwordAnima.showFireAnimation(batch, (int) pos.x + 40 + waterSwordAnimaPosRightX++, (int) pos.y);
+            }
+            if(oreSwordAnimaW == 6){
+                    oreSwordAnimaW = 7;
+                }
+                 if(oreSwordAnimaHight == 4){
+                    oreSwordAnimaHight = 5;
+                }
+            //System.out.println("i " + iPos);
+            if(oreSwordAnima.getisAnimaFinished() == true){
+                oreSwordAnimaW = 16;
+                oreSwordAnimaHight = 18;
+            }
+        } else if (Gdx.input.isKeyPressed(Keys.SPACE) && runeOreSword == true && attackWeapon.equals("SWORD") && attack.equals("UP_ATTACKING")) {if(oreSwordAnima.getisAnimaFinished() == false ){
+                oreSwordAnima.showFireAnimation(batch, (int) pos.x -55, (int) pos.y + 45, Gdx.graphics.getWidth() / oreSwordAnimaW--, Gdx.graphics.getHeight() / oreSwordAnimaHight--);
+               
+            //waterSwordAnima.showFireAnimation(batch, (int) pos.x + 40 + waterSwordAnimaPosRightX++, (int) pos.y);
+            }
+            if(oreSwordAnimaW == 6){
+                    oreSwordAnimaW = 7;
+                }
+                 if(oreSwordAnimaHight == 4){
+                    oreSwordAnimaHight = 5;
+                }
+            //System.out.println("i " + iPos);
+            if(oreSwordAnima.getisAnimaFinished() == true){
+                oreSwordAnimaW = 16;
+                oreSwordAnimaHight = 18;
+            }
+        } else if (Gdx.input.isKeyPressed(Keys.SPACE) && runeOreSword == true && attackWeapon.equals("SWORD") && attack.equals("DOWN_ATTACKING")) {if(oreSwordAnima.getisAnimaFinished() == false ){
+                oreSwordAnima.showFireAnimation(batch, (int) pos.x -55, (int) pos.y - 120, Gdx.graphics.getWidth() / oreSwordAnimaW--, Gdx.graphics.getHeight() / oreSwordAnimaHight--);
+               
+            //waterSwordAnima.showFireAnimation(batch, (int) pos.x + 40 + waterSwordAnimaPosRightX++, (int) pos.y);
+            }
+            if(oreSwordAnimaW == 6){
+                    oreSwordAnimaW = 7;
+                }
+                 if(oreSwordAnimaHight == 4){
+                    oreSwordAnimaHight = 5;
+                }
+            //System.out.println("i " + iPos);
+            if(oreSwordAnima.getisAnimaFinished() == true){
+                oreSwordAnimaW = 16;
+                oreSwordAnimaHight = 18;
+            }
+        }
+        
+        
+        
+       
+       
 
     }
 

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.angrynerds.runekeeper;
+package com.angrynerds.runekeeper.Rune;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -15,7 +15,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
  *
  * @author qzhao
  */
-public class FireGloveUpAnima {
+public class FireGloveDownAnima {
         private static final int FIRE_RIGHT_FRAME_COLS = 4;
     private static final int FIRE_RIGHT_FRAME_ROW = 4;
     
@@ -24,46 +24,46 @@ public class FireGloveUpAnima {
     //Animation attackingDownAnima;
     //Animation attackingUpAnima;
     //Animation attackingLeftAnima;
-    Animation UpAnima;
+    Animation DownAnima;
 
     //Animation upIdling;
     //Animation downIdling;
     //Animation leftIdling;
-    Animation upIdling;
+    Animation downIdling;
 
     Texture attackingSheet;
     //TextureRegion[] attackingUpFrames;
     //TextureRegion[] attackingDownFrames;
     //TextureRegion[] attackingLeftFrames;
-    TextureRegion[] attackingUpFrames;
+    TextureRegion[] attackingDownFrames;
 
     Animation currentAnimation;
 
     //  System.out.println("I am attacking");
     //}
-    public FireGloveUpAnima() {
+    public FireGloveDownAnima() {
         createAnimations();
         //currentAnimation = downIdling;
     }
 
     private void createAnimations() {
 
-        attackingSheet = new Texture(Gdx.files.internal("FireGloveUp.png"));
+        attackingSheet = new Texture(Gdx.files.internal("FireGloveDown.png"));
 
         TextureRegion[][] tmp = TextureRegion.split(attackingSheet, attackingSheet.getWidth() / (FIRE_RIGHT_FRAME_COLS),
                 attackingSheet.getHeight() / FIRE_RIGHT_FRAME_ROW); 
     
-        attackingUpFrames = new TextureRegion[FIRE_RIGHT_FRAME_COLS * FIRE_RIGHT_FRAME_ROW];
+        attackingDownFrames = new TextureRegion[FIRE_RIGHT_FRAME_COLS * FIRE_RIGHT_FRAME_ROW];
 
  
         int index = 0;
         for (int i = 0; i < FIRE_RIGHT_FRAME_ROW; i++) {
             for (int j = 0; j < FIRE_RIGHT_FRAME_COLS; j++) {
-                attackingUpFrames[index++] = tmp[i][j];
+                attackingDownFrames[index++] = tmp[i][j];
             }
         }
         //index = 0;
-        upIdling = new Animation(0.025f, attackingUpFrames);
+        downIdling = new Animation(0.025f, attackingDownFrames);
         
         stateTime = 0f;
 
@@ -71,7 +71,7 @@ public class FireGloveUpAnima {
     
     public void showFireAnimation(SpriteBatch spriteBatch, int x, int y){
         stateTime += Gdx.graphics.getDeltaTime();          
-        currentFrame = upIdling.getKeyFrame(stateTime, true);  // #16
+        currentFrame = downIdling.getKeyFrame(stateTime, true);  // #16
         spriteBatch.draw(currentFrame, x, y);             // #17
     }
 
