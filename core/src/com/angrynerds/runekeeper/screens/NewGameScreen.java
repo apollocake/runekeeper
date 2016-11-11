@@ -20,6 +20,7 @@ import com.angrynerds.runekeeper.GrassEnemyType;
 import com.angrynerds.runekeeper.sound.EnemyPainSfx;
 import com.angrynerds.runekeeper.sound.MusicManager;
 import com.angrynerds.runekeeper.HealTotem;
+import com.angrynerds.runekeeper.HitBoxRenderer;
 import com.angrynerds.runekeeper.OreEnemyType;
 import com.angrynerds.runekeeper.WaterEnemyType;
 import com.badlogic.gdx.Game;
@@ -40,6 +41,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -89,6 +91,8 @@ public class NewGameScreen extends RunekeeperScreen {
     private final Skin skin;
     private boolean startedDying;
     private int buffPower;
+    private final HitBoxRenderer hitboxRenderer;
+    
 
     public NewGameScreen(Game game) {
         super(game);
@@ -101,6 +105,7 @@ public class NewGameScreen extends RunekeeperScreen {
         musicManager = new MusicManager(playerCollision);
         enemyPainSfx = new EnemyPainSfx();
         renderer = new OrthogonalTiledMapRenderer(map);
+        hitboxRenderer = new HitBoxRenderer();
         camera = new OrthographicCamera();
         player = new Player(25, 25);
         player.addObserver(playerCollision);
@@ -308,7 +313,7 @@ public class NewGameScreen extends RunekeeperScreen {
         for (Entity entity : this.entities) {
             if (player.state.equals("ALIVE")) {
                 if (gamestatus != GAME_PAUSED) {
-                    if (player.bounds.overlaps(entity.getRec())) {
+                    if (player.bounds.overlaps(new Rectangle(entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y))) {
                         if (!player.attack.isEmpty()) {
                             System.out.println("You Hit The ENEMY");
                             enemyPainSfx.play(entity.getName(), delta);
@@ -364,8 +369,15 @@ public class NewGameScreen extends RunekeeperScreen {
                     renderer.getBatch().draw(entity.getAnimation().downIdling.getKeyFrame(delta, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
                 }
             }
+                    renderer.getBatch().end();
+                    hitboxRenderer.setProjectionMatrix(camera.combined);
+                    //get dimensions needs to be used because sprite is resized after setting getRec width/height
+                    hitboxRenderer.drawBox(entity.getRec(), entity.getDimensions());
+                    renderer.getBatch().begin();
         }
         renderer.getBatch().end();
+        hitboxRenderer.setProjectionMatrix(camera.combined);
+        hitboxRenderer.drawBox(player.bounds);
         stage.draw();
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
 

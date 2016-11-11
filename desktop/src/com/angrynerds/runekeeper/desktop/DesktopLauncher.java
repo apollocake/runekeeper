@@ -9,6 +9,8 @@ public class DesktopLauncher {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
                 config.width = 1200;
                 config.height = 800;
+                //reduces flicker on map
+                config.vSyncEnabled = true;
 		new LwjglApplication(new Main(), config);
 	}
 }

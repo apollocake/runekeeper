@@ -45,7 +45,7 @@ public class EntityAnimation {
     TextureRegion[] walkingLeftFrames;
     TextureRegion[] walkingRightFrames;
     TextureRegion[][] tmp2;
-     TextureRegion[][] dyingtmp;
+    TextureRegion[][] dyingtmp;
     public Vector2 pos = new Vector2();
     Animation currentAnimation;
 
