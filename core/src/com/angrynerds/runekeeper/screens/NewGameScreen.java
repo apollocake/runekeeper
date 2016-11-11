@@ -35,6 +35,7 @@ import static com.badlogic.gdx.graphics.TextureData.TextureDataType.Pixmap;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.angrynerds.runekeeper.sound.EnemyAttackSound;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -89,6 +90,8 @@ public class NewGameScreen extends RunekeeperScreen {
     private final Skin skin;
     private boolean startedDying;
     private int buffPower;
+    
+    private final EnemyAttackSound enemyAttackSound;
 
     public NewGameScreen(Game game) {
         super(game);
@@ -104,6 +107,7 @@ public class NewGameScreen extends RunekeeperScreen {
         camera = new OrthographicCamera();
         player = new Player(25, 25);
         player.addObserver(playerCollision);
+        enemyAttackSound = new EnemyAttackSound();
 
         gamestatus = GAME_RUNNING;
         skin = new Skin(Gdx.files.internal("uiskin.json"));
@@ -320,6 +324,7 @@ public class NewGameScreen extends RunekeeperScreen {
                         player.damage(1); //subtract health from healthbar
 
                         renderer.getBatch().draw(entity.getAnimation().enemyAttack.getKeyFrame(delta, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
+                        enemyAttackSound.play();
                         renderer.getBatch().setColor(nullColor);
 
                         buffPower = player.getCurrentBuff().buffEntity(((Enemy) entity).getEnemyType(), this.player.getAttackPower());
