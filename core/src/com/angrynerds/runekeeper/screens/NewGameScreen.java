@@ -110,7 +110,7 @@ public class NewGameScreen extends RunekeeperScreen {
         renderer = new OrthogonalTiledMapRenderer(map);
         hitboxRenderer = new HitBoxRenderer();
         camera = new OrthographicCamera();
-        player = new Player(0* tileWidth, 0 * tileHeight);
+        player = new Player(25* tileWidth, 25 * tileHeight);
         player.addObserver(playerCollision);
 
         gamestatus = GAME_RUNNING;
