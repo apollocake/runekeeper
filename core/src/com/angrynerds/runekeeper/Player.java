@@ -93,7 +93,7 @@ public class Player extends Observable {
     private int attackPower;
     private Buff currentBuff;
     public Rectangle bounds = new Rectangle();
-    public Vector2 pos = new Vector2();
+    //public Vector2 pos = new Vector2();
 
     private int lives;
     private final float MAX_HEALTH = 100;
