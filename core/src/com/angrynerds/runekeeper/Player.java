@@ -134,14 +134,14 @@ public class Player extends Observable {
 
         stateTime = 0;
 
-        bounds.width = 20;
-        bounds.height = 20;
+        playerAnimation = new PlayerAnimation(pos.x, pos.y);
+        animation = playerAnimation.downIdling;
+        bounds.width = this.playerAnimation.getHeight();
+        bounds.height = this.playerAnimation.getWidth();
 
         bounds.x = pos.x;
         bounds.y = pos.y;
 
-        playerAnimation = new PlayerAnimation(pos.x, pos.y);
-        animation = playerAnimation.downIdling;
         //gloveRuneAnimation = fireGloveRightAnima.rightIdling;
         //glove.draw(batch);
     }
