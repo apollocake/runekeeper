@@ -150,6 +150,10 @@ public class Enemy implements Entity {
     public void patrol(Vector2 pos) {
         this.pos = enemyPatrol.patrol(pos);
     }
+    
+    public void playAttackSound(){
+        
+    }
 
     @Override
     public void setPatrol(EnemyPatrol patrolType) {

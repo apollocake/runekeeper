@@ -36,6 +36,7 @@ import static com.badlogic.gdx.graphics.TextureData.TextureDataType.Pixmap;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.angrynerds.runekeeper.sound.EnemyAttackSound;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -91,8 +92,12 @@ public class NewGameScreen extends RunekeeperScreen {
     private final Skin skin;
     private boolean startedDying;
     private int buffPower;
+    
+    private final EnemyAttackSound enemyAttackSound;
+
     private final HitBoxRenderer hitboxRenderer;
     
+
 
     public NewGameScreen(Game game) {
         super(game);
@@ -112,6 +117,7 @@ public class NewGameScreen extends RunekeeperScreen {
         camera = new OrthographicCamera();
         player = new Player(25* tileWidth, 25 * tileHeight);
         player.addObserver(playerCollision);
+        enemyAttackSound = new EnemyAttackSound();
 
         gamestatus = GAME_RUNNING;
         skin = new Skin(Gdx.files.internal("uiskin.json"));
@@ -148,6 +154,7 @@ public class NewGameScreen extends RunekeeperScreen {
             super(title, skin, windowStyleName);
             initPlayer();
         }
+
         public SaveDialog(String title, Skin skin) {
             super(title, skin);
             initPlayer();
@@ -341,11 +348,13 @@ public class NewGameScreen extends RunekeeperScreen {
                             
                         } else {
                             renderer.getBatch().setColor(nullColor);
+                            enemyAttackSound.play();
                         }
                         player.isHit();
                         player.damage(1); //subtract health from healthbar
 
                         renderer.getBatch().draw(entity.getAnimation().enemyAttack.getKeyFrame(delta, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
+                        
                         renderer.getBatch().setColor(nullColor);
                         
                         
