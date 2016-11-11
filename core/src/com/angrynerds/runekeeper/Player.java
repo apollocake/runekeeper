@@ -146,18 +146,35 @@ public class Player extends Observable {
         //glove.draw(batch);
     }
 
+    /**
+     *
+     * @param healthBar
+     */
     public void setHealthBar(HealthBar healthBar) {
         this.healthBar = healthBar;
     }
 
+    /**
+     *
+     * @return
+     */
     public HealthBar getHealthBar() {
         return this.healthBar;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getPlayerLives() {
         return lives;
     }
 
+    /**
+     *This is how you use addPlayerLives
+     * 
+     * @param life
+     */
     public void addPlayerLives(int life) {
         this.lives += life;
     }
@@ -603,6 +620,11 @@ public class Player extends Observable {
 
     }
 
+    /**
+     *
+     * @param x
+     * @param y
+     */
     public void setPosition(float x, float y) {
         setX(x);
         setY(y);
