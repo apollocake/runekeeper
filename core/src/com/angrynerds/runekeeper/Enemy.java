@@ -38,7 +38,6 @@ public class Enemy implements Entity {
     private int lives;
     public String state;
     private Rectangle bounds;
-    public boolean isAlive;
 
     public Enemy(EntityAnimation newAnimation, String newName, float x, float y, DifficultyType difficulty, EnemyPatrol newEnemyPatrol, EnemyType enemyType) {
 
@@ -49,8 +48,7 @@ public class Enemy implements Entity {
         this.animation = newAnimation;
         this.enemyName = newName;
         this.enemyType = enemyType;
-        bounds = new Rectangle(this.pos.x, this.pos.y, this.getAnimation().getSpriteWidth(), this.getAnimation().getSpriteHeight());
-        isAlive = true;
+        bounds = new Rectangle(this.pos.x, this.pos.y, getDimensions().x, getDimensions().y);
 
         this.enemyPatrol = newEnemyPatrol;
         difficulty.TransformEntity(this);
@@ -67,7 +65,6 @@ public class Enemy implements Entity {
                 getHealthBar().healthBar.setVisible(false);
                 setCurrentHealth(0);
                 state = "DYING";
-                isAlive = false;
             }
         } else {
             setCurrentHealth(getCurrentHealth() - damage);
@@ -224,10 +221,5 @@ public class Enemy implements Entity {
      */
     public void setHealthBar(HealthBar healthBar) {
         this.healthBar = healthBar;
-    }
-
-    @Override
-    public boolean isAlive() {
-      return isAlive;
     }
 }

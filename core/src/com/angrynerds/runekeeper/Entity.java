@@ -16,8 +16,6 @@ public interface Entity {
     public EntityAnimation getAnimation();
 
     public Vector2 getPosition();
-     
-    public boolean isAlive();
 
     public Rectangle getRec();
 

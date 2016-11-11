@@ -111,7 +111,7 @@ public class Player extends Observable {
         state = "ALIVE";
         pos.x = x;
         pos.y = y;
-        healthBar = new HealthBar(MAX_HEALTH, 20, 90);
+        healthBar = new HealthBar(MAX_HEALTH, x, y);
         rnFire.setRune(new RuneFire());
         rnWater.setRune(new RuneWater());
         rnGrass.setRune(new RuneGrass());
@@ -134,14 +134,14 @@ public class Player extends Observable {
 
         stateTime = 0;
 
-        playerAnimation = new PlayerAnimation(pos.x, pos.y);
-        animation = playerAnimation.downIdling;
-        bounds.width = this.playerAnimation.getHeight();
-        bounds.height = this.playerAnimation.getWidth();
+        bounds.width = 20;
+        bounds.height = 20;
 
         bounds.x = pos.x;
         bounds.y = pos.y;
 
+        playerAnimation = new PlayerAnimation(pos.x, pos.y);
+        animation = playerAnimation.downIdling;
         //gloveRuneAnimation = fireGloveRightAnima.rightIdling;
         //glove.draw(batch);
     }
