@@ -34,15 +34,18 @@ public class EntityAnimation {
     public Animation rightIdling;
 
     public Animation enemyAttack;
+     public Animation dyingAnimation;
 
     Texture walkingSheet;
     Texture walkingSheet2;
+    Texture dyingSheet;
 
     TextureRegion[] walkingUpFrames;
     TextureRegion[] walkingDownFrames;
     TextureRegion[] walkingLeftFrames;
     TextureRegion[] walkingRightFrames;
     TextureRegion[][] tmp2;
+    TextureRegion[][] dyingtmp;
     public Vector2 pos = new Vector2();
     Animation currentAnimation;
 
@@ -68,9 +71,16 @@ public class EntityAnimation {
     private void createAnimations() {
 
         walkingSheet = new Texture(Gdx.files.internal(this.pictureName));
+        dyingSheet = new Texture(Gdx.files.internal("orbdyinganimations.png"));
 
         TextureRegion[][] tmp = TextureRegion.split(walkingSheet, walkingSheet.getWidth() / this.cols,
                 walkingSheet.getHeight() / this.rows); //There are 4 rows.
+        
+        
+        TextureRegion[][] dyingtmp = TextureRegion.split(dyingSheet, dyingSheet.getWidth() / 12,
+                dyingSheet.getHeight() / 8); 
+        
+        dyingAnimation = new Animation(0.5f, dyingtmp[6][0]);
 
         if (this.pictureName.equals("demon.png")) {
             pictureName2 = "demon2.png";
