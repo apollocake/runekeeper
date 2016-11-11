@@ -13,25 +13,16 @@ public class HitBoxRenderer extends ShapeRenderer {
     }
 
     public void drawBox(Rectangle bounds) {
-
-        //Gdx.gl.glEnable(GL20.GL_BLEND);
-        //Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         super.begin(ShapeType.Line);
         super.setColor(Color.RED);
-        //don't use bounds width and height, resizing transormation pattern makes it moot
         super.rect(bounds.x, bounds.y, bounds.width, bounds.height); 
-        //Gdx.gl.glDisable(GL20.GL_BLEND);
         super.end();
     }
         public void drawBox(Rectangle bounds, Vector2 newDimensions) {
-
-        //Gdx.gl.glEnable(GL20.GL_BLEND);
-        //Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         super.begin(ShapeType.Line);
         super.setColor(Color.RED);
-        //don't use bounds width and height, resizing transormation pattern makes it moot
+        //don't use bounds width and height on enemy, resizing transormation pattern makes it moot
         super.rect(bounds.x, bounds.y, newDimensions.x, newDimensions.y); 
-        //Gdx.gl.glDisable(GL20.GL_BLEND);
         super.end();
     }
 }

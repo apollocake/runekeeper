@@ -111,7 +111,7 @@ public class Player extends Observable {
         state = "ALIVE";
         pos.x = x;
         pos.y = y;
-        healthBar = new HealthBar(MAX_HEALTH, x, y);
+        healthBar = new HealthBar(MAX_HEALTH, 20, 90);
         rnFire.setRune(new RuneFire());
         rnWater.setRune(new RuneWater());
         rnGrass.setRune(new RuneGrass());

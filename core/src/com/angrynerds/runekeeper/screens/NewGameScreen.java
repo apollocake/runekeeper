@@ -63,7 +63,7 @@ public class NewGameScreen extends RunekeeperScreen {
 
     Color nullColor;
 
-    Label livesLabel, attackLabel, attackBuffLabel, buffLabel;
+    Label livesLabel, attackLabel, attackBuffLabel, buffLabel, posLabel;
     BitmapFont font;
     LabelStyle textStyle;
     public Player player;
@@ -99,6 +99,9 @@ public class NewGameScreen extends RunekeeperScreen {
         TmxMapLoader loader = new TmxMapLoader();
         map = loader.load("worldmap.tmx");
         TiledMapTileLayer collisionLayer = (TiledMapTileLayer) map.getLayers().get(0);
+        TiledMapTileLayer totemLayer = (TiledMapTileLayer) map.getLayers().get(1);
+        float tileWidth = collisionLayer.getTileWidth();
+        float tileHeight = collisionLayer.getTileHeight();
 
         buffPower = 0;
         playerCollision = new MusicCollision(collisionLayer); //should rename to musicLevelCollision
@@ -107,7 +110,7 @@ public class NewGameScreen extends RunekeeperScreen {
         renderer = new OrthogonalTiledMapRenderer(map);
         hitboxRenderer = new HitBoxRenderer();
         camera = new OrthographicCamera();
-        player = new Player(25, 25);
+        player = new Player(25* tileWidth, 25 * tileHeight);
         player.addObserver(playerCollision);
 
         gamestatus = GAME_RUNNING;
@@ -121,19 +124,19 @@ public class NewGameScreen extends RunekeeperScreen {
         DifficultyType easyDifficulty = new EasyDifficultyType(new Vector2(40, 40));
         DifficultyType bossDifficulty = new BossDifficultyType(new Vector2(100, 100));
 
-        entities.add(new Enemy(new EntityAnimation(4, 1, 1, 0, 1, 4, 3, "demon.png"), "Demon", 350, 300, easyDifficulty, new BoxPatrol(), new FireEnemyType()));
-        entities.add(new Enemy(new EntityAnimation(2, 1, 1, 0, 1, 2, 2, "ghost.png"), "Ghost", 250, 200, easyDifficulty, new BoxPatrol(), new OreEnemyType()));
-        entities.add(new Enemy(new EntityAnimation(11, 1, 1, 0, 1, 11, 5, "goblin.png"), "Goblin", 150, 250, easyDifficulty, new BoxPatrol(), new GrassEnemyType()));
-        entities.add(new Enemy(new EntityAnimation(10, 1, 1, 0, 1, 10, 10, "orc.png"), "Orc", 150, 150, easyDifficulty, new BoxPatrol(), new GrassEnemyType()));
-        entities.add(new Enemy(new EntityAnimation(3, 1, 1, 2, 1, 3, 4, "snake.png"), "Snake", 100, 300, easyDifficulty, new BoxPatrol(), new GrassEnemyType()));
-        entities.add(new Enemy(new EntityAnimation(8, 1, 1, 0, 1, 8, 5, "wizard.png"), "Wizard", 275, 100, easyDifficulty, new BoxPatrol(), new WaterEnemyType()));
-        entities.add(new Enemy(new EntityAnimation(2, 1, 1, 0, 1, 10, 4, "ghostking.png"), "Ghost King", 550, 100, bossDifficulty, new BoxPatrol(), new OreEnemyType()));
-        entities.add(new Enemy(new EntityAnimation(11, 1, 1, 0, 1, 10, 10, "goblinking.png"), "Goblin King", 420, 250, new BossDifficultyType(new Vector2(175, 175)), new BoxPatrol(), new GrassEnemyType()));
-        entities.add(new Enemy(new EntityAnimation(1, 0, 0, 0, 0, 4, 4, "snakeking.png"), "Snake King", 420, 350, bossDifficulty, new BoxPatrol(), new GrassEnemyType()));
-        entities.add(new Enemy(new EntityAnimation(1, 0, 0, 0, 0, 8, 8, "evilwizard.png"), "Evil Wizard", 220, 450, bossDifficulty, new BoxPatrol(), new WaterEnemyType()));
-        entities.add(new Enemy(new EntityAnimation(1, 0, 0, 0, 0, 3, 4, "meteorbeast.png"), "Meteor Beast", 180, 430, bossDifficulty, new BoxPatrol(), new FireEnemyType()));
+        entities.add(new Enemy(new EntityAnimation(4, 1, 1, 0, 1, 4, 3, "demon.png"), "Demon", tileWidth * 28, tileHeight * 30, easyDifficulty, new BoxPatrol(), new FireEnemyType()));
+        entities.add(new Enemy(new EntityAnimation(2, 1, 1, 0, 1, 2, 2, "ghost.png"), "Ghost", tileWidth * 29,tileHeight * 34, easyDifficulty, new BoxPatrol(), new OreEnemyType()));
+        entities.add(new Enemy(new EntityAnimation(11, 1, 1, 0, 1, 11, 5, "goblin.png"), "Goblin", tileWidth * 24, tileHeight * 28, easyDifficulty, new BoxPatrol(), new GrassEnemyType()));
+        entities.add(new Enemy(new EntityAnimation(10, 1, 1, 0, 1, 10, 10, "orc.png"), "Orc", tileWidth * 21, tileHeight * 22, easyDifficulty, new BoxPatrol(), new GrassEnemyType()));
+        entities.add(new Enemy(new EntityAnimation(3, 1, 1, 2, 1, 3, 4, "snake.png"), "Snake", tileWidth * 21, tileHeight * 23, easyDifficulty, new BoxPatrol(), new GrassEnemyType()));
+        entities.add(new Enemy(new EntityAnimation(8, 1, 1, 0, 1, 8, 5, "wizard.png"), "Wizard", tileWidth * 21, tileHeight * 24, easyDifficulty, new BoxPatrol(), new WaterEnemyType()));
+        entities.add(new Enemy(new EntityAnimation(2, 1, 1, 0, 1, 10, 4, "ghostking.png"), "Ghost King", tileWidth * 21, tileHeight * 21, bossDifficulty, new BoxPatrol(), new OreEnemyType()));
+        entities.add(new Enemy(new EntityAnimation(11, 1, 1, 0, 1, 10, 10, "goblinking.png"), "Goblin King", tileWidth * 35, tileHeight * 34, new BossDifficultyType(new Vector2(175, 175)), new BoxPatrol(), new GrassEnemyType()));
+        entities.add(new Enemy(new EntityAnimation(1, 0, 0, 0, 0, 4, 4, "snakeking.png"), "Snake King", tileWidth * 26, tileHeight * 21, bossDifficulty, new BoxPatrol(), new GrassEnemyType()));
+        entities.add(new Enemy(new EntityAnimation(1, 0, 0, 0, 0, 8, 8, "evilwizard.png"), "Evil Wizard", tileWidth * 30, tileHeight * 21, bossDifficulty, new BoxPatrol(), new WaterEnemyType()));
+        entities.add(new Enemy(new EntityAnimation(1, 0, 0, 0, 0, 3, 4, "meteorbeast.png"), "Meteor Beast", tileWidth * 34, tileHeight * 21, bossDifficulty, new BoxPatrol(), new FireEnemyType()));
 
-        healTotem = new HealTotem("totem01", collisionLayer);
+        healTotem = new HealTotem("totem01", totemLayer);
         player.addObserver(healTotem);
     }
 
@@ -145,7 +148,6 @@ public class NewGameScreen extends RunekeeperScreen {
             super(title, skin, windowStyleName);
             initPlayer();
         }
-
         public SaveDialog(String title, Skin skin) {
             super(title, skin);
             initPlayer();
@@ -268,11 +270,16 @@ public class NewGameScreen extends RunekeeperScreen {
         buffLabel = new Label("Current Buff: " + player.getCurrentBuff().getName(), textStyle);
         buffLabel.setColor(Color.GREEN);
         buffLabel.setPosition(20, 370);
-
+        
+        posLabel = new Label("Position: " + player.getPosition().x + " " + player.getPosition().y, textStyle);
+        posLabel.setColor(Color.GREEN);
+        posLabel.setPosition(20, 350);
+        
         stage.addActor(livesLabel);
         stage.addActor(attackLabel);
         stage.addActor(attackBuffLabel);
         stage.addActor(buffLabel);
+        stage.addActor(posLabel);
         stage.addActor(player.getHealthBar().healthBar);
         camera.position.set(player.getX() + 350, player.getY() + 220, 0);
 
@@ -292,10 +299,13 @@ public class NewGameScreen extends RunekeeperScreen {
         attackLabel.setText("Attack Power: " + player.getAttackPower());
         attackBuffLabel.setText("Attack Power with Buff: " + buffPower);
         buffLabel.setText("Current Buff: " + player.getCurrentBuff().getName());
+        posLabel.setText("Position: " + player.getPosition().x + " " + player.getPosition().y);
 
         renderer.setView(camera);
         renderer.getBatch().begin();
-        renderer.renderTileLayer((TiledMapTileLayer) map.getLayers().get("floor"));
+        renderer.renderTileLayer((TiledMapTileLayer) map.getLayers().get(0));
+        renderer.renderTileLayer((TiledMapTileLayer) map.getLayers().get(1));
+        renderer.renderTileLayer((TiledMapTileLayer) map.getLayers().get(2));
 
         playerPos = player.getPosition();
         currentFrame = player.animation.getKeyFrame(player.stateTime, true);
