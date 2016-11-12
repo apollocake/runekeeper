@@ -34,7 +34,7 @@ public class EntityAnimation {
     public Animation rightIdling;
 
     public Animation enemyAttack;
-     public Animation dyingAnimation;
+    public Animation dyingAnimation;
 
     Texture walkingSheet;
     Texture walkingSheet2;
@@ -75,12 +75,11 @@ public class EntityAnimation {
 
         TextureRegion[][] tmp = TextureRegion.split(walkingSheet, walkingSheet.getWidth() / this.cols,
                 walkingSheet.getHeight() / this.rows); //There are 4 rows.
-        
-        
+
         TextureRegion[][] dyingtmp = TextureRegion.split(dyingSheet, dyingSheet.getWidth() / 12,
-                dyingSheet.getHeight() / 8); 
-        
-        dyingAnimation = new Animation(0.5f, dyingtmp[6][0]);
+                dyingSheet.getHeight() / 8);
+
+        dyingAnimation = new Animation(2, dyingtmp[6][0]);
 
         if (this.pictureName.equals("demon.png")) {
             pictureName2 = "demon2.png";
@@ -91,27 +90,27 @@ public class EntityAnimation {
         } else if (this.pictureName.equals("orc.png")) {
             enemyAttack = new Animation(0.025f, tmp[3][6]);
         } else if (this.pictureName.equals("evilwizard.png")) {
-                     enemyAttack = new Animation(0.025f, tmp[6][4]);
+            enemyAttack = new Animation(0.025f, tmp[6][4]);
         } else if (this.pictureName.equals("ghostking.png")) {
-                     enemyAttack = new Animation(0.025f, tmp[2][9]);
+            enemyAttack = new Animation(0.025f, tmp[2][9]);
         } else if (this.pictureName.equals("goblinking.png")) {
-                     enemyAttack = new Animation(0.025f, tmp[8][7]);
+            enemyAttack = new Animation(0.025f, tmp[8][7]);
         } else if (this.pictureName.equals("snakeking.png")) {
-                  enemyAttack = new Animation(0.025f, tmp[0][3]);
+            enemyAttack = new Animation(0.025f, tmp[0][3]);
         } else if (this.pictureName.equals("ghost.png")) {
             pictureName2 = "ghost.png";
             walkingSheet2 = new Texture(Gdx.files.internal(this.pictureName2));
             tmp2 = TextureRegion.split(walkingSheet2, walkingSheet2.getWidth() / this.cols,
                     walkingSheet2.getHeight() / this.rows);
             enemyAttack = new Animation(0.025f, tmp2[this.walkingUpFrameRow][0]);
-            
+
         } else if (this.pictureName.equals("meteorbeast.png")) {
             pictureName2 = "meteorbeast2.png";
             walkingSheet2 = new Texture(Gdx.files.internal(this.pictureName2));
             tmp2 = TextureRegion.split(walkingSheet2, walkingSheet2.getWidth() / this.cols,
                     walkingSheet2.getHeight() / this.rows);
             enemyAttack = new Animation(0.025f, tmp2[this.walkingDownFrameRow][0]);
-            
+
         } else if (this.pictureName.equals("snake.png")) {
             pictureName2 = "snake2.png";
             walkingSheet2 = new Texture(Gdx.files.internal(this.pictureName2));
@@ -127,8 +126,6 @@ public class EntityAnimation {
         } else {
             enemyAttack = new Animation(0.025f, tmp[this.walkingUpFrameRow][0]);
         }
-
-      
 
         walkingUpFrames = new TextureRegion[this.walkingFrameCol - 1];
         walkingDownFrames = new TextureRegion[this.walkingFrameCol - 1];
