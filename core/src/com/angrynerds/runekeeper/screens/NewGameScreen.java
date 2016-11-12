@@ -193,7 +193,7 @@ public class NewGameScreen extends RunekeeperScreen {
                 }
             }
             gamestatus = GAME_RUNNING;
-            musicManager.play();
+            //musicManager.play();
         }
 
     }
@@ -245,7 +245,7 @@ public class NewGameScreen extends RunekeeperScreen {
                 }
             }
             gamestatus = GAME_RUNNING;
-            musicManager.play();
+            //musicManager.play();
         }
 
     }
@@ -411,7 +411,7 @@ public class NewGameScreen extends RunekeeperScreen {
             if (Gdx.input.isKeyJustPressed(Input.Keys.Y)) {
                 //move to a different game screen
                 if (gamestatus == GAME_PAUSED) {
-                    musicManager.play();
+                    //musicManager.play();
                     gamestatus = GAME_RUNNING;
                     saveDia.hide();
                 } else {
@@ -426,7 +426,7 @@ public class NewGameScreen extends RunekeeperScreen {
             if (Gdx.input.isKeyJustPressed(Input.Keys.M)) {
                 //move to a different game screen
                 if (gamestatus == GAME_PAUSED) {
-                    musicManager.play();
+                    ///musicManager.play();
                     gamestatus = GAME_RUNNING;
                     skillsDia.hide();
                 } else {
