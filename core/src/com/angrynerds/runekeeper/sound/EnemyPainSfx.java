@@ -15,7 +15,9 @@ import com.angrynerds.runekeeper.sound.WaterAreaMusic;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import java.util.Observable;
 import java.util.Observer;
-
+/**
+ *Manages and controls the pain sound effects for multiple enemies.
+ */
 public class EnemyPainSfx {
 
     private final float DELTA_MAX = 0.3f; //for preventing triggering sound faster than it can play

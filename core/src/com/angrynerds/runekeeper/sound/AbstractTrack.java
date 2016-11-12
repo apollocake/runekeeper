@@ -1,5 +1,9 @@
 package com.angrynerds.runekeeper.sound;
-
+/**
+ *Implementation agnostic abstract class that blindly uses a SoundFile interface. For example, to set
+ * up a background music track for playing, fireArea =  new BgmTrack(new FireAreaMusic()). Then call
+ * fireArea.play() or fireArea.pause() or fireArea.dispose()...etc
+ */
 public abstract class AbstractTrack {
 
     protected SoundFile soundFile;
