@@ -24,6 +24,8 @@ public class MenuScreen extends RunekeeperScreen {
     SpriteBatch batch;
     float time = 0;
 
+    public static int GAME_RESUME = 0;
+
     public MenuScreen(Game game) {
         super(game);
     }
@@ -82,6 +84,14 @@ public class MenuScreen extends RunekeeperScreen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 game.setScreen(new MessageScreen(game));
+            }
+        });
+
+        resumeButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                GAME_RESUME = 1;
+                game.setScreen(new NewGameScreen(game));
             }
         });
     }

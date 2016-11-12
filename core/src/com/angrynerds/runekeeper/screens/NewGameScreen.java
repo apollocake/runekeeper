@@ -37,6 +37,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.angrynerds.runekeeper.sound.EnemyAttackSound;
+import static com.angrynerds.runekeeper.screens.MenuScreen.GAME_RESUME;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -85,19 +86,17 @@ public class NewGameScreen extends RunekeeperScreen {
     public static int gamestatus;
 
     SkillsDialog skillsDia;
-    
+
     private final MusicCollision playerCollision;
     private final EnemyPainSfx enemyPainSfx;
     public static MusicManager musicManager;
     private final Skin skin;
     private boolean startedDying;
     private int buffPower;
-    
+
     private final EnemyAttackSound enemyAttackSound;
 
     private final HitBoxRenderer hitboxRenderer;
-    
-
 
     public NewGameScreen(Game game) {
         super(game);
@@ -115,7 +114,7 @@ public class NewGameScreen extends RunekeeperScreen {
         renderer = new OrthogonalTiledMapRenderer(map);
         hitboxRenderer = new HitBoxRenderer();
         camera = new OrthographicCamera();
-        player = new Player(25* tileWidth, 25 * tileHeight);
+        player = new Player(25 * tileWidth, 25 * tileHeight);
         player.addObserver(playerCollision);
         enemyAttackSound = new EnemyAttackSound();
 
@@ -131,7 +130,7 @@ public class NewGameScreen extends RunekeeperScreen {
         DifficultyType bossDifficulty = new BossDifficultyType(new Vector2(100, 100));
 
         entities.add(new Enemy(new EntityAnimation(4, 1, 1, 0, 1, 4, 3, "demon.png"), "Demon", tileWidth * 28, tileHeight * 30, easyDifficulty, new BoxPatrol(), new FireEnemyType()));
-        entities.add(new Enemy(new EntityAnimation(2, 1, 1, 0, 1, 2, 2, "ghost.png"), "Ghost", tileWidth * 29,tileHeight * 34, easyDifficulty, new BoxPatrol(), new OreEnemyType()));
+        entities.add(new Enemy(new EntityAnimation(2, 1, 1, 0, 1, 2, 2, "ghost.png"), "Ghost", tileWidth * 29, tileHeight * 34, easyDifficulty, new BoxPatrol(), new OreEnemyType()));
         entities.add(new Enemy(new EntityAnimation(11, 1, 1, 0, 1, 11, 5, "goblin.png"), "Goblin", tileWidth * 24, tileHeight * 28, easyDifficulty, new BoxPatrol(), new GrassEnemyType()));
         entities.add(new Enemy(new EntityAnimation(10, 1, 1, 0, 1, 10, 10, "orc.png"), "Orc", tileWidth * 21, tileHeight * 22, easyDifficulty, new BoxPatrol(), new GrassEnemyType()));
         entities.add(new Enemy(new EntityAnimation(3, 1, 1, 2, 1, 3, 4, "snake.png"), "Snake", tileWidth * 21, tileHeight * 23, easyDifficulty, new BoxPatrol(), new GrassEnemyType()));
@@ -188,7 +187,7 @@ public class NewGameScreen extends RunekeeperScreen {
                 GameStates.gsExport(this.player);
             } else if (object == "load") {
                 try {
-                    GameStates.gsImport();
+                    GameStates.gsImport(this.player);
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(NewGameScreen.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -199,7 +198,7 @@ public class NewGameScreen extends RunekeeperScreen {
 
     }
 
-        public static class SkillsDialog extends Dialog {
+    public static class SkillsDialog extends Dialog {
 
         private Player player;
 
@@ -240,7 +239,7 @@ public class NewGameScreen extends RunekeeperScreen {
                 GameStates.gsExport(this.player);
             } else if (object == "-") {
                 try {
-                    GameStates.gsImport();
+                    GameStates.gsImport(this.player);
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(NewGameScreen.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -250,8 +249,7 @@ public class NewGameScreen extends RunekeeperScreen {
         }
 
     }
-    
-    
+
     @Override
     public void show() {
         stage = new Stage();
@@ -277,11 +275,11 @@ public class NewGameScreen extends RunekeeperScreen {
         buffLabel = new Label("Current Buff: " + player.getCurrentBuff().getName(), textStyle);
         buffLabel.setColor(Color.GREEN);
         buffLabel.setPosition(20, 370);
-        
+
         posLabel = new Label("Position: " + player.getPosition().x + " " + player.getPosition().y, textStyle);
         posLabel.setColor(Color.GREEN);
         posLabel.setPosition(20, 350);
-        
+
         stage.addActor(livesLabel);
         stage.addActor(attackLabel);
         stage.addActor(attackBuffLabel);
@@ -335,17 +333,16 @@ public class NewGameScreen extends RunekeeperScreen {
                             System.out.println("You Hit The ENEMY");
                             enemyPainSfx.play(entity.getName(), delta);
                             //renderer.getBatch().setColor(Color.RED);
-                             entity.damage(25); //damage the enemy. called 4 times every time spacebar is hit, cannot fogure out why.
-                             
-                            if(!entity.isAlive())  //check if enemy is still alive
+                            entity.damage(25); //damage the enemy. called 4 times every time spacebar is hit, cannot fogure out why.
+
+                            if (!entity.isAlive()) //check if enemy is still alive
                             {
-                             renderer.getBatch().setColor(nullColor);      //change to nullColor or else entire screen turns red when enemy is killed
-                             renderer.getBatch().draw(entity.getAnimation().dyingAnimation.getKeyFrame(delta, true), entity.getPosition().x -50, entity.getPosition().y -50, entity.getDimensions().x + 150, entity.getDimensions().y + 150);
-                             this.entities.remove(entity);  //enemy has been killed remove it from the screen
-                               break;
+                                renderer.getBatch().setColor(nullColor);      //change to nullColor or else entire screen turns red when enemy is killed
+                                renderer.getBatch().draw(entity.getAnimation().dyingAnimation.getKeyFrame(delta, true), entity.getPosition().x - 50, entity.getPosition().y - 50, entity.getDimensions().x + 150, entity.getDimensions().y + 150);
+                                this.entities.remove(entity);  //enemy has been killed remove it from the screen
+                                break;
                             }
-                            
-                            
+
                         } else {
                             renderer.getBatch().setColor(nullColor);
                             enemyAttackSound.play();
@@ -354,10 +351,8 @@ public class NewGameScreen extends RunekeeperScreen {
                         player.damage(1); //subtract health from healthbar
 
                         renderer.getBatch().draw(entity.getAnimation().enemyAttack.getKeyFrame(delta, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
-                        
+
                         renderer.getBatch().setColor(nullColor);
-                        
-                        
 
                         buffPower = player.getCurrentBuff().buffEntity(((Enemy) entity).getEnemyType(), this.player.getAttackPower());
                         entity.damage(buffPower);
@@ -389,17 +384,26 @@ public class NewGameScreen extends RunekeeperScreen {
                     renderer.getBatch().draw(entity.getAnimation().downIdling.getKeyFrame(delta, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
                 }
             }
-                    renderer.getBatch().end();
-                    hitboxRenderer.setProjectionMatrix(camera.combined);
-                    //get dimensions needs to be used because sprite is resized after setting getRec width/height
-                    hitboxRenderer.drawBox(entity.getRec(), entity.getDimensions());
-                    renderer.getBatch().begin();
+            renderer.getBatch().end();
+            hitboxRenderer.setProjectionMatrix(camera.combined);
+            //get dimensions needs to be used because sprite is resized after setting getRec width/height
+            hitboxRenderer.drawBox(entity.getRec(), entity.getDimensions());
+            renderer.getBatch().begin();
         }
         renderer.getBatch().end();
         hitboxRenderer.setProjectionMatrix(camera.combined);
         hitboxRenderer.drawBox(player.bounds);
         stage.draw();
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
+
+        if (GAME_RESUME == 1) {
+            try {
+                GameStates.gsImport(this.player);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(NewGameScreen.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            GAME_RESUME = 0;
+        }
 
         time += delta;
         if (time > 1) {
@@ -418,7 +422,7 @@ public class NewGameScreen extends RunekeeperScreen {
                     saveDia.toFront();
                 }
             }
-            
+
             if (Gdx.input.isKeyJustPressed(Input.Keys.M)) {
                 //move to a different game screen
                 if (gamestatus == GAME_PAUSED) {
@@ -433,7 +437,7 @@ public class NewGameScreen extends RunekeeperScreen {
                     skillsDia.toFront();
                 }
             }
-            
+
             if (Gdx.input.isKeyJustPressed(Input.Keys.G)) {
                 //move to a different game screen
                 game.setScreen(new GameOverScreen(game));

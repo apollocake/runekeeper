@@ -145,6 +145,20 @@ public class Player extends Observable {
         //gloveRuneAnimation = fireGloveRightAnima.rightIdling;
         //glove.draw(batch);
     }
+    public void setPlayerLives(int setLife) {
+        this.lives = setLife;
+    }
+
+    public void setGloveSword(boolean fg, boolean wg, boolean gg, boolean og, boolean fs, boolean ws, boolean gs, boolean os) {
+        runeFireGlove = fg;
+        runeWaterGlove = wg;
+        runeGrassGlove = gg;
+        runeOreGlove = og;
+        runeFireSword = fs;
+        runeWaterSword = ws;
+        runeGrassSword = gs;
+        runeOreSword = os;
+    }
 
     public void setHealthBar(HealthBar healthBar) {
         this.healthBar = healthBar;
