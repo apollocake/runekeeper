@@ -45,12 +45,16 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -58,6 +62,7 @@ import java.util.logging.Logger;
 public class NewGameScreen extends RunekeeperScreen {
 
     Stage stage;
+    private static int skillsAdded;
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
     private OrthographicCamera camera;
@@ -100,6 +105,7 @@ public class NewGameScreen extends RunekeeperScreen {
 
     public NewGameScreen(Game game) {
         super(game);
+        skillsAdded = 0;
         TmxMapLoader loader = new TmxMapLoader();
         map = loader.load("worldmap.tmx");
         TiledMapTileLayer collisionLayer = (TiledMapTileLayer) map.getLayers().get(0);
@@ -143,6 +149,7 @@ public class NewGameScreen extends RunekeeperScreen {
 
         healTotem = new HealTotem("totem01", totemLayer);
         player.addObserver(healTotem);
+        musicManager.pause();
     }
 
     public static class SaveDialog extends Dialog {
@@ -201,6 +208,8 @@ public class NewGameScreen extends RunekeeperScreen {
     public static class SkillsDialog extends Dialog {
 
         private Player player;
+        private Label valueLabel;
+        private int value;
 
         public SkillsDialog(String title, Skin skin, String windowStyleName) {
             super(title, skin, windowStyleName);
@@ -226,26 +235,55 @@ public class NewGameScreen extends RunekeeperScreen {
         }
 
         {
-            text(".........");
-            button("+", "+");
-            button("-", "-");
-            key(Input.Keys.ESCAPE, false);
+
+        /*    try {
+                text(Integer.toString(player.getAttackPower()));
+            } catch(Exception e) {
+                text(".....................");
+            }
+        */
+
+//        x = player.getAttackPower();
+    //    valueLabel = new Label("Damage: " + Integer.toString(x), new Skin(Gdx.files.internal("uiskin.json")));
+    //    text(valueLabel);
+
+        text("Damage: ");
+
+        Button addButton = new TextButton("+", new Skin(Gdx.files.internal("uiskin.json")));
+        Button minusButton = new TextButton("-", new Skin(Gdx.files.internal("uiskin.json")));
+
+        button(addButton, this);
+        button(minusButton, this);
+
+        addButton.addListener(new ClickListener() {
+        @Override
+        public void clicked(InputEvent ie, float x, float y) {
+            System.out.println("Add Button clicked.");
+            player.setAttackPower(player.getAttackPower() + 1);
+            value = player.getAttackPower();
+            //text(Integer.toString(value));
+        }
+
+        });
+
+        minusButton.addListener(new ClickListener() {
+        @Override
+        public void clicked(InputEvent ie, float x, float y) {
+            System.out.println("Minus Button clicked.");
+            if(player.getAttackPower() > 0) {
+                player.setAttackPower(player.getAttackPower() - 1);
+                value = player.getAttackPower();
+                //text(Integer.toString(value));
+            }
+        }
+        });
+        key(Input.Keys.ESCAPE, false);
         }
 
         @Override
         protected void result(Object object) {
-
-            if (object == "+") {
-                GameStates.gsExport(this.player);
-            } else if (object == "-") {
-                try {
-                    GameStates.gsImport(this.player);
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(NewGameScreen.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
             gamestatus = GAME_RUNNING;
-            //musicManager.play();
+            musicManager.play();
         }
 
     }
@@ -287,11 +325,12 @@ public class NewGameScreen extends RunekeeperScreen {
         stage.addActor(posLabel);
         stage.addActor(player.getHealthBar().healthBar);
         camera.position.set(player.getX() + 350, player.getY() + 220, 0);
-
+        musicManager.pause();
     }
 
     @Override
     public void render(float delta) {
+        musicManager.pause();
         Gdx.gl.glClearColor(0.2f, 0.2f, 0.2f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
