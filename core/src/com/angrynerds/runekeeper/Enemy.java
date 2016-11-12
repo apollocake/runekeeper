@@ -39,6 +39,7 @@ public class Enemy implements Entity {
     public String state;
     private Rectangle bounds;
     public boolean isAlive;
+    private EnemyHue hue;
 
     public Enemy(EntityAnimation newAnimation, String newName, float x, float y, DifficultyType difficulty, EnemyPatrol newEnemyPatrol, EnemyType enemyType) {
 
@@ -55,6 +56,15 @@ public class Enemy implements Entity {
         this.enemyPatrol = newEnemyPatrol;
         difficulty.TransformEntity(this);
 
+        if (enemyType.getClass() == (new FireEnemyType()).getClass()) {
+            this.hue = new FireEnemyHue();
+        } else if(enemyType.getClass() == (new GrassEnemyType()).getClass()) {
+            this.hue = new GrassEnemyHue();
+        } else if(enemyType.getClass() == (new OreEnemyType()).getClass()) {
+            this.hue = new OreEnemyHue();
+        } else {
+            this.hue = new WaterEnemyHue();
+        }
     }
 
     public void damage(int damage) {
@@ -233,5 +243,19 @@ public class Enemy implements Entity {
     @Override
     public boolean isAlive() {
       return isAlive;
+    }
+
+    /**
+     * @return the hue
+     */
+    public EnemyHue getHue() {
+        return hue;
+    }
+
+    /**
+     * @param hue the hue to set
+     */
+    public void setHue(EnemyHue hue) {
+        this.hue = hue;
     }
 }
