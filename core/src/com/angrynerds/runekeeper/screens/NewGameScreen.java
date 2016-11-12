@@ -236,48 +236,46 @@ public class NewGameScreen extends RunekeeperScreen {
 
         {
 
-        /*    try {
-                text(Integer.toString(player.getAttackPower()));
-            } catch(Exception e) {
-                text(".....................");
-            }
-        */
-
+            /*    try {
+             text(Integer.toString(player.getAttackPower()));
+             } catch(Exception e) {
+             text(".....................");
+             }
+             */
 //        x = player.getAttackPower();
-    //    valueLabel = new Label("Damage: " + Integer.toString(x), new Skin(Gdx.files.internal("uiskin.json")));
-    //    text(valueLabel);
+            //    valueLabel = new Label("Damage: " + Integer.toString(x), new Skin(Gdx.files.internal("uiskin.json")));
+            //    text(valueLabel);
+            text("Damage: ");
 
-        text("Damage: ");
+            Button addButton = new TextButton("+", new Skin(Gdx.files.internal("uiskin.json")));
+            Button minusButton = new TextButton("-", new Skin(Gdx.files.internal("uiskin.json")));
 
-        Button addButton = new TextButton("+", new Skin(Gdx.files.internal("uiskin.json")));
-        Button minusButton = new TextButton("-", new Skin(Gdx.files.internal("uiskin.json")));
+            button(addButton, this);
+            button(minusButton, this);
 
-        button(addButton, this);
-        button(minusButton, this);
+            addButton.addListener(new ClickListener() {
+                @Override
+                public void clicked(InputEvent ie, float x, float y) {
+                    System.out.println("Add Button clicked.");
+                    player.setAttackPower(player.getAttackPower() + 1);
+                    value = player.getAttackPower();
+                    //text(Integer.toString(value));
+                }
 
-        addButton.addListener(new ClickListener() {
-        @Override
-        public void clicked(InputEvent ie, float x, float y) {
-            System.out.println("Add Button clicked.");
-            player.setAttackPower(player.getAttackPower() + 1);
-            value = player.getAttackPower();
-            //text(Integer.toString(value));
-        }
+            });
 
-        });
-
-        minusButton.addListener(new ClickListener() {
-        @Override
-        public void clicked(InputEvent ie, float x, float y) {
-            System.out.println("Minus Button clicked.");
-            if(player.getAttackPower() > 0) {
-                player.setAttackPower(player.getAttackPower() - 1);
-                value = player.getAttackPower();
-                //text(Integer.toString(value));
-            }
-        }
-        });
-        key(Input.Keys.ESCAPE, false);
+            minusButton.addListener(new ClickListener() {
+                @Override
+                public void clicked(InputEvent ie, float x, float y) {
+                    System.out.println("Minus Button clicked.");
+                    if (player.getAttackPower() > 0) {
+                        player.setAttackPower(player.getAttackPower() - 1);
+                        value = player.getAttackPower();
+                        //text(Integer.toString(value));
+                    }
+                }
+            });
+            key(Input.Keys.ESCAPE, false);
         }
 
         @Override
@@ -310,7 +308,7 @@ public class NewGameScreen extends RunekeeperScreen {
         attackBuffLabel.setColor(Color.GREEN);
         attackBuffLabel.setPosition(20, 390);
 
-        buffLabel = new Label("Current Buff: " + player.getCurrentBuff().getName(), textStyle);
+        buffLabel = new Label("dy Buff: " + player.getCurrentBuff().getName(), textStyle);
         buffLabel.setColor(Color.GREEN);
         buffLabel.setPosition(20, 370);
 
@@ -363,6 +361,7 @@ public class NewGameScreen extends RunekeeperScreen {
         if (gamestatus != GAME_PAUSED) {
             player.update(delta, (SpriteBatch) renderer.getBatch());
         }
+        ArrayList<Entity> toRemove = new ArrayList<Entity>();
         //check if any collisons between player and enemies
         for (Entity entity : this.entities) {
             if (player.state.equals("ALIVE")) {
@@ -377,9 +376,8 @@ public class NewGameScreen extends RunekeeperScreen {
                             if (!entity.isAlive()) //check if enemy is still alive
                             {
                                 renderer.getBatch().setColor(nullColor);      //change to nullColor or else entire screen turns red when enemy is killed
-                                renderer.getBatch().draw(entity.getAnimation().dyingAnimation.getKeyFrame(delta, true), entity.getPosition().x - 50, entity.getPosition().y - 50, entity.getDimensions().x + 150, entity.getDimensions().y + 150);
-                                this.entities.remove(entity);  //enemy has been killed remove it from the screen
-                                break;
+                                renderer.getBatch().draw(entity.getAnimation().dyingAnimation.getKeyFrame(2, true), entity.getPosition().x - 50, entity.getPosition().y - 50, entity.getDimensions().x + 150, entity.getDimensions().y + 150);
+                                toRemove.add(entity);
                             }
 
                         } else {
@@ -429,6 +427,11 @@ public class NewGameScreen extends RunekeeperScreen {
             hitboxRenderer.drawBox(entity.getRec(), entity.getDimensions());
             renderer.getBatch().begin();
         }
+
+        this.entities.removeAll(toRemove);
+
+        toRemove.clear();
+
         renderer.getBatch().end();
         hitboxRenderer.setProjectionMatrix(camera.combined);
         hitboxRenderer.drawBox(player.bounds);
