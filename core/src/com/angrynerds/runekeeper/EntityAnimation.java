@@ -47,7 +47,7 @@ public class EntityAnimation {
     TextureRegion[][] tmp2;
     TextureRegion[][] dyingtmp;
     public Vector2 pos = new Vector2();
-    Animation currentAnimation;
+    private Animation currentAnimation;
 
     private String pictureName;
     String pictureName2;
@@ -154,5 +154,19 @@ public class EntityAnimation {
 
     public int getSpriteHeight() {
         return this.walkingSheet.getHeight() / this.rows;
+    }
+
+    /**
+     * @return the currentAnimation
+     */
+    public Animation getCurrentAnimation() {
+        return currentAnimation;
+    }
+
+    /**
+     * @param currentAnimation the currentAnimation to set
+     */
+    public void setCurrentAnimation(Animation currentAnimation) {
+        this.currentAnimation = currentAnimation;
     }
 }
