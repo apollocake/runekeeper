@@ -38,6 +38,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.angrynerds.runekeeper.sound.EnemyAttackSound;
 import static com.angrynerds.runekeeper.screens.MenuScreen.GAME_RESUME;
+import static com.angrynerds.runekeeper.screens.GameOverScreen.GAME_RESUME1;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -438,6 +439,7 @@ public class NewGameScreen extends RunekeeperScreen {
         stage.draw();
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
 
+        // resume game from save for the MenuScreen
         if (GAME_RESUME == 1) {
             try {
                 GameStates.gsImport(this.player);
@@ -445,6 +447,16 @@ public class NewGameScreen extends RunekeeperScreen {
                 Logger.getLogger(NewGameScreen.class.getName()).log(Level.SEVERE, null, ex);
             }
             GAME_RESUME = 0;
+        }
+        
+        // resume game from save for the GameOverScreen
+        if (GAME_RESUME1 == 1) {
+            try {
+                GameStates.gsImport(this.player);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(NewGameScreen.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            GAME_RESUME1 = 0;
         }
 
         time += delta;
