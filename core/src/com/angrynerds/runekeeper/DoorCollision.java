@@ -111,21 +111,4 @@ public class DoorCollision implements Observer {
         }
         return false;
     }
-
-    private float offsetX(float x) {
-        return x + OFFSET_X_AMOUNT / 2;
-    }
-
-    private float offsetY(float y) {
-        return y + OFFSET_Y_AMOUNT / 2;
-    }
-
-    private float trimWidth(float w) {
-        return w - OFFSET_X_AMOUNT;
-    }
-
-    private float trimHeight(float h) {
-        return h - OFFSET_Y_AMOUNT;
-    }
-
 }
