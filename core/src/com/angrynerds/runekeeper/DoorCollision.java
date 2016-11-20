@@ -7,8 +7,6 @@ import java.util.Observer;
 
 public class DoorCollision implements Observer {
 
-    private static final float OFFSET_X_AMOUNT = 40;
-    private static final float OFFSET_Y_AMOUNT = 5;
     TiledMapTileLayer collisionLayer;
     private Player player;
     //number of collision points checked along an edge of the sprite
@@ -30,12 +28,12 @@ public class DoorCollision implements Observer {
         player = (Player) obs;
         /*
         Spite width is too fat for doorways, but this creates a smaller hitbox for wall collision
-        */
+         */
         pLocationX = player.getX();
         pLocationY = player.getY();
         pSpriteWidth = player.getBounds().width;
         pSpriteHeight = player.getBounds().height;
-        
+
         if (collidesTop()) {
             //going up
             player.setY(player.getY() - REPOSITION);
@@ -65,12 +63,16 @@ public class DoorCollision implements Observer {
             return false;
         }
         if (cell.getTile().getProperties().containsKey("grass") && (player.hasRuneEquipped(RuneType.GRASS))) {
+            cell.setTile(null);
             return false;
-        }else if(cell.getTile().getProperties().containsKey("water") && (player.hasRuneEquipped(RuneType.WATER))) {
+        } else if (cell.getTile().getProperties().containsKey("water") && (player.hasRuneEquipped(RuneType.WATER))) {
+            cell.setTile(null);
             return false;
-        }else if(cell.getTile().getProperties().containsKey("fire") && (player.hasRuneEquipped(RuneType.FIRE))) {
+        } else if (cell.getTile().getProperties().containsKey("fire") && (player.hasRuneEquipped(RuneType.FIRE))) {
+            cell.setTile(null);
             return false;
-        }else if(cell.getTile().getProperties().containsKey("ore") && (player.hasRuneEquipped(RuneType.ORE))) {
+        } else if (cell.getTile().getProperties().containsKey("ore") && (player.hasRuneEquipped(RuneType.ORE))) {
+            cell.setTile(null);
             return false;
         }
         return true;
