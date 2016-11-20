@@ -37,6 +37,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.angrynerds.runekeeper.sound.EnemyAttackSound;
+import static com.angrynerds.runekeeper.screens.MenuScreen.GAME_RESUME;
+import static com.angrynerds.runekeeper.screens.GameOverScreen.GAME_RESUME1;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -44,12 +46,16 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -57,6 +63,7 @@ import java.util.logging.Logger;
 public class NewGameScreen extends RunekeeperScreen {
 
     Stage stage;
+    private static int skillsAdded;
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
     private OrthographicCamera camera;
@@ -85,22 +92,21 @@ public class NewGameScreen extends RunekeeperScreen {
     public static int gamestatus;
 
     SkillsDialog skillsDia;
-    
+
     private final MusicCollision playerCollision;
     private final EnemyPainSfx enemyPainSfx;
     public static MusicManager musicManager;
     private final Skin skin;
     private boolean startedDying;
     private int buffPower;
-    
+
     private final EnemyAttackSound enemyAttackSound;
 
     private final HitBoxRenderer hitboxRenderer;
-    
-
 
     public NewGameScreen(Game game) {
         super(game);
+        skillsAdded = 0;
         TmxMapLoader loader = new TmxMapLoader();
         map = loader.load("worldmap.tmx");
         TiledMapTileLayer collisionLayer = (TiledMapTileLayer) map.getLayers().get(0);
@@ -115,7 +121,7 @@ public class NewGameScreen extends RunekeeperScreen {
         renderer = new OrthogonalTiledMapRenderer(map);
         hitboxRenderer = new HitBoxRenderer();
         camera = new OrthographicCamera();
-        player = new Player(25* tileWidth, 25 * tileHeight);
+        player = new Player(25 * tileWidth, 25 * tileHeight);
         player.addObserver(playerCollision);
         enemyAttackSound = new EnemyAttackSound();
 
@@ -131,7 +137,7 @@ public class NewGameScreen extends RunekeeperScreen {
         DifficultyType bossDifficulty = new BossDifficultyType(new Vector2(100, 100));
 
         entities.add(new Enemy(new EntityAnimation(4, 1, 1, 0, 1, 4, 3, "demon.png"), "Demon", tileWidth * 28, tileHeight * 30, easyDifficulty, new BoxPatrol(), new FireEnemyType()));
-        entities.add(new Enemy(new EntityAnimation(2, 1, 1, 0, 1, 2, 2, "ghost.png"), "Ghost", tileWidth * 29,tileHeight * 34, easyDifficulty, new BoxPatrol(), new OreEnemyType()));
+        entities.add(new Enemy(new EntityAnimation(2, 1, 1, 0, 1, 2, 2, "ghost.png"), "Ghost", tileWidth * 29, tileHeight * 34, easyDifficulty, new BoxPatrol(), new OreEnemyType()));
         entities.add(new Enemy(new EntityAnimation(11, 1, 1, 0, 1, 11, 5, "goblin.png"), "Goblin", tileWidth * 24, tileHeight * 28, easyDifficulty, new BoxPatrol(), new GrassEnemyType()));
         entities.add(new Enemy(new EntityAnimation(10, 1, 1, 0, 1, 10, 10, "orc.png"), "Orc", tileWidth * 21, tileHeight * 22, easyDifficulty, new BoxPatrol(), new GrassEnemyType()));
         entities.add(new Enemy(new EntityAnimation(3, 1, 1, 2, 1, 3, 4, "snake.png"), "Snake", tileWidth * 21, tileHeight * 23, easyDifficulty, new BoxPatrol(), new GrassEnemyType()));
@@ -144,6 +150,7 @@ public class NewGameScreen extends RunekeeperScreen {
 
         healTotem = new HealTotem("totem01", totemLayer);
         player.addObserver(healTotem);
+        musicManager.pause();
     }
 
     public static class SaveDialog extends Dialog {
@@ -188,20 +195,22 @@ public class NewGameScreen extends RunekeeperScreen {
                 GameStates.gsExport(this.player);
             } else if (object == "load") {
                 try {
-                    GameStates.gsImport();
+                    GameStates.gsImport(this.player);
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(NewGameScreen.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             gamestatus = GAME_RUNNING;
-            musicManager.play();
+            //musicManager.play();
         }
 
     }
 
-        public static class SkillsDialog extends Dialog {
+    public static class SkillsDialog extends Dialog {
 
         private Player player;
+        private Label valueLabel;
+        private int value;
 
         public SkillsDialog(String title, Skin skin, String windowStyleName) {
             super(title, skin, windowStyleName);
@@ -227,31 +236,57 @@ public class NewGameScreen extends RunekeeperScreen {
         }
 
         {
-            text(".........");
-            button("+", "+");
-            button("-", "-");
+
+            /*    try {
+             text(Integer.toString(player.getAttackPower()));
+             } catch(Exception e) {
+             text(".....................");
+             }
+             */
+//        x = player.getAttackPower();
+            //    valueLabel = new Label("Damage: " + Integer.toString(x), new Skin(Gdx.files.internal("uiskin.json")));
+            //    text(valueLabel);
+            text("Damage: ");
+
+            Button addButton = new TextButton("+", new Skin(Gdx.files.internal("uiskin.json")));
+            Button minusButton = new TextButton("-", new Skin(Gdx.files.internal("uiskin.json")));
+
+            button(addButton, this);
+            button(minusButton, this);
+
+            addButton.addListener(new ClickListener() {
+                @Override
+                public void clicked(InputEvent ie, float x, float y) {
+                    System.out.println("Add Button clicked.");
+                    player.setAttackPower(player.getAttackPower() + 1);
+                    value = player.getAttackPower();
+                    //text(Integer.toString(value));
+                }
+
+            });
+
+            minusButton.addListener(new ClickListener() {
+                @Override
+                public void clicked(InputEvent ie, float x, float y) {
+                    System.out.println("Minus Button clicked.");
+                    if (player.getAttackPower() > 0) {
+                        player.setAttackPower(player.getAttackPower() - 1);
+                        value = player.getAttackPower();
+                        //text(Integer.toString(value));
+                    }
+                }
+            });
             key(Input.Keys.ESCAPE, false);
         }
 
         @Override
         protected void result(Object object) {
-
-            if (object == "+") {
-                GameStates.gsExport(this.player);
-            } else if (object == "-") {
-                try {
-                    GameStates.gsImport();
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(NewGameScreen.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
             gamestatus = GAME_RUNNING;
             musicManager.play();
         }
 
     }
-    
-    
+
     @Override
     public void show() {
         stage = new Stage();
@@ -274,14 +309,14 @@ public class NewGameScreen extends RunekeeperScreen {
         attackBuffLabel.setColor(Color.GREEN);
         attackBuffLabel.setPosition(20, 390);
 
-        buffLabel = new Label("Current Buff: " + player.getCurrentBuff().getName(), textStyle);
+        buffLabel = new Label("dy Buff: " + player.getCurrentBuff().getName(), textStyle);
         buffLabel.setColor(Color.GREEN);
         buffLabel.setPosition(20, 370);
-        
+
         posLabel = new Label("Position: " + player.getPosition().x + " " + player.getPosition().y, textStyle);
         posLabel.setColor(Color.GREEN);
         posLabel.setPosition(20, 350);
-        
+
         stage.addActor(livesLabel);
         stage.addActor(attackLabel);
         stage.addActor(attackBuffLabel);
@@ -289,11 +324,12 @@ public class NewGameScreen extends RunekeeperScreen {
         stage.addActor(posLabel);
         stage.addActor(player.getHealthBar().healthBar);
         camera.position.set(player.getX() + 350, player.getY() + 220, 0);
-
+        musicManager.pause();
     }
 
     @Override
     public void render(float delta) {
+        musicManager.pause();
         Gdx.gl.glClearColor(0.2f, 0.2f, 0.2f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -326,6 +362,7 @@ public class NewGameScreen extends RunekeeperScreen {
         if (gamestatus != GAME_PAUSED) {
             player.update(delta, (SpriteBatch) renderer.getBatch());
         }
+        ArrayList<Entity> toRemove = new ArrayList<Entity>();
         //check if any collisons between player and enemies
         for (Entity entity : this.entities) {
             if (player.state.equals("ALIVE")) {
@@ -335,17 +372,15 @@ public class NewGameScreen extends RunekeeperScreen {
                             System.out.println("You Hit The ENEMY");
                             enemyPainSfx.play(entity.getName(), delta);
                             //renderer.getBatch().setColor(Color.RED);
-                             entity.damage(25); //damage the enemy. called 4 times every time spacebar is hit, cannot fogure out why.
-                             
-                            if(!entity.isAlive())  //check if enemy is still alive
+                            entity.damage(25); //damage the enemy. called 4 times every time spacebar is hit, cannot fogure out why.
+
+                            if (!entity.isAlive()) //check if enemy is still alive
                             {
-                             renderer.getBatch().setColor(nullColor);      //change to nullColor or else entire screen turns red when enemy is killed
-                             renderer.getBatch().draw(entity.getAnimation().dyingAnimation.getKeyFrame(delta, true), entity.getPosition().x -50, entity.getPosition().y -50, entity.getDimensions().x + 150, entity.getDimensions().y + 150);
-                             this.entities.remove(entity);  //enemy has been killed remove it from the screen
-                               break;
+                                renderer.getBatch().setColor(nullColor);      //change to nullColor or else entire screen turns red when enemy is killed
+                                renderer.getBatch().draw(entity.getAnimation().dyingAnimation.getKeyFrame(2, true), entity.getPosition().x - 50, entity.getPosition().y - 50, entity.getDimensions().x + 150, entity.getDimensions().y + 150);
+                                toRemove.add(entity);
                             }
-                            
-                            
+
                         } else {
                             renderer.getBatch().setColor(nullColor);
                             enemyAttackSound.play();
@@ -354,10 +389,8 @@ public class NewGameScreen extends RunekeeperScreen {
                         player.damage(1); //subtract health from healthbar
 
                         renderer.getBatch().draw(entity.getAnimation().enemyAttack.getKeyFrame(delta, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
-                        
+
                         renderer.getBatch().setColor(nullColor);
-                        
-                        
 
                         buffPower = player.getCurrentBuff().buffEntity(((Enemy) entity).getEnemyType(), this.player.getAttackPower());
                         entity.damage(buffPower);
@@ -389,17 +422,42 @@ public class NewGameScreen extends RunekeeperScreen {
                     renderer.getBatch().draw(entity.getAnimation().downIdling.getKeyFrame(delta, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
                 }
             }
-                    renderer.getBatch().end();
-                    hitboxRenderer.setProjectionMatrix(camera.combined);
-                    //get dimensions needs to be used because sprite is resized after setting getRec width/height
-                    hitboxRenderer.drawBox(entity.getRec(), entity.getDimensions());
-                    renderer.getBatch().begin();
+            renderer.getBatch().end();
+            hitboxRenderer.setProjectionMatrix(camera.combined);
+            //get dimensions needs to be used because sprite is resized after setting getRec width/height
+            hitboxRenderer.drawBox(entity.getRec(), entity.getDimensions());
+            renderer.getBatch().begin();
         }
+
+        this.entities.removeAll(toRemove);
+
+        toRemove.clear();
+
         renderer.getBatch().end();
         hitboxRenderer.setProjectionMatrix(camera.combined);
         hitboxRenderer.drawBox(player.bounds);
         stage.draw();
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
+
+        // resume game from save for the MenuScreen
+        if (GAME_RESUME == 1) {
+            try {
+                GameStates.gsImport(this.player);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(NewGameScreen.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            GAME_RESUME = 0;
+        }
+        
+        // resume game from save for the GameOverScreen
+        if (GAME_RESUME1 == 1) {
+            try {
+                GameStates.gsImport(this.player);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(NewGameScreen.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            GAME_RESUME1 = 0;
+        }
 
         time += delta;
         if (time > 1) {
@@ -407,7 +465,7 @@ public class NewGameScreen extends RunekeeperScreen {
             if (Gdx.input.isKeyJustPressed(Input.Keys.Y)) {
                 //move to a different game screen
                 if (gamestatus == GAME_PAUSED) {
-                    musicManager.play();
+                    //musicManager.play();
                     gamestatus = GAME_RUNNING;
                     saveDia.hide();
                 } else {
@@ -418,11 +476,11 @@ public class NewGameScreen extends RunekeeperScreen {
                     saveDia.toFront();
                 }
             }
-            
+
             if (Gdx.input.isKeyJustPressed(Input.Keys.M)) {
                 //move to a different game screen
                 if (gamestatus == GAME_PAUSED) {
-                    musicManager.play();
+                    ///musicManager.play();
                     gamestatus = GAME_RUNNING;
                     skillsDia.hide();
                 } else {
@@ -433,7 +491,7 @@ public class NewGameScreen extends RunekeeperScreen {
                     skillsDia.toFront();
                 }
             }
-            
+
             if (Gdx.input.isKeyJustPressed(Input.Keys.G)) {
                 //move to a different game screen
                 game.setScreen(new GameOverScreen(game));

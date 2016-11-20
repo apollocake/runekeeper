@@ -34,6 +34,8 @@ public class GameOverScreen extends RunekeeperScreen {
     Stage stage;
     Game game;
     
+    public static int GAME_RESUME1 = 0;
+    
 
     public GameOverScreen(Game game) {
         super(game);
@@ -75,17 +77,28 @@ public class GameOverScreen extends RunekeeperScreen {
         // Create a button with the "default" TextButtonStyle. A 3rd parameter can be used to specify a name other than "default".
         final TextButton endGameButton = new TextButton("EXIT GAME", textButtonStyle);
         final TextButton newGameButton = new TextButton("NEW GAME", textButtonStyle);
+        final TextButton resumeGameButton = new TextButton("RESUME GAME FROM LAST SAVE", textButtonStyle);
        
          endGameButton.setPosition(100, 80);
          newGameButton.setPosition(100, 100);
+         resumeGameButton.setPosition(100, 120);
         
          stage.addActor(endGameButton);
          stage.addActor(newGameButton);
+         stage.addActor(resumeGameButton);
              
          endGameButton.addListener(new ButtonsJobs());
          newGameButton.addListener(new ButtonsJobs());
+         resumeGameButton.addListener(new ButtonsJobs());
          
         
+        resumeGameButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                 GAME_RESUME1 = 1;
+                 game.setScreen(new NewGameScreen(game));
+            }
+        }); 
          
         newGameButton.addListener(new ClickListener() {
             @Override
