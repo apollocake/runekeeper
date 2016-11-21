@@ -150,7 +150,7 @@ public class NewGameScreen extends RunekeeperScreen {
 
         healTotem = new HealTotem("totem01", totemLayer);
         player.addObserver(healTotem);
-        musicManager.pause();
+        //musicManager.pause();
     }
 
     public static class SaveDialog extends Dialog {
@@ -201,7 +201,7 @@ public class NewGameScreen extends RunekeeperScreen {
                 }
             }
             gamestatus = GAME_RUNNING;
-            //musicManager.play();
+            musicManager.play();
         }
 
     }
@@ -324,12 +324,12 @@ public class NewGameScreen extends RunekeeperScreen {
         stage.addActor(posLabel);
         stage.addActor(player.getHealthBar().healthBar);
         camera.position.set(player.getX() + 350, player.getY() + 220, 0);
-        musicManager.pause();
+        //musicManager.pause();
     }
 
     @Override
     public void render(float delta) {
-        musicManager.pause();
+        //musicManager.pause();
         Gdx.gl.glClearColor(0.2f, 0.2f, 0.2f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -465,7 +465,7 @@ public class NewGameScreen extends RunekeeperScreen {
             if (Gdx.input.isKeyJustPressed(Input.Keys.Y)) {
                 //move to a different game screen
                 if (gamestatus == GAME_PAUSED) {
-                    //musicManager.play();
+                    musicManager.play();
                     gamestatus = GAME_RUNNING;
                     saveDia.hide();
                 } else {
