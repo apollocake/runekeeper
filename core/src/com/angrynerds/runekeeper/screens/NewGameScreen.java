@@ -147,6 +147,7 @@ public class NewGameScreen extends RunekeeperScreen {
         entities.add(new Enemy(new EntityAnimation(1, 0, 0, 0, 0, 4, 4, "snakeking.png"), "Snake King", tileWidth * 26, tileHeight * 21, bossDifficulty, new BoxPatrol(), new GrassEnemyType()));
         entities.add(new Enemy(new EntityAnimation(1, 0, 0, 0, 0, 8, 8, "evilwizard.png"), "Evil Wizard", tileWidth * 30, tileHeight * 21, bossDifficulty, new BoxPatrol(), new WaterEnemyType()));
         entities.add(new Enemy(new EntityAnimation(1, 0, 0, 0, 0, 3, 4, "meteorbeast.png"), "Meteor Beast", tileWidth * 34, tileHeight * 21, bossDifficulty, new BoxPatrol(), new FireEnemyType()));
+        entities.add(new Enemy(new EntityAnimation(1, 0, 3, 2, 1, 3, 4, "troll.png"), "Troll", tileWidth * 23, tileHeight * 35, easyDifficulty, new BoxPatrol(), new FireEnemyType()));
 
         healTotem = new HealTotem("totem01", totemLayer);
         player.addObserver(healTotem);
