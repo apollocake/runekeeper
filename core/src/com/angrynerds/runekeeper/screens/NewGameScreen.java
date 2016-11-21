@@ -39,6 +39,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.angrynerds.runekeeper.sound.EnemyAttackSound;
 import static com.angrynerds.runekeeper.screens.MenuScreen.GAME_RESUME;
 import static com.angrynerds.runekeeper.screens.GameOverScreen.GAME_RESUME1;
+import com.angrynerds.runekeeper.sound.DyingSound;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -95,6 +96,7 @@ public class NewGameScreen extends RunekeeperScreen {
 
     private final MusicCollision playerCollision;
     private final EnemyPainSfx enemyPainSfx;
+    private final DyingSound dyingSound;
     public static MusicManager musicManager;
     private final Skin skin;
     private boolean startedDying;
@@ -118,6 +120,7 @@ public class NewGameScreen extends RunekeeperScreen {
         playerCollision = new MusicCollision(collisionLayer); //should rename to musicLevelCollision
         musicManager = new MusicManager(playerCollision);
         enemyPainSfx = new EnemyPainSfx();
+        dyingSound = new DyingSound();
         renderer = new OrthogonalTiledMapRenderer(map);
         hitboxRenderer = new HitBoxRenderer();
         camera = new OrthographicCamera();
