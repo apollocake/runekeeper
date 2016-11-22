@@ -14,6 +14,7 @@ import com.angrynerds.runekeeper.Rune.RuneOre;
 import com.angrynerds.runekeeper.Rune.RuneFire;
 import com.angrynerds.runekeeper.Rune.Rune;
 import com.angrynerds.runekeeper.Rune.WaterSwordAnima;
+import com.angrynerds.runekeeper.sound.DyingSound;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.math.Vector2;
@@ -38,6 +39,7 @@ public class Player extends Observable {
     public final int RUNE_FOR_GLOVE_Y = 5;
     public final int RUNE_FOR_SWORD_X = 130;
     public final int RUNE_FOR_SWORD_Y = 5;
+    
 
     boolean runeFireGlove = false;
     boolean runeWaterGlove = false;
@@ -65,6 +67,8 @@ public class Player extends Observable {
     GrassSwordLeftAnima grassSwordLeftAnima;
     GrassSwordRightAnima grassSwordRightAnima;
     OreSwordAnima oreSwordAnima;
+    
+    DyingSound dyingSound;
     
     int waterSwordAnimaPosRightX = 0;
     int waterSwordAnimaPosLeftX = 0;
@@ -131,6 +135,8 @@ public class Player extends Observable {
         grassSwordLeftAnima = new GrassSwordLeftAnima();
         grassSwordRightAnima = new GrassSwordRightAnima();
         oreSwordAnima = new OreSwordAnima();
+        
+        dyingSound = new DyingSound();
 
         stateTime = 0;
 
@@ -231,11 +237,14 @@ public class Player extends Observable {
             if (startDying) {
                 startDying = false;
                 animation = playerAnimation.dyingAnimation;
+                dyingSound.start();
                 stateTime = 0;
             } else if (animation.isAnimationFinished(stateTime) && startDying2) {
                 animation = playerAnimation.dead;
+                dyingSound.stop();
                 attack = "";
                 startDying2 = false;
+                
                 stateTime = 0;
             } else if (animation.isAnimationFinished(stateTime)) {
                 state = "DEAD";
