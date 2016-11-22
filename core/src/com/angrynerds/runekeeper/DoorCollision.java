@@ -37,22 +37,18 @@ public class DoorCollision implements Observer {
         if (collidesTop()) {
             //going up
             player.setY(player.getY() - REPOSITION);
-            System.out.println("top collision");
         }
         if (collidesLeft()) {
             //going left
             player.setX(player.getX() + REPOSITION);
-            System.out.println("left collision");
         }
         if (collidesRight()) {
             //going right
             player.setX(player.getX() - REPOSITION);
-            System.out.println("right collision");
         }
         if (collidesBottom()) {
             //going down
             player.setY(player.getY() + REPOSITION);
-            System.out.println("bottom collision");
         }
 
     }
