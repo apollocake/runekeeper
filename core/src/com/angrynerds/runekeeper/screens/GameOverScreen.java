@@ -6,7 +6,10 @@
 package com.angrynerds.runekeeper.screens;
 
 import com.angrynerds.runekeeper.HealthBar;
+import com.angrynerds.runekeeper.sound.BgmTrack;
 import com.angrynerds.runekeeper.sound.ButtonsJobs;
+import com.angrynerds.runekeeper.sound.GameOverScreenMusic;
+import com.angrynerds.runekeeper.sound.SoundFile;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
@@ -35,11 +38,15 @@ public class GameOverScreen extends RunekeeperScreen {
     Game game;
     
     public static int GAME_RESUME1 = 0;
+    private final BgmTrack bgmMusic;
     
 
     public GameOverScreen(Game game) {
         super(game);
         this.game = game;
+        SoundFile soundFile = new GameOverScreenMusic();
+        bgmMusic = new BgmTrack(soundFile);
+        bgmMusic.play();
     }
 
     @Override
@@ -150,7 +157,7 @@ public class GameOverScreen extends RunekeeperScreen {
     @Override
     public void hide() {
         stage.dispose();
-        
+        bgmMusic.dispose();
         //TT - did not comment out, was previously commented out.
         //Gdx.app.debug("Runekeeper", "dispose intro");
         //batch.dispose();
