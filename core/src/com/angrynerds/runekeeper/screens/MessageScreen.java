@@ -78,7 +78,7 @@ public class MessageScreen extends RunekeeperScreen {
         yesButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new NewGameScreen(game));
+                game.setScreen(new StoryScreen1(game));
             };
         });
         

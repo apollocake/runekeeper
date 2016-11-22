@@ -123,6 +123,12 @@ public class EntityAnimation {
             tmp2 = TextureRegion.split(walkingSheet2, walkingSheet2.getWidth() / this.cols,
                     walkingSheet2.getHeight() / this.rows);
             enemyAttack = new Animation(0.025f, tmp2[this.walkingDownFrameRow][0]);
+        }else if (this.pictureName.equals("troll.png")) {
+            pictureName2 = "trollAttack.png";
+            walkingSheet2 = new Texture(Gdx.files.internal(this.pictureName2));
+            tmp2 = TextureRegion.split(walkingSheet2, walkingSheet2.getWidth() / this.cols,
+                    walkingSheet2.getHeight() / this.rows);
+            enemyAttack = new Animation(0.025f, tmp2[this.walkingDownFrameRow][0]);
         } else {
             enemyAttack = new Animation(0.025f, tmp[this.walkingUpFrameRow][0]);
         }

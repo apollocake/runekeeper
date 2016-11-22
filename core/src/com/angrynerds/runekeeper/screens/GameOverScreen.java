@@ -6,7 +6,10 @@
 package com.angrynerds.runekeeper.screens;
 
 import com.angrynerds.runekeeper.HealthBar;
+import com.angrynerds.runekeeper.sound.BgmTrack;
 import com.angrynerds.runekeeper.sound.ButtonsJobs;
+import com.angrynerds.runekeeper.sound.GameOverScreenMusic;
+import com.angrynerds.runekeeper.sound.SoundFile;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
@@ -34,10 +37,16 @@ public class GameOverScreen extends RunekeeperScreen {
     Stage stage;
     Game game;
     
+    public static int GAME_RESUME1 = 0;
+    private final BgmTrack bgmMusic;
+    
 
     public GameOverScreen(Game game) {
         super(game);
         this.game = game;
+        SoundFile soundFile = new GameOverScreenMusic();
+        bgmMusic = new BgmTrack(soundFile);
+        bgmMusic.play();
     }
 
     @Override
@@ -75,17 +84,28 @@ public class GameOverScreen extends RunekeeperScreen {
         // Create a button with the "default" TextButtonStyle. A 3rd parameter can be used to specify a name other than "default".
         final TextButton endGameButton = new TextButton("EXIT GAME", textButtonStyle);
         final TextButton newGameButton = new TextButton("NEW GAME", textButtonStyle);
+        final TextButton resumeGameButton = new TextButton("RESUME GAME FROM LAST SAVE", textButtonStyle);
        
          endGameButton.setPosition(100, 80);
          newGameButton.setPosition(100, 100);
+         resumeGameButton.setPosition(100, 120);
         
          stage.addActor(endGameButton);
          stage.addActor(newGameButton);
+         stage.addActor(resumeGameButton);
              
          endGameButton.addListener(new ButtonsJobs());
          newGameButton.addListener(new ButtonsJobs());
+         resumeGameButton.addListener(new ButtonsJobs());
          
         
+        resumeGameButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                 GAME_RESUME1 = 1;
+                 game.setScreen(new NewGameScreen(game));
+            }
+        }); 
          
         newGameButton.addListener(new ClickListener() {
             @Override
@@ -137,7 +157,7 @@ public class GameOverScreen extends RunekeeperScreen {
     @Override
     public void hide() {
         stage.dispose();
-        
+        bgmMusic.dispose();
         //TT - did not comment out, was previously commented out.
         //Gdx.app.debug("Runekeeper", "dispose intro");
         //batch.dispose();
