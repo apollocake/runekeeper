@@ -1,5 +1,6 @@
 package com.angrynerds.runekeeper.screens;
 
+import com.angrynerds.runekeeper.AttackPatrol;
 import com.angrynerds.runekeeper.BossDifficultyType;
 import com.angrynerds.runekeeper.Enemy;
 import com.angrynerds.runekeeper.Entity;
@@ -58,6 +59,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
+
+import static java.lang.Math.abs;
+
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -149,18 +153,25 @@ public class NewGameScreen extends RunekeeperScreen {
         DifficultyType easyDifficulty = new EasyDifficultyType(new Vector2(40, 40));
         DifficultyType bossDifficulty = new BossDifficultyType(new Vector2(100, 100));
 
-        entities.add(new Enemy(new EntityAnimation(4, 1, 1, 0, 1, 4, 3, "demon.png"), "Demon", tileWidth * 28, tileHeight * 30, easyDifficulty, new BoxPatrol(), new FireEnemyType()));
-        entities.add(new Enemy(new EntityAnimation(2, 1, 1, 0, 1, 2, 2, "ghost.png"), "Ghost", tileWidth * 29, tileHeight * 34, easyDifficulty, new BoxPatrol(), new OreEnemyType()));
-        entities.add(new Enemy(new EntityAnimation(11, 1, 1, 0, 1, 11, 5, "goblin.png"), "Goblin", tileWidth * 24, tileHeight * 28, easyDifficulty, new BoxPatrol(), new GrassEnemyType()));
-        entities.add(new Enemy(new EntityAnimation(10, 1, 1, 0, 1, 10, 10, "orc.png"), "Orc", tileWidth * 21, tileHeight * 22, easyDifficulty, new BoxPatrol(), new GrassEnemyType()));
-        entities.add(new Enemy(new EntityAnimation(3, 1, 1, 2, 1, 3, 4, "snake.png"), "Snake", tileWidth * 21, tileHeight * 23, easyDifficulty, new BoxPatrol(), new GrassEnemyType()));
-        entities.add(new Enemy(new EntityAnimation(8, 1, 1, 0, 1, 8, 5, "wizard.png"), "Wizard", tileWidth * 21, tileHeight * 24, easyDifficulty, new BoxPatrol(), new WaterEnemyType()));
-        entities.add(new Enemy(new EntityAnimation(2, 1, 1, 0, 1, 10, 4, "ghostking.png"), "Ghost King", tileWidth * 21, tileHeight * 21, bossDifficulty, new BoxPatrol(), new OreEnemyType()));
-        entities.add(new Enemy(new EntityAnimation(11, 1, 1, 0, 1, 10, 10, "goblinking.png"), "Goblin King", tileWidth * 35, tileHeight * 34, new BossDifficultyType(new Vector2(175, 175)), new BoxPatrol(), new GrassEnemyType()));
-        entities.add(new Enemy(new EntityAnimation(1, 0, 0, 0, 0, 4, 4, "snakeking.png"), "Snake King", tileWidth * 26, tileHeight * 21, bossDifficulty, new BoxPatrol(), new GrassEnemyType()));
-        entities.add(new Enemy(new EntityAnimation(1, 0, 0, 0, 0, 8, 8, "evilwizard.png"), "Evil Wizard", tileWidth * 30, tileHeight * 21, bossDifficulty, new BoxPatrol(), new WaterEnemyType()));
-        entities.add(new Enemy(new EntityAnimation(1, 0, 0, 0, 0, 3, 4, "meteorbeast.png"), "Meteor Beast", tileWidth * 34, tileHeight * 21, bossDifficulty, new BoxPatrol(), new FireEnemyType()));
+
+        entities.add(new Enemy(new EntityAnimation(4, 1, 0, 2, 2, 4, 3, "demon.png"), "Demon", tileWidth * 5, tileHeight * 4, easyDifficulty, new BoxPatrol(), new FireEnemyType()));
+        
+        entities.add(new Enemy(new EntityAnimation(2, 1, 1, 0, 1, 2, 2, "ghost.png"), "Ghost", tileWidth * 6,tileHeight * 13, easyDifficulty, new BoxPatrol(), new OreEnemyType()));
+        entities.add(new Enemy(new EntityAnimation(4, 1, 1, 0, 1, 4, 3, "demon.png"), "Demon", tileWidth * 14, tileHeight * 11, easyDifficulty, new BoxPatrol(), new FireEnemyType()));
+        entities.add(new Enemy(new EntityAnimation(2, 1, 1, 0, 1, 2, 2, "ghost.png"), "Ghost", tileWidth * 33, tileHeight * 14, easyDifficulty, new BoxPatrol(), new OreEnemyType()));
+        entities.add(new Enemy(new EntityAnimation(11, 1, 1, 0, 1, 11, 5, "goblin.png"), "Goblin", tileWidth * 34, tileHeight * 6, easyDifficulty, new BoxPatrol(), new GrassEnemyType()));
+        entities.add(new Enemy(new EntityAnimation(10, 1, 1, 0, 1, 10, 10, "orc.png"), "Orc", tileWidth * 43, tileHeight * 5, easyDifficulty, new BoxPatrol(), new GrassEnemyType()));
+        entities.add(new Enemy(new EntityAnimation(3, 1, 1, 2, 1, 3, 4, "snake.png"), "Snake", tileWidth * 43, tileHeight * 45, easyDifficulty, new BoxPatrol(), new GrassEnemyType()));
+        entities.add(new Enemy(new EntityAnimation(8, 1, 1, 0, 1, 8, 5, "wizard.png"), "Wizard", tileWidth * 31, tileHeight * 38, easyDifficulty, new BoxPatrol(), new WaterEnemyType()));
+        entities.add(new Enemy(new EntityAnimation(2, 1, 1, 0, 1, 10, 4, "ghostking.png"), "Ghost King", tileWidth * 12, tileHeight * 39, bossDifficulty, new BoxPatrol(), new OreEnemyType()));
+        entities.add(new Enemy(new EntityAnimation(11, 1, 1, 0, 1, 10, 10, "goblinking.png"), "Goblin King", tileWidth * 42, tileHeight * 39, new BossDifficultyType(new Vector2(175, 175)), new BoxPatrol(), new GrassEnemyType()));
+        entities.add(new Enemy(new EntityAnimation(1, 0, 0, 0, 0, 4, 4, "snakeking.png"), "Snake King", tileWidth * 8, tileHeight * 28, bossDifficulty, new BoxPatrol(), new GrassEnemyType()));
+        entities.add(new Enemy(new EntityAnimation(1, 0, 0, 0, 0, 8, 8, "evilwizard.png"), "Evil Wizard", tileWidth * 31, tileHeight * 38, bossDifficulty, new BoxPatrol(), new WaterEnemyType()));
+        entities.add(new Enemy(new EntityAnimation(1, 0, 0, 0, 0, 3, 4, "meteorbeast.png"), "Meteor Beast", tileWidth * 4, tileHeight * 46, bossDifficulty, new BoxPatrol(), new FireEnemyType()));
+
+
         entities.add(new Enemy(new EntityAnimation(1, 0, 3, 2, 1, 3, 4, "troll.png"), "Troll", tileWidth * 23, tileHeight * 35, easyDifficulty, new BoxPatrol(), new FireEnemyType()));
+
 
         healTotem = new HealTotem("totem01", totemLayer);
         player.addObserver(healTotem);
@@ -398,7 +409,7 @@ public class NewGameScreen extends RunekeeperScreen {
 
                         } else {
                             renderer.getBatch().setColor(nullColor);
-                            enemyAttackSound.play();
+                            enemyAttackSound.play(entity.getName(),delta);
                         }
                         player.isHit();
                         player.damage(1); //subtract health from healthbar
@@ -418,20 +429,24 @@ public class NewGameScreen extends RunekeeperScreen {
                         enemyPos = entity.getPosition();
                         GameStates.gsEnemyPos = enemyPos;
                         enemyDistance = enemyPos.dst(playerPos);
+                        System.out.println(enemyDistance);
 
                         GameStates.gsEnemyDist = enemyDistance;
-                        if (runMode) {
+                    //    if (runMode) {
 
-                            if (enemyDistance < 75.0f && entity.getAlert() == false) {
-                                entity.setPatrol(new CrazyPatrol());
+                            if (enemyDistance < 120.0f && entity.getAlert() == false) {
+                            //    entity.setPatrol(new CrazyPatrol());
+                                entity.setPatrol(new AttackPatrol(player));
                                 entity.setAlert(true);
+                            //    System.out.println("AttackPatrol");
                             }
 
-                            if (enemyDistance > 300.0f && entity.getAlert() == true) {
+                        /*    if (enemyDistance > 300.0f && entity.getAlert() == true) {
                                 entity.setPatrol(new BoxPatrol());
                                 entity.setAlert(false);
                             }
-                        }
+                        */
+                     //   }
                     }
                 } else {
                     renderer.getBatch().draw(entity.getAnimation().downIdling.getKeyFrame(delta, true), entity.getPosition().x, entity.getPosition().y, entity.getDimensions().x, entity.getDimensions().y);
@@ -536,11 +551,12 @@ public class NewGameScreen extends RunekeeperScreen {
                 player.setCurrentBuff(new BuffAgainstOre());
             }
 
-            if (Gdx.input.isKeyJustPressed(Input.Keys.R)) {
+           /* if (Gdx.input.isKeyJustPressed(Input.Keys.R)) {
                 //move to a different game screen
                 runMode = !runMode;
                 System.out.println("runMode changed to " + runMode);
             }
+            */
         }
     }
 
