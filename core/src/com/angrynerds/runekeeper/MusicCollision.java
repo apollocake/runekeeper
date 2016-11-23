@@ -5,6 +5,7 @@
  */
 package com.angrynerds.runekeeper;
 
+import com.angrynerds.runekeeper.Rune.RuneType;
 import com.angrynerds.runekeeper.sound.BgmTrack;
 import com.angrynerds.runekeeper.sound.FireAreaMusic;
 import com.angrynerds.runekeeper.sound.GrassAreaMusic;
@@ -13,31 +14,29 @@ import com.angrynerds.runekeeper.sound.SoundFile;
 import com.angrynerds.runekeeper.sound.StartAreaMusic;
 import com.angrynerds.runekeeper.sound.WaterAreaMusic;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
 
 public class MusicCollision implements Observer {
 
-    private Music triggeredMusicType;
-    private Music currentMusicType;
+    private RuneType triggeredMusicType;
+    private RuneType currentMusicType;
 
     /**
      * @return the currentMusicType
      */
-    public Music getCurrentMusicType() {
+    public RuneType getCurrentMusicType() {
         return currentMusicType;
     }
 
     /**
      * @param currentMusicType the currentMusicType to set
      */
-    public void setCurrentMusicType(Music currentMusicType) {
+    public void setCurrentMusicType(RuneType currentMusicType) {
         this.currentMusicType = currentMusicType;
     }
 
-    public enum Music {
-        START, GRASS, WATER, FIRE, ORE
-    }
     TiledMapTileLayer collisionLayer;
     private Player player;
     private BgmTrack bgmMusic;
@@ -47,7 +46,7 @@ public class MusicCollision implements Observer {
         SoundFile soundFile = new StartAreaMusic();
         bgmMusic = new BgmTrack(soundFile);
         bgmMusic.play();
-        currentMusicType = Music.START;
+        currentMusicType = RuneType.START;
     }
     
     public void pause(){
@@ -65,27 +64,27 @@ public class MusicCollision implements Observer {
                 case GRASS:
                     bgmMusic.dispose();
                     bgmMusic = new BgmTrack(new GrassAreaMusic());
-                    setCurrentMusicType(Music.GRASS);
+                    setCurrentMusicType(RuneType.GRASS);
                     break;
                 case WATER:
                     bgmMusic.dispose();
                     bgmMusic = new BgmTrack(new WaterAreaMusic());
-                    setCurrentMusicType(Music.WATER);
+                    setCurrentMusicType(RuneType.WATER);
                     break;
                 case FIRE:
                     bgmMusic.dispose();
                     bgmMusic = new BgmTrack(new FireAreaMusic());
-                    setCurrentMusicType(Music.FIRE);
+                    setCurrentMusicType(RuneType.FIRE);
                     break;
                 case ORE:
                     bgmMusic.dispose();
                     bgmMusic = new BgmTrack(new OreAreaMusic());
-                    setCurrentMusicType(Music.ORE);
+                    setCurrentMusicType(RuneType.ORE);
                     break;
                 case START:
                     bgmMusic.dispose();
                     bgmMusic = new BgmTrack(new StartAreaMusic());
-                    setCurrentMusicType(Music.START);
+                    setCurrentMusicType(RuneType.START);
                     break;
                 
                 default:
@@ -102,20 +101,21 @@ public class MusicCollision implements Observer {
         if (cell == null || cell.getTile() == null) {
             return false;
         }
+
         if (cell.getTile().getProperties().containsKey("grass")) {
-            triggeredMusicType = Music.GRASS;
+            triggeredMusicType = RuneType.GRASS;
             return true;
         } else if (cell.getTile().getProperties().containsKey("water")) {
-            triggeredMusicType = Music.WATER;
+            triggeredMusicType = RuneType.WATER;
             return true;
         } else if (cell.getTile().getProperties().containsKey("fire")) {
-            triggeredMusicType = Music.FIRE;
+            triggeredMusicType = RuneType.FIRE;
             return true;
         } else if (cell.getTile().getProperties().containsKey("ore")) {
-            triggeredMusicType = Music.ORE;
+            triggeredMusicType = RuneType.ORE;
             return true;
         } else if (cell.getTile().getProperties().containsKey("start")) {
-            triggeredMusicType = Music.START;
+            triggeredMusicType = RuneType.START;
             return true;
         }
         return false;
@@ -123,7 +123,7 @@ public class MusicCollision implements Observer {
     }
 
     public boolean collidesBottomMusic() {
-        for (float step = 0; step < player.playerAnimation.getWidth(); step += collisionLayer.getTileWidth() / 4) {
+        for (float step = 0; step < player.playerAnimation.getWidth(); step += player.playerAnimation.getWidth() / 4) {
             if (isMusicCell(player.getX() + step, player.getY())) {
                 return true;
             }

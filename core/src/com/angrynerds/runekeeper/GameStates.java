@@ -6,6 +6,7 @@
 package com.angrynerds.runekeeper;
 
 import static com.angrynerds.runekeeper.GameStates.gsPlayerXpos;
+import com.angrynerds.runekeeper.Rune.RuneType;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.files.FileHandle;
@@ -54,7 +55,7 @@ public class GameStates {
     static ArrayList<Object> gsObject = new ArrayList<Object>();
 
     public void musicGrab(MusicCollision mus) {
-        MusicCollision.Music gsMusic1 = mus.getCurrentMusicType();
+        RuneType gsMusic1 = mus.getCurrentMusicType();
         //GameStates.gsMusic = gsMusic1;
 
     }
@@ -77,28 +78,27 @@ public class GameStates {
         gsRuneOreSword = player.runeOreSword;
 
         //ArrayList<Object> gsObject = new ArrayList<Object>();
-        gsObject.add(gsPlayerXpos);
-        gsObject.add(gsPlayerYpos);
-        gsObject.add(gsPlayerAnimation);
-        gsObject.add(gsEnemyPos);
-        gsObject.add(gsEnemyDist);
-        gsObject.add(gsEnemyAnimation);
-        gsObject.add(gsCurrentArea);
-        gsObject.add(gsNumLives);
-        gsObject.add(gsHealth);
-        gsObject.add(gsRuneFireGlove);
-        gsObject.add(gsRuneWaterGlove);
-        gsObject.add(gsRuneGrassGlove);
-        gsObject.add(gsRuneOreGlove);
-        gsObject.add(gsRuneFireSword);
-        gsObject.add(gsRuneWaterSword);
-        gsObject.add(gsRuneGrassSword);
-        gsObject.add(gsRuneOreSword);
-        gsObject.add(gsMusic);
+        gsObject.add(gsNumLives);               //0 player lives
+        gsObject.add(gsPlayerXpos);             //1 player x position
+        gsObject.add(gsPlayerYpos);             //2 player y position
+        //gsObject.add(gsPlayerAnimation);
+        gsObject.add(gsEnemyPos);               //3 enemy position
+        gsObject.add(gsEnemyDist);              //4 enemy distance
+        //gsObject.add(gsEnemyAnimation);
+        gsObject.add(gsCurrentArea);            //5 current area
+        gsObject.add(gsHealth);                 //6 health
+        gsObject.add(gsRuneFireGlove);          //7 rune fire glove
+        gsObject.add(gsRuneWaterGlove);         //8 rune water glove
+        gsObject.add(gsRuneGrassGlove);         //9 rune grass glove
+        gsObject.add(gsRuneOreGlove);           //10 rune ore glove
+        gsObject.add(gsRuneFireSword);          //11 rune fire sword
+        gsObject.add(gsRuneWaterSword);         //12 rune water sword
+        gsObject.add(gsRuneGrassSword);         //13 rune grass sword
+        gsObject.add(gsRuneOreSword);           //14 rune ore sword
+        gsObject.add(gsMusic);                  //15 music
 
 //gsObject.add(gsMusic);
-        gsObject.add(gsHue);
-
+        gsObject.add(gsHue);                    //16 hue
         Json json = new Json();
         json.setOutputType(JsonWriter.OutputType.minimal);
         //String gsFile = json.toJson(gsFile);
@@ -106,34 +106,60 @@ public class GameStates {
         //FileHandle file = Gdx.files.local("rkGamestate.json");
         ObjectOutputStream out;
         try {
-            System.setOut(new PrintStream(new File("output-file.txt")));
-            System.out.println(json.prettyPrint(gsObject));
-            //out = new ObjectOutputStream(new FileOutputStream("rkGamestate.json"));
-        //out.writeObject(gsObject);
-            //out.close();
+            //System.setOut(new PrintStream(new File("output-file.txt")));
+            //System.out.println(json.prettyPrint(gsObject));
+            out = new ObjectOutputStream(new FileOutputStream("rkGamestate.json"));
+            out.writeObject(gsObject);
+            out.close();
             System.console();
         } catch (IOException ex) {
             Logger.getLogger(GameStates.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        //file.writeString(gsObject);
-        //json.writeObjectStart();
-        //json.writeFields(gsObject);
-        //json.writeObjectEnd();
+
     }
 
-    public static void gsImport() throws ClassNotFoundException {
+    public static void gsImport(Player player) throws ClassNotFoundException {
         ObjectInputStream in;
         try {
-            in = new ObjectInputStream(new FileInputStream("output-file.txt"));
-
-            gsObject = (ArrayList<Object>) in.readObject();
+            //in = new ObjectInputStream(new FileInputStream("output-file.txt"));
+            in = new ObjectInputStream(new FileInputStream("rkGamestate.json"));
+            //gsObject = (ArrayList<Object>) in.readObject();
+            ArrayList<Object> gsObject2 = (ArrayList<Object>) in.readObject();
             in.close();
+
+
+            //gsPlayerXpos = gsObject2.add(0);
+            System.out.println("number of lives = " + gsObject2.get(0));
+            System.out.println("player x position = " + gsObject2.get(1));
+            System.out.println("player y position = " + gsObject2.get(2));
+            System.out.println("enemy position = " + gsObject2.get(3));
+            System.out.println("enemy distance = " + gsObject2.get(4));
+            System.out.println("current area = " + gsObject2.get(5));
+            System.out.println("current health = " + gsObject2.get(6));
+            System.out.println("rune fire glove = " + gsObject2.get(7));
+            System.out.println("rune water glove = " + gsObject2.get(8));
+            System.out.println("rune grass glove = " + gsObject2.get(9));
+            System.out.println("rune ore glove = " + gsObject2.get(10));
+            System.out.println("rune fire sword = " + gsObject2.get(11));
+            System.out.println("rune water sword = " + gsObject2.get(12));
+            System.out.println("rune grass sword = " + gsObject2.get(13));
+            System.out.println("rune ore sword = " + gsObject2.get(14));
+            System.out.println("music = " + gsObject2.get(15));
+            System.out.println("hue = " + gsObject2.get(15));
+
+            player.setPlayerLives((Integer)gsObject2.get(0));
+            player.setPosition((Float)gsObject2.get(1),(Float)gsObject2.get(2));
+
+            player.setGloveSword((Boolean)gsObject2.get(7), (Boolean)gsObject2.get(8), (Boolean)gsObject2.get(9), (Boolean)gsObject2.get(10), (Boolean)gsObject2.get(11), (Boolean)gsObject2.get(12), (Boolean)gsObject2.get(13), (Boolean)gsObject2.get(14));
+
+            player.setCurrentHealth(100);
+
         } catch (IOException ex) {
             Logger.getLogger(GameStates.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-    }
+   }
 
     public static void gsInit(Player player) {
         gsPlayerXpos = 1;
