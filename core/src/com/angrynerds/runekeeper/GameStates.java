@@ -6,6 +6,7 @@
 package com.angrynerds.runekeeper;
 
 import static com.angrynerds.runekeeper.GameStates.gsPlayerXpos;
+import com.angrynerds.runekeeper.Rune.RuneType;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.files.FileHandle;
@@ -54,7 +55,7 @@ public class GameStates {
     static ArrayList<Object> gsObject = new ArrayList<Object>();
 
     public void musicGrab(MusicCollision mus) {
-        MusicCollision.Music gsMusic1 = mus.getCurrentMusicType();
+        RuneType gsMusic1 = mus.getCurrentMusicType();
         //GameStates.gsMusic = gsMusic1;
 
     }
