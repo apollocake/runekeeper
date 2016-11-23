@@ -27,10 +27,12 @@ public class BoxPatrol implements EnemyPatrol {
     private Vector2 pos = new Vector2();
 
     @Override
-    public Vector2 patrol(Vector2 pos) {
+    public Vector2 patrol(Enemy enemy) {
 
         if (boxCounter < 100) {
-            pos.x--;
+            enemy.getPosition().x--;
+            System.out.println("Im here!!!");
+            enemy.getAnimation().currentAnimation = enemy.getAnimation().walkingLeftAnima;
             //xadjustment = -1.0f;
             boxCounter++;
         }
@@ -38,7 +40,7 @@ public class BoxPatrol implements EnemyPatrol {
             bleft = true;
         }
         if (bleft == true && boxCounter2 < 100) {
-            pos.y--;
+            enemy.getPosition().y--;
 
             boxCounter2++;
         }
@@ -46,7 +48,7 @@ public class BoxPatrol implements EnemyPatrol {
             bdown = true;
         }
         if (bdown == true && boxCounter3 < 100) {
-            pos.x++;
+            enemy.getPosition().x++;
 
             boxCounter3++;
         }
@@ -54,7 +56,7 @@ public class BoxPatrol implements EnemyPatrol {
             bright = true;
         }
         if (bright == true && boxCounter4 < 100) {
-            pos.y++;
+            enemy.getPosition().y++;
             // adjustment += 1.0f;
 
             boxCounter4++;
@@ -73,7 +75,7 @@ public class BoxPatrol implements EnemyPatrol {
             bup = false;
             bdown = false;
         }
-        return pos;
+        return enemy.getPosition();
     }
 
 }

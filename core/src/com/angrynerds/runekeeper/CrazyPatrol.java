@@ -22,8 +22,8 @@ public class CrazyPatrol implements EnemyPatrol {
     private Vector2 pos = new Vector2();
 
     @Override
-    public Vector2 patrol(Vector2 pos) {
-        pos.y++;
+    public Vector2 patrol(Enemy enemy) {
+        enemy.getPosition().y++;
         return pos;
     }
 

@@ -47,12 +47,14 @@ public class EntityAnimation {
     TextureRegion[][] tmp2;
     TextureRegion[][] dyingtmp;
     public Vector2 pos = new Vector2();
-    Animation currentAnimation;
+    public Animation currentAnimation;
 
     private String pictureName;
     String pictureName2;
     private int cols, rows;
-
+    private EntityAnimation(){
+        
+    }
     public EntityAnimation(int walkingFrameCol, int walkingUpFrameRow, int walkingLeftFrameRow, int walkingDownFrameRow, int walkingRightFrameRow, int cols, int rows, String newPictureName) {
         this.cols = cols;
         this.rows = rows;

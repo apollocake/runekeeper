@@ -82,7 +82,7 @@ public class Enemy implements Entity {
     @Override
     public void update() {
         healthBar.setHealth(currentHealth);
-        patrol(pos);
+        patrol();
         bounds.x = pos.x;
         bounds.y = pos.y;
         animation.setLocation(pos.x, pos.y);
@@ -103,7 +103,7 @@ public class Enemy implements Entity {
     public Rectangle getRec() {
         return this.bounds;
     }
-
+/*
     private void patrol() {
         if (boxCounter < 100) {
             pos.x--;
@@ -146,9 +146,9 @@ public class Enemy implements Entity {
             bdown = false;
         }
     }
-
-    public void patrol(Vector2 pos) {
-        this.pos = enemyPatrol.patrol(pos);
+*/
+    public void patrol() {
+        enemyPatrol.patrol(this);
     }
     
     public void playAttackSound(){
@@ -233,5 +233,12 @@ public class Enemy implements Entity {
     @Override
     public boolean isAlive() {
       return isAlive;
+    }
+
+    /**
+     * @param animation the animation to set
+     */
+    public void setAnimation(EntityAnimation animation) {
+        this.animation = animation;
     }
 }
