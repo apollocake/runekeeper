@@ -31,7 +31,7 @@ public class BoxPatrol implements EnemyPatrol {
 
         if (boxCounter < 100) {
             enemy.getPosition().x--;
-            System.out.println("Im here!!!");
+           // System.out.println("Im here!!!");
             enemy.getAnimation().currentAnimation = enemy.getAnimation().walkingLeftAnima;
             //xadjustment = -1.0f;
             boxCounter++;
