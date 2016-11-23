@@ -13,6 +13,7 @@ import com.angrynerds.runekeeper.Rune.RuneGrass;
 import com.angrynerds.runekeeper.Rune.RuneOre;
 import com.angrynerds.runekeeper.Rune.RuneFire;
 import com.angrynerds.runekeeper.Rune.Rune;
+import com.angrynerds.runekeeper.Rune.RuneType;
 import com.angrynerds.runekeeper.Rune.WaterSwordAnima;
 import com.angrynerds.runekeeper.sound.DyingSound;
 import com.badlogic.gdx.Gdx;
@@ -142,8 +143,8 @@ public class Player extends Observable {
 
         playerAnimation = new PlayerAnimation(pos.x, pos.y);
         animation = playerAnimation.downIdling;
-        bounds.width = this.playerAnimation.getHeight();
-        bounds.height = this.playerAnimation.getWidth();
+        bounds.width = this.playerAnimation.getWidth();
+        bounds.height = this.playerAnimation.getHeight();
 
         bounds.x = pos.x;
         bounds.y = pos.y;
@@ -632,11 +633,11 @@ public class Player extends Observable {
     }
 
     public void setX(float x) {
-        pos.x = x;
+        bounds.x = pos.x = x;
     }
 
     public void setY(float y) {
-        pos.y = y;
+        bounds.y = pos.y = y;
     }
 
     public float getX() {
@@ -721,5 +722,57 @@ public class Player extends Observable {
     public void setCurrentHealth(float currentHealth) {
         this.currentHealth = currentHealth;
     }
-
+    
+    public Rectangle getBounds(){
+        return this.bounds;
+    }
+    public boolean hasRuneEquipped(RuneType runeType){
+        switch(runeType){
+            case GRASS:
+                if(getCurrentGloveRune() == RuneType.GRASS || getCurrentSwordRune() == RuneType.GRASS){
+                    return true;
+                }
+                break;
+            case WATER:
+                if(getCurrentGloveRune() == RuneType.WATER || getCurrentSwordRune() == RuneType.WATER){
+                    return true;
+                }
+                break;
+            case FIRE:
+                if(getCurrentGloveRune() == RuneType.FIRE || getCurrentSwordRune() == RuneType.FIRE){
+                    return true;
+                }
+                break;
+            case ORE:
+                if(getCurrentGloveRune() == RuneType.ORE || getCurrentSwordRune() == RuneType.ORE){
+                    return true;
+                }
+                break;
+        }
+        return false;
+    }
+    public RuneType getCurrentGloveRune(){
+        if(runeGrassGlove){
+            return RuneType.GRASS;
+        }else if(runeWaterGlove){
+            return RuneType.WATER;
+        }else if(runeFireGlove){
+            return RuneType.FIRE;
+        }else if(runeOreGlove){
+            return RuneType.ORE;
+        }
+        return RuneType.EMPTY;   
+    }
+    public RuneType getCurrentSwordRune(){
+        if(runeGrassSword){
+            return RuneType.GRASS;
+        }else if(runeWaterSword){
+            return RuneType.WATER;
+        }else if(runeFireSword){
+            return RuneType.FIRE;
+        }else if(runeOreSword){
+            return RuneType.ORE;
+        }
+        return RuneType.EMPTY;   
+    }
 }

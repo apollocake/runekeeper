@@ -13,6 +13,7 @@ import com.angrynerds.runekeeper.BuffAgainstWater;
 import com.angrynerds.runekeeper.CrazyPatrol;
 import com.angrynerds.runekeeper.MusicCollision;
 import com.angrynerds.runekeeper.DifficultyType;
+import com.angrynerds.runekeeper.DoorCollision;
 import com.angrynerds.runekeeper.EasyDifficultyType;
 import com.angrynerds.runekeeper.FireEnemyType;
 import com.angrynerds.runekeeper.GameStates;
@@ -22,6 +23,7 @@ import com.angrynerds.runekeeper.sound.MusicManager;
 import com.angrynerds.runekeeper.HealTotem;
 import com.angrynerds.runekeeper.HitBoxRenderer;
 import com.angrynerds.runekeeper.OreEnemyType;
+import com.angrynerds.runekeeper.WallCollision;
 import com.angrynerds.runekeeper.WaterEnemyType;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -94,7 +96,9 @@ public class NewGameScreen extends RunekeeperScreen {
 
     SkillsDialog skillsDia;
 
-    private final MusicCollision playerCollision;
+    private final MusicCollision musicCollision;
+    private final WallCollision wallCollision;
+    private final DoorCollision doorCollision;
     private final EnemyPainSfx enemyPainSfx;
     private final DyingSound dyingSound;
     public static MusicManager musicManager;
@@ -111,21 +115,27 @@ public class NewGameScreen extends RunekeeperScreen {
         skillsAdded = 0;
         TmxMapLoader loader = new TmxMapLoader();
         map = loader.load("worldmap.tmx");
-        TiledMapTileLayer collisionLayer = (TiledMapTileLayer) map.getLayers().get(0);
+        TiledMapTileLayer musicCollisionLayer = (TiledMapTileLayer) map.getLayers().get(0);
         TiledMapTileLayer totemLayer = (TiledMapTileLayer) map.getLayers().get(1);
-        float tileWidth = collisionLayer.getTileWidth();
-        float tileHeight = collisionLayer.getTileHeight();
+        TiledMapTileLayer wallCollisionLayer = (TiledMapTileLayer) map.getLayers().get(2);
+        TiledMapTileLayer doorCollisionLayer = (TiledMapTileLayer) map.getLayers().get(3);
+        float tileWidth = musicCollisionLayer.getTileWidth();
+        float tileHeight = musicCollisionLayer.getTileHeight();
 
         buffPower = 0;
-        playerCollision = new MusicCollision(collisionLayer); //should rename to musicLevelCollision
-        musicManager = new MusicManager(playerCollision);
+        musicCollision = new MusicCollision(musicCollisionLayer); //should rename to musicLevelCollision
+        wallCollision = new WallCollision(wallCollisionLayer);
+        doorCollision = new DoorCollision(doorCollisionLayer);
+        musicManager = new MusicManager(musicCollision);
         enemyPainSfx = new EnemyPainSfx();
         dyingSound = new DyingSound();
         renderer = new OrthogonalTiledMapRenderer(map);
         hitboxRenderer = new HitBoxRenderer();
         camera = new OrthographicCamera();
         player = new Player(25 * tileWidth, 25 * tileHeight);
-        player.addObserver(playerCollision);
+        player.addObserver(musicCollision);
+        player.addObserver(wallCollision);
+        player.addObserver(doorCollision);
         enemyAttackSound = new EnemyAttackSound();
 
         gamestatus = GAME_RUNNING;
@@ -353,6 +363,7 @@ public class NewGameScreen extends RunekeeperScreen {
         renderer.renderTileLayer((TiledMapTileLayer) map.getLayers().get(0));
         renderer.renderTileLayer((TiledMapTileLayer) map.getLayers().get(1));
         renderer.renderTileLayer((TiledMapTileLayer) map.getLayers().get(2));
+        renderer.renderTileLayer((TiledMapTileLayer) map.getLayers().get(3));
 
         playerPos = player.getPosition();
         currentFrame = player.animation.getKeyFrame(player.stateTime, true);
@@ -558,7 +569,7 @@ public class NewGameScreen extends RunekeeperScreen {
         font.dispose();
         skin.dispose();
         map.dispose();
-        playerCollision.dispose();
+        musicCollision.dispose();
     }
 
 }
