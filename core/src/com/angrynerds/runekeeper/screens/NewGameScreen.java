@@ -429,7 +429,7 @@ public class NewGameScreen extends RunekeeperScreen {
                         enemyPos = entity.getPosition();
                         GameStates.gsEnemyPos = enemyPos;
                         enemyDistance = enemyPos.dst(playerPos);
-                        System.out.println(enemyDistance);
+                    //    System.out.println(enemyDistance);
 
                         GameStates.gsEnemyDist = enemyDistance;
                     //    if (runMode) {

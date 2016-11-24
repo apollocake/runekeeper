@@ -47,6 +47,8 @@ public class EnemyAttackSound {
             currentEnemyType = EnemyName.SNAKE_KING;
         } else if (enemyName.equals("Evil Wizard")) {
             currentEnemyType = EnemyName.EVIL_WIZARD;
+        }else if (enemyName.equals("Troll")) {
+            currentEnemyType = EnemyName.TROLL;
         } else if (enemyName.equals("Meteor Beast")) {
             currentEnemyType = EnemyName.METEOR_BEAST;
         }
@@ -63,6 +65,10 @@ public class EnemyAttackSound {
                     sfx = new SfxTrack(new DemonAttackSound());
                     break;
                 case GHOST:
+                //    sfx.dispose();
+                //    sfx = new SfxTrack(new GhostPainSfx());
+                    break;
+                case TROLL:
                 //    sfx.dispose();
                 //    sfx = new SfxTrack(new GhostPainSfx());
                     break;
