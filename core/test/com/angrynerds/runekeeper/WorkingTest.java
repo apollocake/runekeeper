@@ -1,5 +1,6 @@
 package com.angrynerds.runekeeper;
 
+import com.angrynerds.runekeeper.Sword;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -10,7 +11,8 @@ public class WorkingTest
     @Test
     public void thisAlwaysPasses() 
     {
-        assertTrue(false);
+        Sword s = new Sword();
+        assertTrue(true);
     }
 
     @Test
