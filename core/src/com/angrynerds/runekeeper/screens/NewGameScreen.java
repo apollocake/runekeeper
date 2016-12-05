@@ -390,6 +390,11 @@ public class NewGameScreen extends RunekeeperScreen {
         }
         ArrayList<Entity> toRemove = new ArrayList<Entity>();
         //check if any collisons between player and enemies
+
+        if(this.entities.size() <= 0) {
+            game.setScreen(new GameOverScreen(game));
+            return;
+        }
         for (Entity entity : this.entities) {
             if (player.state.equals("ALIVE")) {
                 if (gamestatus != GAME_PAUSED) {
