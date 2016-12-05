@@ -28,13 +28,13 @@ public class WallCollision implements Observer {
     public void update(Observable obs, Object arg) {
         player = (Player) obs;
         /*
-        Spite width is too fat for doorways, but this creates a smaller hitbox for wall collision
-        */
+         Spite width is too fat for doorways, but this creates a smaller hitbox for wall collision
+         */
         pLocationX = offsetX(player.getX());
         pLocationY = offsetY(player.getY());
         pSpriteWidth = trimWidth(player.getBounds().width);
         pSpriteHeight = trimHeight(player.getBounds().height);
-        
+
         if (collidesTop()) {
             //going up
             player.setY(player.getY() - REPOSITION);
@@ -51,6 +51,8 @@ public class WallCollision implements Observer {
             //going down
             player.setY(player.getY() + REPOSITION);
         }
+
+        collidesDiagonally();
 
     }
 
@@ -96,6 +98,28 @@ public class WallCollision implements Observer {
         for (float step = 0; step < pSpriteWidth; step += pSpriteWidth / COLLISION_POINTS) {
             if (isBlocked(pLocationX + step, pLocationY)) {
                 return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean collidesDiagonally() {
+        for (float step = 0; step != pSpriteWidth && step != pSpriteHeight; step += pSpriteWidth / COLLISION_POINTS) {
+            if (collidesTop()) {
+                //going up
+                player.setY(player.getY() - REPOSITION);
+            }
+            if (collidesLeft()) {
+                //going left
+                player.setX(player.getX() + REPOSITION);
+            }
+            if (collidesRight()) {
+                //going right
+                player.setX(player.getX() - REPOSITION);
+            }
+            if (collidesBottom()) {
+                //going down
+                player.setY(player.getY() + REPOSITION);
             }
         }
         return false;
