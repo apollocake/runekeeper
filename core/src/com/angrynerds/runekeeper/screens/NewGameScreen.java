@@ -11,7 +11,6 @@ import com.angrynerds.runekeeper.BuffAgainstFire;
 import com.angrynerds.runekeeper.BuffAgainstGrass;
 import com.angrynerds.runekeeper.BuffAgainstOre;
 import com.angrynerds.runekeeper.BuffAgainstWater;
-import com.angrynerds.runekeeper.CrazyPatrol;
 import com.angrynerds.runekeeper.MusicCollision;
 import com.angrynerds.runekeeper.DifficultyType;
 import com.angrynerds.runekeeper.DoorCollision;
@@ -32,10 +31,6 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.Pixmap.Format;
-import com.badlogic.gdx.graphics.Texture;
-import static com.badlogic.gdx.graphics.TextureData.TextureDataType.Pixmap;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -60,8 +55,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 
-import static java.lang.Math.abs;
-
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -77,7 +70,7 @@ public class NewGameScreen extends RunekeeperScreen {
     float time = 0;
 
     Color nullColor;
-
+    Color currentColor;
     Label livesLabel, attackLabel, attackBuffLabel, buffLabel, posLabel;
     BitmapFont font;
     LabelStyle textStyle;
@@ -147,6 +140,7 @@ public class NewGameScreen extends RunekeeperScreen {
         saveDia = new SaveDialog("Save Load Menu", skin);
         skillsDia = new SkillsDialog("Skills Points", skin);
         entities = new ArrayList<Entity>();
+        currentColor = nullColor;
 
         GameStates.gsEnemyAnimation = entities;
 
@@ -457,7 +451,9 @@ public class NewGameScreen extends RunekeeperScreen {
             renderer.getBatch().end();
             hitboxRenderer.setProjectionMatrix(camera.combined);
             //get dimensions needs to be used because sprite is resized after setting getRec width/height
-            hitboxRenderer.drawBox(entity.getRec(), entity.getDimensions());
+            if(currentColor != null) {
+                hitboxRenderer.drawBox(entity.getRec(), entity.getDimensions(), currentColor);
+            }
             renderer.getBatch().begin();
         }
 
@@ -467,7 +463,9 @@ public class NewGameScreen extends RunekeeperScreen {
 
         renderer.getBatch().end();
         hitboxRenderer.setProjectionMatrix(camera.combined);
-        hitboxRenderer.drawBox(player.bounds);
+        if(currentColor != null) {
+            hitboxRenderer.drawBox(player.bounds, currentColor);
+        }
         stage.draw();
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
 
@@ -551,6 +549,15 @@ public class NewGameScreen extends RunekeeperScreen {
 
             if (Gdx.input.isKeyJustPressed(Input.Keys.P)) {
                 player.setCurrentBuff(new BuffAgainstOre());
+            }
+
+            if (Gdx.input.isKeyJustPressed(Input.Keys.Z)) {
+                if(currentColor == null) {
+                    currentColor = Color.RED;
+                }
+                else {
+                    currentColor = null;
+                }
             }
 
             /* if (Gdx.input.isKeyJustPressed(Input.Keys.R)) {

@@ -12,17 +12,18 @@ public class HitBoxRenderer extends ShapeRenderer {
     public HitBoxRenderer() {
     }
 
-    public void drawBox(Rectangle bounds) {
+    public void drawBox(Rectangle bounds, Color color) {
         super.begin(ShapeType.Line);
-        super.setColor(Color.RED);
-        super.rect(bounds.x, bounds.y, bounds.width, bounds.height); 
+        super.setColor(color);
+        super.rect(bounds.x, bounds.y, bounds.width, bounds.height);
         super.end();
     }
-        public void drawBox(Rectangle bounds, Vector2 newDimensions) {
+
+    public void drawBox(Rectangle bounds, Vector2 newDimensions, Color color) {
         super.begin(ShapeType.Line);
-        super.setColor(Color.RED);
+        super.setColor(color);
         //don't use bounds width and height on enemy, resizing transormation pattern makes it moot
-        super.rect(bounds.x, bounds.y, newDimensions.x, newDimensions.y); 
+        super.rect(bounds.x, bounds.y, newDimensions.x, newDimensions.y);
         super.end();
     }
 }
