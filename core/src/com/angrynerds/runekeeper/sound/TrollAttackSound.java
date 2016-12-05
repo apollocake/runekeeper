@@ -13,7 +13,7 @@ import com.badlogic.gdx.Gdx;
  */
 public class TrollAttackSound extends AbstractSoundFile {
     public TrollAttackSound(){
-        super(Gdx.audio.newSound(Gdx.files.internal("trollattack.wav")));
+        super(Gdx.audio.newSound(Gdx.files.internal("trollattack.mp3")));
     }
     
     @Override
