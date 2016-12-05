@@ -16,11 +16,12 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
  * @author qzhao
  */
 public class GrassGloveAnima {
-        private static final int FIRE_RIGHT_FRAME_COLS = 4;
+
+    private static final int FIRE_RIGHT_FRAME_COLS = 4;
     private static final int FIRE_RIGHT_FRAME_ROW = 4;
-    
+
     float stateTime;
-    TextureRegion currentFrame; 
+    TextureRegion currentFrame;
     //Animation attackingDownAnima;
     //Animation attackingUpAnima;
     //Animation attackingLeftAnima;
@@ -51,11 +52,10 @@ public class GrassGloveAnima {
         attackingSheet = new Texture(Gdx.files.internal("GrassGlove.png"));
 
         TextureRegion[][] tmp = TextureRegion.split(attackingSheet, attackingSheet.getWidth() / (FIRE_RIGHT_FRAME_COLS),
-                attackingSheet.getHeight() / FIRE_RIGHT_FRAME_ROW); 
-    
+                attackingSheet.getHeight() / FIRE_RIGHT_FRAME_ROW);
+
         attackingRightFrames = new TextureRegion[FIRE_RIGHT_FRAME_COLS * FIRE_RIGHT_FRAME_ROW];
 
- 
         int index = 0;
         for (int i = 0; i < FIRE_RIGHT_FRAME_ROW; i++) {
             for (int j = 0; j < FIRE_RIGHT_FRAME_COLS; j++) {
@@ -64,13 +64,13 @@ public class GrassGloveAnima {
         }
         //index = 0;
         rightIdling = new Animation(0.025f, attackingRightFrames);
-        
+
         stateTime = 0f;
 
     }
-    
-    public void showFireAnimation(SpriteBatch spriteBatch, int x, int y){
-        stateTime += Gdx.graphics.getDeltaTime();          
+
+    public void showFireAnimation(SpriteBatch spriteBatch, int x, int y) {
+        stateTime += Gdx.graphics.getDeltaTime();
         currentFrame = rightIdling.getKeyFrame(stateTime, true);  // #16
         spriteBatch.draw(currentFrame, x, y);             // #17
     }

@@ -5,11 +5,13 @@
  */
 package com.angrynerds.runekeeper;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Noah
  */
-public class DefaultBuff implements Buff {
+public class DefaultBuff implements Buff , Serializable {
 
     @Override
     public int buffEntity(EnemyType enemyType, int currentAttackPower) {

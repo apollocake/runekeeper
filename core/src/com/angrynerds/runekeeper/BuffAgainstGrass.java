@@ -4,12 +4,12 @@
  * and open the template in the editor.
  */
 package com.angrynerds.runekeeper;
-
+import java.io.Serializable;
 /**
  *
  * @author Noah
  */
-public class BuffAgainstGrass implements Buff {
+public class BuffAgainstGrass implements Buff, Serializable {
 
     @Override
     public int buffEntity(EnemyType enemyType, int currentAttackPower) {

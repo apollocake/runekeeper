@@ -51,6 +51,8 @@ public class GameStates {
     public static boolean gsRuneWaterSword;
     public static boolean gsRuneGrassSword;
     public static boolean gsRuneOreSword;
+    public static int gsAttackPower;
+    public static Buff gsBuff;
 
     static ArrayList<Object> gsObject = new ArrayList<Object>();
 
@@ -76,6 +78,8 @@ public class GameStates {
         gsRuneWaterSword = player.runeWaterSword;
         gsRuneGrassSword = player.runeGrassSword;
         gsRuneOreSword = player.runeOreSword;
+        gsAttackPower = player.getAttackPower();
+        gsBuff = player.getCurrentBuff();
 
         //ArrayList<Object> gsObject = new ArrayList<Object>();
         gsObject.add(gsNumLives);               //0 player lives
@@ -96,6 +100,9 @@ public class GameStates {
         gsObject.add(gsRuneGrassSword);         //13 rune grass sword
         gsObject.add(gsRuneOreSword);           //14 rune ore sword
         gsObject.add(gsMusic);                  //15 music
+        gsObject.add(gsHue);
+        gsObject.add(gsAttackPower);
+        gsObject.add(gsBuff);
 
 //gsObject.add(gsMusic);
         gsObject.add(gsHue);                    //16 hue
@@ -146,14 +153,32 @@ public class GameStates {
             System.out.println("rune grass sword = " + gsObject2.get(13));
             System.out.println("rune ore sword = " + gsObject2.get(14));
             System.out.println("music = " + gsObject2.get(15));
-            System.out.println("hue = " + gsObject2.get(15));
+            System.out.println("hue = " + gsObject2.get(16));
+            System.out.println("atk power = " + gsObject2.get(17));
+            System.out.println("buff = " + gsObject2.get(18));
 
             player.setPlayerLives((Integer)gsObject2.get(0));
             player.setPosition((Float)gsObject2.get(1),(Float)gsObject2.get(2));
 
-            player.setGloveSword((Boolean)gsObject2.get(7), (Boolean)gsObject2.get(8), (Boolean)gsObject2.get(9), (Boolean)gsObject2.get(10), (Boolean)gsObject2.get(11), (Boolean)gsObject2.get(12), (Boolean)gsObject2.get(13), (Boolean)gsObject2.get(14));
+            player.setGloveSword(
+                    (Boolean)gsObject2.get(7),
+                    (Boolean)gsObject2.get(8),
+                    (Boolean)gsObject2.get(9),
+                    (Boolean)gsObject2.get(10),
+                    (Boolean)gsObject2.get(11),
+                    (Boolean)gsObject2.get(12),
+                    (Boolean)gsObject2.get(13), (Boolean)gsObject2.get(14));
 
             player.setCurrentHealth(100);
+
+            if(gsObject2.get(17) != null) {
+                player.setAttackPower((Integer)gsObject2.get(17));
+            }
+            
+            if(gsObject2.get(18) != null) {
+                player.setCurrentBuff((Buff)gsObject2.get(18));
+            }
+            
 
         } catch (IOException ex) {
             Logger.getLogger(GameStates.class.getName()).log(Level.SEVERE, null, ex);

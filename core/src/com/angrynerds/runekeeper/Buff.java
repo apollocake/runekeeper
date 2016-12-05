@@ -5,6 +5,8 @@
  */
 package com.angrynerds.runekeeper;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Noah
