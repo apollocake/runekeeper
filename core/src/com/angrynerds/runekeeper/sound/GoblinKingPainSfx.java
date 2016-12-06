@@ -9,7 +9,7 @@ import com.badlogic.gdx.Gdx;
 
 /**
  *
- * @author Jack
+ * @author Afton
  */
 public class GoblinKingPainSfx extends AbstractSoundFile{
     public GoblinKingPainSfx(){

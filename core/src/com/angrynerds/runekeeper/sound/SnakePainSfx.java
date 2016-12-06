@@ -9,7 +9,7 @@ import com.badlogic.gdx.Gdx;
 
 /**
  *
- * @author Jack
+ * @author Afton
  */
 public class SnakePainSfx extends AbstractSoundFile{
     public SnakePainSfx(){

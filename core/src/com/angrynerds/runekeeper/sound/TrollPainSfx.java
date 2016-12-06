@@ -9,7 +9,7 @@ import com.badlogic.gdx.Gdx;
 
 /**
  *
- * @author Jack
+ * @author Afton
  */
 public class TrollPainSfx extends AbstractSoundFile{
     public TrollPainSfx(){
