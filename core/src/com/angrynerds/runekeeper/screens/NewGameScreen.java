@@ -147,8 +147,6 @@ public class NewGameScreen extends RunekeeperScreen {
         DifficultyType easyDifficulty = new EasyDifficultyType(new Vector2(40, 40));
         DifficultyType bossDifficulty = new BossDifficultyType(new Vector2(100, 100));
 
-        entities.add(new Enemy(new EntityAnimation(4, 1, 0, 2, 2, 4, 3, "demon.png"), "Demon", tileWidth * 5, tileHeight * 4, easyDifficulty, new BoxPatrol(), new FireEnemyType()));
-
         entities.add(new Enemy(new EntityAnimation(2, 1, 1, 0, 1, 2, 2, "ghost.png"), "Ghost", tileWidth * 6, tileHeight * 13, easyDifficulty, new BoxPatrol(), new OreEnemyType()));
         entities.add(new Enemy(new EntityAnimation(4, 1, 1, 0, 1, 4, 3, "demon.png"), "Demon", tileWidth * 14, tileHeight * 11, easyDifficulty, new BoxPatrol(), new FireEnemyType()));
         entities.add(new Enemy(new EntityAnimation(2, 1, 1, 0, 1, 2, 2, "ghost.png"), "Ghost", tileWidth * 33, tileHeight * 14, easyDifficulty, new BoxPatrol(), new OreEnemyType()));
