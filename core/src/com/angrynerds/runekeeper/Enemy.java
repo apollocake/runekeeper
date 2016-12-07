@@ -7,12 +7,13 @@ package com.angrynerds.runekeeper;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import java.util.Observable;
 
 /**
  *
  * @author Noah
  */
-public class Enemy implements Entity {
+public class Enemy extends Observable implements Entity {
 
     private EnemyPatrol enemyPatrol;
     private EnemyType enemyType;

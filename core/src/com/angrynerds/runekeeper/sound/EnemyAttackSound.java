@@ -5,15 +5,22 @@
  */
 package com.angrynerds.runekeeper.sound;
 
+import java.util.Observable;
+import java.util.Observer;
+
 /**
  *
  * @author Christopher Pope
  */
-public class EnemyAttackSound {
+public class EnemyAttackSound implements Observer {
     private final float DELTA_MAX = 0.3f; //for preventing triggering sound faster than it can play
     private EnemyName currentEnemyType;
     private EnemyName lastEnemyType;
     private float deltaSum = 0;
+
+    @Override
+    public void update(Observable o, Object arg) {
+    }
 
     public enum EnemyName {
         ORC, GOBLIN, TROLL, GHOST, WIZARD, SNAKE, DEMON, GOBLIN_KING, EVIL_WIZARD, GHOST_KING, SNAKE_KING, METEOR_BEAST
